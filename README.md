@@ -16,6 +16,21 @@ Autonomous agents working in this repository should begin with [`AGENTS.md`](AGE
 
 ## Development
 
-The implementation, architecture, and tooling have not yet been established.
+The first product slice is a server-rendered TypeScript and React application. It compares the iPhone 16 and Pixel 9 using a small, typed catalogue in which every displayed fact links to first-party provenance.
 
-Repository changes follow the workflow defined in [`AGENTS.md`](AGENTS.md). Technical implementation choices may be selected and revised autonomously in accordance with the product goal and governance.
+Requirements: Node.js 22.13 or newer and pnpm 11.
+
+```sh
+pnpm install
+pnpm dev
+```
+
+Run the complete verification suite with:
+
+```sh
+pnpm check
+```
+
+The production build is emitted as Cloudflare Worker-compatible output. The current slice has no database or other hosted resource dependency. See [`docs/decisions/0001-application-and-data-foundation.md`](docs/decisions/0001-application-and-data-foundation.md) for the durable architecture and data-provenance decision.
+
+Repository changes follow the workflow defined in [`AGENTS.md`](AGENTS.md).

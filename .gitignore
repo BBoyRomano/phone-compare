@@ -1,0 +1,21 @@
+# Dependencies
+/node_modules/
+/.pnpm-store/
+
+# Build and framework output
+/dist/
+/.next/
+/.vinext/
+/.wrangler/
+*.tsbuildinfo
+
+# Local configuration and logs
+.env*
+!.env.example
+*.log
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
