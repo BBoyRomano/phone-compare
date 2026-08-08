@@ -16,7 +16,7 @@ Autonomous agents working in this repository should begin with [`AGENTS.md`](AGE
 
 ## Development
 
-The first product slice is a server-rendered TypeScript and React application. It compares the iPhone 16 and Pixel 9 using a small, typed catalogue in which every displayed fact links to first-party provenance.
+The product is a server-rendered TypeScript and React application. Users can compare any two phones in a small, typed catalogue and share the selection through URL query parameters. Every displayed fact links to first-party provenance.
 
 Requirements: Node.js 22.13 or newer and pnpm 11.
 
