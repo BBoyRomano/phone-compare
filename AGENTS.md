@@ -68,7 +68,7 @@ For normal repository changes:
 7. Push the branch and open a pull request when the bounded unit is coherent and ready for repository checks.
 8. Continue addressing relevant review or verification findings on the same branch and pull request when they remain within the unit's scope.
 9. If materially unrelated work is discovered, leave it for a separate bounded unit rather than expanding the current pull request.
-10. Squash-merge into `main` only when repository requirements are satisfied.
+10. When repository requirements permit and no owner-controlled approval is required, enable squash auto-merge rather than waiting for a routine manual merge. Never bypass repository requirements or protections.
 11. Remove the merged or closed branch. Do not reuse it for unrelated follow-up work.
 
 Use a draft pull request only when there is a concrete reason to publish incomplete work for early collaboration, validation, or review.
