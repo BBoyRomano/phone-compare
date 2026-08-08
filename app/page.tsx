@@ -188,7 +188,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         <div className="trust-row" aria-label="Data quality summary">
           <span>{phones.length} phones</span>
           <span>{comparisonRows.length} comparison points</span>
-          <span>{Object.keys(sources).length} first-party sources</span>
+          <span>{usedSourceIds.length} cited sources</span>
         </div>
       </section>
 
