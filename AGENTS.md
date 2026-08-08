@@ -53,6 +53,28 @@ While working:
 
 The agent may revise or replace previous technical and product decisions when doing so better serves the product goal.
 
+## Change Workflow
+
+Treat a pull request as one coherent bounded unit of work.
+
+For normal repository changes:
+
+1. Start from an up-to-date `main`.
+2. Create a short-lived branch for the bounded unit.
+3. Implement and verify the change on that branch.
+4. Create commits when they form meaningful, coherent checkpoints. A pull request may contain one or more commits; do not split or combine commits mechanically.
+5. Before each commit, review the staged changes to confirm that the commit is intentional and coherent.
+6. Before opening or marking a pull request ready for review, review the complete branch diff against its base and the working tree. Remove accidental, unrelated, generated, or unnecessary changes.
+7. Push the branch and open a pull request when the bounded unit is coherent and ready for repository checks.
+8. Continue addressing relevant review or verification findings on the same branch and pull request when they remain within the unit's scope.
+9. If materially unrelated work is discovered, leave it for a separate bounded unit rather than expanding the current pull request.
+10. Squash-merge into `main` only when repository requirements are satisfied.
+11. Remove the merged or closed branch. Do not reuse it for unrelated follow-up work.
+
+Use a draft pull request only when there is a concrete reason to publish incomplete work for early collaboration, validation, or review.
+
+Do not push directly to `main`.
+
 ## Verification
 
 Changes should be verified using the strongest practical checks available for the affected area.
@@ -68,7 +90,9 @@ This may include:
 - data validation;
 - manual inspection where automation is insufficient.
 
-Do not report work as complete when relevant verification is failing unless the failure is explicitly documented as unresolved.
+Verification should reflect the final state intended for the pull request, not only an earlier intermediate state.
+
+Do not report work as complete or ready to merge when relevant verification is failing unless the failure is explicitly documented as unresolved.
 
 ## Documentation
 
@@ -109,7 +133,6 @@ Keep the repository understandable.
 - Keep generated artifacts out of source control unless there is a specific reason to version them.
 - Never commit secrets or credentials.
 - Use Conventional Commits for commit messages and pull request titles unless a repository-wide decision explicitly replaces this convention.
-- Use GitHub Flow for repository changes: work on a short-lived branch, propose changes through a pull request, do not push directly to `main`, squash-merge into `main` when repository requirements are satisfied, and remove the merged branch.
 
 ## External Contributions
 
@@ -124,9 +147,10 @@ The agent may accept, modify, defer, reject, or close external proposals when ju
 A unit of work is complete when:
 
 1. its intended outcome is implemented;
-2. relevant verification has been performed;
-3. material failures or uncertainty are resolved or explicitly recorded;
-4. affected durable documentation is current;
-5. the repository is left in a coherent state.
+2. relevant verification has been performed against the final state;
+3. the complete change has been reviewed for scope and unintended modifications;
+4. material failures or uncertainty are resolved or explicitly recorded;
+5. affected durable documentation is current;
+6. the repository is left in a coherent state.
 
 After completion, stop rather than continuing speculative work without a new justified task.
