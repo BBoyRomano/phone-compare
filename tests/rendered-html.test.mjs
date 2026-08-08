@@ -25,6 +25,8 @@ test("server-renders the comparison and its provenance", async () => {
   assert.match(html, /Not stated on the cited Apple specification page/);
   assert.match(html, /https:\/\/support\.apple\.com\/en-asia\/121029/);
   assert.match(html, /https:\/\/store\.google\.com\/us\/product\/pixel_9_specs/);
+  assert.doesNotMatch(html, /apple-introduces-iphone-17e/);
+  assert.doesNotMatch(html, /enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
 
@@ -40,6 +42,8 @@ test("server-renders a URL-selected comparison without client JavaScript", async
   assert.match(html, /U\.S\. mmWave configuration/);
   assert.match(html, /Not stated specifically for Galaxy S24/);
   assert.match(html, /https:\/\/news\.samsung\.com\/us\/enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
+  assert.doesNotMatch(html, /store\.google\.com\/us\/product\/pixel_9_specs/);
+  assert.doesNotMatch(html, /apple-introduces-iphone-17e/);
 });
 
 test("server-renders the current-generation iPhone 17e with launch context", async () => {
@@ -54,6 +58,8 @@ test("server-renders the current-generation iPhone 17e with launch context", asy
   assert.match(html, /Not stated on the cited Apple specification page/);
   assert.match(html, /https:\/\/support\.apple\.com\/en-us\/126470/);
   assert.match(html, /https:\/\/www\.apple\.com\/newsroom\/2026\/03\/apple-introduces-iphone-17e/);
+  assert.doesNotMatch(html, /support\.apple\.com\/en-asia\/121029/);
+  assert.doesNotMatch(html, /enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
 });
 
 test("unknown URL selections fall back to the default comparison", async () => {
