@@ -6,8 +6,22 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue remains intentionally small", () => {
-  assert.equal(phones.length, 3);
-  assert.equal(Object.keys(sources).length, 5);
+  assert.equal(phones.length, 4);
+  assert.equal(Object.keys(sources).length, 7);
+});
+
+test("iPhone 17e preserves its current-generation launch context and source gaps", () => {
+  const phone: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-17e");
+  assert.ok(phone);
+  assert.equal(phone.releasedOn.value, "2026-03-11");
+  assert.deepEqual(phone.originalPrice.value, {
+    amount: 599,
+    currency: "USD",
+    market: "United States",
+    configuration: "256 GB"
+  });
+  assert.equal(phone.display.refreshRate.value, null);
+  assert.match(phone.display.refreshRate.qualification ?? "", /Not stated/);
 });
 
 test("Galaxy S24 facts preserve U.S. configuration context and explicit source gaps", () => {

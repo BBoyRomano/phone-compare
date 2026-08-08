@@ -42,6 +42,20 @@ test("server-renders a URL-selected comparison without client JavaScript", async
   assert.match(html, /https:\/\/news\.samsung\.com\/us\/enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
 });
 
+test("server-renders the current-generation iPhone 17e with launch context", async () => {
+  const response = await render("/?left=apple-iphone-17e&right=google-pixel-9");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /iPhone 17e vs Pixel 9/);
+  assert.match(html, /\$599/);
+  assert.match(html, /256 GB/);
+  assert.match(html, /Mar 11, 2026/);
+  assert.match(html, /Not stated on the cited Apple specification page/);
+  assert.match(html, /https:\/\/support\.apple\.com\/en-us\/126470/);
+  assert.match(html, /https:\/\/www\.apple\.com\/newsroom\/2026\/03\/apple-introduces-iphone-17e/);
+});
+
 test("unknown URL selections fall back to the default comparison", async () => {
   const response = await render("/?left=unknown&right=also-unknown");
   const html = await response.text();

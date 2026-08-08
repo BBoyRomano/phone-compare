@@ -16,6 +16,23 @@ export const sources = {
     publishedAt: "2024-09-09",
     accessedAt: "2026-08-08"
   },
+  "apple-iphone-17e-specs": {
+    id: "apple-iphone-17e-specs",
+    publisher: "Apple",
+    title: "iPhone 17e — Technical Specifications",
+    url: "https://support.apple.com/en-us/126470",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-08"
+  },
+  "apple-iphone-17e-announcement": {
+    id: "apple-iphone-17e-announcement",
+    publisher: "Apple",
+    title: "Apple introduces iPhone 17e",
+    url: "https://www.apple.com/newsroom/2026/03/apple-introduces-iphone-17e/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-03-02",
+    accessedAt: "2026-08-08"
+  },
   "google-pixel-9-specs": {
     id: "google-pixel-9-specs",
     publisher: "Google",
@@ -89,11 +106,70 @@ export interface PhoneRecord {
 
 const appleSpecs = ["apple-iphone-16-specs"] as const;
 const appleLaunch = ["apple-iphone-16-announcement"] as const;
+const apple17eSpecs = ["apple-iphone-17e-specs"] as const;
+const apple17eLaunch = ["apple-iphone-17e-announcement"] as const;
 const googleSpecs = ["google-pixel-9-specs"] as const;
 const googleLaunch = ["google-pixel-9-announcement"] as const;
 const samsungLaunch = ["samsung-galaxy-s24-announcement"] as const;
 
 export const phones = [
+  {
+    slug: "apple-iphone-17e",
+    maker: { value: "Apple", sourceIds: apple17eSpecs },
+    model: { value: "iPhone 17e", sourceIds: apple17eSpecs },
+    releasedOn: {
+      value: "2026-03-11",
+      sourceIds: apple17eLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: {
+        amount: 599,
+        currency: "USD",
+        market: "United States",
+        configuration: "256 GB"
+      },
+      sourceIds: apple17eLaunch,
+      qualification: "Official U.S. starting price at announcement"
+    },
+    display: {
+      size: {
+        value: "6.1 inches",
+        sourceIds: apple17eSpecs,
+        qualification: "6.06 inches when measured as a standard rectangle"
+      },
+      panel: { value: "OLED (Super Retina XDR)", sourceIds: apple17eSpecs },
+      resolution: { value: "2532 × 1170 at 460 ppi", sourceIds: apple17eSpecs },
+      refreshRate: {
+        value: null,
+        sourceIds: apple17eSpecs,
+        qualification: "Not stated on the cited Apple specification page"
+      },
+      peakBrightness: {
+        value: "1,200 nits peak HDR",
+        sourceIds: apple17eSpecs,
+        qualification: "Apple also states 800 nits maximum typical brightness"
+      }
+    },
+    weight: { value: "169 g", sourceIds: apple17eSpecs },
+    storage: { value: "256 GB or 512 GB", sourceIds: apple17eSpecs },
+    processor: { value: "Apple A19", sourceIds: apple17eSpecs },
+    rearCameras: {
+      value: "48 MP Fusion main",
+      sourceIds: apple17eSpecs,
+      qualification: "The main camera also enables a 12 MP 2× telephoto crop"
+    },
+    batteryClaim: {
+      value: "Up to 26 hours of video playback",
+      sourceIds: apple17eSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP68; up to 6 m for 30 minutes",
+      sourceIds: apple17eSpecs,
+      qualification: "Controlled laboratory conditions; resistance can decrease with wear"
+    }
+  },
   {
     slug: "apple-iphone-16",
     maker: { value: "Apple", sourceIds: appleSpecs },
