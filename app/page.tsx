@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
-import { phones, sources, type PhoneRecord, type SourceId, type SourcedValue } from "@/data/catalog";
+import { factsFor, phones, sources, type PhoneRecord, type SourceId, type SourcedValue } from "@/data/catalog";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
-
-const sourceNumber = new Map<SourceId, number>(
-  (Object.keys(sources) as SourceId[]).map((sourceId, index) => [sourceId, index + 1])
-);
 
 function firstValue(value: string | string[] | undefined): string | undefined {
   return Array.isArray(value) ? value[0] : value;
@@ -54,58 +50,66 @@ function formatPrice(amount: number, currency: string): string {
   }).format(amount);
 }
 
-function SourceMarks({ ids }: { ids: readonly SourceId[] }) {
+function SourceMarks({ ids, sourceNumbers }: { ids: readonly SourceId[]; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   return (
     <span className="source-marks" aria-label="Sources">
       {ids.map((id) => (
-        <a key={id} href={`#source-${id}`} aria-label={`Source ${sourceNumber.get(id)}: ${sources[id].title}`}>
-          {sourceNumber.get(id)}
+        <a key={id} href={`#source-${id}`} aria-label={`Source ${sourceNumbers.get(id)}: ${sources[id].title}`}>
+          {sourceNumbers.get(id)}
         </a>
       ))}
     </span>
   );
 }
 
-function Fact({ fact, fallback = "Not stated" }: { fact: SourcedValue<string | null>; fallback?: string }) {
+function Fact({
+  fact,
+  sourceNumbers,
+  fallback = "Not stated"
+}: {
+  fact: SourcedValue<string | null>;
+  sourceNumbers: ReadonlyMap<SourceId, number>;
+  fallback?: string;
+}) {
   return (
     <>
       <span className={fact.value === null ? "not-stated" : undefined}>{fact.value ?? fallback}</span>
-      <SourceMarks ids={fact.sourceIds} />
+      <SourceMarks ids={fact.sourceIds} sourceNumbers={sourceNumbers} />
       {fact.qualification ? <small>{fact.qualification}</small> : null}
     </>
   );
 }
 
-function Price({ phone }: { phone: PhoneRecord }) {
+function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const { amount, currency, market, configuration } = phone.originalPrice.value;
   return (
     <>
       <span>{formatPrice(amount, currency)}</span>
-      <SourceMarks ids={phone.originalPrice.sourceIds} />
+      <SourceMarks ids={phone.originalPrice.sourceIds} sourceNumbers={sourceNumbers} />
       <small>{market} · {configuration}</small>
     </>
   );
 }
 
-function DateFact({ fact }: { fact: SourcedValue<string> }) {
+function DateFact({ fact, sourceNumbers }: { fact: SourcedValue<string>; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   return (
     <>
       <time dateTime={fact.value}>{formatDate(fact.value)}</time>
-      <SourceMarks ids={fact.sourceIds} />
+      <SourceMarks ids={fact.sourceIds} sourceNumbers={sourceNumbers} />
       {fact.qualification ? <small>{fact.qualification}</small> : null}
     </>
   );
 }
 
-function PhoneCard({ phone }: { phone: PhoneRecord }) {
+function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
   return (
     <article className="phone-card">
       <div className={`phone-silhouette ${makerClass}`} aria-hidden="true"><i /><b /><b /></div>
       <div>
-        <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} /></span>
-        <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} /></strong>
-        <small>Released <DateFact fact={phone.releasedOn} /></small>
+        <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} sourceNumbers={sourceNumbers} /></span>
+        <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} sourceNumbers={sourceNumbers} /></strong>
+        <small>Released <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /></small>
       </div>
     </article>
   );
@@ -126,32 +130,37 @@ function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: st
 
 const comparisonRows: readonly {
   label: string;
-  render: (phone: PhoneRecord) => React.ReactNode;
+  render: (phone: PhoneRecord, sourceNumbers: ReadonlyMap<SourceId, number>) => React.ReactNode;
   note?: string;
 }[] = [
-  { label: "Original price", render: (phone) => <Price phone={phone} /> },
-  { label: "Release date", render: (phone) => <DateFact fact={phone.releasedOn} /> },
-  { label: "Display size", render: (phone) => <Fact fact={phone.display.size} /> },
-  { label: "Display", render: (phone) => <Fact fact={phone.display.panel} /> },
-  { label: "Resolution", render: (phone) => <Fact fact={phone.display.resolution} /> },
-  { label: "Refresh rate", render: (phone) => <Fact fact={phone.display.refreshRate} /> },
-  { label: "Peak brightness", render: (phone) => <Fact fact={phone.display.peakBrightness} /> },
-  { label: "Weight", render: (phone) => <Fact fact={phone.weight} /> },
-  { label: "Storage", render: (phone) => <Fact fact={phone.storage} /> },
-  { label: "Processor", render: (phone) => <Fact fact={phone.processor} /> },
-  { label: "Rear cameras", render: (phone) => <Fact fact={phone.rearCameras} /> },
+  { label: "Original price", render: (phone, sourceNumbers) => <Price phone={phone} sourceNumbers={sourceNumbers} /> },
+  { label: "Release date", render: (phone, sourceNumbers) => <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /> },
+  { label: "Display size", render: (phone, sourceNumbers) => <Fact fact={phone.display.size} sourceNumbers={sourceNumbers} /> },
+  { label: "Display", render: (phone, sourceNumbers) => <Fact fact={phone.display.panel} sourceNumbers={sourceNumbers} /> },
+  { label: "Resolution", render: (phone, sourceNumbers) => <Fact fact={phone.display.resolution} sourceNumbers={sourceNumbers} /> },
+  { label: "Refresh rate", render: (phone, sourceNumbers) => <Fact fact={phone.display.refreshRate} sourceNumbers={sourceNumbers} /> },
+  { label: "Peak brightness", render: (phone, sourceNumbers) => <Fact fact={phone.display.peakBrightness} sourceNumbers={sourceNumbers} /> },
+  { label: "Weight", render: (phone, sourceNumbers) => <Fact fact={phone.weight} sourceNumbers={sourceNumbers} /> },
+  { label: "Storage", render: (phone, sourceNumbers) => <Fact fact={phone.storage} sourceNumbers={sourceNumbers} /> },
+  { label: "Processor", render: (phone, sourceNumbers) => <Fact fact={phone.processor} sourceNumbers={sourceNumbers} /> },
+  { label: "Rear cameras", render: (phone, sourceNumbers) => <Fact fact={phone.rearCameras} sourceNumbers={sourceNumbers} /> },
   {
     label: "Battery claim",
-    render: (phone) => <Fact fact={phone.batteryClaim} />,
+    render: (phone, sourceNumbers) => <Fact fact={phone.batteryClaim} sourceNumbers={sourceNumbers} />,
     note: "Manufacturer battery claims use different measures, so these figures should not be ranked directly."
   },
-  { label: "Water & dust", render: (phone) => <Fact fact={phone.resistance} /> }
+  { label: "Water & dust", render: (phone, sourceNumbers) => <Fact fact={phone.resistance} sourceNumbers={sourceNumbers} /> }
 ];
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const [left, right] = await selectedPhones(searchParams);
-  const latestAccessDate = Object.values(sources)
-    .map((source) => source.accessedAt)
+  const usedSourceIdSet = new Set([...factsFor(left), ...factsFor(right)].flatMap((fact) => fact.sourceIds));
+  const usedSourceIds = (Object.keys(sources) as SourceId[]).filter((sourceId) => usedSourceIdSet.has(sourceId));
+  const sourceNumbers = new Map<SourceId, number>(
+    usedSourceIds.map((sourceId, index) => [sourceId, index + 1])
+  );
+  const latestAccessDate = usedSourceIds
+    .map((sourceId) => sources[sourceId].accessedAt)
     .sort()
     .at(-1)!;
   const sameStartingPrice =
@@ -200,9 +209,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         </form>
 
         <div className="phone-cards">
-          <PhoneCard phone={left} />
+          <PhoneCard phone={left} sourceNumbers={sourceNumbers} />
           <div className="versus">vs</div>
-          <PhoneCard phone={right} />
+          <PhoneCard phone={right} sourceNumbers={sourceNumbers} />
         </div>
 
         {sameStartingPrice ? (
@@ -217,7 +226,10 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
               </strong>
               <span>See each source note for configuration context.</span>
             </p>
-            <SourceMarks ids={[...new Set([...left.originalPrice.sourceIds, ...right.originalPrice.sourceIds])]} />
+            <SourceMarks
+              ids={[...new Set([...left.originalPrice.sourceIds, ...right.originalPrice.sourceIds])]}
+              sourceNumbers={sourceNumbers}
+            />
           </div>
         ) : null}
 
@@ -237,8 +249,8 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
                     {row.label}
                     {row.note ? <small>{row.note}</small> : null}
                   </th>
-                  <td>{row.render(left)}</td>
-                  <td>{row.render(right)}</td>
+                  <td>{row.render(left, sourceNumbers)}</td>
+                  <td>{row.render(right, sourceNumbers)}</td>
                 </tr>
               ))}
             </tbody>
@@ -262,11 +274,11 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           <p>All catalogue sources are first-party.</p>
         </div>
         <ol className="source-list">
-          {(Object.keys(sources) as SourceId[]).map((id) => {
+          {usedSourceIds.map((id) => {
             const source = sources[id];
             return (
               <li id={`source-${id}`} key={id}>
-                <span>{sourceNumber.get(id)}</span>
+                <span>{sourceNumbers.get(id)}</span>
                 <div>
                   <p>{source.publisher} · {source.kind === "manufacturer-specification" ? "Technical specification" : "Official announcement"}</p>
                   <h3>{source.title}</h3>
