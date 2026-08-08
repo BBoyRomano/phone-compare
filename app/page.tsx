@@ -15,9 +15,17 @@ function findPhone(slug: string | undefined, fallback: PhoneRecord): PhoneRecord
   return phones.find((phone) => phone.slug === slug) ?? fallback;
 }
 
+const defaultComparison = [
+  phones.find((phone) => phone.slug === "apple-iphone-16")!,
+  phones.find((phone) => phone.slug === "google-pixel-9")!
+] as const;
+
 async function selectedPhones(searchParams: SearchParams): Promise<readonly [PhoneRecord, PhoneRecord]> {
   const params = await searchParams;
-  return [findPhone(firstValue(params.left), phones[0]), findPhone(firstValue(params.right), phones[1])];
+  return [
+    findPhone(firstValue(params.left), defaultComparison[0]),
+    findPhone(firstValue(params.right), defaultComparison[1])
+  ];
 }
 
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
