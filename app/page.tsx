@@ -1,14 +1,33 @@
 import type { Metadata } from "next";
 import { phones, sources, type PhoneRecord, type SourceId, type SourcedValue } from "@/data/catalog";
 
-export const metadata: Metadata = {
-  title: "iPhone 16 vs Pixel 9 — Phone Compare",
-  description: "A sourced, side-by-side comparison of the Apple iPhone 16 and Google Pixel 9."
-};
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
 const sourceNumber = new Map<SourceId, number>(
   (Object.keys(sources) as SourceId[]).map((sourceId, index) => [sourceId, index + 1])
 );
+
+function firstValue(value: string | string[] | undefined): string | undefined {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function findPhone(slug: string | undefined, fallback: PhoneRecord): PhoneRecord {
+  return phones.find((phone) => phone.slug === slug) ?? fallback;
+}
+
+async function selectedPhones(searchParams: SearchParams): Promise<readonly [PhoneRecord, PhoneRecord]> {
+  const params = await searchParams;
+  return [findPhone(firstValue(params.left), phones[0]), findPhone(firstValue(params.right), phones[1])];
+}
+
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const [left, right] = await selectedPhones(searchParams);
+  const title = `${left.model.value} vs ${right.model.value}`;
+  return {
+    title: `${title} — Phone Compare`,
+    description: `A sourced, side-by-side comparison of the ${left.maker.value} ${left.model.value} and ${right.maker.value} ${right.model.value}.`
+  };
+}
 
 function formatDate(value: string): string {
   return new Intl.DateTimeFormat("en-US", {
@@ -23,7 +42,7 @@ function formatPrice(amount: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
-    maximumFractionDigits: 0
+    maximumFractionDigits: Number.isInteger(amount) ? 0 : 2
   }).format(amount);
 }
 
@@ -65,20 +84,35 @@ function DateFact({ fact }: { fact: SourcedValue<string> }) {
     <>
       <time dateTime={fact.value}>{formatDate(fact.value)}</time>
       <SourceMarks ids={fact.sourceIds} />
+      {fact.qualification ? <small>{fact.qualification}</small> : null}
     </>
   );
 }
 
-function PhoneCard({ phone, variant }: { phone: PhoneRecord; variant: "apple" | "pixel" }) {
+function PhoneCard({ phone }: { phone: PhoneRecord }) {
+  const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
   return (
-    <article className={`phone-card ${variant}-card`}>
-      <div className={`phone-silhouette ${variant}-phone`} aria-hidden="true"><i /><b /><b /></div>
+    <article className="phone-card">
+      <div className={`phone-silhouette ${makerClass}`} aria-hidden="true"><i /><b /><b /></div>
       <div>
         <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} /></span>
         <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} /></strong>
         <small>Released <DateFact fact={phone.releasedOn} /></small>
       </div>
     </article>
+  );
+}
+
+function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: string; phone: PhoneRecord }) {
+  return (
+    <label>
+      <span>{label}</span>
+      <select name={name} defaultValue={phone.slug}>
+        {phones.map((option) => (
+          <option value={option.slug} key={option.slug}>{option.maker.value} {option.model.value}</option>
+        ))}
+      </select>
+    </label>
   );
 }
 
@@ -106,21 +140,21 @@ const comparisonRows: readonly {
   { label: "Water & dust", render: (phone) => <Fact fact={phone.resistance} /> }
 ];
 
-export default function Home() {
-  const [iphone, pixel] = phones;
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
+  const [left, right] = await selectedPhones(searchParams);
   const latestAccessDate = Object.values(sources)
     .map((source) => source.accessedAt)
     .sort()
     .at(-1)!;
   const sameStartingPrice =
-    iphone.originalPrice.value.amount === pixel.originalPrice.value.amount &&
-    iphone.originalPrice.value.currency === pixel.originalPrice.value.currency &&
-    iphone.originalPrice.value.market === pixel.originalPrice.value.market;
+    left.originalPrice.value.amount === right.originalPrice.value.amount &&
+    left.originalPrice.value.currency === right.originalPrice.value.currency &&
+    left.originalPrice.value.market === right.originalPrice.value.market;
 
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Phone Compare home">
+        <a className="brand" href="/" aria-label="Phone Compare home">
           <span aria-hidden="true">PC</span>
           Phone Compare
         </a>
@@ -131,8 +165,8 @@ export default function Home() {
         <p className="eyebrow">Evidence-led phone comparison</p>
         <h1>See the difference.<br /><em>See the source.</em></h1>
         <p className="hero-copy">
-          A focused comparison of two phones, using only manufacturer specifications and announcements.
-          No mystery scores. No retailer pricing disguised as launch price.
+          Choose two phones from a carefully verified catalogue. Every comparison uses manufacturer specifications and announcements,
+          with market context and unknowns kept visible.
         </p>
         <div className="trust-row" aria-label="Data quality summary">
           <span>{phones.length} phones</span>
@@ -145,15 +179,22 @@ export default function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Side by side</p>
-            <h2 id="comparison-title">{iphone.model.value} vs {pixel.model.value}</h2>
+            <h2 id="comparison-title">{left.model.value} vs {right.model.value}</h2>
           </div>
           <p>Facts checked {formatDate(latestAccessDate)}</p>
         </div>
 
+        <form className="phone-selector" action="/" method="get" aria-label="Choose phones to compare">
+          <PhoneSelect name="left" label="First phone" phone={left} />
+          <span aria-hidden="true">vs</span>
+          <PhoneSelect name="right" label="Second phone" phone={right} />
+          <button type="submit">Compare phones</button>
+        </form>
+
         <div className="phone-cards">
-          <PhoneCard phone={iphone} variant="apple" />
+          <PhoneCard phone={left} />
           <div className="versus">vs</div>
-          <PhoneCard phone={pixel} variant="pixel" />
+          <PhoneCard phone={right} />
         </div>
 
         {sameStartingPrice ? (
@@ -162,13 +203,13 @@ export default function Home() {
             <p>
               <strong>
                 Same documented U.S. starting price: {formatPrice(
-                  iphone.originalPrice.value.amount,
-                  iphone.originalPrice.value.currency
+                  left.originalPrice.value.amount,
+                  left.originalPrice.value.currency
                 )}
               </strong>
-              <span>Configuration details are not attached to either announcement’s price statement.</span>
+              <span>See each source note for configuration context.</span>
             </p>
-            <SourceMarks ids={["apple-iphone-16-announcement", "google-pixel-9-announcement"]} />
+            <SourceMarks ids={[...new Set([...left.originalPrice.sourceIds, ...right.originalPrice.sourceIds])]} />
           </div>
         ) : null}
 
@@ -177,8 +218,8 @@ export default function Home() {
             <thead>
               <tr>
                 <th scope="col">Specification</th>
-                <th scope="col"><span>Apple</span>{iphone.model.value}</th>
-                <th scope="col"><span>Google</span>{pixel.model.value}</th>
+                <th scope="col"><span>{left.maker.value}</span>{left.model.value}</th>
+                <th scope="col"><span>{right.maker.value}</span>{right.model.value}</th>
               </tr>
             </thead>
             <tbody>
@@ -188,8 +229,8 @@ export default function Home() {
                     {row.label}
                     {row.note ? <small>{row.note}</small> : null}
                   </th>
-                  <td>{row.render(iphone)}</td>
-                  <td>{row.render(pixel)}</td>
+                  <td>{row.render(left)}</td>
+                  <td>{row.render(right)}</td>
                 </tr>
               ))}
             </tbody>
@@ -210,7 +251,7 @@ export default function Home() {
       <section className="sources" id="sources" aria-labelledby="sources-title">
         <div className="section-heading">
           <div><p className="eyebrow">Provenance</p><h2 id="sources-title">Sources</h2></div>
-          <p>All sources are first-party.</p>
+          <p>All catalogue sources are first-party.</p>
         </div>
         <ol className="source-list">
           {(Object.keys(sources) as SourceId[]).map((id) => {
@@ -231,7 +272,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <a className="brand" href="#top"><span aria-hidden="true">PC</span>Phone Compare</a>
+        <a className="brand" href="/"><span aria-hidden="true">PC</span>Phone Compare</a>
         <p>Clear differences. Traceable facts.</p>
       </footer>
     </main>

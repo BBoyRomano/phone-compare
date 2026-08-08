@@ -32,6 +32,15 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2024-08-13",
     accessedAt: "2026-08-08"
+  },
+  "samsung-galaxy-s24-announcement": {
+    id: "samsung-galaxy-s24-announcement",
+    publisher: "Samsung",
+    title: "Enter the New Era of Mobile AI with Samsung Galaxy S24 Series",
+    url: "https://news.samsung.com/us/enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2024-01-17",
+    accessedAt: "2026-08-08"
   }
 } as const satisfies Record<string, Source>;
 
@@ -68,7 +77,7 @@ export interface PhoneRecord {
     readonly panel: SourcedValue<string>;
     readonly resolution: SourcedValue<string>;
     readonly refreshRate: SourcedValue<string | null>;
-    readonly peakBrightness: SourcedValue<string>;
+    readonly peakBrightness: SourcedValue<string | null>;
   };
   readonly weight: SourcedValue<string>;
   readonly storage: SourcedValue<string>;
@@ -82,6 +91,7 @@ const appleSpecs = ["apple-iphone-16-specs"] as const;
 const appleLaunch = ["apple-iphone-16-announcement"] as const;
 const googleSpecs = ["google-pixel-9-specs"] as const;
 const googleLaunch = ["google-pixel-9-announcement"] as const;
+const samsungLaunch = ["samsung-galaxy-s24-announcement"] as const;
 
 export const phones = [
   {
@@ -175,6 +185,70 @@ export const phones = [
       value: "IP68 dust and water resistance",
       sourceIds: googleSpecs,
       qualification: "The cited specification page does not state a depth or duration in its main claim"
+    }
+  },
+  {
+    slug: "samsung-galaxy-s24",
+    maker: { value: "Samsung", sourceIds: samsungLaunch },
+    model: { value: "Galaxy S24", sourceIds: samsungLaunch },
+    releasedOn: {
+      value: "2024-01-31",
+      sourceIds: samsungLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: {
+        amount: 799.99,
+        currency: "USD",
+        market: "United States",
+        configuration: "Starting configuration; the announcement lists 128 GB and 256 GB but does not tie the price to a capacity"
+      },
+      sourceIds: samsungLaunch,
+      qualification: "Official U.S. starting price at announcement"
+    },
+    display: {
+      size: {
+        value: "6.2 inches",
+        sourceIds: samsungLaunch,
+        qualification: "6.0 inches when accounting for rounded corners"
+      },
+      panel: { value: "Dynamic AMOLED 2X", sourceIds: samsungLaunch },
+      resolution: {
+        value: "FHD+",
+        sourceIds: samsungLaunch,
+        qualification: "Pixel dimensions are not stated in the cited announcement"
+      },
+      refreshRate: { value: "1–120 Hz", sourceIds: samsungLaunch },
+      peakBrightness: {
+        value: null,
+        sourceIds: samsungLaunch,
+        qualification: "Not stated specifically for Galaxy S24 in the cited announcement"
+      }
+    },
+    weight: {
+      value: "5.93 oz",
+      sourceIds: samsungLaunch,
+      qualification: "U.S. mmWave configuration"
+    },
+    storage: {
+      value: "128 GB or 256 GB",
+      sourceIds: samsungLaunch,
+      qualification: "U.S. options at announcement; availability can vary by carrier, country, or region"
+    },
+    processor: { value: "Snapdragon 8 Gen 3 Mobile Platform", sourceIds: samsungLaunch },
+    rearCameras: {
+      value: "50 MP wide + 12 MP ultrawide + 10 MP 3× telephoto",
+      sourceIds: samsungLaunch
+    },
+    batteryClaim: {
+      value: "4,000 mAh typical capacity",
+      sourceIds: samsungLaunch,
+      qualification: "Manufacturer-rated typical capacity; actual battery life varies"
+    },
+    resistance: {
+      value: "IP68; up to 1.5 m of freshwater for 30 minutes",
+      sourceIds: samsungLaunch,
+      qualification: "Laboratory conditions; not advised for beach or pool use, and resistance can diminish with wear"
     }
   }
 ] as const satisfies readonly PhoneRecord[];

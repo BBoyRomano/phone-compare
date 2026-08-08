@@ -1,13 +1,22 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { factsFor, phones, sources, validateCatalog } from "../data/catalog.ts";
+import { factsFor, phones, sources, validateCatalog, type PhoneRecord } from "../data/catalog.ts";
 
 test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
-test("the initial slice remains intentionally small", () => {
-  assert.equal(phones.length, 2);
-  assert.equal(Object.keys(sources).length, 4);
+test("the catalogue remains intentionally small", () => {
+  assert.equal(phones.length, 3);
+  assert.equal(Object.keys(sources).length, 5);
+});
+
+test("Galaxy S24 facts preserve U.S. configuration context and explicit source gaps", () => {
+  const phone: PhoneRecord | undefined = phones.find(({ slug }) => slug === "samsung-galaxy-s24");
+  assert.ok(phone);
+  assert.match(phone.originalPrice.value.configuration, /128 GB and 256 GB/);
+  assert.match(phone.weight.qualification ?? "", /U\.S\. mmWave/);
+  assert.equal(phone.display.peakBrightness.value, null);
+  assert.match(phone.display.peakBrightness.qualification ?? "", /Not stated specifically/);
 });
 
 test("every product fact resolves to at least one first-party source", () => {
