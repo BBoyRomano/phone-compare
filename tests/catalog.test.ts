@@ -6,12 +6,44 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 7);
-  assert.equal(Object.keys(sources).length, 12);
+  assert.equal(phones.length, 10);
+  assert.equal(Object.keys(sources).length, 15);
   assert.deepEqual(
     phones.filter(({ slug }) => ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"].includes(slug)).map(({ slug }) => slug),
     ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"]
   );
+});
+
+test("the catalogue includes a sourced premium flagship from every represented manufacturer", () => {
+  const premiumSlugs = ["apple-iphone-17-pro", "google-pixel-10-pro", "samsung-galaxy-s26-ultra"];
+  assert.deepEqual(
+    phones.filter(({ slug }) => premiumSlugs.includes(slug)).map(({ slug }) => slug),
+    premiumSlugs
+  );
+
+  const iphone = phones.find(({ slug }) => slug === "apple-iphone-17-pro");
+  const pixel = phones.find(({ slug }) => slug === "google-pixel-10-pro");
+  const galaxy = phones.find(({ slug }) => slug === "samsung-galaxy-s26-ultra");
+  assert.ok(iphone);
+  assert.ok(pixel);
+  assert.ok(galaxy);
+
+  assert.deepEqual(iphone.originalPrice.value, {
+    amount: 1099,
+    currency: "USD",
+    market: "United States",
+    configuration: "256 GB"
+  });
+  assert.equal(iphone.weight.value, "206 g");
+  assert.match(iphone.weight.qualification ?? "", /7\.27 oz/);
+
+  assert.equal(pixel.originalPrice.value.amount, 999);
+  assert.equal(pixel.weight.value, "7.3 oz");
+  assert.match(pixel.weight.qualification ?? "", /not silently converted/i);
+
+  assert.equal(galaxy.originalPrice.value.amount, 1299.99);
+  assert.equal(galaxy.display.resolution.value, "QHD+");
+  assert.match(galaxy.display.resolution.qualification ?? "", /Pixel dimensions are not stated/);
 });
 
 test("current standard models preserve official launch context and source-local measurements", () => {
