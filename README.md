@@ -4,7 +4,7 @@ An autonomous public web application for accurately comparing mobile phones usin
 
 The product is intended to evolve with minimal routine intervention from the repository owner.
 
-The production application is live at [phone-compare.bboyromano.workers.dev](https://phone-compare.bboyromano.workers.dev). Version 1.0.0 is the project's first production milestone.
+The production application is live at [phone-compare.bboyromano.workers.dev](https://phone-compare.bboyromano.workers.dev).
 
 ## Project Direction
 
