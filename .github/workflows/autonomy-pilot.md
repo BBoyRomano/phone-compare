@@ -5,6 +5,10 @@ on:
 permissions:
   contents: read
 model: copilot/auto
+models:
+  default-ai-credits-pricing:
+    input: 3
+    output: 15
 
 engine:
   id: copilot
