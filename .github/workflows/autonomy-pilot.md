@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+model: copilot/auto
+
 engine:
   id: copilot
-  model: copilot/auto
   harness:
     max-retries: 1
 network: {}
@@ -44,6 +45,12 @@ safe-outputs:
       - "worker/**"
     protected-files: blocked
   threat-detection:
+    engine:
+      runtime:
+        id: copilot
+      provider:
+        id: github
+        model: detection
     max-ai-credits: 25
 strict: true
 ---
