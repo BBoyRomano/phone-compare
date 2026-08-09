@@ -5,9 +5,34 @@ import { factsFor, phones, sources, validateCatalog, type PhoneRecord } from "..
 test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
-test("the catalogue remains intentionally small", () => {
-  assert.equal(phones.length, 4);
-  assert.equal(Object.keys(sources).length, 7);
+test("the catalogue includes current standard models from every represented manufacturer", () => {
+  assert.equal(phones.length, 7);
+  assert.equal(Object.keys(sources).length, 12);
+  assert.deepEqual(
+    phones.filter(({ slug }) => ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"].includes(slug)).map(({ slug }) => slug),
+    ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"]
+  );
+});
+
+test("current standard models preserve official launch context and source-local measurements", () => {
+  const iphone: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-17");
+  const pixel: PhoneRecord | undefined = phones.find(({ slug }) => slug === "google-pixel-10");
+  const galaxy: PhoneRecord | undefined = phones.find(({ slug }) => slug === "samsung-galaxy-s26");
+  assert.ok(iphone);
+  assert.ok(pixel);
+  assert.ok(galaxy);
+
+  assert.equal(iphone.releasedOn.value, "2025-09-19");
+  assert.match(iphone.originalPrice.value.configuration, /connectivity discount/);
+  assert.equal(iphone.display.refreshRate.value, "Up to 120 Hz");
+
+  assert.equal(pixel.releasedOn.value, "2025-08-28");
+  assert.equal(pixel.weight.value, "7.2 oz");
+  assert.match(pixel.weight.qualification ?? "", /not silently converted/i);
+
+  assert.equal(galaxy.releasedOn.value, "2026-03-11");
+  assert.equal(galaxy.originalPrice.value.amount, 899.99);
+  assert.match(galaxy.processor.qualification ?? "", /cited U\.S\. announcement/);
 });
 
 test("iPhone 17e preserves its current-generation launch context and source gaps", () => {

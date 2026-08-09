@@ -13,8 +13,8 @@ function findPhone(slug: string | undefined, fallback: PhoneRecord): PhoneRecord
 }
 
 const defaultComparison = [
-  phones.find((phone) => phone.slug === "apple-iphone-16")!,
-  phones.find((phone) => phone.slug === "google-pixel-9")!
+  phones.find((phone) => phone.slug === "apple-iphone-17")!,
+  phones.find((phone) => phone.slug === "google-pixel-10")!
 ] as const;
 
 async function selectedPhones(searchParams: SearchParams): Promise<readonly [PhoneRecord, PhoneRecord]> {
