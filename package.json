@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "test:data": "node --test tests/catalog.test.ts tests/comparison.test.ts",
     "test:render": "node --test tests/rendered-html.test.mjs",
-    "test": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render",
+    "test:browser": "node tests/browser/run.mjs",
+    "test": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render && pnpm run test:browser",
     "check": "pnpm run test"
   },
   "dependencies": {
@@ -22,8 +23,10 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
     "@cloudflare/vite-plugin": "1.51.1",
     "@eslint/js": "9.39.4",
+    "@playwright/test": "1.62.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
