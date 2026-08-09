@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { comparisonHighlights } from "@/data/comparison";
 import { factsFor, phones, sources, type PhoneRecord, type SourceId, type SourcedValue } from "@/data/catalog";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -128,6 +129,51 @@ function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: st
   );
 }
 
+function KeyDifferences({
+  left,
+  right,
+  sourceNumbers
+}: {
+  left: PhoneRecord;
+  right: PhoneRecord;
+  sourceNumbers: ReadonlyMap<SourceId, number>;
+}) {
+  const highlights = comparisonHighlights(left, right);
+  const samePhone = left.slug === right.slug;
+
+  return (
+    <section className="key-differences" aria-labelledby="key-differences-title">
+      <div className="key-differences-heading">
+        <div>
+          <p className="eyebrow">Key differences</p>
+          <h3 id="key-differences-title">What the sources establish</h3>
+        </div>
+        <p>Only directly comparable facts are summarized. The sourced table preserves the full context.</p>
+      </div>
+
+      {samePhone ? (
+        <div className="same-phone-note">
+          <span aria-hidden="true">↔</span>
+          <p><strong>Same phone selected</strong>Choose two different models to see their key differences.</p>
+        </div>
+      ) : (
+        <div className="highlight-grid">
+          {highlights.map((highlight) => (
+            <article className={`highlight-card highlight-${highlight.kind}`} key={highlight.kind}>
+              <div>
+                <span>{highlight.label}</span>
+                <SourceMarks ids={highlight.sourceIds} sourceNumbers={sourceNumbers} />
+              </div>
+              <h4>{highlight.statement}</h4>
+              <p>{highlight.context}</p>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
 const comparisonRows: readonly {
   label: string;
   render: (phone: PhoneRecord, sourceNumbers: ReadonlyMap<SourceId, number>) => React.ReactNode;
@@ -163,11 +209,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     .map((sourceId) => sources[sourceId].accessedAt)
     .sort()
     .at(-1)!;
-  const sameStartingPrice =
-    left.originalPrice.value.amount === right.originalPrice.value.amount &&
-    left.originalPrice.value.currency === right.originalPrice.value.currency &&
-    left.originalPrice.value.market === right.originalPrice.value.market;
-
   return (
     <main>
       <header className="site-header">
@@ -214,24 +255,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           <PhoneCard phone={right} sourceNumbers={sourceNumbers} />
         </div>
 
-        {sameStartingPrice ? (
-          <div className="price-callout">
-            <span className="match-dot" aria-hidden="true" />
-            <p>
-              <strong>
-                Same documented U.S. starting price: {formatPrice(
-                  left.originalPrice.value.amount,
-                  left.originalPrice.value.currency
-                )}
-              </strong>
-              <span>See each source note for configuration context.</span>
-            </p>
-            <SourceMarks
-              ids={[...new Set([...left.originalPrice.sourceIds, ...right.originalPrice.sourceIds])]}
-              sourceNumbers={sourceNumbers}
-            />
-          </div>
-        ) : null}
+        <KeyDifferences left={left} right={right} sourceNumbers={sourceNumbers} />
 
         <div className="table-shell">
           <table>
