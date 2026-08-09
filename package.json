@@ -12,7 +12,7 @@
     "start": "vinext start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test:data": "node --test tests/catalog.test.ts",
+    "test:data": "node --test tests/catalog.test.ts tests/comparison.test.ts",
     "test:render": "node --test tests/rendered-html.test.mjs",
     "test": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render",
     "check": "pnpm run test"
