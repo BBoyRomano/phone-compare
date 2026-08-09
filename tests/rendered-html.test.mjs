@@ -21,10 +21,12 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /7(?:<!-- -->)? current generation/);
+  assert.match(html, /13(?:<!-- -->)? current generation/);
+  assert.match(html, /16(?:<!-- -->)? phones/);
+  assert.match(html, /16(?:<!-- -->)? comparison points/);
   assert.match(html, /<optgroup label="Current generation">/);
   assert.match(html, /<optgroup label="Earlier generation">/);
-  assert.match(html, /The newest numbered family with enough official U\.S\. data to compare/);
+  assert.match(html, /latest comparison-ready lineup, based on official U\.S\. catalogue and launch data/);
   assert.match(html, /Official U\.S\. catalogue/);
   assert.match(html, /Same documented U\.S\. starting price/);
   assert.match(html, /What the sources establish/);
@@ -133,4 +135,47 @@ test("same-phone selections invite a meaningful comparison without invented diff
   assert.match(html, /Same phone selected/);
   assert.match(html, /Choose two different models to see their key differences/);
   assert.doesNotMatch(html, /was released later|larger listed display|g lighter in the cited specifications/);
+});
+
+test("server-renders book-fold competitors with explicit main and cover displays", async () => {
+  const response = await render("/?left=google-pixel-10-pro-fold&right=samsung-galaxy-z-fold8");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Pixel 10 Pro Fold vs Galaxy Z Fold8/);
+  assert.match(html, /Book fold/);
+  assert.match(html, /8 inches/);
+  assert.match(html, /7\.6 inches/);
+  assert.match(html, /6\.4-inch Actua OLED/);
+  assert.match(html, /5\.5-inch Dynamic AMOLED 2X/);
+  assert.match(html, /Google's official launch article does not state a price/);
+  assert.match(html, /current store price is not substituted for original pricing/);
+  assert.match(html, /Current specification states 24\+ hours; Google's launch article described 30\+ hours/);
+  assert.doesNotMatch(html, /Pixel 10 Pro Fold launched .* lower|Galaxy Z Fold8 launched .* lower/);
+});
+
+test("server-renders affordable current phones without filling manufacturer gaps", async () => {
+  const response = await render("/?left=google-pixel-10a&right=samsung-galaxy-a57-5g");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Pixel 10a vs Galaxy A57 5G/);
+  assert.match(html, /\$499/);
+  assert.match(html, /\$549\.99/);
+  assert.match(html, /Pixel 10a launched \$50\.99 lower/);
+  assert.match(html, /Not stated in the cited U\.S\. announcement/);
+  assert.match(html, /https:\/\/store\.google\.com\/us\/product\/pixel_10a_specs/);
+  assert.match(html, /samsung-unveils-galaxy-a57-5g-galaxy-a37-5g/);
+});
+
+test("server-renders the sourced thin-slab iPhone Air", async () => {
+  const response = await render("/?left=apple-iphone-air&right=google-pixel-10a");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /iPhone Air vs Pixel 10a/);
+  assert.match(html, /Thin slab/);
+  assert.match(html, /5\.64 mm thin/);
+  assert.match(html, /Up to 27 hours of video playback/);
+  assert.match(html, /https:\/\/www\.apple\.com\/iphone-air\/specs/);
 });

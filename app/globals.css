@@ -75,6 +75,8 @@ main { overflow: hidden; }
 .phone-card div:last-child > .generation-badge { width: fit-content; margin-bottom: 14px; padding: 5px 9px; align-items: center; border: 1px solid rgba(22,32,29,.16); border-radius: 999px; background: rgba(255,255,255,.62); color: var(--ink); font-size: 9px; letter-spacing: .08em; }
 .phone-card div:last-child > .generation-current { background: var(--green-soft); color: var(--green); }
 .generation-badge .source-marks { margin-left: 5px; vertical-align: middle; }
+.phone-card div:last-child > .form-factor-label { margin: -7px 0 9px; color: #52605b; font-size: 9px; letter-spacing: .09em; }
+.form-factor-label .source-marks { margin-left: 5px; }
 .phone-card strong { margin: 3px 0 9px; font-size: clamp(26px, 3vw, 42px); letter-spacing: -0.05em; }
 .phone-card small { color: var(--muted); }
 .versus { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: white; font-family: Georgia, serif; font-style: italic; }

@@ -38,6 +38,7 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
   const leftPrice = left.originalPrice.value;
   const rightPrice = right.originalPrice.value;
 
+  if (leftPrice.amount === null || rightPrice.amount === null) return null;
   if (leftPrice.currency !== rightPrice.currency || leftPrice.market !== rightPrice.market) return null;
 
   const sourceIds = uniqueSourceIds(left.originalPrice.sourceIds, right.originalPrice.sourceIds);
@@ -51,8 +52,12 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
     };
   }
 
-  const [lower, higher] = leftPrice.amount < rightPrice.amount ? [left, right] : [right, left];
-  const difference = higher.originalPrice.value.amount - lower.originalPrice.value.amount;
+  const leftIsLower = leftPrice.amount < rightPrice.amount;
+  const lower = leftIsLower ? left : right;
+  const higher = leftIsLower ? right : left;
+  const lowerAmount = leftIsLower ? leftPrice.amount : rightPrice.amount;
+  const higherAmount = leftIsLower ? rightPrice.amount : leftPrice.amount;
+  const difference = higherAmount - lowerAmount;
   if (difference < 2) {
     return {
       kind: "price",
@@ -67,7 +72,7 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
     kind: "price",
     label: "Launch price",
     statement: `${lower.model.value} launched ${formatPrice(difference, lower.originalPrice.value.currency)} lower`,
-    context: `${formatPrice(lower.originalPrice.value.amount, lower.originalPrice.value.currency)} versus ${formatPrice(higher.originalPrice.value.amount, higher.originalPrice.value.currency)} in the ${lower.originalPrice.value.market}; these are official launch prices, not current retail prices.`,
+    context: `${formatPrice(lowerAmount, lower.originalPrice.value.currency)} versus ${formatPrice(higherAmount, higher.originalPrice.value.currency)} in the ${lower.originalPrice.value.market}; these are official launch prices, not current retail prices.`,
     sourceIds
   };
 }
