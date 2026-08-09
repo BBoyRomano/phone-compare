@@ -17,7 +17,7 @@ test("summarizes only directly comparable, sourced differences", () => {
   assert.deepEqual(highlights.map(({ kind }) => kind), ["price", "release", "display", "weight"]);
   assert.equal(highlights[0].statement, "Same documented U.S. starting price");
   assert.equal(highlights[1].statement, "iPhone 16 was released later");
-  assert.equal(highlights[2].statement, "Pixel 9 has a 0.2-inch larger listed display");
+  assert.equal(highlights[2].statement, "Pixel 9 has a 0.2-inch larger listed main display");
   assert.equal(highlights[3].statement, "iPhone 16 is 28 g lighter in the cited specifications");
 
   const availableSourceIds = new Set([...factsFor(left), ...factsFor(right)].flatMap(({ sourceIds }) => sourceIds));
@@ -40,13 +40,28 @@ test("does not manufacture conversions or emphasize immaterial weight difference
 
 test("premium flagship summaries preserve source-local units and comparable dimensions", () => {
   const mixedUnits = comparisonHighlights(phone("apple-iphone-17-pro"), phone("google-pixel-10-pro"));
-  assert.deepEqual(mixedUnits.map(({ kind }) => kind), ["price", "release"]);
+  assert.deepEqual(mixedUnits.map(({ kind }) => kind), ["price", "release", "storage"]);
   assert.equal(mixedUnits[0].statement, "Pixel 10 Pro launched $100 lower");
+  assert.equal(mixedUnits[2].statement, "iPhone 17 Pro's listed storage starts 128 GB higher");
 
   const metricUnits = comparisonHighlights(phone("apple-iphone-17-pro"), phone("samsung-galaxy-s26-ultra"));
   assert.deepEqual(metricUnits.map(({ kind }) => kind), ["price", "release", "display", "weight"]);
-  assert.equal(metricUnits[2].statement, "Galaxy S26 Ultra has a 0.6-inch larger listed display");
+  assert.equal(metricUnits[2].statement, "Galaxy S26 Ultra has a 0.6-inch larger listed main display");
   assert.equal(metricUnits[3].statement, "iPhone 17 Pro is 8 g lighter in the cited specifications");
+});
+
+test("adds lifecycle, form-factor, and safely normalized storage context", () => {
+  const lifecycle = comparisonHighlights(phone("apple-iphone-17"), phone("apple-iphone-16"));
+  assert.equal(lifecycle[0].kind, "generation");
+  assert.match(lifecycle[0].statement, /current comparison-ready lineup/);
+  assert.match(lifecycle[0].context, /does not assert current retail availability/);
+  assert.equal(lifecycle.find(({ kind }) => kind === "storage")?.statement, "iPhone 17's listed storage starts 128 GB higher");
+
+  const crossForm = comparisonHighlights(phone("apple-iphone-air"), phone("google-pixel-10a"));
+  assert.equal(crossForm[0].kind, "form-factor");
+  assert.equal(crossForm[0].statement, "iPhone Air is a thin slab; Pixel 10a is a slab");
+  assert.match(crossForm.find(({ kind }) => kind === "display")?.context ?? "", /does not describe equivalent display shape or use/);
+  assert.match(crossForm.find(({ kind }) => kind === "storage")?.context ?? "", /not price configurations or channel availability/);
 });
 
 test("same-phone comparisons do not pretend there are differences", () => {

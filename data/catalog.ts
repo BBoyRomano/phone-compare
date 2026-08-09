@@ -261,7 +261,10 @@ export interface PhoneRecord {
   };
   readonly secondaryDisplay?: SourcedValue<string>;
   readonly weight: SourcedValue<string>;
-  readonly storage: SourcedValue<string>;
+  readonly storage: SourcedValue<{
+    readonly options: string;
+    readonly startsAtGb: number;
+  }>;
   readonly processor: SourcedValue<string | null>;
   readonly rearCameras: SourcedValue<string>;
   readonly batteryClaim: SourcedValue<string>;
@@ -342,7 +345,7 @@ export const phones = [
       sourceIds: apple17ProSpecs,
       qualification: "The cited U.S. specification also states 7.27 oz; weight can vary by configuration and manufacturing process"
     },
-    storage: { value: "256 GB, 512 GB, or 1 TB", sourceIds: apple17ProSpecs },
+    storage: { value: { options: "256 GB, 512 GB, or 1 TB", startsAtGb: 256 }, sourceIds: apple17ProSpecs },
     processor: { value: "Apple A19 Pro", sourceIds: apple17ProSpecs },
     rearCameras: {
       value: "48 MP Fusion main + 48 MP Fusion ultrawide + 48 MP Fusion 4× telephoto",
@@ -401,7 +404,7 @@ export const phones = [
       }
     },
     weight: { value: "177 g", sourceIds: apple17Specs },
-    storage: { value: "256 GB or 512 GB", sourceIds: apple17Specs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: apple17Specs },
     processor: { value: "Apple A19", sourceIds: apple17Specs },
     rearCameras: {
       value: "48 MP Fusion main + 48 MP Fusion ultrawide",
@@ -460,7 +463,7 @@ export const phones = [
       }
     },
     weight: { value: "169 g", sourceIds: apple17eSpecs },
-    storage: { value: "256 GB or 512 GB", sourceIds: apple17eSpecs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: apple17eSpecs },
     processor: { value: "Apple A19", sourceIds: apple17eSpecs },
     rearCameras: {
       value: "48 MP Fusion main",
@@ -522,7 +525,7 @@ export const phones = [
       sourceIds: appleAirSpecs,
       qualification: "The cited specification also states 5.82 oz"
     },
-    storage: { value: "256 GB, 512 GB, or 1 TB", sourceIds: appleAirSpecs },
+    storage: { value: { options: "256 GB, 512 GB, or 1 TB", startsAtGb: 256 }, sourceIds: appleAirSpecs },
     processor: { value: "Apple A19 Pro", sourceIds: appleAirSpecs },
     rearCameras: {
       value: "48 MP Fusion main",
@@ -577,7 +580,7 @@ export const phones = [
       }
     },
     weight: { value: "170 g", sourceIds: appleSpecs },
-    storage: { value: "128 GB, 256 GB, or 512 GB", sourceIds: appleSpecs },
+    storage: { value: { options: "128 GB, 256 GB, or 512 GB", startsAtGb: 128 }, sourceIds: appleSpecs },
     processor: { value: "Apple A18", sourceIds: appleSpecs },
     rearCameras: {
       value: "48 MP Fusion main + 12 MP ultrawide",
@@ -636,7 +639,7 @@ export const phones = [
       sourceIds: google10FoldSpecs,
       qualification: "Unit stated on the cited U.S. specification page; not silently converted"
     },
-    storage: { value: "256 GB, 512 GB, or 1 TB", sourceIds: google10FoldSpecs },
+    storage: { value: { options: "256 GB, 512 GB, or 1 TB", startsAtGb: 256 }, sourceIds: google10FoldSpecs },
     processor: { value: "Google Tensor G5", sourceIds: google10FoldSpecs },
     rearCameras: {
       value: "48 MP wide + 10.5 MP ultrawide + 10.8 MP 5× telephoto",
@@ -690,7 +693,7 @@ export const phones = [
       sourceIds: google10ProSpecs,
       qualification: "Unit stated on the cited U.S. specification page; not silently converted"
     },
-    storage: { value: "128 GB, 256 GB, 512 GB, or 1 TB", sourceIds: google10ProSpecs },
+    storage: { value: { options: "128 GB, 256 GB, 512 GB, or 1 TB", startsAtGb: 128 }, sourceIds: google10ProSpecs },
     processor: { value: "Google Tensor G5", sourceIds: google10ProSpecs },
     rearCameras: {
       value: "50 MP wide + 48 MP ultrawide + 48 MP 5× telephoto",
@@ -745,7 +748,7 @@ export const phones = [
       sourceIds: google10Specs,
       qualification: "Unit stated on the cited U.S. specification page; not silently converted"
     },
-    storage: { value: "128 GB or 256 GB", sourceIds: google10Specs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: google10Specs },
     processor: { value: "Google Tensor G5", sourceIds: google10Specs },
     rearCameras: {
       value: "48 MP wide + 13 MP ultrawide + 10.8 MP 5× telephoto",
@@ -794,7 +797,7 @@ export const phones = [
       sourceIds: google10aSpecs,
       qualification: "Unit stated on the cited U.S. specification page; not silently converted"
     },
-    storage: { value: "128 GB or 256 GB", sourceIds: google10aSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: google10aSpecs },
     processor: { value: "Google Tensor G4", sourceIds: google10aSpecs },
     rearCameras: { value: "48 MP wide + 13 MP ultrawide", sourceIds: google10aSpecs },
     batteryClaim: {
@@ -841,7 +844,7 @@ export const phones = [
       }
     },
     weight: { value: "198 g", sourceIds: googleSpecs },
-    storage: { value: "128 GB or 256 GB", sourceIds: googleSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: googleSpecs },
     processor: { value: "Google Tensor G4", sourceIds: googleSpecs },
     rearCameras: {
       value: "50 MP wide + 48 MP ultrawide",
@@ -896,7 +899,7 @@ export const phones = [
     },
     weight: { value: "214 g", sourceIds: samsung26Launch },
     storage: {
-      value: "256 GB, 512 GB, or 1 TB",
+      value: { options: "256 GB, 512 GB, or 1 TB", startsAtGb: 256 },
       sourceIds: samsung26Launch,
       qualification: "RAM configuration and availability can vary by market, carrier, country, or region"
     },
@@ -963,7 +966,7 @@ export const phones = [
       qualification: "Sub-6 configuration; weight may vary by country or region"
     },
     storage: {
-      value: "256 GB or 512 GB",
+      value: { options: "256 GB or 512 GB", startsAtGb: 256 },
       sourceIds: samsung26Launch,
       qualification: "Availability can vary by carrier, country, or region"
     },
@@ -1029,7 +1032,7 @@ export const phones = [
     },
     weight: { value: "201 g", sourceIds: samsungZ8Launch, qualification: "Weight can vary by country or region" },
     storage: {
-      value: "256 GB, 512 GB, or 1 TB",
+      value: { options: "256 GB, 512 GB, or 1 TB", startsAtGb: 256 },
       sourceIds: samsungZ8Launch,
       qualification: "Availability can vary by channel"
     },
@@ -1087,7 +1090,7 @@ export const phones = [
       qualification: "Cover display; actual viewable area is smaller because of rounded corners and the camera hole"
     },
     weight: { value: "180 g", sourceIds: samsungZ8Launch, qualification: "Weight can vary by country or region" },
-    storage: { value: "256 GB or 512 GB", sourceIds: samsungZ8Launch, qualification: "Availability can vary by channel" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: samsungZ8Launch, qualification: "Availability can vary by channel" },
     processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform for Galaxy", sourceIds: samsungZ8Launch },
     rearCameras: { value: "50 MP wide + 12 MP ultrawide", sourceIds: samsungZ8Launch },
     batteryClaim: {
@@ -1137,7 +1140,7 @@ export const phones = [
       }
     },
     weight: { value: "179 g", sourceIds: samsungA57Launch },
-    storage: { value: "128 GB or 256 GB", sourceIds: samsungA57Launch },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: samsungA57Launch },
     processor: {
       value: null,
       sourceIds: samsungA57Launch,
@@ -1205,7 +1208,7 @@ export const phones = [
       qualification: "U.S. mmWave configuration"
     },
     storage: {
-      value: "128 GB or 256 GB",
+      value: { options: "128 GB or 256 GB", startsAtGb: 128 },
       sourceIds: samsungLaunch,
       qualification: "U.S. options at announcement; availability can vary by carrier, country, or region"
     },
@@ -1271,6 +1274,14 @@ export function validateCatalog(): string[] {
     const secondaryDisplay = "secondaryDisplay" in phone ? phone.secondaryDisplay : undefined;
     if (isFoldable && !secondaryDisplay) errors.push(`${phone.slug}: foldable phone lacks a sourced secondary display`);
     if (!isFoldable && secondaryDisplay) errors.push(`${phone.slug}: non-foldable phone has a secondary display`);
+
+    const storage = phone.storage.value;
+    if (!Number.isInteger(storage.startsAtGb) || storage.startsAtGb <= 0) {
+      errors.push(`${phone.slug}: starting storage must be a positive whole number of GB`);
+    }
+    if (!storage.options.startsWith(`${storage.startsAtGb} GB`)) {
+      errors.push(`${phone.slug}: normalized starting storage does not match the sourced option text`);
+    }
 
     for (const fact of factsFor(phone)) {
       if (fact.sourceIds.length === 0) errors.push(`${phone.slug}: fact has no provenance`);

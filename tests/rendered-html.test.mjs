@@ -31,7 +31,7 @@ test("server-renders the comparison and its provenance", async () => {
   assert.match(html, /Same documented U\.S\. starting price/);
   assert.match(html, /What the sources establish/);
   assert.match(html, /iPhone 17 was released later/);
-  assert.doesNotMatch(html, /larger listed display|g lighter in the cited specifications/);
+  assert.doesNotMatch(html, /larger listed main display|g lighter in the cited specifications/);
   assert.match(html, /official launch prices, not current retail prices|Configuration context remains attached/);
   assert.match(html, /Manufacturer battery claims use different measures/);
   assert.match(html, /connectivity discount requiring carrier activation/);
@@ -123,7 +123,7 @@ test("server-renders the Galaxy S26 Ultra with conservative launch and specifica
   assert.match(html, /\$1,299\.99/);
   assert.match(html, /announcement lists 256 GB, 512 GB, and 1 TB but does not tie the price to a capacity/);
   assert.match(html, /Pixel dimensions are not stated in the cited announcement/);
-  assert.match(html, /Galaxy S26 Ultra has a 0\.6-inch larger listed display/);
+  assert.match(html, /Galaxy S26 Ultra has a 0\.6-inch larger listed main display/);
   assert.match(html, /iPhone 17 Pro is 8 g lighter in the cited specifications/);
   assert.match(html, /samsung-unveils-galaxy-s26-series-most-intuitive-galaxy-ai-phone-yet/);
 });
@@ -134,7 +134,7 @@ test("same-phone selections invite a meaningful comparison without invented diff
 
   assert.match(html, /Same phone selected/);
   assert.match(html, /Choose two different models to see their key differences/);
-  assert.doesNotMatch(html, /was released later|larger listed display|g lighter in the cited specifications/);
+  assert.doesNotMatch(html, /was released later|larger listed main display|g lighter in the cited specifications/);
 });
 
 test("server-renders book-fold competitors with explicit main and cover displays", async () => {
@@ -175,6 +175,9 @@ test("server-renders the sourced thin-slab iPhone Air", async () => {
   const html = await response.text();
   assert.match(html, /iPhone Air vs Pixel 10a/);
   assert.match(html, /Thin slab/);
+  assert.match(html, /iPhone Air is a thin slab; Pixel 10a is a slab/);
+  assert.match(html, /diagonal size does not describe equivalent display shape or use/);
+  assert.match(html, /iPhone Air's listed storage starts 128 GB higher/);
   assert.match(html, /5\.64 mm thin/);
   assert.match(html, /Up to 27 hours of video playback/);
   assert.match(html, /https:\/\/www\.apple\.com\/iphone-air\/specs/);
