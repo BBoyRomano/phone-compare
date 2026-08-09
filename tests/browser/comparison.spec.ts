@@ -42,12 +42,26 @@ test("supports a keyboard-only selection and submit flow", async ({ page }) => {
   await expect(page.getByText("iPhone 17 is in the current comparison-ready lineup")).toBeVisible();
 });
 
+test("makes stale selections and unknown routes recoverable", async ({ page }) => {
+  await page.goto("/?left=not-in-catalogue&right=samsung-galaxy-z-fold8");
+  await expect(page.getByRole("status")).toContainText("Shared selection adjusted");
+  await expect(page.getByRole("status")).toContainText("first selection");
+  await expect(page.getByLabel("First phone")).toHaveValue("apple-iphone-17");
+  await expect(page.getByLabel("Second phone")).toHaveValue("samsung-galaxy-z-fold8");
+
+  const response = await page.goto("/not-a-real-page");
+  expect(response?.status()).toBe(404);
+  await expect(page).toHaveTitle("Page not found — Phone Compare");
+  await expect(page.getByRole("heading", { name: "Page not found." })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Compare phones" })).toHaveAttribute("href", "/");
+});
+
 test("has no automatically detectable WCAG A or AA violations", async ({ page }) => {
-  await page.goto("/?left=apple-iphone-air&right=google-pixel-10a");
-
-  const results = await new AxeBuilder({ page })
-    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-    .analyze();
-
-  expect(results.violations).toEqual([]);
+  for (const path of ["/?left=apple-iphone-air&right=google-pixel-10a", "/not-a-real-page"]) {
+    await page.goto(path);
+    const results = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  }
 });

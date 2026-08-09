@@ -79,10 +79,24 @@ test("server-renders the current-generation iPhone 17e with launch context", asy
   assert.doesNotMatch(html, /enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
 });
 
-test("unknown URL selections fall back to the default comparison", async () => {
+test("unknown URL selections fall back visibly to the default comparison", async () => {
   const response = await render("/?left=unknown&right=also-unknown");
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
+  assert.match(html, /Shared selection adjusted/);
+  assert.match(html, /unavailable phones for both selections, so current defaults were used/);
+  assert.match(html, /Review the selectors before comparing/);
+});
+
+test("unknown routes render a recoverable, non-indexable 404", async () => {
+  const response = await render("/not-a-real-page");
+  assert.equal(response.status, 404);
+
+  const html = await response.text();
+  assert.match(html, /Page not found/);
+  assert.match(html, /Return to the catalogue to choose two sourced phones/);
+  assert.match(html, /href="\/"[^>]*>Compare phones/);
+  assert.match(html, /name="robots" content="noindex, nofollow"/);
 });
 
 test("server-renders the current Galaxy S26 with U.S. launch and market qualifications", async () => {

@@ -8,25 +8,33 @@ function firstValue(value: string | string[] | undefined): string | undefined {
   return Array.isArray(value) ? value[0] : value;
 }
 
-function findPhone(slug: string | undefined, fallback: PhoneRecord): PhoneRecord {
-  return phones.find((phone) => phone.slug === slug) ?? fallback;
-}
-
 const defaultComparison = [
   phones.find((phone) => phone.slug === "apple-iphone-17")!,
   phones.find((phone) => phone.slug === "google-pixel-10")!
 ] as const;
 
-async function selectedPhones(searchParams: SearchParams): Promise<readonly [PhoneRecord, PhoneRecord]> {
+interface SelectionResult {
+  readonly phones: readonly [PhoneRecord, PhoneRecord];
+  readonly replaced: readonly ("left" | "right")[];
+}
+
+async function selectedPhones(searchParams: SearchParams): Promise<SelectionResult> {
   const params = await searchParams;
-  return [
-    findPhone(firstValue(params.left), defaultComparison[0]),
-    findPhone(firstValue(params.right), defaultComparison[1])
-  ];
+  const leftSlug = firstValue(params.left);
+  const rightSlug = firstValue(params.right);
+  const left = phones.find((phone) => phone.slug === leftSlug);
+  const right = phones.find((phone) => phone.slug === rightSlug);
+  return {
+    phones: [left ?? defaultComparison[0], right ?? defaultComparison[1]],
+    replaced: [
+      ...(leftSlug !== undefined && left === undefined ? ["left" as const] : []),
+      ...(rightSlug !== undefined && right === undefined ? ["right" as const] : [])
+    ]
+  };
 }
 
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
-  const [left, right] = await selectedPhones(searchParams);
+  const { phones: [left, right] } = await selectedPhones(searchParams);
   const title = `${left.model.value} vs ${right.model.value}`;
   return {
     title: `${title} — Phone Compare`,
@@ -197,6 +205,19 @@ function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: st
   );
 }
 
+function SelectionNotice({ replaced }: { replaced: SelectionResult["replaced"] }) {
+  if (replaced.length === 0) return null;
+  const message = replaced.length === 2
+    ? "The link requested unavailable phones for both selections, so current defaults were used."
+    : `The link requested an unavailable phone for ${replaced[0] === "left" ? "the first selection" : "the second selection"}, so the current default was used.`;
+  return (
+    <div className="selection-notice" role="status">
+      <strong>Shared selection adjusted</strong>
+      <span>{message} Review the selectors before comparing.</span>
+    </div>
+  );
+}
+
 function KeyDifferences({
   left,
   right,
@@ -274,7 +295,7 @@ const comparisonRows: readonly {
 ];
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
-  const [left, right] = await selectedPhones(searchParams);
+  const { phones: [left, right], replaced } = await selectedPhones(searchParams);
   const usedSourceIdSet = new Set([...factsFor(left), ...factsFor(right)].flatMap((fact) => fact.sourceIds));
   const usedSourceIds = (Object.keys(sources) as SourceId[]).filter((sourceId) => usedSourceIdSet.has(sourceId));
   const sourceNumbers = new Map<SourceId, number>(
@@ -318,6 +339,8 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           </div>
           <p>Facts checked {formatDate(latestAccessDate)}</p>
         </div>
+
+        <SelectionNotice replaced={replaced} />
 
         <form className="phone-selector" action="/" method="get" aria-label="Choose phones to compare">
           <p className="selector-help">
