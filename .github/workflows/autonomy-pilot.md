@@ -6,6 +6,7 @@ permissions:
   contents: read
 engine:
   id: copilot
+  model: copilot/auto
   harness:
     max-retries: 1
 network: {}
