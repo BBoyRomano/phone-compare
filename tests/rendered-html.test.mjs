@@ -19,18 +19,18 @@ test("server-renders the comparison and its provenance", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /iPhone 16 vs Pixel 9/);
+  assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /4(?:<!-- -->)? cited sources/);
   assert.match(html, /Same documented U\.S\. starting price/);
   assert.match(html, /What the sources establish/);
-  assert.match(html, /iPhone 16 was released later/);
-  assert.match(html, /Pixel 9 has a 0\.2-inch larger listed display/);
-  assert.match(html, /iPhone 16 is 28 g lighter in the cited specifications/);
+  assert.match(html, /iPhone 17 was released later/);
+  assert.doesNotMatch(html, /larger listed display|g lighter in the cited specifications/);
   assert.match(html, /official launch prices, not current retail prices|Configuration context remains attached/);
   assert.match(html, /Manufacturer battery claims use different measures/);
-  assert.match(html, /Not stated on the cited Apple specification page/);
-  assert.match(html, /https:\/\/support\.apple\.com\/en-asia\/121029/);
-  assert.match(html, /https:\/\/store\.google\.com\/us\/product\/pixel_9_specs/);
+  assert.match(html, /connectivity discount requiring carrier activation/);
+  assert.match(html, /Unit stated on the cited U\.S\. specification page; not silently converted/);
+  assert.match(html, /https:\/\/support\.apple\.com\/en-us\/125089/);
+  assert.match(html, /https:\/\/store\.google\.com\/us\/product\/pixel_10_specs/);
   assert.doesNotMatch(html, /apple-introduces-iphone-17e/);
   assert.doesNotMatch(html, /enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
@@ -74,7 +74,21 @@ test("server-renders the current-generation iPhone 17e with launch context", asy
 test("unknown URL selections fall back to the default comparison", async () => {
   const response = await render("/?left=unknown&right=also-unknown");
   const html = await response.text();
-  assert.match(html, /iPhone 16 vs Pixel 9/);
+  assert.match(html, /iPhone 17 vs Pixel 10/);
+});
+
+test("server-renders the current Galaxy S26 with U.S. launch and market qualifications", async () => {
+  const response = await render("/?left=samsung-galaxy-s26&right=apple-iphone-17");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Galaxy S26 vs iPhone 17/);
+  assert.match(html, /\$899\.99/);
+  assert.match(html, /Mar 11, 2026/);
+  assert.match(html, /Processor stated for Galaxy S26 in the cited U\.S\. announcement/);
+  assert.match(html, /Galaxy S26 is 10 g lighter in the cited specifications/);
+  assert.match(html, /https:\/\/news\.samsung\.com\/us\/samsung-unveils-galaxy-s26-series-most-intuitive-galaxy-ai-phone-yet/);
+  assert.doesNotMatch(html, /google-pixel-10-specs/);
 });
 
 test("same-phone selections invite a meaningful comparison without invented differences", async () => {
