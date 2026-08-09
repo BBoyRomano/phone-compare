@@ -102,12 +102,26 @@ function DateFact({ fact, sourceNumbers }: { fact: SourcedValue<string>; sourceN
   );
 }
 
+function GenerationFact({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
+  return (
+    <>
+      <span>{phone.generation.value === "current" ? "Current generation" : "Earlier generation"}</span>
+      <SourceMarks ids={phone.generation.sourceIds} sourceNumbers={sourceNumbers} />
+      {phone.generation.qualification ? <small>{phone.generation.qualification}</small> : null}
+    </>
+  );
+}
+
 function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
   return (
     <article className="phone-card">
       <div className={`phone-silhouette ${makerClass}`} aria-hidden="true"><i /><b /><b /></div>
       <div>
+        <span className={`generation-badge generation-${phone.generation.value}`}>
+          {phone.generation.value === "current" ? "Current generation" : "Earlier generation"}
+          <SourceMarks ids={phone.generation.sourceIds} sourceNumbers={sourceNumbers} />
+        </span>
         <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} sourceNumbers={sourceNumbers} /></span>
         <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} sourceNumbers={sourceNumbers} /></strong>
         <small>Released <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /></small>
@@ -117,12 +131,21 @@ function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers
 }
 
 function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: string; phone: PhoneRecord }) {
+  const generationGroups = [
+    { value: "current", label: "Current generation" },
+    { value: "earlier", label: "Earlier generation" }
+  ] as const;
+
   return (
     <label>
       <span>{label}</span>
       <select name={name} defaultValue={phone.slug}>
-        {phones.map((option) => (
-          <option value={option.slug} key={option.slug}>{option.maker.value} {option.model.value}</option>
+        {generationGroups.map((group) => (
+          <optgroup label={group.label} key={group.value}>
+            {phones.filter((option) => option.generation.value === group.value).map((option) => (
+              <option value={option.slug} key={option.slug}>{option.maker.value} {option.model.value}</option>
+            ))}
+          </optgroup>
         ))}
       </select>
     </label>
@@ -179,6 +202,11 @@ const comparisonRows: readonly {
   render: (phone: PhoneRecord, sourceNumbers: ReadonlyMap<SourceId, number>) => React.ReactNode;
   note?: string;
 }[] = [
+  {
+    label: "Generation",
+    render: (phone, sourceNumbers) => <GenerationFact phone={phone} sourceNumbers={sourceNumbers} />,
+    note: "The newest numbered family with enough official U.S. data to compare. This does not assert current retail availability."
+  },
   { label: "Original price", render: (phone, sourceNumbers) => <Price phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Release date", render: (phone, sourceNumbers) => <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /> },
   { label: "Display size", render: (phone, sourceNumbers) => <Fact fact={phone.display.size} sourceNumbers={sourceNumbers} /> },
@@ -209,6 +237,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     .map((sourceId) => sources[sourceId].accessedAt)
     .sort()
     .at(-1)!;
+  const currentGenerationCount = phones.filter((phone) => phone.generation.value === "current").length;
   return (
     <main>
       <header className="site-header">
@@ -223,11 +252,12 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         <p className="eyebrow">Evidence-led phone comparison</p>
         <h1>See the difference.<br /><em>See the source.</em></h1>
         <p className="hero-copy">
-          Choose two phones from a carefully verified catalogue. Every comparison uses manufacturer specifications and announcements,
+          Choose two phones from a carefully verified catalogue. Every comparison uses first-party manufacturer sources,
           with market context and unknowns kept visible.
         </p>
         <div className="trust-row" aria-label="Data quality summary">
           <span>{phones.length} phones</span>
+          <span>{currentGenerationCount} current generation</span>
           <span>{comparisonRows.length} comparison points</span>
           <span>{usedSourceIds.length} cited sources</span>
         </div>
@@ -243,6 +273,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         </div>
 
         <form className="phone-selector" action="/" method="get" aria-label="Choose phones to compare">
+          <p className="selector-help">
+            Start with the current generation, or open the earlier-generation group for useful historical comparisons.
+          </p>
           <PhoneSelect name="left" label="First phone" phone={left} />
           <span aria-hidden="true">vs</span>
           <PhoneSelect name="right" label="Second phone" phone={right} />
@@ -286,7 +319,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         <p className="eyebrow">How to read this</p>
         <h2 id="method-title">The footnotes are part of the product.</h2>
         <div className="method-grid">
-          <article><span>01</span><h3>Primary sources first</h3><p>Every displayed phone fact points to a manufacturer specification or announcement.</p></article>
+          <article><span>01</span><h3>Primary sources first</h3><p>Every displayed phone fact points to a manufacturer specification, announcement, or official catalogue.</p></article>
           <article><span>02</span><h3>Context stays attached</h3><p>Original price includes currency, market, and what the source does—or does not—say about configuration.</p></article>
           <article><span>03</span><h3>Unknown is not a guess</h3><p>When a cited source omits a detail, the comparison says so instead of filling the gap silently.</p></article>
         </div>
@@ -304,7 +337,13 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
               <li id={`source-${id}`} key={id}>
                 <span>{sourceNumbers.get(id)}</span>
                 <div>
-                  <p>{source.publisher} · {source.kind === "manufacturer-specification" ? "Technical specification" : "Official announcement"}</p>
+                  <p>{source.publisher} · {
+                    source.kind === "manufacturer-specification"
+                      ? "Technical specification"
+                      : source.kind === "manufacturer-announcement"
+                        ? "Official announcement"
+                        : "Official U.S. catalogue"
+                  }</p>
                   <h3>{source.title}</h3>
                   <small>Accessed {source.accessedAt}</small>
                 </div>

@@ -20,7 +20,12 @@ test("server-renders the comparison and its provenance", async () => {
 
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
-  assert.match(html, /4(?:<!-- -->)? cited sources/);
+  assert.match(html, /6(?:<!-- -->)? cited sources/);
+  assert.match(html, /7(?:<!-- -->)? current generation/);
+  assert.match(html, /<optgroup label="Current generation">/);
+  assert.match(html, /<optgroup label="Earlier generation">/);
+  assert.match(html, /The newest numbered family with enough official U\.S\. data to compare/);
+  assert.match(html, /Official U\.S\. catalogue/);
   assert.match(html, /Same documented U\.S\. starting price/);
   assert.match(html, /What the sources establish/);
   assert.match(html, /iPhone 17 was released later/);
@@ -42,7 +47,8 @@ test("server-renders a URL-selected comparison without client JavaScript", async
 
   const html = await response.text();
   assert.match(html, /Galaxy S24 vs iPhone 16/);
-  assert.match(html, /3(?:<!-- -->)? cited sources/);
+  assert.match(html, /5(?:<!-- -->)? cited sources/);
+  assert.match(html, /An earlier numbered family retained for comparison; Apple still lists iPhone 16/);
   assert.match(html, /Samsung Galaxy S24 and Apple iPhone 16/);
   assert.match(html, /name="left"/);
   assert.match(html, /value="samsung-galaxy-s24" selected/);
@@ -97,7 +103,7 @@ test("server-renders Apple and Google premium flagships without converting sourc
 
   const html = await response.text();
   assert.match(html, /iPhone 17 Pro vs Pixel 10 Pro/);
-  assert.match(html, /4(?:<!-- -->)? cited sources/);
+  assert.match(html, /6(?:<!-- -->)? cited sources/);
   assert.match(html, /Pixel 10 Pro launched \$100 lower/);
   assert.match(html, /206 g/);
   assert.match(html, /7\.3 oz/);

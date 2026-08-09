@@ -1,4 +1,12 @@
 export const sources = {
+  "apple-us-iphone-catalogue": {
+    id: "apple-us-iphone-catalogue",
+    publisher: "Apple",
+    title: "Shop iPhone — All models",
+    url: "https://www.apple.com/shop/buy-iphone",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-09"
+  },
   "apple-iphone-17-pro-specs": {
     id: "apple-iphone-17-pro-specs",
     publisher: "Apple",
@@ -75,6 +83,14 @@ export const sources = {
     kind: "manufacturer-specification",
     accessedAt: "2026-08-08"
   },
+  "google-us-phone-catalogue": {
+    id: "google-us-phone-catalogue",
+    publisher: "Google",
+    title: "Google Pixel phones",
+    url: "https://store.google.com/us/category/phones?hl=en-US",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-09"
+  },
   "google-pixel-9-announcement": {
     id: "google-pixel-9-announcement",
     publisher: "Google",
@@ -118,6 +134,14 @@ export const sources = {
     publishedAt: "2024-01-17",
     accessedAt: "2026-08-08"
   },
+  "samsung-us-smartphone-catalogue": {
+    id: "samsung-us-smartphone-catalogue",
+    publisher: "Samsung",
+    title: "Explore the latest Galaxy smartphones",
+    url: "https://www.samsung.com/us/smartphones/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-09"
+  },
   "samsung-galaxy-s26-announcement": {
     id: "samsung-galaxy-s26-announcement",
     publisher: "Samsung",
@@ -136,7 +160,7 @@ export interface Source {
   readonly publisher: string;
   readonly title: string;
   readonly url: string;
-  readonly kind: "manufacturer-specification" | "manufacturer-announcement";
+  readonly kind: "manufacturer-specification" | "manufacturer-announcement" | "manufacturer-catalogue";
   readonly publishedAt?: string;
   readonly accessedAt: string;
 }
@@ -150,6 +174,7 @@ export interface PhoneRecord {
   readonly slug: string;
   readonly maker: SourcedValue<string>;
   readonly model: SourcedValue<string>;
+  readonly generation: SourcedValue<"current" | "earlier">;
   readonly releasedOn: SourcedValue<string>;
   readonly originalPrice: SourcedValue<{
     readonly amount: number;
@@ -174,6 +199,7 @@ export interface PhoneRecord {
 
 const appleSpecs = ["apple-iphone-16-specs"] as const;
 const appleLaunch = ["apple-iphone-16-announcement"] as const;
+const appleCatalogue = ["apple-us-iphone-catalogue"] as const;
 const apple17ProSpecs = ["apple-iphone-17-pro-specs"] as const;
 const apple17ProLaunch = ["apple-iphone-17-pro-announcement"] as const;
 const apple17Specs = ["apple-iphone-17-specs"] as const;
@@ -183,17 +209,20 @@ const apple17eSpecs = ["apple-iphone-17e-specs"] as const;
 const apple17eLaunch = ["apple-iphone-17e-announcement"] as const;
 const googleSpecs = ["google-pixel-9-specs"] as const;
 const googleLaunch = ["google-pixel-9-announcement"] as const;
+const googleCatalogue = ["google-us-phone-catalogue"] as const;
 const google10Specs = ["google-pixel-10-specs"] as const;
 const google10ProSpecs = ["google-pixel-10-pro-specs"] as const;
 const google10Launch = ["google-pixel-10-announcement"] as const;
 const samsungLaunch = ["samsung-galaxy-s24-announcement"] as const;
 const samsung26Launch = ["samsung-galaxy-s26-announcement"] as const;
+const samsungCatalogue = ["samsung-us-smartphone-catalogue"] as const;
 
 export const phones = [
   {
     slug: "apple-iphone-17-pro",
     maker: { value: "Apple", sourceIds: apple17ProSpecs },
     model: { value: "iPhone 17 Pro", sourceIds: apple17ProSpecs },
+    generation: { value: "current", sourceIds: appleCatalogue },
     releasedOn: {
       value: "2025-09-19",
       sourceIds: apple17ProLaunch,
@@ -255,6 +284,7 @@ export const phones = [
     slug: "apple-iphone-17",
     maker: { value: "Apple", sourceIds: apple17Specs },
     model: { value: "iPhone 17", sourceIds: apple17Specs },
+    generation: { value: "current", sourceIds: appleCatalogue },
     releasedOn: {
       value: "2025-09-19",
       sourceIds: apple17Launch,
@@ -312,6 +342,7 @@ export const phones = [
     slug: "apple-iphone-17e",
     maker: { value: "Apple", sourceIds: apple17eSpecs },
     model: { value: "iPhone 17e", sourceIds: apple17eSpecs },
+    generation: { value: "current", sourceIds: appleCatalogue },
     releasedOn: {
       value: "2026-03-11",
       sourceIds: apple17eLaunch,
@@ -369,6 +400,11 @@ export const phones = [
     slug: "apple-iphone-16",
     maker: { value: "Apple", sourceIds: appleSpecs },
     model: { value: "iPhone 16", sourceIds: appleSpecs },
+    generation: {
+      value: "earlier",
+      sourceIds: appleCatalogue,
+      qualification: "An earlier numbered family retained for comparison; Apple still lists iPhone 16 in its U.S. shop"
+    },
     releasedOn: { value: "2024-09-20", sourceIds: appleLaunch },
     originalPrice: {
       value: {
@@ -418,6 +454,7 @@ export const phones = [
     slug: "google-pixel-10-pro",
     maker: { value: "Google", sourceIds: google10ProSpecs },
     model: { value: "Pixel 10 Pro", sourceIds: google10ProSpecs },
+    generation: { value: "current", sourceIds: googleCatalogue },
     releasedOn: {
       value: "2025-08-28",
       sourceIds: google10Launch,
@@ -471,6 +508,7 @@ export const phones = [
     slug: "google-pixel-10",
     maker: { value: "Google", sourceIds: google10Specs },
     model: { value: "Pixel 10", sourceIds: google10Specs },
+    generation: { value: "current", sourceIds: googleCatalogue },
     releasedOn: {
       value: "2025-08-28",
       sourceIds: google10Launch,
@@ -523,6 +561,11 @@ export const phones = [
     slug: "google-pixel-9",
     maker: { value: "Google", sourceIds: googleSpecs },
     model: { value: "Pixel 9", sourceIds: googleSpecs },
+    generation: {
+      value: "earlier",
+      sourceIds: googleCatalogue,
+      qualification: "An earlier numbered family retained for comparison; Google still lists Pixel 9 in its U.S. phone catalogue"
+    },
     releasedOn: { value: "2024-08-22", sourceIds: googleLaunch },
     originalPrice: {
       value: {
@@ -567,6 +610,7 @@ export const phones = [
     slug: "samsung-galaxy-s26-ultra",
     maker: { value: "Samsung", sourceIds: samsung26Launch },
     model: { value: "Galaxy S26 Ultra", sourceIds: samsung26Launch },
+    generation: { value: "current", sourceIds: samsungCatalogue },
     releasedOn: {
       value: "2026-03-11",
       sourceIds: samsung26Launch,
@@ -628,6 +672,7 @@ export const phones = [
     slug: "samsung-galaxy-s26",
     maker: { value: "Samsung", sourceIds: samsung26Launch },
     model: { value: "Galaxy S26", sourceIds: samsung26Launch },
+    generation: { value: "current", sourceIds: samsungCatalogue },
     releasedOn: {
       value: "2026-03-11",
       sourceIds: samsung26Launch,
@@ -692,6 +737,11 @@ export const phones = [
     slug: "samsung-galaxy-s24",
     maker: { value: "Samsung", sourceIds: samsungLaunch },
     model: { value: "Galaxy S24", sourceIds: samsungLaunch },
+    generation: {
+      value: "earlier",
+      sourceIds: samsungCatalogue,
+      qualification: "An earlier numbered family retained for historical comparison"
+    },
     releasedOn: {
       value: "2024-01-31",
       sourceIds: samsungLaunch,
@@ -760,6 +810,7 @@ export function factsFor(phone: PhoneRecord): readonly CatalogFact[] {
   return [
     phone.maker,
     phone.model,
+    phone.generation,
     phone.releasedOn,
     phone.originalPrice,
     phone.display.size,
