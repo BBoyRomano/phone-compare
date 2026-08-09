@@ -85,9 +85,10 @@ function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: Re
   const { amount, currency, market, configuration } = phone.originalPrice.value;
   return (
     <>
-      <span>{formatPrice(amount, currency)}</span>
+      <span className={amount === null ? "not-stated" : undefined}>{amount === null ? "Not stated" : formatPrice(amount, currency)}</span>
       <SourceMarks ids={phone.originalPrice.sourceIds} sourceNumbers={sourceNumbers} />
       <small>{market} · {configuration}</small>
+      {phone.originalPrice.qualification ? <small>{phone.originalPrice.qualification}</small> : null}
     </>
   );
 }
@@ -112,6 +113,34 @@ function GenerationFact({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNu
   );
 }
 
+const formFactorLabels = {
+  slab: "Slab",
+  "thin-slab": "Thin slab",
+  "book-fold": "Book fold",
+  "flip-fold": "Flip fold"
+} as const;
+
+function FormFactorFact({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
+  return (
+    <>
+      <span>{formFactorLabels[phone.formFactor.value]}</span>
+      <SourceMarks ids={phone.formFactor.sourceIds} sourceNumbers={sourceNumbers} />
+      {phone.formFactor.qualification ? <small>{phone.formFactor.qualification}</small> : null}
+    </>
+  );
+}
+
+function SecondaryDisplay({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
+  if (phone.secondaryDisplay) return <Fact fact={phone.secondaryDisplay} sourceNumbers={sourceNumbers} />;
+  return (
+    <>
+      <span className="not-stated">Not applicable</span>
+      <SourceMarks ids={phone.formFactor.sourceIds} sourceNumbers={sourceNumbers} />
+      <small>{formFactorLabels[phone.formFactor.value]} phone with one display</small>
+    </>
+  );
+}
+
 function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
   return (
@@ -121,6 +150,10 @@ function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers
         <span className={`generation-badge generation-${phone.generation.value}`}>
           {phone.generation.value === "current" ? "Current generation" : "Earlier generation"}
           <SourceMarks ids={phone.generation.sourceIds} sourceNumbers={sourceNumbers} />
+        </span>
+        <span className="form-factor-label">
+          {formFactorLabels[phone.formFactor.value]}
+          <SourceMarks ids={phone.formFactor.sourceIds} sourceNumbers={sourceNumbers} />
         </span>
         <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} sourceNumbers={sourceNumbers} /></span>
         <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} sourceNumbers={sourceNumbers} /></strong>
@@ -143,7 +176,9 @@ function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: st
         {generationGroups.map((group) => (
           <optgroup label={group.label} key={group.value}>
             {phones.filter((option) => option.generation.value === group.value).map((option) => (
-              <option value={option.slug} key={option.slug}>{option.maker.value} {option.model.value}</option>
+              <option value={option.slug} key={option.slug}>
+                {option.maker.value} {option.model.value}{option.formFactor.value === "slab" ? "" : ` — ${formFactorLabels[option.formFactor.value]}`}
+              </option>
             ))}
           </optgroup>
         ))}
@@ -205,15 +240,17 @@ const comparisonRows: readonly {
   {
     label: "Generation",
     render: (phone, sourceNumbers) => <GenerationFact phone={phone} sourceNumbers={sourceNumbers} />,
-    note: "The newest numbered family with enough official U.S. data to compare. This does not assert current retail availability."
+    note: "A model in the manufacturer's latest comparison-ready lineup, based on official U.S. catalogue and launch data. This does not assert current retail availability."
   },
+  { label: "Form factor", render: (phone, sourceNumbers) => <FormFactorFact phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Original price", render: (phone, sourceNumbers) => <Price phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Release date", render: (phone, sourceNumbers) => <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /> },
-  { label: "Display size", render: (phone, sourceNumbers) => <Fact fact={phone.display.size} sourceNumbers={sourceNumbers} /> },
-  { label: "Display", render: (phone, sourceNumbers) => <Fact fact={phone.display.panel} sourceNumbers={sourceNumbers} /> },
+  { label: "Main display size", render: (phone, sourceNumbers) => <Fact fact={phone.display.size} sourceNumbers={sourceNumbers} /> },
+  { label: "Main display", render: (phone, sourceNumbers) => <Fact fact={phone.display.panel} sourceNumbers={sourceNumbers} /> },
   { label: "Resolution", render: (phone, sourceNumbers) => <Fact fact={phone.display.resolution} sourceNumbers={sourceNumbers} /> },
   { label: "Refresh rate", render: (phone, sourceNumbers) => <Fact fact={phone.display.refreshRate} sourceNumbers={sourceNumbers} /> },
   { label: "Peak brightness", render: (phone, sourceNumbers) => <Fact fact={phone.display.peakBrightness} sourceNumbers={sourceNumbers} /> },
+  { label: "Cover display", render: (phone, sourceNumbers) => <SecondaryDisplay phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Weight", render: (phone, sourceNumbers) => <Fact fact={phone.weight} sourceNumbers={sourceNumbers} /> },
   { label: "Storage", render: (phone, sourceNumbers) => <Fact fact={phone.storage} sourceNumbers={sourceNumbers} /> },
   { label: "Processor", render: (phone, sourceNumbers) => <Fact fact={phone.processor} sourceNumbers={sourceNumbers} /> },

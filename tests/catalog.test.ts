@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 10);
-  assert.equal(Object.keys(sources).length, 18);
+  assert.equal(phones.length, 16);
+  assert.equal(Object.keys(sources).length, 26);
   assert.deepEqual(
     phones.filter(({ slug }) => ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"].includes(slug)).map(({ slug }) => slug),
     ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"]
@@ -21,10 +21,16 @@ test("every phone has a sourced, conservative generation classification", () => 
       "apple-iphone-17-pro",
       "apple-iphone-17",
       "apple-iphone-17e",
+      "apple-iphone-air",
+      "google-pixel-10-pro-fold",
       "google-pixel-10-pro",
       "google-pixel-10",
+      "google-pixel-10a",
       "samsung-galaxy-s26-ultra",
-      "samsung-galaxy-s26"
+      "samsung-galaxy-s26",
+      "samsung-galaxy-z-fold8",
+      "samsung-galaxy-z-flip8",
+      "samsung-galaxy-a57-5g"
     ]
   );
   assert.deepEqual(
@@ -39,6 +45,40 @@ test("every phone has a sourced, conservative generation classification", () => 
   const iphone16: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-16");
   assert.ok(iphone16);
   assert.match(iphone16.generation.qualification ?? "", /still lists iPhone 16/i);
+});
+
+test("the public catalogue spans meaningful price bands and form factors", () => {
+  assert.deepEqual(
+    phones.filter(({ formFactor }) => formFactor.value !== "slab").map(({ slug, formFactor }) => [slug, formFactor.value]),
+    [
+      ["apple-iphone-air", "thin-slab"],
+      ["google-pixel-10-pro-fold", "book-fold"],
+      ["samsung-galaxy-z-fold8", "book-fold"],
+      ["samsung-galaxy-z-flip8", "flip-fold"]
+    ]
+  );
+
+  const pricedCurrentPhones = phones
+    .filter(({ generation, originalPrice }) => generation.value === "current" && originalPrice.value.amount !== null)
+    .map(({ originalPrice }) => originalPrice.value.amount as number);
+  assert.ok(Math.min(...pricedCurrentPhones) <= 499);
+  assert.ok(Math.max(...pricedCurrentPhones) >= 1899.99);
+
+  const folds = phones.filter(({ formFactor }) => formFactor.value === "book-fold" || formFactor.value === "flip-fold");
+  assert.equal(folds.length, 3);
+  for (const fold of folds) assert.ok("secondaryDisplay" in fold && fold.secondaryDisplay);
+});
+
+test("catalogue gaps and source conflicts stay visible", () => {
+  const pixelFold: PhoneRecord | undefined = phones.find(({ slug }) => slug === "google-pixel-10-pro-fold");
+  const galaxyA57: PhoneRecord | undefined = phones.find(({ slug }) => slug === "samsung-galaxy-a57-5g");
+  assert.ok(pixelFold);
+  assert.ok(galaxyA57);
+  assert.equal(pixelFold.originalPrice.value.amount, null);
+  assert.match(pixelFold.originalPrice.qualification ?? "", /current store price is not substituted/i);
+  assert.match(pixelFold.batteryClaim.qualification ?? "", /24\+ hours.*30\+ hours/i);
+  assert.equal(galaxyA57.processor.value, null);
+  assert.match(galaxyA57.processor.qualification ?? "", /not stated/i);
 });
 
 test("the catalogue includes a sourced premium flagship from every represented manufacturer", () => {
