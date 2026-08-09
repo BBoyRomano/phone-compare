@@ -1,11 +1,44 @@
 import type { PhoneRecord, SourceId } from "./catalog";
 
 export interface ComparisonHighlight {
-  readonly kind: "price" | "release" | "display" | "weight";
+  readonly kind: "generation" | "form-factor" | "price" | "release" | "display" | "storage" | "weight";
   readonly label: string;
   readonly statement: string;
   readonly context: string;
   readonly sourceIds: readonly SourceId[];
+}
+
+const formFactorLabels: Record<PhoneRecord["formFactor"]["value"], string> = {
+  slab: "slab",
+  "thin-slab": "thin slab",
+  "book-fold": "book fold",
+  "flip-fold": "flip fold"
+};
+
+function generationHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
+  if (left.generation.value === right.generation.value) return null;
+
+  const current = left.generation.value === "current" ? left : right;
+  const earlier = left.generation.value === "earlier" ? left : right;
+  return {
+    kind: "generation",
+    label: "Catalogue generation",
+    statement: `${current.model.value} is in the current comparison-ready lineup`,
+    context: `${earlier.model.value} is retained as an earlier-generation comparison. Classification does not assert current retail availability.`,
+    sourceIds: uniqueSourceIds(left.generation.sourceIds, right.generation.sourceIds)
+  };
+}
+
+function formFactorHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
+  if (left.formFactor.value === right.formFactor.value) return null;
+
+  return {
+    kind: "form-factor",
+    label: "Form factor",
+    statement: `${left.model.value} is a ${formFactorLabels[left.formFactor.value]}; ${right.model.value} is a ${formFactorLabels[right.formFactor.value]}`,
+    context: "Display diagonal, weight, and physical use can mean different things across these sourced form factors.",
+    sourceIds: uniqueSourceIds(left.formFactor.sourceIds, right.formFactor.sourceIds)
+  };
 }
 
 function uniqueSourceIds(...sourceIdGroups: readonly (readonly SourceId[])[]): SourceId[] {
@@ -98,12 +131,37 @@ function displayHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHigh
   const larger = leftSize > rightSize ? left : right;
   const smaller = leftSize > rightSize ? right : left;
   const difference = Math.abs(leftSize - rightSize);
+  const differentFormFactors = left.formFactor.value !== right.formFactor.value;
+  const formFactorContext = differentFormFactors
+    ? ` These are ${formFactorLabels[left.formFactor.value]} and ${formFactorLabels[right.formFactor.value]} phones, so diagonal size does not describe equivalent display shape or use.`
+    : "";
   return {
     kind: "display",
-    label: "Display size",
-    statement: `${larger.model.value} has a ${difference.toFixed(1)}-inch larger listed display`,
-    context: `${larger.display.size.value} versus ${smaller.display.size.value}. Manufacturer measurement qualifications remain attached in the table.`,
-    sourceIds: uniqueSourceIds(left.display.size.sourceIds, right.display.size.sourceIds)
+    label: "Main display size",
+    statement: `${larger.model.value} has a ${difference.toFixed(1)}-inch larger listed main display`,
+    context: `${larger.display.size.value} versus ${smaller.display.size.value}. Manufacturer measurement qualifications remain attached in the table.${formFactorContext}`,
+    sourceIds: uniqueSourceIds(
+      left.display.size.sourceIds,
+      right.display.size.sourceIds,
+      ...(differentFormFactors ? [left.formFactor.sourceIds, right.formFactor.sourceIds] : [])
+    )
+  };
+}
+
+function storageHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
+  const leftStart = left.storage.value.startsAtGb;
+  const rightStart = right.storage.value.startsAtGb;
+  if (leftStart === rightStart) return null;
+
+  const higher = leftStart > rightStart ? left : right;
+  const lower = leftStart > rightStart ? right : left;
+  const difference = Math.abs(leftStart - rightStart);
+  return {
+    kind: "storage",
+    label: "Starting storage",
+    statement: `${higher.model.value}'s listed storage starts ${difference.toLocaleString("en-US")} GB higher`,
+    context: `${higher.storage.value.startsAtGb.toLocaleString("en-US")} GB versus ${lower.storage.value.startsAtGb.toLocaleString("en-US")} GB. This compares cited storage options, not price configurations or channel availability.`,
+    sourceIds: uniqueSourceIds(left.storage.sourceIds, right.storage.sourceIds)
   };
 }
 
@@ -128,9 +186,12 @@ export function comparisonHighlights(left: PhoneRecord, right: PhoneRecord): rea
   if (left.slug === right.slug) return [];
 
   return [
+    generationHighlight(left, right),
+    formFactorHighlight(left, right),
     priceHighlight(left, right),
     releaseHighlight(left, right),
     displayHighlight(left, right),
+    storageHighlight(left, right),
     weightHighlight(left, right)
   ].filter((highlight): highlight is ComparisonHighlight => highlight !== null);
 }

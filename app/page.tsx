@@ -81,6 +81,16 @@ function Fact({
   );
 }
 
+function StorageFact({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
+  return (
+    <>
+      <span>{phone.storage.value.options}</span>
+      <SourceMarks ids={phone.storage.sourceIds} sourceNumbers={sourceNumbers} />
+      {phone.storage.qualification ? <small>{phone.storage.qualification}</small> : null}
+    </>
+  );
+}
+
 function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const { amount, currency, market, configuration } = phone.originalPrice.value;
   return (
@@ -252,7 +262,7 @@ const comparisonRows: readonly {
   { label: "Peak brightness", render: (phone, sourceNumbers) => <Fact fact={phone.display.peakBrightness} sourceNumbers={sourceNumbers} /> },
   { label: "Cover display", render: (phone, sourceNumbers) => <SecondaryDisplay phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Weight", render: (phone, sourceNumbers) => <Fact fact={phone.weight} sourceNumbers={sourceNumbers} /> },
-  { label: "Storage", render: (phone, sourceNumbers) => <Fact fact={phone.storage} sourceNumbers={sourceNumbers} /> },
+  { label: "Storage", render: (phone, sourceNumbers) => <StorageFact phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Processor", render: (phone, sourceNumbers) => <Fact fact={phone.processor} sourceNumbers={sourceNumbers} /> },
   { label: "Rear cameras", render: (phone, sourceNumbers) => <Fact fact={phone.rearCameras} sourceNumbers={sourceNumbers} /> },
   {
