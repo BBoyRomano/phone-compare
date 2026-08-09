@@ -38,6 +38,17 @@ test("does not manufacture conversions or emphasize immaterial weight difference
   assert.equal(oneGramApart.some(({ kind }) => kind === "display"), false);
 });
 
+test("premium flagship summaries preserve source-local units and comparable dimensions", () => {
+  const mixedUnits = comparisonHighlights(phone("apple-iphone-17-pro"), phone("google-pixel-10-pro"));
+  assert.deepEqual(mixedUnits.map(({ kind }) => kind), ["price", "release"]);
+  assert.equal(mixedUnits[0].statement, "Pixel 10 Pro launched $100 lower");
+
+  const metricUnits = comparisonHighlights(phone("apple-iphone-17-pro"), phone("samsung-galaxy-s26-ultra"));
+  assert.deepEqual(metricUnits.map(({ kind }) => kind), ["price", "release", "display", "weight"]);
+  assert.equal(metricUnits[2].statement, "Galaxy S26 Ultra has a 0.6-inch larger listed display");
+  assert.equal(metricUnits[3].statement, "iPhone 17 Pro is 8 g lighter in the cited specifications");
+});
+
 test("same-phone comparisons do not pretend there are differences", () => {
   const selected = phone("apple-iphone-16");
   assert.deepEqual(comparisonHighlights(selected, selected), []);

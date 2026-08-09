@@ -1,4 +1,21 @@
 export const sources = {
+  "apple-iphone-17-pro-specs": {
+    id: "apple-iphone-17-pro-specs",
+    publisher: "Apple",
+    title: "iPhone 17 Pro — Technical Specifications",
+    url: "https://support.apple.com/en-us/125090",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-09"
+  },
+  "apple-iphone-17-pro-announcement": {
+    id: "apple-iphone-17-pro-announcement",
+    publisher: "Apple",
+    title: "Apple unveils iPhone 17 Pro and iPhone 17 Pro Max",
+    url: "https://www.apple.com/newsroom/2025/09/apple-unveils-iphone-17-pro-and-iphone-17-pro-max/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-09-09",
+    accessedAt: "2026-08-09"
+  },
   "apple-iphone-17-specs": {
     id: "apple-iphone-17-specs",
     publisher: "Apple",
@@ -72,6 +89,14 @@ export const sources = {
     publisher: "Google",
     title: "Pixel 10 Technical Specifications",
     url: "https://store.google.com/us/product/pixel_10_specs?hl=en-US",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-09"
+  },
+  "google-pixel-10-pro-specs": {
+    id: "google-pixel-10-pro-specs",
+    publisher: "Google",
+    title: "Pixel 10 Pro and Pixel 10 Pro XL Technical Specifications",
+    url: "https://store.google.com/us/product/pixel_10_pro_specs?hl=en-US",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-09"
   },
@@ -149,6 +174,8 @@ export interface PhoneRecord {
 
 const appleSpecs = ["apple-iphone-16-specs"] as const;
 const appleLaunch = ["apple-iphone-16-announcement"] as const;
+const apple17ProSpecs = ["apple-iphone-17-pro-specs"] as const;
+const apple17ProLaunch = ["apple-iphone-17-pro-announcement"] as const;
 const apple17Specs = ["apple-iphone-17-specs"] as const;
 const apple17Launch = ["apple-iphone-17-announcement"] as const;
 const apple17Refresh = ["apple-iphone-17-specs", "apple-iphone-17-announcement"] as const;
@@ -157,11 +184,73 @@ const apple17eLaunch = ["apple-iphone-17e-announcement"] as const;
 const googleSpecs = ["google-pixel-9-specs"] as const;
 const googleLaunch = ["google-pixel-9-announcement"] as const;
 const google10Specs = ["google-pixel-10-specs"] as const;
+const google10ProSpecs = ["google-pixel-10-pro-specs"] as const;
 const google10Launch = ["google-pixel-10-announcement"] as const;
 const samsungLaunch = ["samsung-galaxy-s24-announcement"] as const;
 const samsung26Launch = ["samsung-galaxy-s26-announcement"] as const;
 
 export const phones = [
+  {
+    slug: "apple-iphone-17-pro",
+    maker: { value: "Apple", sourceIds: apple17ProSpecs },
+    model: { value: "iPhone 17 Pro", sourceIds: apple17ProSpecs },
+    releasedOn: {
+      value: "2025-09-19",
+      sourceIds: apple17ProLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: {
+        amount: 1099,
+        currency: "USD",
+        market: "United States",
+        configuration: "256 GB"
+      },
+      sourceIds: apple17ProLaunch,
+      qualification: "Official U.S. starting price at announcement"
+    },
+    display: {
+      size: {
+        value: "6.3 inches",
+        sourceIds: apple17ProSpecs,
+        qualification: "6.27 inches when measured as a standard rectangle; actual viewable area is smaller"
+      },
+      panel: { value: "OLED (Super Retina XDR)", sourceIds: apple17ProSpecs },
+      resolution: { value: "2622 × 1206 at 460 ppi", sourceIds: apple17ProSpecs },
+      refreshRate: {
+        value: "Up to 120 Hz",
+        sourceIds: apple17ProSpecs,
+        qualification: "ProMotion adaptive refresh rate"
+      },
+      peakBrightness: {
+        value: "3,000 nits outdoors",
+        sourceIds: apple17ProSpecs,
+        qualification: "Apple also states 1,600 nits peak for HDR"
+      }
+    },
+    weight: {
+      value: "206 g",
+      sourceIds: apple17ProSpecs,
+      qualification: "The cited U.S. specification also states 7.27 oz; weight can vary by configuration and manufacturing process"
+    },
+    storage: { value: "256 GB, 512 GB, or 1 TB", sourceIds: apple17ProSpecs },
+    processor: { value: "Apple A19 Pro", sourceIds: apple17ProSpecs },
+    rearCameras: {
+      value: "48 MP Fusion main + 48 MP Fusion ultrawide + 48 MP Fusion 4× telephoto",
+      sourceIds: apple17ProSpecs,
+      qualification: "The telephoto also enables a 12 MP optical-quality 8× view"
+    },
+    batteryClaim: {
+      value: "Up to 33 hours of video playback",
+      sourceIds: apple17ProSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP68; up to 6 m for 30 minutes",
+      sourceIds: apple17ProSpecs,
+      qualification: "Controlled laboratory conditions; resistance can decrease with wear"
+    }
+  },
   {
     slug: "apple-iphone-17",
     maker: { value: "Apple", sourceIds: apple17Specs },
@@ -326,6 +415,59 @@ export const phones = [
     }
   },
   {
+    slug: "google-pixel-10-pro",
+    maker: { value: "Google", sourceIds: google10ProSpecs },
+    model: { value: "Pixel 10 Pro", sourceIds: google10ProSpecs },
+    releasedOn: {
+      value: "2025-08-28",
+      sourceIds: google10Launch,
+      qualification: "Official U.S. retail availability date"
+    },
+    originalPrice: {
+      value: {
+        amount: 999,
+        currency: "USD",
+        market: "United States",
+        configuration: "Starting configuration; the announcement does not tie the price to a capacity"
+      },
+      sourceIds: google10Launch,
+      qualification: "Official U.S. starting price at announcement"
+    },
+    display: {
+      size: { value: "6.3 inches", sourceIds: google10ProSpecs },
+      panel: { value: "LTPO OLED (Super Actua)", sourceIds: google10ProSpecs },
+      resolution: { value: "1280 × 2856 at 495 ppi", sourceIds: google10ProSpecs },
+      refreshRate: { value: "1–120 Hz", sourceIds: google10ProSpecs },
+      peakBrightness: {
+        value: "3,300 nits peak",
+        sourceIds: google10ProSpecs,
+        qualification: "Google also states up to 2,200 nits for HDR"
+      }
+    },
+    weight: {
+      value: "7.3 oz",
+      sourceIds: google10ProSpecs,
+      qualification: "Unit stated on the cited U.S. specification page; not silently converted"
+    },
+    storage: { value: "128 GB, 256 GB, 512 GB, or 1 TB", sourceIds: google10ProSpecs },
+    processor: { value: "Google Tensor G5", sourceIds: google10ProSpecs },
+    rearCameras: {
+      value: "50 MP wide + 48 MP ultrawide + 48 MP 5× telephoto",
+      sourceIds: google10ProSpecs,
+      qualification: "Google also states optical-quality views at 0.5×, 1×, 2×, 5×, and 10×"
+    },
+    batteryClaim: {
+      value: "24+ hours; typical capacity 4,870 mAh",
+      sourceIds: google10ProSpecs,
+      qualification: "Manufacturer claim; usage and testing conditions apply"
+    },
+    resistance: {
+      value: "IP68 dust and water resistance",
+      sourceIds: google10ProSpecs,
+      qualification: "The cited specification page does not state a depth or duration in its main claim"
+    }
+  },
+  {
     slug: "google-pixel-10",
     maker: { value: "Google", sourceIds: google10Specs },
     model: { value: "Pixel 10", sourceIds: google10Specs },
@@ -419,6 +561,67 @@ export const phones = [
       value: "IP68 dust and water resistance",
       sourceIds: googleSpecs,
       qualification: "The cited specification page does not state a depth or duration in its main claim"
+    }
+  },
+  {
+    slug: "samsung-galaxy-s26-ultra",
+    maker: { value: "Samsung", sourceIds: samsung26Launch },
+    model: { value: "Galaxy S26 Ultra", sourceIds: samsung26Launch },
+    releasedOn: {
+      value: "2026-03-11",
+      sourceIds: samsung26Launch,
+      qualification: "Official U.S. general availability date announced at launch"
+    },
+    originalPrice: {
+      value: {
+        amount: 1299.99,
+        currency: "USD",
+        market: "United States",
+        configuration: "Starting configuration; the announcement lists 256 GB, 512 GB, and 1 TB but does not tie the price to a capacity"
+      },
+      sourceIds: samsung26Launch,
+      qualification: "Official U.S. starting price at announcement"
+    },
+    display: {
+      size: {
+        value: "6.9 inches",
+        sourceIds: samsung26Launch,
+        qualification: "6.7 inches when accounting for rounded corners; actual viewable area is smaller"
+      },
+      panel: { value: "Dynamic AMOLED 2X", sourceIds: samsung26Launch },
+      resolution: {
+        value: "QHD+",
+        sourceIds: samsung26Launch,
+        qualification: "Pixel dimensions are not stated in the cited announcement"
+      },
+      refreshRate: { value: "1–120 Hz", sourceIds: samsung26Launch },
+      peakBrightness: { value: "2,600 nits peak", sourceIds: samsung26Launch }
+    },
+    weight: { value: "214 g", sourceIds: samsung26Launch },
+    storage: {
+      value: "256 GB, 512 GB, or 1 TB",
+      sourceIds: samsung26Launch,
+      qualification: "RAM configuration and availability can vary by market, carrier, country, or region"
+    },
+    processor: {
+      value: "Snapdragon 8 Elite Gen 5 for Galaxy",
+      sourceIds: samsung26Launch,
+      qualification: "Processor stated for Galaxy S26 Ultra in the cited U.S. announcement"
+    },
+    rearCameras: {
+      value: "200 MP wide + 50 MP ultrawide + 10 MP 3× telephoto + 50 MP 5× telephoto",
+      sourceIds: samsung26Launch,
+      qualification: "Samsung also states 2× and 10× optical-quality zoom"
+    },
+    batteryClaim: {
+      value: "5,000 mAh typical capacity",
+      sourceIds: samsung26Launch,
+      qualification: "Manufacturer-rated typical capacity; rated minimum is 4,855 mAh and actual battery life varies"
+    },
+    resistance: {
+      value: "IP68; up to 1.5 m of freshwater for 30 minutes",
+      sourceIds: samsung26Launch,
+      qualification: "Laboratory conditions; resistance is not permanent and can diminish with wear"
     }
   },
   {

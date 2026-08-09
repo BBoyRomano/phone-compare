@@ -91,6 +91,35 @@ test("server-renders the current Galaxy S26 with U.S. launch and market qualific
   assert.doesNotMatch(html, /google-pixel-10-specs/);
 });
 
+test("server-renders Apple and Google premium flagships without converting source-local weight", async () => {
+  const response = await render("/?left=apple-iphone-17-pro&right=google-pixel-10-pro");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /iPhone 17 Pro vs Pixel 10 Pro/);
+  assert.match(html, /4(?:<!-- -->)? cited sources/);
+  assert.match(html, /Pixel 10 Pro launched \$100 lower/);
+  assert.match(html, /206 g/);
+  assert.match(html, /7\.3 oz/);
+  assert.doesNotMatch(html, /g lighter in the cited specifications/);
+  assert.match(html, /https:\/\/support\.apple\.com\/en-us\/125090/);
+  assert.match(html, /https:\/\/store\.google\.com\/us\/product\/pixel_10_pro_specs/);
+});
+
+test("server-renders the Galaxy S26 Ultra with conservative launch and specification context", async () => {
+  const response = await render("/?left=samsung-galaxy-s26-ultra&right=apple-iphone-17-pro");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Galaxy S26 Ultra vs iPhone 17 Pro/);
+  assert.match(html, /\$1,299\.99/);
+  assert.match(html, /announcement lists 256 GB, 512 GB, and 1 TB but does not tie the price to a capacity/);
+  assert.match(html, /Pixel dimensions are not stated in the cited announcement/);
+  assert.match(html, /Galaxy S26 Ultra has a 0\.6-inch larger listed display/);
+  assert.match(html, /iPhone 17 Pro is 8 g lighter in the cited specifications/);
+  assert.match(html, /samsung-unveils-galaxy-s26-series-most-intuitive-galaxy-ai-phone-yet/);
+});
+
 test("same-phone selections invite a meaningful comparison without invented differences", async () => {
   const response = await render("/?left=apple-iphone-16&right=apple-iphone-16");
   const html = await response.text();
