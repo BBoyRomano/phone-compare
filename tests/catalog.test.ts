@@ -7,11 +7,38 @@ test("catalog passes provenance and pricing-context validation", () => {
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
   assert.equal(phones.length, 10);
-  assert.equal(Object.keys(sources).length, 15);
+  assert.equal(Object.keys(sources).length, 18);
   assert.deepEqual(
     phones.filter(({ slug }) => ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"].includes(slug)).map(({ slug }) => slug),
     ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"]
   );
+});
+
+test("every phone has a sourced, conservative generation classification", () => {
+  assert.deepEqual(
+    phones.filter(({ generation }) => generation.value === "current").map(({ slug }) => slug),
+    [
+      "apple-iphone-17-pro",
+      "apple-iphone-17",
+      "apple-iphone-17e",
+      "google-pixel-10-pro",
+      "google-pixel-10",
+      "samsung-galaxy-s26-ultra",
+      "samsung-galaxy-s26"
+    ]
+  );
+  assert.deepEqual(
+    phones.filter(({ generation }) => generation.value === "earlier").map(({ slug }) => slug),
+    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24"]
+  );
+
+  for (const phone of phones) {
+    assert.equal(phone.generation.sourceIds.length, 1);
+    assert.equal(sources[phone.generation.sourceIds[0]].kind, "manufacturer-catalogue");
+  }
+  const iphone16: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-16");
+  assert.ok(iphone16);
+  assert.match(iphone16.generation.qualification ?? "", /still lists iPhone 16/i);
 });
 
 test("the catalogue includes a sourced premium flagship from every represented manufacturer", () => {
