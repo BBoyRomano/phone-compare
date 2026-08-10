@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /28(?:<!-- -->)? current generation/);
-  assert.match(html, /32(?:<!-- -->)? phones/);
+  assert.match(html, /43(?:<!-- -->)? current generation/);
+  assert.match(html, /47(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -256,4 +256,20 @@ test("server-renders the breadth expansion without inventing missing launch pric
   assert.doesNotMatch(html, /launched \$.*lower/);
   assert.match(html, /https:\/\/www\.unihertz\.com\/products\/titan-2/);
   assert.match(html, /https:\/\/www\.tcl\.com\/us\/en\/products\/mobile\/60-series\/60-xe-nxtpaper-5g/);
+});
+
+test("server-renders the current HMD international lineup with unknown timing and price explicit", async () => {
+  const response = await render("/?left=hmd-skyline&right=hmd-xr21");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /HMD Skyline vs HMD XR21/);
+  assert.match(html, /HMD international product-information scope/);
+  assert.match(html, /current regional pricing is not substituted/);
+  assert.match(html, /do not state an exact announcement or first-availability date/);
+  assert.match(html, /144 Hz/);
+  assert.match(html, /IP68 \/ IP69K/);
+  assert.doesNotMatch(html, /launched .* lower|was released later|was announced later/);
+  assert.match(html, /https:\/\/www\.hmd\.com\/en_int\/hmd-skyline\/specs/);
+  assert.match(html, /https:\/\/www\.hmd\.com\/en_int\/hmd-xr-21\/specs/);
 });

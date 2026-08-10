@@ -98,3 +98,12 @@ test("only compares original prices within the same market and currency", () => 
   assert.equal(comparisonHighlights(left, europeanRight).some(({ kind }) => kind === "price"), false);
   assert.equal(comparisonHighlights(left, dollarRight).some(({ kind }) => kind === "price"), false);
 });
+
+test("does not rank unknown launch timing or unpriced international records", () => {
+  const skyline = phone("hmd-skyline");
+  const xr21 = phone("hmd-xr21");
+  const highlights = comparisonHighlights(skyline, xr21);
+
+  assert.equal(highlights.some(({ kind }) => kind === "release"), false);
+  assert.equal(highlights.some(({ kind }) => kind === "price"), false);
+});

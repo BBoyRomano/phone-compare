@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 32);
-  assert.equal(Object.keys(sources).length, 64);
+  assert.equal(phones.length, 47);
+  assert.equal(Object.keys(sources).length, 80);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -17,7 +17,8 @@ test("the catalogue includes current standard models from every represented manu
       "oneplus-13",
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
-      "unihertz-titan-2"
+      "unihertz-titan-2",
+      "hmd-skyline"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -27,7 +28,8 @@ test("the catalogue includes current standard models from every represented manu
       "oneplus-13",
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
-      "unihertz-titan-2"
+      "unihertz-titan-2",
+      "hmd-skyline"
     ]
   );
 });
@@ -63,7 +65,22 @@ test("every phone has a sourced, conservative generation classification", () => 
       "tcl-nxtpaper-70-pro",
       "tcl-60-xe-nxtpaper-5g",
       "unihertz-titan-2",
-      "unihertz-jelly-max"
+      "unihertz-jelly-max",
+      "hmd-arc2",
+      "hmd-fuse",
+      "hmd-barca-fusion",
+      "hmd-aura2",
+      "hmd-key",
+      "hmd-arc",
+      "hmd-crest-max-5g",
+      "hmd-fusion",
+      "hmd-crest-5g",
+      "hmd-skyline",
+      "hmd-aura",
+      "hmd-xr21",
+      "hmd-pulse",
+      "hmd-pulse-plus",
+      "hmd-pulse-pro"
     ]
   );
   assert.deepEqual(
@@ -240,8 +257,48 @@ test("the next catalogue batch adds affordable, eye-comfort, compact, and keyboa
   assert.equal(tcl50.resistance.value, null);
 });
 
+test("the HMD international catalogue is substantially covered without invented price or timing", () => {
+  const hmd: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "HMD");
+  assert.deepEqual(hmd.map(({ slug }) => slug), [
+    "hmd-arc2",
+    "hmd-fuse",
+    "hmd-barca-fusion",
+    "hmd-aura2",
+    "hmd-key",
+    "hmd-arc",
+    "hmd-crest-max-5g",
+    "hmd-fusion",
+    "hmd-crest-5g",
+    "hmd-skyline",
+    "hmd-aura",
+    "hmd-xr21",
+    "hmd-pulse",
+    "hmd-pulse-plus",
+    "hmd-pulse-pro"
+  ]);
+
+  for (const phone of hmd) {
+    assert.equal(phone.generation.value, "current");
+    assert.equal(phone.releasedOn.value, null);
+    assert.match(phone.releasedOn.qualification ?? "", /do not state an exact announcement or first-availability date/i);
+    assert.deepEqual(
+      [phone.originalPrice.value.amount, phone.originalPrice.value.currency, phone.originalPrice.value.market],
+      [null, null, "HMD international product-information scope"]
+    );
+    assert.match(phone.originalPrice.qualification ?? "", /current regional pricing is not substituted/i);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+  }
+
+  assert.equal(hmd.find(({ slug }) => slug === "hmd-arc2")?.charging, undefined);
+  assert.equal(hmd.find(({ slug }) => slug === "hmd-key")?.storage.value.startsAtGb, 32);
+  assert.equal(hmd.find(({ slug }) => slug === "hmd-skyline")?.display.refreshRate.value, "144 Hz");
+  assert.equal(hmd.find(({ slug }) => slug === "hmd-xr21")?.resistance.value, "IP68 / IP69K");
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
@@ -314,7 +371,8 @@ test("every product fact resolves to at least one first-party source", () => {
 test("original prices retain market, currency, and configuration context", () => {
   for (const phone of phones) {
     const price = phone.originalPrice.value;
-    assert.match(price.currency, /^[A-Z]{3}$/);
+    if (price.currency === null) assert.equal(price.amount, null);
+    else assert.match(price.currency, /^[A-Z]{3}$/);
     assert.ok(price.market.length > 0);
     assert.ok(price.configuration.length > 0);
   }

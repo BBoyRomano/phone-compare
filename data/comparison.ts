@@ -71,23 +71,23 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
   const leftPrice = left.originalPrice.value;
   const rightPrice = right.originalPrice.value;
 
-  if (leftPrice.amount === null || rightPrice.amount === null) return null;
+  if (leftPrice.amount === null || rightPrice.amount === null || leftPrice.currency === null || rightPrice.currency === null) return null;
   if (leftPrice.currency !== rightPrice.currency || leftPrice.market !== rightPrice.market) return null;
 
+  const currency = leftPrice.currency;
   const sourceIds = uniqueSourceIds(left.originalPrice.sourceIds, right.originalPrice.sourceIds);
   if (leftPrice.amount === rightPrice.amount) {
     return {
       kind: "price",
       label: "Launch price",
       statement: `Same documented ${leftPrice.market} starting price`,
-      context: `Both have a documented original price of ${formatPrice(leftPrice.amount, leftPrice.currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
+      context: `Both have a documented original price of ${formatPrice(leftPrice.amount, currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
       sourceIds
     };
   }
 
   const leftIsLower = leftPrice.amount < rightPrice.amount;
   const lower = leftIsLower ? left : right;
-  const higher = leftIsLower ? right : left;
   const lowerAmount = leftIsLower ? leftPrice.amount : rightPrice.amount;
   const higherAmount = leftIsLower ? rightPrice.amount : leftPrice.amount;
   const difference = higherAmount - lowerAmount;
@@ -96,7 +96,7 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
       kind: "price",
       label: "Launch price",
       statement: `Nearly the same documented ${leftPrice.market} starting price`,
-      context: `${formatPrice(leftPrice.amount, leftPrice.currency)} versus ${formatPrice(rightPrice.amount, rightPrice.currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
+      context: `${formatPrice(leftPrice.amount, currency)} versus ${formatPrice(rightPrice.amount, currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
       sourceIds
     };
   }
@@ -104,25 +104,30 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
   return {
     kind: "price",
     label: "Launch price",
-    statement: `${lower.model.value} launched ${formatPrice(difference, lower.originalPrice.value.currency)} lower`,
-    context: `${formatPrice(lowerAmount, lower.originalPrice.value.currency)} versus ${formatPrice(higherAmount, higher.originalPrice.value.currency)} in the ${lower.originalPrice.value.market}; these are official launch prices, not current retail prices.`,
+    statement: `${lower.model.value} launched ${formatPrice(difference, currency)} lower`,
+    context: `${formatPrice(lowerAmount, currency)} versus ${formatPrice(higherAmount, currency)} in the ${lower.originalPrice.value.market}; these are official launch prices, not current retail prices.`,
     sourceIds
   };
 }
 
 function releaseHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
+  const leftDate = left.releasedOn.value;
+  const rightDate = right.releasedOn.value;
+  if (leftDate === null || rightDate === null) return null;
   const leftBasis = left.releasedOn.basis ?? "availability";
   const rightBasis = right.releasedOn.basis ?? "availability";
   if (leftBasis !== rightBasis) return null;
-  if (left.releasedOn.value === right.releasedOn.value) return null;
+  if (leftDate === rightDate) return null;
 
-  const [later, earlier] = left.releasedOn.value > right.releasedOn.value ? [left, right] : [right, left];
+  const [later, laterDate, earlierDate] = leftDate > rightDate
+    ? [left, leftDate, rightDate] as const
+    : [right, rightDate, leftDate] as const;
   const isAnnouncement = leftBasis === "announcement";
   return {
     kind: "release",
     label: isAnnouncement ? "Announcement timing" : "Release timing",
     statement: `${later.model.value} was ${isAnnouncement ? "announced" : "released"} later`,
-    context: `${formatDate(later.releasedOn.value)} versus ${formatDate(earlier.releasedOn.value)}. This compares the cited official ${isAnnouncement ? "announcement" : "availability"} dates only.`,
+    context: `${formatDate(laterDate)} versus ${formatDate(earlierDate)}. This compares the cited official ${isAnnouncement ? "announcement" : "availability"} dates only.`,
     sourceIds: uniqueSourceIds(left.releasedOn.sourceIds, right.releasedOn.sourceIds)
   };
 }
