@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path = "/") {
@@ -41,6 +42,30 @@ test("server-renders the comparison and its provenance", async () => {
   assert.doesNotMatch(html, /apple-introduces-iphone-17e/);
   assert.doesNotMatch(html, /enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
+});
+
+test("server-renders only the owner-approved external support destinations", async () => {
+  const response = await render();
+  const html = await response.text();
+  const support = html.match(/<aside class="support"[\s\S]*?<\/aside>/)?.[0];
+
+  assert.ok(support, "Expected the support section to render");
+  assert.match(support, /Phone Compare is independent and open source/);
+  assert.match(support, /never influences which phones are included, the product data, or the comparisons/);
+  assert.match(support, /Support opens on external websites/);
+
+  const destinations = [...support.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(destinations, [
+    "https://github.com/sponsors/BBoyRomano",
+    "https://ko-fi.com/bboyromano"
+  ]);
+  assert.equal((support.match(/target="_blank"/g) ?? []).length, 2);
+  assert.equal((support.match(/rel="noreferrer"/g) ?? []).length, 2);
+});
+
+test("GitHub funding configuration contains only the approved accounts", async () => {
+  const funding = await readFile(new URL("../.github/FUNDING.yml", import.meta.url), "utf8");
+  assert.equal(funding, "github: BBoyRomano\nko_fi: bboyromano\n");
 });
 
 test("server-renders a URL-selected comparison without client JavaScript", async () => {

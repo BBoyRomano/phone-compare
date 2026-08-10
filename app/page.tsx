@@ -313,7 +313,10 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           <span aria-hidden="true">PC</span>
           Phone Compare
         </a>
-        <a className="header-link" href="#sources">View sources</a>
+        <nav className="header-links" aria-label="Page links">
+          <a href="#sources">View sources</a>
+          <a href="#support">Support</a>
+        </nav>
       </header>
 
       <section className="hero" id="top">
@@ -423,6 +426,26 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           })}
         </ol>
       </section>
+
+      <aside className="support" id="support" aria-labelledby="support-title">
+        <div>
+          <p className="eyebrow">Support the project</p>
+          <h2 id="support-title">Help sustain independent comparison.</h2>
+          <p>
+            Phone Compare is independent and open source. Voluntary support helps cover development and operating costs;
+            it never influences which phones are included, the product data, or the comparisons.
+          </p>
+        </div>
+        <div className="support-links" aria-label="External support options">
+          <a href="https://github.com/sponsors/BBoyRomano" target="_blank" rel="noreferrer">
+            GitHub Sponsors <span aria-hidden="true">↗</span>
+          </a>
+          <a href="https://ko-fi.com/bboyromano" target="_blank" rel="noreferrer">
+            Ko-fi <span aria-hidden="true">↗</span>
+          </a>
+          <small>Support opens on external websites.</small>
+        </div>
+      </aside>
 
       <footer>
         <a className="brand" href="/"><span aria-hidden="true">PC</span>Phone Compare</a>

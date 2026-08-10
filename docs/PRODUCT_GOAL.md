@@ -71,6 +71,10 @@ Such input is not automatically authoritative and does not create an obligation 
 
 The product should evaluate external input according to evidence, user value, reliability, product alignment, complexity, maintenance burden, and other relevant considerations.
 
+## Independent Support
+
+Phone Compare may accept voluntary financial support to help sustain development and operating costs. Funding must not compromise the product's factual independence, provenance, accessibility, privacy, clarity, or usefulness, and contributors must receive no preferential treatment in coverage, data, comparisons, rankings, or conclusions. Funding providers and support mechanisms may change only through explicitly owner-authorized decisions.
+
 ## Long-Term Quality
 
 The product should continuously optimize for:
