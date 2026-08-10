@@ -1460,6 +1460,54 @@ export const sources = {
     url: "https://www.ztedevices.com/en/products/smartphones/blade/zte-blade-a76.html",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "tecno-global-phone-catalogue": {
+    id: "tecno-global-phone-catalogue",
+    publisher: "TECNO",
+    title: "TECNO Mobile | Official TECNO Website",
+    url: "https://www.tecno-mobile.com/phones/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "tecno-camon-50-ultra-5g-specs": {
+    id: "tecno-camon-50-ultra-5g-specs",
+    publisher: "TECNO",
+    title: "TECNO CAMON 50 Ultra 5G | Tech Specs | Official TECNO",
+    url: "https://www.tecno-mobile.com/phones/tech-specs/techspecs/camon-50-ultra-5g/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tecno-camon-50-ultra-5g-overview": {
+    id: "tecno-camon-50-ultra-5g-overview",
+    publisher: "TECNO",
+    title: "TECNO CAMON 50 Ultra 5G | Best Phones",
+    url: "https://www.tecno-mobile.com/phones/product-detail/product/camon-50-ultra-5g/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tecno-pova-curve-2-5g-bd-specs": {
+    id: "tecno-pova-curve-2-5g-bd-specs",
+    publisher: "TECNO",
+    title: "TECNO POVA Curve 2 5G | Tech Specs | Official TECNO",
+    url: "https://www.tecno-mobile.com/bd/phones/tech-specs/techspecs/pova-curve-2-5g/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tecno-spark-50-5g-specs": {
+    id: "tecno-spark-50-5g-specs",
+    publisher: "TECNO",
+    title: "SPARK 50 5G | Tech Specs | Official TECNO",
+    url: "https://www.tecno-mobile.com/phones/tech-specs/techspecs/spark-50-5g/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tecno-spark-50-5g-overview": {
+    id: "tecno-spark-50-5g-overview",
+    publisher: "TECNO",
+    title: "TECNO SPARK 50 5G | Best Phones",
+    url: "https://www.tecno-mobile.com/phones/product-detail/product/spark-50-5g/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1701,6 +1749,12 @@ const nubiaV80MaxSpecs = ["nubia-v80-max-specs"] as const;
 const nubiaZ80UltraSpecs = ["nubia-z80-ultra-specs"] as const;
 const nubiaAirSpecs = ["nubia-air-specs"] as const;
 const zteBladeA76Specs = ["zte-blade-a76-specs"] as const;
+const tecnoGlobalCatalogue = ["tecno-global-phone-catalogue"] as const;
+const tecnoCamon50UltraSpecs = ["tecno-camon-50-ultra-5g-specs"] as const;
+const tecnoCamon50UltraOverview = ["tecno-camon-50-ultra-5g-overview"] as const;
+const tecnoPovaCurve2BdSpecs = ["tecno-pova-curve-2-5g-bd-specs"] as const;
+const tecnoSpark50Specs = ["tecno-spark-50-5g-specs"] as const;
+const tecnoSpark50Overview = ["tecno-spark-50-5g-overview"] as const;
 
 export const phones = [
   {
@@ -5958,6 +6012,84 @@ export const phones = [
     rearCameras: { value: "50 MP AI triple rear camera", sourceIds: zteBladeA76Specs },
     batteryClaim: { value: "Capacity not stated", sourceIds: zteBladeA76Specs, qualification: "The cited global product page claims a large battery but does not state its capacity" },
     resistance: { value: null, sourceIds: zteBladeA76Specs, qualification: "The cited global product page does not state an IP rating" }
+  },
+  {
+    slug: "tecno-camon-50-ultra-5g",
+    maker: { value: "TECNO", sourceIds: tecnoCamon50UltraSpecs },
+    model: { value: "CAMON 50 Ultra 5G", sourceIds: tecnoCamon50UltraSpecs },
+    generation: { value: "current", sourceIds: tecnoGlobalCatalogue, qualification: "Featured in TECNO's Recommendation of the Month on its maintained global phone page on 2026-08-10; availability and configurations vary by country or region" },
+    formFactor: { value: "slab", sourceIds: tecnoCamon50UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["tecno-global-phone-catalogue", "tecno-camon-50-ultra-5g-specs"], qualification: "The cited global catalogue and specification page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "256 GB storage; TECNO lists 16 GB* combined memory with 8 GB extended RAM" }, sourceIds: ["tecno-global-phone-catalogue", "tecno-camon-50-ultra-5g-specs"], qualification: "The cited global sources do not establish one original launch price; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: tecnoCamon50UltraSpecs },
+      panel: { value: "Curved AMOLED", sourceIds: tecnoCamon50UltraSpecs },
+      resolution: { value: "1208 × 2644 (1.5K)", sourceIds: tecnoCamon50UltraSpecs },
+      refreshRate: { value: "144 Hz", sourceIds: tecnoCamon50UltraSpecs },
+      peakBrightness: { value: null, sourceIds: tecnoCamon50UltraSpecs, qualification: "The cited global specification page does not state a numeric peak brightness" }
+    },
+    weight: { value: null, sourceIds: tecnoCamon50UltraSpecs, qualification: "The cited global specification page does not state a weight" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: tecnoCamon50UltraSpecs },
+    configurations: { value: "256 GB + 16 GB* (8 GB extended RAM); 256 GB + 24 GB* (12 GB extended RAM); 512 GB + 16 GB* (8 GB extended RAM); 512 GB + 24 GB* (12 GB extended RAM)", sourceIds: tecnoCamon50UltraSpecs, qualification: "Preserves TECNO's combined-memory and extended-RAM notation without treating it as physical RAM; regional configurations may differ" },
+    colors: { value: "Moonshadow Black, Cypress Green, Nebula Titanium, Luminous Orange, Misty Purple", sourceIds: tecnoCamon50UltraSpecs },
+    dimensions: { value: "162.37 × 76.97 × 7.75 mm", sourceIds: tecnoCamon50UltraSpecs },
+    charging: { value: "45 W wired", sourceIds: tecnoCamon50UltraSpecs },
+    processor: { value: "MediaTek Dimensity 7400 Ultimate", sourceIds: tecnoCamon50UltraSpecs },
+    rearCameras: { value: "50 MP OIS main + 50 MP 3× telephoto + 8 MP ultrawide", sourceIds: tecnoCamon50UltraSpecs },
+    batteryClaim: { value: "6,500 mAh", sourceIds: tecnoCamon50UltraSpecs, qualification: "Manufacturer capacity on the global specification page; TECNO states that battery capacity varies by region" },
+    resistance: { value: "IP66, IP68, IP69, and IP69K", sourceIds: tecnoCamon50UltraOverview }
+  },
+  {
+    slug: "tecno-pova-curve-2-5g",
+    maker: { value: "TECNO", sourceIds: tecnoPovaCurve2BdSpecs },
+    model: { value: "POVA Curve 2 5G", sourceIds: tecnoPovaCurve2BdSpecs },
+    generation: { value: "current", sourceIds: tecnoGlobalCatalogue, qualification: "Featured in TECNO's Recommendation of the Month on its maintained global phone page on 2026-08-10; availability and configurations vary by country or region" },
+    formFactor: { value: "slab", sourceIds: tecnoPovaCurve2BdSpecs },
+    releasedOn: { value: null, sourceIds: ["tecno-global-phone-catalogue", "tecno-pova-curve-2-5g-bd-specs"], qualification: "The cited global catalogue and Bangladesh specification page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Bangladesh", configuration: "8 GB physical RAM + 128 GB storage" }, sourceIds: ["tecno-global-phone-catalogue", "tecno-pova-curve-2-5g-bd-specs"], qualification: "The cited sources do not establish an original Bangladesh launch price; current regional retail pricing is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: tecnoPovaCurve2BdSpecs },
+      panel: { value: "Curved AMOLED", sourceIds: tecnoPovaCurve2BdSpecs },
+      resolution: { value: "2364 × 1080", sourceIds: tecnoPovaCurve2BdSpecs },
+      refreshRate: { value: "144 Hz / 120 Hz / 90 Hz / 60 Hz", sourceIds: tecnoPovaCurve2BdSpecs },
+      peakBrightness: { value: "4,500 nits peak; 1,600 nits HBM", sourceIds: tecnoPovaCurve2BdSpecs }
+    },
+    weight: { value: null, sourceIds: tecnoPovaCurve2BdSpecs, qualification: "The cited Bangladesh specification page does not state a weight" },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: tecnoPovaCurve2BdSpecs, qualification: "Bangladesh-market configurations; other regions may differ" },
+    configurations: { value: "8 GB physical RAM + 8 GB extended RAM, with 128 GB or 256 GB storage", sourceIds: tecnoPovaCurve2BdSpecs, qualification: "Bangladesh-market configuration only; other regional pages list different combinations" },
+    colors: { value: "Mystic Purple, Melting Silver, Storm Titanium", sourceIds: tecnoPovaCurve2BdSpecs, qualification: "Bangladesh-market colours" },
+    dimensions: { value: "162.7 × 77.2 × 7.42 mm", sourceIds: tecnoPovaCurve2BdSpecs },
+    charging: { value: "45 W wired", sourceIds: tecnoPovaCurve2BdSpecs },
+    processor: { value: "MediaTek Dimensity 7100 5G", sourceIds: tecnoPovaCurve2BdSpecs },
+    rearCameras: { value: "50 MP main + 2 MP", sourceIds: tecnoPovaCurve2BdSpecs },
+    batteryClaim: { value: "8,000 mAh", sourceIds: tecnoPovaCurve2BdSpecs, qualification: "Manufacturer capacity for the Bangladesh-market specification" },
+    resistance: { value: null, sourceIds: tecnoPovaCurve2BdSpecs, qualification: "The cited Bangladesh specification page does not state an IP rating" }
+  },
+  {
+    slug: "tecno-spark-50-5g",
+    maker: { value: "TECNO", sourceIds: tecnoSpark50Specs },
+    model: { value: "SPARK 50 5G", sourceIds: tecnoSpark50Specs },
+    generation: { value: "current", sourceIds: tecnoGlobalCatalogue, qualification: "Featured in TECNO's Recommendation of the Month on its maintained global phone page on 2026-08-10; availability and configurations vary by country or region" },
+    formFactor: { value: "slab", sourceIds: tecnoSpark50Specs },
+    releasedOn: { value: null, sourceIds: ["tecno-global-phone-catalogue", "tecno-spark-50-5g-specs"], qualification: "The cited global catalogue and specification page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "128 GB storage; TECNO lists 12 GB* combined memory with 8 GB extended RAM" }, sourceIds: ["tecno-global-phone-catalogue", "tecno-spark-50-5g-specs"], qualification: "The cited global sources do not establish one original launch price; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: tecnoSpark50Specs },
+      panel: { value: null, sourceIds: tecnoSpark50Specs, qualification: "The cited global specification page does not identify the display panel technology" },
+      resolution: { value: "720 × 1576 (HD)", sourceIds: tecnoSpark50Specs },
+      refreshRate: { value: "120 Hz", sourceIds: tecnoSpark50Specs },
+      peakBrightness: { value: null, sourceIds: tecnoSpark50Specs, qualification: "The cited global specification page does not state a numeric peak brightness" }
+    },
+    weight: { value: null, sourceIds: tecnoSpark50Specs, qualification: "The cited global specification page does not state a weight" },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: tecnoSpark50Specs },
+    configurations: { value: "128 GB + 12 GB* (8 GB extended RAM); 128 GB + 18 GB* (12 GB extended RAM); 256 GB + 18 GB* (12 GB extended RAM); 256 GB + 24 GB* (16 GB extended RAM)", sourceIds: tecnoSpark50Specs, qualification: "Preserves TECNO's combined-memory and extended-RAM notation without treating it as physical RAM; regional configurations may differ" },
+    colors: { value: "Fantasy Purple, Champagne Gold, Mint Green, Titanium Grey, Ink Black", sourceIds: tecnoSpark50Specs },
+    dimensions: { value: "167.9 × 79.3 × 8.18 mm", sourceIds: tecnoSpark50Specs },
+    charging: { value: "45 W wired", sourceIds: tecnoSpark50Specs },
+    processor: { value: "MediaTek Dimensity 6400 5G+", sourceIds: tecnoSpark50Specs },
+    rearCameras: { value: "50 MP main", sourceIds: tecnoSpark50Specs },
+    batteryClaim: { value: "6,500 mAh", sourceIds: tecnoSpark50Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64", sourceIds: tecnoSpark50Overview }
   }
 ] as const satisfies readonly PhoneRecord[];
 

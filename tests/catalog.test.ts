@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 121);
-  assert.equal(Object.keys(sources).length, 179);
+  assert.equal(phones.length, 124);
+  assert.equal(Object.keys(sources).length, 185);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -31,7 +31,8 @@ test("the catalogue includes current standard models from every represented manu
       "realme-16-5g",
       "fairphone-gen-6",
       "nubia-z80-ultra",
-      "zte-blade-a76"
+      "zte-blade-a76",
+      "tecno-camon-50-ultra-5g"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -55,7 +56,8 @@ test("the catalogue includes current standard models from every represented manu
       "realme-16-5g",
       "fairphone-gen-6",
       "nubia-z80-ultra",
-      "zte-blade-a76"
+      "zte-blade-a76",
+      "tecno-camon-50-ultra-5g"
     ]
   );
 });
@@ -179,7 +181,10 @@ test("every phone has a sourced, conservative generation classification", () => 
       "nubia-v80-max",
       "nubia-z80-ultra",
       "nubia-air",
-      "zte-blade-a76"
+      "zte-blade-a76",
+      "tecno-camon-50-ultra-5g",
+      "tecno-pova-curve-2-5g",
+      "tecno-spark-50-5g"
     ]
   );
   assert.deepEqual(
@@ -747,8 +752,33 @@ test("the ZTE global catalogue publishes a bounded five-phone Blade and nubia he
   assert.match(bladeA76?.batteryClaim.qualification ?? "", /does not state its capacity/i);
 });
 
+test("TECNO's global recommendations publish three current phones with regional uncertainty explicit", () => {
+  const tecno: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "TECNO");
+  assert.deepEqual(tecno.map(({ slug }) => slug), [
+    "tecno-camon-50-ultra-5g",
+    "tecno-pova-curve-2-5g",
+    "tecno-spark-50-5g"
+  ]);
+  assert.ok(tecno.every(({ generation }) => generation.value === "current"));
+  assert.ok(tecno.every(({ generation }) => generation.sourceIds.length === 1 && generation.sourceIds[0] === "tecno-global-phone-catalogue"));
+  assert.ok(tecno.every(({ generation }) => /Recommendation of the Month.*availability and configurations vary/is.test(generation.qualification ?? "")));
+  assert.ok(tecno.every(({ releasedOn, originalPrice }) => releasedOn.value === null && releasedOn.qualification && originalPrice.value.amount === null && originalPrice.qualification));
+
+  const camon = tecno.find(({ slug }) => slug === "tecno-camon-50-ultra-5g");
+  const pova = tecno.find(({ slug }) => slug === "tecno-pova-curve-2-5g");
+  const spark = tecno.find(({ slug }) => slug === "tecno-spark-50-5g");
+  assert.equal(camon?.storage.value.startsAtGb, 256);
+  assert.match(camon?.configurations?.qualification ?? "", /without treating it as physical RAM/i);
+  assert.equal(pova?.originalPrice.value.market, "Bangladesh");
+  assert.match(pova?.configurations?.qualification ?? "", /Bangladesh-market.*other regional pages/i);
+  assert.equal(pova?.display.peakBrightness.value, "4,500 nits peak; 1,600 nits HBM");
+  assert.equal(spark?.storage.value.startsAtGb, 128);
+  assert.equal(spark?.display.panel.value, null);
+  assert.equal(spark?.resistance.value, "IP64");
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com", "ztedevices.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com", "ztedevices.com", "tecno-mobile.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
