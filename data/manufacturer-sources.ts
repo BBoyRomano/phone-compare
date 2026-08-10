@@ -334,11 +334,11 @@ export const manufacturerSources = [
     manufacturer: "Fairphone",
     officialDomains: ["fairphone.com", "support.fairphone.com"],
     sources: [
-      { role: "catalogue", url: "https://shop.fairphone.com/smartphones", scope: { kind: "region", region: "Europe" } },
-      { role: "store", url: "https://shop.fairphone.com/smartphones", scope: { kind: "region", region: "Europe" } },
+      { role: "catalogue", url: "https://www.fairphone.com/smartphones", scope: { kind: "region", region: "Europe" } },
+      { role: "store", url: "https://www.fairphone.com/smartphones", scope: { kind: "region", region: "Europe" } },
       {
         role: "specifications",
-        url: "https://shop.fairphone.com/smartphones",
+        url: "https://www.fairphone.com/the-new-fairphone",
         scope: { kind: "region", region: "Europe" },
         limitation: "Product pages combine configurations, specifications, repair information, and regional store data."
       },

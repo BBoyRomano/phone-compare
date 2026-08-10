@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /110(?:<!-- -->)? current generation/);
-  assert.match(html, /115(?:<!-- -->)? phones/);
+  assert.match(html, /111(?:<!-- -->)? current generation/);
+  assert.match(html, /116(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -269,6 +269,20 @@ test("server-renders the realme Europe lineup without ranking an unknown storage
   assert.doesNotMatch(html, /listed storage starts .* higher/);
   assert.match(html, /https:\/\/www\.realme\.com\/eu\/realme-gt-8-pro\/specs/);
   assert.match(html, /https:\/\/www\.realme\.com\/eu\/realme-c100-5g\/specs/);
+});
+
+test("server-renders Fairphone Gen. 6 as one physical phone with two OS configurations", async () => {
+  const response = await render("/?left=fairphone-gen-6&right=realme-16-5g");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /The Fairphone \(Gen\. 6\) vs realme 16 5G/);
+  assert.match(html, /€599/);
+  assert.match(html, /Android or \/e\/OS software configuration/);
+  assert.match(html, /physical device as the same/);
+  assert.match(html, /4,415 mAh removable/);
+  assert.match(html, /https:\/\/www\.fairphone\.com\/the-new-fairphone/);
+  assert.match(html, /The-Fairphone-Gen\.-6-Press-Release-Final\.docx\.pdf/);
 });
 
 test("server-renders the breadth expansion without inventing missing launch prices or ratings", async () => {
