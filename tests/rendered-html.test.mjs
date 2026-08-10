@@ -21,10 +21,18 @@ test("server-renders the comparison and its provenance", async () => {
 
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
+  assert.match(html, /property="og:image"/);
+  assert.match(html, /content="https:\/\/[^"]+\/og\.png"/);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
   assert.match(html, /119(?:<!-- -->)? current generation/);
   assert.match(html, /124(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
+  assert.match(html, /Search catalogue for first selection/);
+  assert.match(html, /Generation for second selection/);
+  assert.match(html, /124 of 124 phones shown/);
+  assert.match(html, /iPhone 17(?:<!-- -->)? — current/);
+  assert.match(html, /iPhone 16(?:<!-- -->)? — earlier/);
   for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone", "nubia", "ZTE", "TECNO"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
