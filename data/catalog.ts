@@ -928,6 +928,134 @@ export const sources = {
     url: "https://www.honor.com/uk/phones/honor-400-smart/spec/",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "xiaomi-uk-featured-phones": {
+    id: "xiaomi-uk-featured-phones",
+    publisher: "Xiaomi",
+    title: "Xiaomi UK official phone catalogue and Mobile navigation",
+    url: "https://www.mi.com/uk/product-list/phone/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "xiaomi-17-ultra-specs": {
+    id: "xiaomi-17-ultra-specs",
+    publisher: "Xiaomi",
+    title: "Xiaomi 17 Ultra Specs, Features",
+    url: "https://www.mi.com/uk/product/xiaomi-17-ultra/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "xiaomi-17-specs": {
+    id: "xiaomi-17-specs",
+    publisher: "Xiaomi",
+    title: "Xiaomi 17 Specs, Features",
+    url: "https://www.mi.com/uk/product/xiaomi-17/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "xiaomi-leica-leitzphone-specs": {
+    id: "xiaomi-leica-leitzphone-specs",
+    publisher: "Xiaomi",
+    title: "Leica Leitzphone powered by Xiaomi Specs, Features",
+    url: "https://www.mi.com/uk/product/leica-leitzphone-powered-by-xiaomi/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "xiaomi-17t-specs": {
+    id: "xiaomi-17t-specs",
+    publisher: "Xiaomi",
+    title: "Xiaomi 17T Specs, Features",
+    url: "https://www.mi.com/uk/product/xiaomi-17t/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "xiaomi-17t-pro-specs": {
+    id: "xiaomi-17t-pro-specs",
+    publisher: "Xiaomi",
+    title: "Xiaomi 17T Pro Specs, Features",
+    url: "https://www.mi.com/uk/product/xiaomi-17t-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "redmi-note-15-pro-specs": {
+    id: "redmi-note-15-pro-specs",
+    publisher: "REDMI",
+    title: "REDMI Note 15 Pro Specs, Features",
+    url: "https://www.mi.com/uk/product/redmi-note-15-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "redmi-note-15-5g-specs": {
+    id: "redmi-note-15-5g-specs",
+    publisher: "REDMI",
+    title: "REDMI Note 15 5G Specs, Features",
+    url: "https://www.mi.com/uk/product/redmi-note-15-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "redmi-note-15-specs": {
+    id: "redmi-note-15-specs",
+    publisher: "REDMI",
+    title: "REDMI Note 15 Specs, Features",
+    url: "https://www.mi.com/uk/product/redmi-note-15/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "redmi-note-15-pro-plus-5g-specs": {
+    id: "redmi-note-15-pro-plus-5g-specs",
+    publisher: "REDMI",
+    title: "REDMI Note 15 Pro+ 5G Specs, Features",
+    url: "https://www.mi.com/uk/product/redmi-note-15-pro-plus-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "redmi-note-15-pro-5g-specs": {
+    id: "redmi-note-15-pro-5g-specs",
+    publisher: "REDMI",
+    title: "REDMI Note 15 Pro 5G Specs, Features",
+    url: "https://www.mi.com/uk/product/redmi-note-15-pro-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "poco-x8-pro-max-specs": {
+    id: "poco-x8-pro-max-specs",
+    publisher: "POCO",
+    title: "POCO X8 Pro Max Specs, Features",
+    url: "https://www.mi.com/uk/product/poco-x8-pro-max/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "poco-x8-pro-specs": {
+    id: "poco-x8-pro-specs",
+    publisher: "POCO",
+    title: "POCO X8 Pro Specs, Features",
+    url: "https://www.mi.com/uk/product/poco-x8-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "poco-m8-5g-specs": {
+    id: "poco-m8-5g-specs",
+    publisher: "POCO",
+    title: "POCO M8 5G Specs, Features",
+    url: "https://www.mi.com/uk/product/poco-m8-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "poco-m8-pro-5g-specs": {
+    id: "poco-m8-pro-5g-specs",
+    publisher: "POCO",
+    title: "POCO M8 Pro 5G Specs, Features",
+    url: "https://www.mi.com/uk/product/poco-m8-pro-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "poco-f8-ultra-specs": {
+    id: "poco-f8-ultra-specs",
+    publisher: "POCO",
+    title: "POCO F8 Ultra Specs, Features",
+    url: "https://www.mi.com/uk/product/poco-f8-ultra/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1103,6 +1231,22 @@ const honor600SmartSpecs = ["honor-600-smart-5g-specs"] as const;
 const honor600LiteSpecs = ["honor-600-lite-specs"] as const;
 const honor400Smart5gSpecs = ["honor-400-smart-5g-specs"] as const;
 const honor400SmartSpecs = ["honor-400-smart-specs"] as const;
+const xiaomiUkCatalogue = ["xiaomi-uk-featured-phones"] as const;
+const xiaomi17UltraSpecs = ["xiaomi-17-ultra-specs"] as const;
+const xiaomi17Specs = ["xiaomi-17-specs"] as const;
+const xiaomiLeitzphoneSpecs = ["xiaomi-leica-leitzphone-specs"] as const;
+const xiaomi17tSpecs = ["xiaomi-17t-specs"] as const;
+const xiaomi17tProSpecs = ["xiaomi-17t-pro-specs"] as const;
+const redmiNote15ProSpecs = ["redmi-note-15-pro-specs"] as const;
+const redmiNote155gSpecs = ["redmi-note-15-5g-specs"] as const;
+const redmiNote15Specs = ["redmi-note-15-specs"] as const;
+const redmiNote15ProPlus5gSpecs = ["redmi-note-15-pro-plus-5g-specs"] as const;
+const redmiNote15Pro5gSpecs = ["redmi-note-15-pro-5g-specs"] as const;
+const pocoX8ProMaxSpecs = ["poco-x8-pro-max-specs"] as const;
+const pocoX8ProSpecs = ["poco-x8-pro-specs"] as const;
+const pocoM85gSpecs = ["poco-m8-5g-specs"] as const;
+const pocoM8Pro5gSpecs = ["poco-m8-pro-5g-specs"] as const;
+const pocoF8UltraSpecs = ["poco-f8-ultra-specs"] as const;
 
 export const phones = [
   {
@@ -4056,6 +4200,396 @@ export const phones = [
     rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: honor400SmartSpecs },
     batteryClaim: { value: "6,500 mAh typical; 6,350 mAh rated", sourceIds: honor400SmartSpecs, qualification: "Manufacturer capacity" },
     resistance: { value: null, sourceIds: honor400SmartSpecs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "xiaomi-17-ultra",
+    maker: { value: "Xiaomi", sourceIds: xiaomi17UltraSpecs },
+    model: { value: "Xiaomi 17 Ultra", sourceIds: xiaomi17UltraSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this bounded set does not claim the site's intermittently hydrated product grid is exhaustive" },
+    formFactor: { value: "slab", sourceIds: xiaomi17UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17-ultra-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "16 GB RAM + 512 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17-ultra-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.9 inches", sourceIds: xiaomi17UltraSpecs },
+      panel: { value: "Xiaomi HyperRGB OLED", sourceIds: xiaomi17UltraSpecs },
+      resolution: { value: "2608 × 1200", sourceIds: xiaomi17UltraSpecs },
+      refreshRate: { value: "1–120 Hz", sourceIds: xiaomi17UltraSpecs },
+      peakBrightness: { value: "3,500 nits multi-scenario peak", sourceIds: xiaomi17UltraSpecs }
+    },
+    weight: { value: "218.4 g (Black and White); 219 g (Starlit Green)", sourceIds: xiaomi17UltraSpecs },
+    storage: { value: { options: "512 GB, 1 TB", startsAtGb: 512 }, sourceIds: xiaomi17UltraSpecs },
+    configurations: { value: "16 GB RAM + 512 GB or 1 TB storage", sourceIds: xiaomi17UltraSpecs },
+    colors: { value: "Black, White, Starlit Green", sourceIds: xiaomi17UltraSpecs },
+    dimensions: { value: "162.9 × 77.6 × 8.29 mm", sourceIds: xiaomi17UltraSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "90 W wired HyperCharge; 50 W wireless HyperCharge", sourceIds: xiaomi17UltraSpecs },
+    processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: xiaomi17UltraSpecs },
+    rearCameras: { value: "50 MP main + 200 MP 75–100 mm telephoto + 50 MP ultrawide", sourceIds: xiaomi17UltraSpecs },
+    batteryClaim: { value: "6,000 mAh typical", sourceIds: xiaomi17UltraSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: xiaomi17UltraSpecs }
+  },
+  {
+    slug: "xiaomi-17",
+    maker: { value: "Xiaomi", sourceIds: xiaomi17Specs },
+    model: { value: "Xiaomi 17", sourceIds: xiaomi17Specs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this bounded set does not claim the site's intermittently hydrated product grid is exhaustive" },
+    formFactor: { value: "slab", sourceIds: xiaomi17Specs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.3 inches", sourceIds: xiaomi17Specs },
+      panel: { value: "CrystalRes OLED", sourceIds: xiaomi17Specs },
+      resolution: { value: "2656 × 1220", sourceIds: xiaomi17Specs },
+      refreshRate: { value: "1–120 Hz", sourceIds: xiaomi17Specs },
+      peakBrightness: { value: "3,500 nits multi-scenario peak", sourceIds: xiaomi17Specs }
+    },
+    weight: { value: "191 g", sourceIds: xiaomi17Specs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: xiaomi17Specs },
+    configurations: { value: "12 GB RAM + 256 GB or 512 GB storage", sourceIds: xiaomi17Specs },
+    colors: { value: "Alpine Pink, Ice Blue, Black, Venture Green", sourceIds: xiaomi17Specs },
+    dimensions: { value: "151.1 × 71.8 × 8.06 mm", sourceIds: xiaomi17Specs, qualification: "Height × width × thickness" },
+    charging: { value: "100 W wired HyperCharge; 50 W wireless HyperCharge", sourceIds: xiaomi17Specs },
+    processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: xiaomi17Specs },
+    rearCameras: { value: "50 MP main + 50 MP 60 mm telephoto + 50 MP ultrawide", sourceIds: xiaomi17Specs },
+    batteryClaim: { value: "6,330 mAh typical", sourceIds: xiaomi17Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: xiaomi17Specs }
+  },
+  {
+    slug: "xiaomi-leica-leitzphone",
+    maker: { value: "Xiaomi", sourceIds: xiaomiLeitzphoneSpecs, qualification: "The official UK Mobile navigation places this Leica-co-branded phone in Xiaomi Series" },
+    model: { value: "Leica Leitzphone powered by Xiaomi", sourceIds: xiaomiLeitzphoneSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this bounded set does not claim the site's intermittently hydrated product grid is exhaustive" },
+    formFactor: { value: "slab", sourceIds: xiaomiLeitzphoneSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-leica-leitzphone-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "16 GB RAM + 1 TB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-leica-leitzphone-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.9 inches", sourceIds: xiaomiLeitzphoneSpecs },
+      panel: { value: "Xiaomi HyperRGB OLED", sourceIds: xiaomiLeitzphoneSpecs },
+      resolution: { value: "2608 × 1200", sourceIds: xiaomiLeitzphoneSpecs },
+      refreshRate: { value: "1–120 Hz", sourceIds: xiaomiLeitzphoneSpecs },
+      peakBrightness: { value: "3,500 nits multi-scenario peak", sourceIds: xiaomiLeitzphoneSpecs }
+    },
+    weight: { value: "223.4 g", sourceIds: xiaomiLeitzphoneSpecs },
+    storage: { value: { options: "1024 GB (1 TB)", startsAtGb: 1024 }, sourceIds: xiaomiLeitzphoneSpecs },
+    configurations: { value: "16 GB RAM + 1 TB storage", sourceIds: xiaomiLeitzphoneSpecs },
+    colors: { value: "Black", sourceIds: xiaomiLeitzphoneSpecs },
+    dimensions: { value: "162.9 × 77.6 × 8.32 mm", sourceIds: xiaomiLeitzphoneSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "90 W wired HyperCharge; 50 W wireless HyperCharge", sourceIds: xiaomiLeitzphoneSpecs },
+    processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: xiaomiLeitzphoneSpecs },
+    rearCameras: { value: "50 MP main + 200 MP 75–100 mm telephoto + 50 MP ultrawide", sourceIds: xiaomiLeitzphoneSpecs },
+    batteryClaim: { value: "6,000 mAh typical", sourceIds: xiaomiLeitzphoneSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: xiaomiLeitzphoneSpecs }
+  },
+  {
+    slug: "xiaomi-17t",
+    maker: { value: "Xiaomi", sourceIds: xiaomi17tSpecs },
+    model: { value: "Xiaomi 17T", sourceIds: xiaomi17tSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this bounded set does not claim the site's intermittently hydrated product grid is exhaustive" },
+    formFactor: { value: "slab", sourceIds: xiaomi17tSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17t-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17t-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.59 inches", sourceIds: xiaomi17tSpecs },
+      panel: { value: "AMOLED", sourceIds: xiaomi17tSpecs },
+      resolution: { value: "2756 × 1268", sourceIds: xiaomi17tSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: xiaomi17tSpecs },
+      peakBrightness: { value: "3,500 nits UHBM peak at APL25%", sourceIds: xiaomi17tSpecs }
+    },
+    weight: { value: "200 g", sourceIds: xiaomi17tSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: xiaomi17tSpecs },
+    configurations: { value: "12 GB RAM + 256 GB or 512 GB storage", sourceIds: xiaomi17tSpecs },
+    colors: { value: "Black, Opal White, Blue, Violet", sourceIds: xiaomi17tSpecs },
+    dimensions: { value: "157.6 × 75.2 × 8.17 mm", sourceIds: xiaomi17tSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "67 W wired HyperCharge; up to 22.5 W wired reverse charging", sourceIds: xiaomi17tSpecs },
+    processor: { value: "MediaTek Dimensity 8500-Ultra", sourceIds: xiaomi17tSpecs },
+    rearCameras: { value: "50 MP main + 50 MP 115 mm periscope telephoto + 12 MP ultrawide", sourceIds: xiaomi17tSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: xiaomi17tSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: xiaomi17tSpecs }
+  },
+  {
+    slug: "xiaomi-17t-pro",
+    maker: { value: "Xiaomi", sourceIds: xiaomi17tProSpecs },
+    model: { value: "Xiaomi 17T Pro", sourceIds: xiaomi17tProSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this bounded set does not claim the site's intermittently hydrated product grid is exhaustive" },
+    formFactor: { value: "slab", sourceIds: xiaomi17tProSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17t-pro-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "xiaomi-17t-pro-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: xiaomi17tProSpecs },
+      panel: { value: "AMOLED", sourceIds: xiaomi17tProSpecs },
+      resolution: { value: "2772 × 1280", sourceIds: xiaomi17tProSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: xiaomi17tProSpecs },
+      peakBrightness: { value: "3,500 nits UHBM peak at APL25%", sourceIds: xiaomi17tProSpecs }
+    },
+    weight: { value: "219 g", sourceIds: xiaomi17tProSpecs },
+    storage: { value: { options: "256 GB, 512 GB, 1 TB", startsAtGb: 256 }, sourceIds: xiaomi17tProSpecs },
+    configurations: { value: "12 GB RAM + 256 GB, 512 GB, or 1 TB storage", sourceIds: xiaomi17tProSpecs },
+    colors: { value: "Black, Deep Violet, Deep Blue", sourceIds: xiaomi17tProSpecs },
+    dimensions: { value: "162.2 × 77.5 × 8.25 mm", sourceIds: xiaomi17tProSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "100 W wired HyperCharge; 50 W wireless HyperCharge; up to 22.5 W wired reverse charging", sourceIds: xiaomi17tProSpecs },
+    processor: { value: "MediaTek Dimensity 9500", sourceIds: xiaomi17tProSpecs },
+    rearCameras: { value: "50 MP main + 50 MP 115 mm periscope telephoto + 12 MP ultrawide", sourceIds: xiaomi17tProSpecs },
+    batteryClaim: { value: "7,000 mAh typical", sourceIds: xiaomi17tProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: xiaomi17tProSpecs }
+  },
+  {
+    slug: "redmi-note-15-pro",
+    maker: { value: "REDMI", sourceIds: redmiNote15ProSpecs },
+    model: { value: "REDMI Note 15 Pro", sourceIds: redmiNote15ProSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: redmiNote15ProSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: redmiNote15ProSpecs },
+      panel: { value: "AMOLED", sourceIds: redmiNote15ProSpecs },
+      resolution: { value: "2392 × 1080", sourceIds: redmiNote15ProSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: redmiNote15ProSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: redmiNote15ProSpecs }
+    },
+    weight: { value: "195 g", sourceIds: redmiNote15ProSpecs },
+    storage: { value: { options: "256 GB, 512 GB; microSD up to 2 TB", startsAtGb: 256 }, sourceIds: redmiNote15ProSpecs },
+    configurations: { value: "8 GB RAM + 256 GB; 12 GB RAM + 256 GB or 512 GB", sourceIds: redmiNote15ProSpecs },
+    colors: { value: "Black, Glacier Blue, Titanium Color", sourceIds: redmiNote15ProSpecs },
+    dimensions: { value: "163.22 × 76.29 × 7.96 mm", sourceIds: redmiNote15ProSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "45 W turbo charging", sourceIds: redmiNote15ProSpecs, qualification: "The battery section says a 45 W charger is in the box, while the package-contents list omits a charger; the conflicting inclusion claim is not presented as settled" },
+    processor: { value: "MediaTek Helio G200-Ultra", sourceIds: redmiNote15ProSpecs },
+    rearCameras: { value: "200 MP main + 8 MP ultrawide", sourceIds: redmiNote15ProSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: redmiNote15ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP65", sourceIds: redmiNote15ProSpecs }
+  },
+  {
+    slug: "redmi-note-15-5g",
+    maker: { value: "REDMI", sourceIds: redmiNote155gSpecs },
+    model: { value: "REDMI Note 15 5G", sourceIds: redmiNote155gSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: redmiNote155gSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-5g-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: redmiNote155gSpecs },
+      panel: { value: "AMOLED", sourceIds: redmiNote155gSpecs },
+      resolution: { value: "2392 × 1080", sourceIds: redmiNote155gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: redmiNote155gSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: redmiNote155gSpecs }
+    },
+    weight: { value: "178 g", sourceIds: redmiNote155gSpecs },
+    storage: { value: { options: "256 GB; microSD up to 1 TB", startsAtGb: 256 }, sourceIds: redmiNote155gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: redmiNote155gSpecs },
+    colors: { value: "Black, Glacier Blue, Mist Purple", sourceIds: redmiNote155gSpecs },
+    dimensions: { value: "164 × 75.42 × 7.35 mm (Black and Glacier Blue); 7.40 mm thick (Mist Purple)", sourceIds: redmiNote155gSpecs },
+    charging: { value: "45 W turbo charging", sourceIds: redmiNote155gSpecs },
+    processor: { value: "Snapdragon 6 Gen 3 Mobile Platform", sourceIds: redmiNote155gSpecs },
+    rearCameras: { value: "108 MP main + 8 MP ultrawide", sourceIds: redmiNote155gSpecs },
+    batteryClaim: { value: "5,520 mAh typical", sourceIds: redmiNote155gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP65", sourceIds: redmiNote155gSpecs }
+  },
+  {
+    slug: "redmi-note-15",
+    maker: { value: "REDMI", sourceIds: redmiNote15Specs },
+    model: { value: "REDMI Note 15", sourceIds: redmiNote15Specs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: redmiNote15Specs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "6 GB RAM + 128 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: redmiNote15Specs },
+      panel: { value: "AMOLED", sourceIds: redmiNote15Specs },
+      resolution: { value: "2392 × 1080", sourceIds: redmiNote15Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: redmiNote15Specs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: redmiNote15Specs }
+    },
+    weight: { value: "183.7 g", sourceIds: redmiNote15Specs },
+    storage: { value: { options: "128 GB, 256 GB; microSD up to 2 TB", startsAtGb: 128 }, sourceIds: redmiNote15Specs },
+    configurations: { value: "6 GB RAM + 128 GB; 8 GB RAM + 256 GB", sourceIds: redmiNote15Specs },
+    colors: { value: "Black, Forest Green, Glacier Blue", sourceIds: redmiNote15Specs },
+    dimensions: { value: "164.03 × 75.42 × 7.94 mm", sourceIds: redmiNote15Specs, qualification: "Height × width × thickness" },
+    charging: { value: "33 W turbo charging", sourceIds: redmiNote15Specs },
+    processor: { value: "MediaTek Helio G100-Ultra", sourceIds: redmiNote15Specs },
+    rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: redmiNote15Specs },
+    batteryClaim: { value: "6,000 mAh typical", sourceIds: redmiNote15Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64", sourceIds: redmiNote15Specs }
+  },
+  {
+    slug: "redmi-note-15-pro-plus-5g",
+    maker: { value: "REDMI", sourceIds: redmiNote15ProPlus5gSpecs },
+    model: { value: "REDMI Note 15 Pro+ 5G", sourceIds: redmiNote15ProPlus5gSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: redmiNote15ProPlus5gSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-plus-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-plus-5g-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: redmiNote15ProPlus5gSpecs },
+      panel: { value: "CrystalRes AMOLED", sourceIds: redmiNote15ProPlus5gSpecs },
+      resolution: { value: "2772 × 1280", sourceIds: redmiNote15ProPlus5gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: redmiNote15ProPlus5gSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: redmiNote15ProPlus5gSpecs }
+    },
+    weight: { value: "207.1 g (Black and Glacier Blue); 208 g (Mocha Brown)", sourceIds: redmiNote15ProPlus5gSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: redmiNote15ProPlus5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB; 12 GB RAM + 512 GB", sourceIds: redmiNote15ProPlus5gSpecs },
+    colors: { value: "Black, Glacier Blue, Mocha Brown", sourceIds: redmiNote15ProPlus5gSpecs },
+    dimensions: { value: "163.34 × 78.31 × 8.19 mm (Black and Glacier Blue); 8.47 mm thick (Mocha Brown)", sourceIds: redmiNote15ProPlus5gSpecs },
+    charging: { value: "100 W HyperCharge", sourceIds: redmiNote15ProPlus5gSpecs },
+    processor: { value: "Snapdragon 7s Gen 4", sourceIds: redmiNote15ProPlus5gSpecs },
+    rearCameras: { value: "200 MP main + 8 MP ultrawide", sourceIds: redmiNote15ProPlus5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: redmiNote15ProPlus5gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP66 / IP68", sourceIds: redmiNote15ProPlus5gSpecs }
+  },
+  {
+    slug: "redmi-note-15-pro-5g",
+    maker: { value: "REDMI", sourceIds: redmiNote15Pro5gSpecs },
+    model: { value: "REDMI Note 15 Pro 5G", sourceIds: redmiNote15Pro5gSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: redmiNote15Pro5gSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "redmi-note-15-pro-5g-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: redmiNote15Pro5gSpecs },
+      panel: { value: "AMOLED", sourceIds: redmiNote15Pro5gSpecs },
+      resolution: { value: "2772 × 1280", sourceIds: redmiNote15Pro5gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: redmiNote15Pro5gSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: redmiNote15Pro5gSpecs }
+    },
+    weight: { value: "210 g", sourceIds: redmiNote15Pro5gSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: redmiNote15Pro5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB; 12 GB RAM + 512 GB", sourceIds: redmiNote15Pro5gSpecs },
+    colors: { value: "Black, Glacier Blue, Titanium Color", sourceIds: redmiNote15Pro5gSpecs },
+    dimensions: { value: "163.61 × 78.09 × 7.96 mm", sourceIds: redmiNote15Pro5gSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "45 W turbo charging", sourceIds: redmiNote15Pro5gSpecs },
+    processor: { value: "MediaTek Dimensity 7400-Ultra", sourceIds: redmiNote15Pro5gSpecs },
+    rearCameras: { value: "200 MP main + 8 MP ultrawide", sourceIds: redmiNote15Pro5gSpecs },
+    batteryClaim: { value: "6,580 mAh typical", sourceIds: redmiNote15Pro5gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP66 / IP68", sourceIds: redmiNote15Pro5gSpecs }
+  },
+  {
+    slug: "poco-x8-pro-max",
+    maker: { value: "POCO", sourceIds: pocoX8ProMaxSpecs },
+    model: { value: "POCO X8 Pro Max", sourceIds: pocoX8ProMaxSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: pocoX8ProMaxSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "poco-x8-pro-max-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "poco-x8-pro-max-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: pocoX8ProMaxSpecs },
+      panel: { value: "AMOLED", sourceIds: pocoX8ProMaxSpecs },
+      resolution: { value: "2772 × 1280", sourceIds: pocoX8ProMaxSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: pocoX8ProMaxSpecs },
+      peakBrightness: { value: "3,500 nits peak over 25% display area", sourceIds: pocoX8ProMaxSpecs }
+    },
+    weight: { value: "218 g", sourceIds: pocoX8ProMaxSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: pocoX8ProMaxSpecs },
+    configurations: { value: "12 GB RAM + 256 GB or 512 GB storage", sourceIds: pocoX8ProMaxSpecs },
+    colors: { value: "Blue, White, Black", sourceIds: pocoX8ProMaxSpecs },
+    dimensions: { value: "162.9 × 77.9 × 8.2 mm", sourceIds: pocoX8ProMaxSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "100 W HyperCharge; up to 27 W wired reverse charging", sourceIds: pocoX8ProMaxSpecs },
+    processor: { value: "MediaTek Dimensity 9500s", sourceIds: pocoX8ProMaxSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: pocoX8ProMaxSpecs },
+    batteryClaim: { value: "8,500 mAh typical", sourceIds: pocoX8ProMaxSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: pocoX8ProMaxSpecs }
+  },
+  {
+    slug: "poco-x8-pro",
+    maker: { value: "POCO", sourceIds: pocoX8ProSpecs },
+    model: { value: "POCO X8 Pro", sourceIds: pocoX8ProSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: pocoX8ProSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "poco-x8-pro-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "poco-x8-pro-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.59 inches", sourceIds: pocoX8ProSpecs },
+      panel: { value: "AMOLED", sourceIds: pocoX8ProSpecs },
+      resolution: { value: "2756 × 1268", sourceIds: pocoX8ProSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: pocoX8ProSpecs },
+      peakBrightness: { value: "3,500 nits peak over 25% display area", sourceIds: pocoX8ProSpecs }
+    },
+    weight: { value: "201.47 g", sourceIds: pocoX8ProSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: pocoX8ProSpecs },
+    configurations: { value: "8 GB RAM + 256 GB or 512 GB; 12 GB RAM + 512 GB", sourceIds: pocoX8ProSpecs },
+    colors: { value: "Mint Green, White, Black", sourceIds: pocoX8ProSpecs },
+    dimensions: { value: "157.53 × 75.19 × 8.38 mm", sourceIds: pocoX8ProSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "100 W HyperCharge; up to 27 W wired reverse charging", sourceIds: pocoX8ProSpecs },
+    processor: { value: "MediaTek Dimensity 8500-Ultra", sourceIds: pocoX8ProSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: pocoX8ProSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: pocoX8ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: pocoX8ProSpecs }
+  },
+  {
+    slug: "poco-m8-5g",
+    maker: { value: "POCO", sourceIds: pocoM85gSpecs },
+    model: { value: "POCO M8 5G", sourceIds: pocoM85gSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: pocoM85gSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "poco-m8-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "poco-m8-5g-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: pocoM85gSpecs },
+      panel: { value: "Flow AMOLED", sourceIds: pocoM85gSpecs },
+      resolution: { value: "2392 × 1080", sourceIds: pocoM85gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: pocoM85gSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: pocoM85gSpecs }
+    },
+    weight: { value: "178 g", sourceIds: pocoM85gSpecs },
+    storage: { value: { options: "256 GB, 512 GB; microSD up to 1 TB", startsAtGb: 256 }, sourceIds: pocoM85gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB or 512 GB storage", sourceIds: pocoM85gSpecs },
+    colors: { value: "Black, Silver, Green", sourceIds: pocoM85gSpecs },
+    dimensions: { value: "164 × 75.42 × 7.35 mm", sourceIds: pocoM85gSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "45 W turbo charging; up to 18 W wired reverse charging", sourceIds: pocoM85gSpecs },
+    processor: { value: "Snapdragon 6 Gen 3 Mobile Platform", sourceIds: pocoM85gSpecs },
+    rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: pocoM85gSpecs },
+    batteryClaim: { value: "5,520 mAh typical", sourceIds: pocoM85gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: pocoM85gSpecs, qualification: "The cited UK specification page does not state an IP rating" }
+  },
+  {
+    slug: "poco-m8-pro-5g",
+    maker: { value: "POCO", sourceIds: pocoM8Pro5gSpecs },
+    model: { value: "POCO M8 Pro 5G", sourceIds: pocoM8Pro5gSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: pocoM8Pro5gSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "poco-m8-pro-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "poco-m8-pro-5g-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: pocoM8Pro5gSpecs },
+      panel: { value: "CrystalRes AMOLED", sourceIds: pocoM8Pro5gSpecs },
+      resolution: { value: "2772 × 1280", sourceIds: pocoM8Pro5gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: pocoM8Pro5gSpecs },
+      peakBrightness: { value: "3,200 nits peak", sourceIds: pocoM8Pro5gSpecs }
+    },
+    weight: { value: "205.9 g", sourceIds: pocoM8Pro5gSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: pocoM8Pro5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB; 12 GB RAM + 512 GB", sourceIds: pocoM8Pro5gSpecs },
+    colors: { value: "Black, Silver, Green", sourceIds: pocoM8Pro5gSpecs },
+    dimensions: { value: "163.34 × 78.31 × 8.31 mm", sourceIds: pocoM8Pro5gSpecs, qualification: "Height × width × thickness" },
+    charging: { value: "100 W HyperCharge; up to 22.5 W wired reverse charging", sourceIds: pocoM8Pro5gSpecs },
+    processor: { value: "Snapdragon 7s Gen 4", sourceIds: pocoM8Pro5gSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: pocoM8Pro5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: pocoM8Pro5gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP66 / IP68", sourceIds: pocoM8Pro5gSpecs }
+  },
+  {
+    slug: "poco-f8-ultra",
+    maker: { value: "POCO", sourceIds: pocoF8UltraSpecs },
+    model: { value: "POCO F8 Ultra", sourceIds: pocoF8UltraSpecs },
+    generation: { value: "current", sourceIds: xiaomiUkCatalogue, qualification: "Featured phone in the official Xiaomi UK Mobile navigation on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: pocoF8UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["xiaomi-uk-featured-phones", "poco-f8-ultra-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["xiaomi-uk-featured-phones", "poco-f8-ultra-specs"], qualification: "A current or promotional store price is not substituted for an original UK launch price" },
+    display: {
+      size: { value: "6.9 inches", sourceIds: pocoF8UltraSpecs, qualification: "POCO states the rectangular measurement is about 6.85 inches; actual viewable area is smaller" },
+      panel: { value: "AMOLED", sourceIds: pocoF8UltraSpecs },
+      resolution: { value: "2608 × 1200", sourceIds: pocoF8UltraSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: pocoF8UltraSpecs },
+      peakBrightness: { value: "3,500 nits peak over 25% display area", sourceIds: pocoF8UltraSpecs }
+    },
+    weight: { value: "218 g (Black); 220 g (Denim Blue)", sourceIds: pocoF8UltraSpecs },
+    storage: { value: { options: "256 GB, 512 GB", startsAtGb: 256 }, sourceIds: pocoF8UltraSpecs },
+    configurations: { value: "12 GB RAM + 256 GB; 16 GB RAM + 512 GB", sourceIds: pocoF8UltraSpecs },
+    colors: { value: "Denim Blue, Black", sourceIds: pocoF8UltraSpecs, qualification: "POCO states Denim Blue describes the surface appearance and does not use denim fabric" },
+    dimensions: { value: "163.33 × 77.82 × 7.9 mm (Black); 8.3 mm thick (Denim Blue)", sourceIds: pocoF8UltraSpecs },
+    charging: { value: "100 W HyperCharge; 50 W wireless HyperCharge; up to 22.5 W wired reverse charging", sourceIds: pocoF8UltraSpecs },
+    processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: pocoF8UltraSpecs },
+    rearCameras: { value: "50 MP main + 50 MP periscope telephoto + 50 MP ultrawide", sourceIds: pocoF8UltraSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: pocoF8UltraSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: pocoF8UltraSpecs }
   }
 ] as const satisfies readonly PhoneRecord[];
 
