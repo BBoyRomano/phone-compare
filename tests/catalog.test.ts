@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 24);
-  assert.equal(Object.keys(sources).length, 46);
+  assert.equal(phones.length, 32);
+  assert.equal(Object.keys(sources).length, 64);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -15,7 +15,9 @@ test("the catalogue includes current standard models from every represented manu
       "samsung-galaxy-s26",
       "motorola-edge-2026",
       "oneplus-13",
-      "nothing-phone-4a-pro"
+      "nothing-phone-4a-pro",
+      "tcl-nxtpaper-70-pro",
+      "unihertz-titan-2"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -23,7 +25,9 @@ test("the catalogue includes current standard models from every represented manu
       "samsung-galaxy-s26",
       "motorola-edge-2026",
       "oneplus-13",
-      "nothing-phone-4a-pro"
+      "nothing-phone-4a-pro",
+      "tcl-nxtpaper-70-pro",
+      "unihertz-titan-2"
     ]
   );
 });
@@ -52,12 +56,19 @@ test("every phone has a sourced, conservative generation classification", () => 
       "oneplus-13",
       "oneplus-13r",
       "nothing-phone-4a-pro",
-      "nothing-phone-3"
+      "nothing-phone-3",
+      "motorola-moto-g-stylus-2026",
+      "motorola-moto-g-power-2026",
+      "motorola-moto-g-2026",
+      "tcl-nxtpaper-70-pro",
+      "tcl-60-xe-nxtpaper-5g",
+      "unihertz-titan-2",
+      "unihertz-jelly-max"
     ]
   );
   assert.deepEqual(
     phones.filter(({ generation }) => generation.value === "earlier").map(({ slug }) => slug),
-    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24"]
+    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24", "tcl-50-xl-nxtpaper-5g"]
   );
 
   for (const phone of phones) {
@@ -107,7 +118,7 @@ test("catalogue gaps and source conflicts stay visible", () => {
   assert.match(galaxyA57.processor.qualification ?? "", /not stated/i);
 });
 
-test("the catalogue includes a sourced premium reference from every represented manufacturer", () => {
+test("the catalogue retains sourced premium references across its established manufacturers", () => {
   const premiumSlugs = [
     "apple-iphone-17-pro",
     "google-pixel-10-pro",
@@ -182,8 +193,55 @@ test("the expansion preserves U.S. launch context and explicit timing bases", ()
   assert.match(nothing.colors.qualification ?? "", /global colours are not inferred/i);
 });
 
+test("the next catalogue batch adds affordable, eye-comfort, compact, and keyboard breadth", () => {
+  const batchSlugs = [
+    "motorola-moto-g-stylus-2026",
+    "motorola-moto-g-power-2026",
+    "motorola-moto-g-2026",
+    "tcl-nxtpaper-70-pro",
+    "tcl-60-xe-nxtpaper-5g",
+    "tcl-50-xl-nxtpaper-5g",
+    "unihertz-titan-2",
+    "unihertz-jelly-max"
+  ];
+  const batch: readonly PhoneRecord[] = phones.filter(({ slug }) => batchSlugs.includes(slug));
+  assert.deepEqual(batch.map(({ slug }) => slug), batchSlugs);
+
+  for (const phone of batch) {
+    assert.equal(phone.originalPrice.value.currency, "USD");
+    assert.equal(phone.originalPrice.value.market, "United States");
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+  }
+
+  assert.deepEqual(
+    batch.filter(({ originalPrice }) => originalPrice.value.amount !== null).map(({ slug, originalPrice }) => [slug, originalPrice.value.amount]),
+    [
+      ["motorola-moto-g-stylus-2026", 499.99],
+      ["motorola-moto-g-power-2026", 299.99],
+      ["motorola-moto-g-2026", 199.99]
+    ]
+  );
+  for (const phone of batch.filter(({ originalPrice }) => originalPrice.value.amount === null)) {
+    assert.match(phone.originalPrice.qualification ?? "", /current (?:store|direct-store) pricing is not substituted/i);
+  }
+
+  const titan = batch.find(({ slug }) => slug === "unihertz-titan-2");
+  const jelly = batch.find(({ slug }) => slug === "unihertz-jelly-max");
+  const tcl50 = batch.find(({ slug }) => slug === "tcl-50-xl-nxtpaper-5g");
+  assert.ok(titan);
+  assert.ok(jelly);
+  assert.ok(tcl50);
+  assert.match(titan.formFactor.qualification ?? "", /physical QWERTY keyboard/i);
+  assert.equal(jelly.display.size.value, "5.05 inches");
+  assert.equal(tcl50.generation.value, "earlier");
+  assert.equal(tcl50.resistance.value, null);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

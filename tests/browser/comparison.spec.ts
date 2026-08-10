@@ -51,7 +51,7 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
 
   const firstPhone = page.getByLabel("First phone");
   const secondPhone = page.getByLabel("Second phone");
-  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro"]) {
+  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2"]) {
     await expect(firstPhone.locator(`option[value="${slug}"]`)).toHaveCount(1);
   }
 
@@ -74,6 +74,20 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
     await expect(link).toHaveAttribute("href", /^https:\/\//);
     await expect(link).toHaveAttribute("rel", "noreferrer");
   }
+});
+
+test("compares the compact and keyboard-led additions with missing facts kept visible", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("First phone").selectOption("unihertz-titan-2");
+  await page.getByLabel("Second phone").selectOption("unihertz-jelly-max");
+  await page.getByRole("button", { name: "Compare phones" }).click();
+
+  await expect(page).toHaveURL(/\?left=unihertz-titan-2&right=unihertz-jelly-max$/);
+  await expect(page.getByRole("heading", { name: "Titan 2 vs Jelly Max" })).toBeVisible();
+  await expect(page.getByText(/physical QWERTY keyboard/)).toBeVisible();
+  await expect(page.getByText(/Compact 5\.05-inch slab/)).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Water & dust" })).toBeVisible();
+  await expect(page.getByText("Not stated", { exact: true })).toHaveCount(8);
 });
 
 test("keeps support external and separate from comparison functionality", async ({ page }) => {
@@ -125,7 +139,7 @@ test("makes stale selections and unknown routes recoverable", async ({ page }) =
 });
 
 test("has no automatically detectable WCAG A or AA violations", async ({ page }) => {
-  for (const path of ["/?left=apple-iphone-air&right=google-pixel-10a", "/not-a-real-page"]) {
+  for (const path of ["/?left=apple-iphone-air&right=google-pixel-10a", "/?left=unihertz-titan-2&right=tcl-60-xe-nxtpaper-5g", "/not-a-real-page"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
