@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /43(?:<!-- -->)? current generation/);
-  assert.match(html, /47(?:<!-- -->)? phones/);
+  assert.match(html, /54(?:<!-- -->)? current generation/);
+  assert.match(html, /58(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -272,4 +272,21 @@ test("server-renders the current HMD international lineup with unknown timing an
   assert.doesNotMatch(html, /launched .* lower|was released later|was announced later/);
   assert.match(html, /https:\/\/www\.hmd\.com\/en_int\/hmd-skyline\/specs/);
   assert.match(html, /https:\/\/www\.hmd\.com\/en_int\/hmd-xr-21\/specs/);
+});
+
+test("server-renders the Infinix India lineup with editions, gaps, and conflicts explicit", async () => {
+  const response = await render("/?left=infinix-zero-flip&right=infinix-note-60-pro");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Zero Flip vs Note 60 Pro/);
+  assert.match(html, /Flip fold/);
+  assert.match(html, /3\.64-inch AMOLED cover display/);
+  assert.match(html, /India/);
+  assert.match(html, /current sale price and MRP are not substituted/);
+  assert.match(html, /Pininfarina and CODM editions.*rather than duplicate phone records/);
+  assert.match(html, /do not state an exact announcement or first-availability date/);
+  assert.doesNotMatch(html, /launched .* lower|was released later|was announced later/);
+  assert.match(html, /https:\/\/infinixmobiles\.in\/collections\/smartphones\/products\/zero-flip/);
+  assert.match(html, /https:\/\/infinixmobiles\.in\/collections\/smartphones\/products\/launch-note-60-pro/);
 });

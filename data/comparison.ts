@@ -62,7 +62,8 @@ function formatPrice(amount: number, currency: string): string {
   }).format(amount);
 }
 
-function parseMeasurement(value: string, unit: "inches" | "g"): number | null {
+function parseMeasurement(value: string | null, unit: "inches" | "g"): number | null {
+  if (value === null) return null;
   const match = value.match(new RegExp(`^(\\d+(?:\\.\\d+)?) ${unit}$`));
   return match ? Number(match[1]) : null;
 }
