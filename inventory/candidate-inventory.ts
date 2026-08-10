@@ -28,7 +28,7 @@ export const deviceTypeHints = [
 
 export type DeviceTypeHint = (typeof deviceTypeHints)[number];
 
-export const formFactorHints = ["slab", "book-fold", "flip-fold", "rugged", "keyboard", "other", "unknown"] as const;
+export const formFactorHints = ["slab", "thin-slab", "book-fold", "flip-fold", "rugged", "keyboard", "other", "unknown"] as const;
 
 export type FormFactorHint = (typeof formFactorHints)[number];
 
@@ -42,8 +42,10 @@ export interface CandidateDiscoveryReference {
 
 export interface CandidatePhone {
   readonly candidateId: string;
-  readonly manufacturer: string;
-  readonly brand: string;
+  readonly manufacturer: string | null;
+  readonly brand: string | null;
+  readonly discoveredManufacturerNames?: readonly string[];
+  readonly discoveredBrandNames?: readonly string[];
   readonly model: string;
   readonly modelCodes?: readonly string[];
   readonly aliases?: readonly string[];
@@ -122,6 +124,26 @@ export const discoverySources: readonly DiscoverySourceProfile[] = [
     ]
   },
   {
+    id: "manufacturer-first-party",
+    name: "Manufacturer product and specification pages",
+    operator: "Individual phone manufacturers",
+    url: "https://github.com/BBoyRomano/phone-compare/blob/main/data/manufacturer-sources.ts",
+    assessedAt: "2026-08-10",
+    contributes: ["Canonical product identity", "Displayed brand", "Official model naming", "Regional identity context"],
+    completeness: "Strong for individually reviewed phones, but fragmented across manufacturers, markets, current catalogues, and support archives.",
+    freshness: "Varies by manufacturer and page; every persisted reference carries its concrete first-party URL and access date.",
+    deviceSemantics: "Official pages may describe one model, a family, multiple configurations, or a regional variant and require manual identity resolution.",
+    accessMechanism: "Bounded manual review of the stable entry points in the maintained manufacturer registry.",
+    licenseOrTerms: "Site-specific terms are not treated as permission for bulk mirroring; only bounded factual identity and source links are persisted.",
+    automatedCollection: "bounded-manual-only",
+    repositoryPersistence: "allowed",
+    useDecision: "bounded-manual-signal",
+    limitations: [
+      "Do not automate bulk copying without a separately reviewed site-specific access and reuse assessment.",
+      "First-party identity evidence does not make discovery-source fields published facts; publication still uses datum-level catalogue provenance."
+    ]
+  },
+  {
     id: "google-play-supported-devices",
     name: "Google Play supported Android devices",
     operator: "Google",
@@ -191,6 +213,8 @@ const candidateKeys = new Set([
   "candidateId",
   "manufacturer",
   "brand",
+  "discoveredManufacturerNames",
+  "discoveredBrandNames",
   "model",
   "modelCodes",
   "aliases",
@@ -271,10 +295,13 @@ export function validateCandidate(value: unknown, lineNumber?: number): string[]
   if (!isNonEmptyString(value.candidateId) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.candidateId)) {
     errors.push(`${prefix}: candidateId must be a lowercase kebab-case identifier`);
   }
-  for (const key of ["manufacturer", "brand", "model"] as const) {
-    if (!isNonEmptyString(value[key])) errors.push(`${prefix}: ${key} is required`);
+  for (const key of ["manufacturer", "brand"] as const) {
+    if (!(key in value) || (value[key] !== null && !isNonEmptyString(value[key]))) {
+      errors.push(`${prefix}: ${key} must be a non-empty string or null`);
+    }
   }
-  for (const key of ["modelCodes", "aliases", "regionalHints"] as const) {
+  if (!isNonEmptyString(value.model)) errors.push(`${prefix}: model is required`);
+  for (const key of ["discoveredManufacturerNames", "discoveredBrandNames", "modelCodes", "aliases", "regionalHints"] as const) {
     if (value[key] !== undefined && !isStringArray(value[key])) errors.push(`${prefix}: ${key} must contain unique non-empty strings`);
   }
   if (value.deviceTypeHint !== undefined && !(deviceTypeHints as readonly unknown[]).includes(value.deviceTypeHint)) {
@@ -349,6 +376,31 @@ export function parseCandidateInventory(contents: string): { candidates: Candida
   return { candidates, errors };
 }
 
+function mergeDiscoveryReferences(
+  generated: readonly CandidateDiscoveryReference[],
+  existing: readonly CandidateDiscoveryReference[]
+): CandidateDiscoveryReference[] {
+  const generatedKeys = new Set(generated.map(({ sourceId, sourceRecordId }) => `${sourceId}:${sourceRecordId ?? ""}`));
+  return [...generated, ...existing.filter(({ sourceId, sourceRecordId }) => !generatedKeys.has(`${sourceId}:${sourceRecordId ?? ""}`))];
+}
+
+export function mergeImportedCandidates(
+  generatedCandidates: readonly CandidatePhone[],
+  existingCandidates: readonly CandidatePhone[]
+): CandidatePhone[] {
+  const existingById = new Map(existingCandidates.map((candidate) => [candidate.candidateId, candidate]));
+  const generatedIds = new Set(generatedCandidates.map(({ candidateId }) => candidateId));
+  const candidates = generatedCandidates.map((generated) => {
+    const existing = existingById.get(generated.candidateId);
+    if (!existing) return generated;
+    const discoverySources = mergeDiscoveryReferences(generated.discoverySources, existing.discoverySources);
+    if (existing.verificationState === "unreviewed" && !existing.reviewedAt) return { ...generated, discoverySources };
+    return { ...existing, discoverySources };
+  });
+  candidates.push(...existingCandidates.filter(({ candidateId }) => !generatedIds.has(candidateId)));
+  return candidates.sort((a, b) => a.candidateId.localeCompare(b.candidateId));
+}
+
 export interface PublishedCatalogueIdentity {
   readonly slug: string;
   readonly brand: string;
@@ -359,6 +411,8 @@ export interface CandidateCoverageReport {
   readonly inventoryCandidates: number;
   readonly manufacturers: number;
   readonly brands: number;
+  readonly candidatesWithUnknownManufacturer: number;
+  readonly candidatesWithUnknownBrand: number;
   readonly verificationStates: Readonly<Record<VerificationState, number>>;
   readonly dispositionReasons: Readonly<Record<string, number>>;
   readonly catalogue: {
@@ -397,14 +451,15 @@ export function buildCoverageReport(
   for (const candidate of candidates) {
     stateCounts[candidate.verificationState] += 1;
     if (candidate.dispositionReason) dispositionReasons[candidate.dispositionReason] = (dispositionReasons[candidate.dispositionReason] ?? 0) + 1;
-    const aggregate = perManufacturer.get(candidate.manufacturer) ?? { candidates: 0, published: 0, queue: 0 };
+    const manufacturer = candidate.manufacturer ?? "Unknown manufacturer";
+    const aggregate = perManufacturer.get(manufacturer) ?? { candidates: 0, published: 0, queue: 0 };
     aggregate.candidates += 1;
     if (candidate.publishedSlug) {
       aggregate.published += 1;
       matchedSlugs.add(candidate.publishedSlug);
     }
     if (queueStates.has(candidate.verificationState)) aggregate.queue += 1;
-    perManufacturer.set(candidate.manufacturer, aggregate);
+    perManufacturer.set(manufacturer, aggregate);
   }
 
   const publishedByBrand = new Map<string, { current: number; earlier: number }>();
@@ -426,10 +481,11 @@ export function buildCoverageReport(
     });
   const candidateByBrand = new Map<string, { candidates: number; published: number }>();
   for (const candidate of candidates) {
-    const aggregate = candidateByBrand.get(candidate.brand) ?? { candidates: 0, published: 0 };
+    const brand = candidate.brand ?? "Unknown brand";
+    const aggregate = candidateByBrand.get(brand) ?? { candidates: 0, published: 0 };
     aggregate.candidates += 1;
     if (candidate.publishedSlug) aggregate.published += 1;
-    candidateByBrand.set(candidate.brand, aggregate);
+    candidateByBrand.set(brand, aggregate);
   }
   const allBrands = new Set([...candidateByBrand.keys(), ...publishedByBrand.keys()]);
   const publishedCoverageByBrand = [...allBrands]
@@ -450,8 +506,10 @@ export function buildCoverageReport(
   const unknownPublishedSlugs = [...matchedSlugs].filter((slug) => !catalogueSlugs.has(slug)).sort((a, b) => a.localeCompare(b));
   return {
     inventoryCandidates: candidates.length,
-    manufacturers: new Set(candidates.map(({ manufacturer }) => manufacturer)).size,
-    brands: new Set(candidates.map(({ brand }) => brand)).size,
+    manufacturers: new Set(candidates.flatMap(({ manufacturer }) => (manufacturer ? [manufacturer] : []))).size,
+    brands: new Set(candidates.flatMap(({ brand }) => (brand ? [brand] : []))).size,
+    candidatesWithUnknownManufacturer: candidates.filter(({ manufacturer }) => manufacturer === null).length,
+    candidatesWithUnknownBrand: candidates.filter(({ brand }) => brand === null).length,
     verificationStates: stateCounts,
     dispositionReasons: Object.fromEntries(Object.entries(dispositionReasons).sort(([a], [b]) => a.localeCompare(b))),
     catalogue: {
