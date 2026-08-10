@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /111(?:<!-- -->)? current generation/);
-  assert.match(html, /116(?:<!-- -->)? phones/);
+  assert.match(html, /116(?:<!-- -->)? current generation/);
+  assert.match(html, /121(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone", "nubia", "ZTE"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -283,6 +283,21 @@ test("server-renders Fairphone Gen. 6 as one physical phone with two OS configur
   assert.match(html, /4,415 mAh removable/);
   assert.match(html, /https:\/\/www\.fairphone\.com\/the-new-fairphone/);
   assert.match(html, /The-Fairphone-Gen\.-6-Press-Release-Final\.docx\.pdf/);
+});
+
+test("server-renders the bounded ZTE and nubia headline set with global gaps visible", async () => {
+  const response = await render("/?left=nubia-z80-ultra&right=zte-blade-a76");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /nubia Z80 Ultra vs ZTE Blade A76/);
+  assert.match(html, /80 W wired; 80 W wireless; wireless reverse charging/);
+  assert.match(html, /UFS 4\.1; capacity not stated/);
+  assert.match(html, /Capacity not stated/);
+  assert.match(html, /regional pricing is not substituted/);
+  assert.doesNotMatch(html, /listed storage starts .* higher/);
+  assert.match(html, /https:\/\/www\.ztedevices\.com\/en\/products\/smartphones\/nubia\/nubia-z80-ultra\.html/);
+  assert.match(html, /https:\/\/www\.ztedevices\.com\/en\/products\/smartphones\/blade\/zte-blade-a76\.html/);
 });
 
 test("server-renders the breadth expansion without inventing missing launch prices or ratings", async () => {
