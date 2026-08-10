@@ -1404,6 +1404,62 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2025-06-25",
     accessedAt: "2026-08-10"
+  },
+  "zte-global-smartphone-catalogue": {
+    id: "zte-global-smartphone-catalogue",
+    publisher: "ZTE",
+    title: "Smartphones",
+    url: "https://www.ztedevices.com/en/products/smartphones.html",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "nubia-neo-5-gt-specs": {
+    id: "nubia-neo-5-gt-specs",
+    publisher: "ZTE",
+    title: "Compare - nubia Neo 5 GT",
+    url: "https://www.ztedevices.com/en/products/smartphones/nubia/nubia-neo-5-gt/compare.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nubia-neo-5-gt-overview": {
+    id: "nubia-neo-5-gt-overview",
+    publisher: "ZTE",
+    title: "nubia Neo 5 GT",
+    url: "https://www.ztedevices.com/en/products/smartphones/nubia/nubia-neo-5-gt.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nubia-v80-max-specs": {
+    id: "nubia-v80-max-specs",
+    publisher: "ZTE",
+    title: "nubia V80 Max",
+    url: "https://www.ztedevices.com/en/products/smartphones/nubia/nubia-v80-max.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nubia-z80-ultra-specs": {
+    id: "nubia-z80-ultra-specs",
+    publisher: "ZTE",
+    title: "nubia Z80 Ultra",
+    url: "https://www.ztedevices.com/en/products/smartphones/nubia/nubia-z80-ultra.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nubia-air-specs": {
+    id: "nubia-air-specs",
+    publisher: "ZTE",
+    title: "nubia Air",
+    url: "https://www.ztedevices.com/en/products/smartphones/nubia/nubia-air.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "zte-blade-a76-specs": {
+    id: "zte-blade-a76-specs",
+    publisher: "ZTE",
+    title: "ZTE Blade A76",
+    url: "https://www.ztedevices.com/en/products/smartphones/blade/zte-blade-a76.html",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1638,6 +1694,13 @@ const realmeC1005gOverview = ["realme-c100-5g-overview"] as const;
 const fairphoneEuCatalogue = ["fairphone-eu-smartphone-catalogue"] as const;
 const fairphoneGen6Specs = ["fairphone-gen-6-specs"] as const;
 const fairphoneGen6Launch = ["fairphone-gen-6-announcement"] as const;
+const zteGlobalCatalogue = ["zte-global-smartphone-catalogue"] as const;
+const nubiaNeo5GtSpecs = ["nubia-neo-5-gt-specs"] as const;
+const nubiaNeo5GtOverview = ["nubia-neo-5-gt-overview"] as const;
+const nubiaV80MaxSpecs = ["nubia-v80-max-specs"] as const;
+const nubiaZ80UltraSpecs = ["nubia-z80-ultra-specs"] as const;
+const nubiaAirSpecs = ["nubia-air-specs"] as const;
+const zteBladeA76Specs = ["zte-blade-a76-specs"] as const;
 
 export const phones = [
   {
@@ -5776,6 +5839,125 @@ export const phones = [
     rearCameras: { value: "50 MP main + 13 MP ultrawide", sourceIds: fairphoneGen6Specs },
     batteryClaim: { value: "4,415 mAh removable", sourceIds: fairphoneGen6Specs, qualification: "Manufacturer capacity" },
     resistance: { value: "IP55", sourceIds: fairphoneGen6Specs }
+  },
+  {
+    slug: "nubia-neo-5-gt",
+    maker: { value: "nubia", sourceIds: nubiaNeo5GtSpecs },
+    model: { value: "nubia Neo 5 GT", sourceIds: nubiaNeo5GtSpecs },
+    generation: { value: "current", sourceIds: zteGlobalCatalogue, qualification: "Listed near the head of ZTE's maintained global smartphone catalogue on 2026-08-10; configurations and availability vary by country or region" },
+    formFactor: { value: "slab", sourceIds: nubiaNeo5GtSpecs },
+    releasedOn: { value: null, sourceIds: ["zte-global-smartphone-catalogue", "nubia-neo-5-gt-specs"], qualification: "The cited global catalogue and product page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["zte-global-smartphone-catalogue", "nubia-neo-5-gt-specs"], qualification: "The cited global sources do not establish one original launch price; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.8 inches", sourceIds: nubiaNeo5GtSpecs },
+      panel: { value: "AMOLED", sourceIds: nubiaNeo5GtSpecs },
+      resolution: { value: "1224 × 2720 (1.5K)", sourceIds: nubiaNeo5GtSpecs },
+      refreshRate: { value: "144 Hz", sourceIds: nubiaNeo5GtSpecs },
+      peakBrightness: { value: "Up to 4,500 nits local peak", sourceIds: nubiaNeo5GtSpecs }
+    },
+    weight: { value: null, sourceIds: nubiaNeo5GtSpecs, qualification: "The cited global product page does not state a weight" },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: nubiaNeo5GtSpecs },
+    configurations: { value: "8 GB or 12 GB physical RAM, each with 12 GB dynamic RAM + 256 GB storage", sourceIds: nubiaNeo5GtSpecs, qualification: "Preserves ZTE's global comparison-page notation; regional configurations may differ" },
+    charging: { value: "80 W wired; bypass charging", sourceIds: nubiaNeo5GtSpecs },
+    processor: { value: "MediaTek Dimensity 7400", sourceIds: nubiaNeo5GtSpecs },
+    rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: nubiaNeo5GtSpecs },
+    batteryClaim: { value: "6,210 mAh typical dual-cell", sourceIds: nubiaNeo5GtSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64 body; IP54 cooling-air ducts", sourceIds: nubiaNeo5GtOverview }
+  },
+  {
+    slug: "nubia-v80-max",
+    maker: { value: "nubia", sourceIds: nubiaV80MaxSpecs },
+    model: { value: "nubia V80 Max", sourceIds: nubiaV80MaxSpecs },
+    generation: { value: "current", sourceIds: zteGlobalCatalogue, qualification: "Listed near the head of ZTE's maintained global smartphone catalogue on 2026-08-10; configurations and availability vary by country or region" },
+    formFactor: { value: "slab", sourceIds: nubiaV80MaxSpecs },
+    releasedOn: { value: null, sourceIds: ["zte-global-smartphone-catalogue", "nubia-v80-max-specs"], qualification: "The cited global catalogue and product page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "Configuration not stated" }, sourceIds: ["zte-global-smartphone-catalogue", "nubia-v80-max-specs"], qualification: "The cited global sources do not establish an original launch price or one storage configuration; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.9 inches", sourceIds: nubiaV80MaxSpecs },
+      panel: { value: null, sourceIds: nubiaV80MaxSpecs, qualification: "The cited global product page does not identify the display panel technology" },
+      resolution: { value: "Not stated", sourceIds: nubiaV80MaxSpecs, qualification: "The cited global product page does not state the display resolution" },
+      refreshRate: { value: "120 Hz", sourceIds: nubiaV80MaxSpecs },
+      peakBrightness: { value: "780 nits sunlight-readable", sourceIds: nubiaV80MaxSpecs }
+    },
+    weight: { value: null, sourceIds: nubiaV80MaxSpecs, qualification: "The cited global product page does not state a weight" },
+    storage: { value: { options: "Capacity not stated", startsAtGb: null }, sourceIds: nubiaV80MaxSpecs, qualification: "The cited global product page does not state an internal-storage capacity, so starting storage is excluded from comparisons" },
+    colors: { value: "Stardust Purple, Stellar Silver, Aurellia Gold, Sky Cyan, Space Black", sourceIds: nubiaV80MaxSpecs },
+    charging: { value: "10 W reverse charging; wired input rate not stated", sourceIds: nubiaV80MaxSpecs },
+    processor: { value: "1.8 GHz octa-core processor", sourceIds: nubiaV80MaxSpecs },
+    rearCameras: { value: "50 MP AI triple rear camera", sourceIds: nubiaV80MaxSpecs },
+    batteryClaim: { value: "6,000 mAh", sourceIds: nubiaV80MaxSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64", sourceIds: nubiaV80MaxSpecs }
+  },
+  {
+    slug: "nubia-z80-ultra",
+    maker: { value: "nubia", sourceIds: nubiaZ80UltraSpecs },
+    model: { value: "nubia Z80 Ultra", sourceIds: nubiaZ80UltraSpecs },
+    generation: { value: "current", sourceIds: zteGlobalCatalogue, qualification: "Listed near the head of ZTE's maintained global smartphone catalogue on 2026-08-10; configurations and availability vary by country or region" },
+    formFactor: { value: "slab", sourceIds: nubiaZ80UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["zte-global-smartphone-catalogue", "nubia-z80-ultra-specs"], qualification: "The cited global catalogue and product page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "LPDDR5X memory + UFS 4.1 storage; capacities not stated" }, sourceIds: ["zte-global-smartphone-catalogue", "nubia-z80-ultra-specs"], qualification: "The cited global sources do not establish an original launch price or one capacity configuration; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.85 inches", sourceIds: nubiaZ80UltraSpecs },
+      panel: { value: "AMOLED", sourceIds: nubiaZ80UltraSpecs },
+      resolution: { value: "2688 × 1216", sourceIds: nubiaZ80UltraSpecs },
+      refreshRate: { value: "144 Hz", sourceIds: nubiaZ80UltraSpecs },
+      peakBrightness: { value: "2,000 nits", sourceIds: nubiaZ80UltraSpecs }
+    },
+    weight: { value: null, sourceIds: nubiaZ80UltraSpecs, qualification: "The cited global product page does not state a weight" },
+    storage: { value: { options: "UFS 4.1; capacity not stated", startsAtGb: null }, sourceIds: nubiaZ80UltraSpecs, qualification: "The cited global product page states the storage technology but no capacity, so starting storage is excluded from comparisons" },
+    configurations: { value: "LPDDR5X memory + UFS 4.1 storage; capacities not stated", sourceIds: nubiaZ80UltraSpecs },
+    charging: { value: "80 W wired; 80 W wireless; wireless reverse charging", sourceIds: nubiaZ80UltraSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5", sourceIds: nubiaZ80UltraSpecs },
+    rearCameras: { value: "50 MP main + 50 MP ultrawide + 64 MP periscope telephoto", sourceIds: nubiaZ80UltraSpecs },
+    batteryClaim: { value: "7,200 mAh", sourceIds: nubiaZ80UltraSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68 and IP69", sourceIds: nubiaZ80UltraSpecs }
+  },
+  {
+    slug: "nubia-air",
+    maker: { value: "nubia", sourceIds: nubiaAirSpecs },
+    model: { value: "nubia Air", sourceIds: nubiaAirSpecs },
+    generation: { value: "current", sourceIds: zteGlobalCatalogue, qualification: "Listed near the head of ZTE's maintained global smartphone catalogue on 2026-08-10; configurations and availability vary by country or region" },
+    formFactor: { value: "thin-slab", sourceIds: nubiaAirSpecs },
+    releasedOn: { value: null, sourceIds: ["zte-global-smartphone-catalogue", "nubia-air-specs"], qualification: "The cited global catalogue and product page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "Configuration not stated" }, sourceIds: ["zte-global-smartphone-catalogue", "nubia-air-specs"], qualification: "The cited global sources do not establish an original launch price or one storage configuration; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: nubiaAirSpecs },
+      panel: { value: "AMOLED", sourceIds: nubiaAirSpecs },
+      resolution: { value: "1224 × 2720 (1.5K)", sourceIds: nubiaAirSpecs },
+      refreshRate: { value: "120 Hz", sourceIds: nubiaAirSpecs },
+      peakBrightness: { value: "Up to 4,500 nits local peak", sourceIds: nubiaAirSpecs }
+    },
+    weight: { value: "172 g", sourceIds: nubiaAirSpecs },
+    storage: { value: { options: "Capacity not stated", startsAtGb: null }, sourceIds: nubiaAirSpecs, qualification: "The cited global product page does not state an internal-storage capacity, so starting storage is excluded from comparisons" },
+    configurations: { value: "Up to 20 GB dynamic RAM; physical RAM and storage configuration not stated", sourceIds: nubiaAirSpecs },
+    charging: { value: "33 W wired", sourceIds: nubiaAirSpecs },
+    processor: { value: "Octa-core 5G processor with 2 × Cortex-A78 at 2.2 GHz", sourceIds: nubiaAirSpecs, qualification: "The cited global product page does not state the chipset's marketing name" },
+    rearCameras: { value: "50 MP AI triple rear camera", sourceIds: nubiaAirSpecs },
+    batteryClaim: { value: "5,000 mAh", sourceIds: nubiaAirSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68, IP69, and IP69K", sourceIds: nubiaAirSpecs }
+  },
+  {
+    slug: "zte-blade-a76",
+    maker: { value: "ZTE", sourceIds: zteBladeA76Specs },
+    model: { value: "ZTE Blade A76", sourceIds: zteBladeA76Specs },
+    generation: { value: "current", sourceIds: zteGlobalCatalogue, qualification: "Listed near the head of ZTE's maintained global smartphone catalogue on 2026-08-10; configurations and availability vary by country or region" },
+    formFactor: { value: "slab", sourceIds: zteBladeA76Specs },
+    releasedOn: { value: null, sourceIds: ["zte-global-smartphone-catalogue", "zte-blade-a76-specs"], qualification: "The cited global catalogue and product page do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "Configuration not stated" }, sourceIds: ["zte-global-smartphone-catalogue", "zte-blade-a76-specs"], qualification: "The cited global sources do not establish an original launch price or one storage configuration; regional pricing is not substituted" },
+    display: {
+      size: { value: "6.75 inches", sourceIds: zteBladeA76Specs },
+      panel: { value: null, sourceIds: zteBladeA76Specs, qualification: "The cited global product page does not identify the display panel technology" },
+      resolution: { value: "HD+", sourceIds: zteBladeA76Specs },
+      refreshRate: { value: "90 Hz", sourceIds: zteBladeA76Specs },
+      peakBrightness: { value: "500 nits", sourceIds: zteBladeA76Specs }
+    },
+    weight: { value: null, sourceIds: zteBladeA76Specs, qualification: "The cited global product page does not state a weight" },
+    storage: { value: { options: "Capacity not stated", startsAtGb: null }, sourceIds: zteBladeA76Specs, qualification: "The cited global product page does not state an internal-storage capacity, so starting storage is excluded from comparisons" },
+    charging: { value: "Fast charging; wattage not stated", sourceIds: zteBladeA76Specs },
+    processor: { value: "Up to 1.8 GHz octa-core processor", sourceIds: zteBladeA76Specs },
+    rearCameras: { value: "50 MP AI triple rear camera", sourceIds: zteBladeA76Specs },
+    batteryClaim: { value: "Capacity not stated", sourceIds: zteBladeA76Specs, qualification: "The cited global product page claims a large battery but does not state its capacity" },
+    resistance: { value: null, sourceIds: zteBladeA76Specs, qualification: "The cited global product page does not state an IP rating" }
   }
 ] as const satisfies readonly PhoneRecord[];
 

@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 116);
-  assert.equal(Object.keys(sources).length, 172);
+  assert.equal(phones.length, 121);
+  assert.equal(Object.keys(sources).length, 179);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -29,7 +29,9 @@ test("the catalogue includes current standard models from every represented manu
       "asus-zenfone-12-ultra",
       "vivo-x300",
       "realme-16-5g",
-      "fairphone-gen-6"
+      "fairphone-gen-6",
+      "nubia-z80-ultra",
+      "zte-blade-a76"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -51,7 +53,9 @@ test("the catalogue includes current standard models from every represented manu
       "asus-zenfone-12-ultra",
       "vivo-x300",
       "realme-16-5g",
-      "fairphone-gen-6"
+      "fairphone-gen-6",
+      "nubia-z80-ultra",
+      "zte-blade-a76"
     ]
   );
 });
@@ -170,7 +174,12 @@ test("every phone has a sourced, conservative generation classification", () => 
       "realme-16-5g",
       "realme-gt-8-pro",
       "realme-c100-5g",
-      "fairphone-gen-6"
+      "fairphone-gen-6",
+      "nubia-neo-5-gt",
+      "nubia-v80-max",
+      "nubia-z80-ultra",
+      "nubia-air",
+      "zte-blade-a76"
     ]
   );
   assert.deepEqual(
@@ -202,7 +211,8 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
       ["infinix-zero-flip", "flip-fold"],
       ["honor-magic-v6", "book-fold"],
       ["honor-magic-v5", "book-fold"],
-      ["oppo-find-n2-flip", "flip-fold"]
+      ["oppo-find-n2-flip", "flip-fold"],
+      ["nubia-air", "thin-slab"]
     ]
   );
 
@@ -713,8 +723,32 @@ test("the Fairphone European store publishes one physical Gen. 6 phone across tw
   assert.equal(phone.resistance.value, "IP55");
 });
 
+test("the ZTE global catalogue publishes a bounded five-phone Blade and nubia headline set", () => {
+  const zteAndNubia: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "ZTE" || maker.value === "nubia");
+  assert.deepEqual(zteAndNubia.map(({ slug }) => slug), [
+    "nubia-neo-5-gt",
+    "nubia-v80-max",
+    "nubia-z80-ultra",
+    "nubia-air",
+    "zte-blade-a76"
+  ]);
+  assert.ok(zteAndNubia.every(({ generation }) => generation.value === "current"));
+  assert.ok(zteAndNubia.every(({ generation }) => generation.sourceIds.length === 1 && generation.sourceIds[0] === "zte-global-smartphone-catalogue"));
+  assert.ok(zteAndNubia.every(({ releasedOn, originalPrice }) => releasedOn.value === null && releasedOn.qualification && originalPrice.value.amount === null && originalPrice.qualification));
+
+  const neo5Gt = zteAndNubia.find(({ slug }) => slug === "nubia-neo-5-gt");
+  const z80Ultra = zteAndNubia.find(({ slug }) => slug === "nubia-z80-ultra");
+  const air = zteAndNubia.find(({ slug }) => slug === "nubia-air");
+  const bladeA76 = zteAndNubia.find(({ slug }) => slug === "zte-blade-a76");
+  assert.match(neo5Gt?.resistance.value ?? "", /IP64 body.*IP54 cooling-air ducts/i);
+  assert.equal(z80Ultra?.charging?.value, "80 W wired; 80 W wireless; wireless reverse charging");
+  assert.equal(air?.formFactor.value, "thin-slab");
+  assert.equal(bladeA76?.storage.value.startsAtGb, null);
+  assert.match(bladeA76?.batteryClaim.qualification ?? "", /does not state its capacity/i);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com", "ztedevices.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
