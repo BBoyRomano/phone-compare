@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 58);
-  assert.equal(Object.keys(sources).length, 92);
+  assert.equal(phones.length, 61);
+  assert.equal(Object.keys(sources).length, 100);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -19,7 +19,8 @@ test("the catalogue includes current standard models from every represented manu
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
       "hmd-skyline",
-      "infinix-note-60-pro"
+      "infinix-note-60-pro",
+      "sony-xperia-1-viii"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -31,7 +32,8 @@ test("the catalogue includes current standard models from every represented manu
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
       "hmd-skyline",
-      "infinix-note-60-pro"
+      "infinix-note-60-pro",
+      "sony-xperia-1-viii"
     ]
   );
 });
@@ -93,7 +95,10 @@ test("every phone has a sourced, conservative generation classification", () => 
       "infinix-smart-10",
       "infinix-smart-20",
       "infinix-zero-40-5g",
-      "infinix-zero-flip"
+      "infinix-zero-flip",
+      "sony-xperia-1-viii",
+      "sony-xperia-10-vii",
+      "sony-xperia-1-vii"
     ]
   );
   assert.deepEqual(
@@ -361,8 +366,50 @@ test("the Infinix India collection is substantially covered without duplicating 
   assert.match(zeroFlip.secondaryDisplay.value, /3\.64-inch AMOLED cover display/i);
 });
 
+test("the Sony UK New Products catalogue is fully represented with announcement and price context", () => {
+  const sony: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "Sony");
+  assert.deepEqual(sony.map(({ slug }) => slug), [
+    "sony-xperia-1-viii",
+    "sony-xperia-10-vii",
+    "sony-xperia-1-vii"
+  ]);
+
+  for (const phone of sony) {
+    assert.equal(phone.generation.value, "current");
+    assert.equal(phone.releasedOn.basis, "announcement");
+    assert.equal(phone.originalPrice.value.currency, "GBP");
+    assert.equal(phone.originalPrice.value.market, "United Kingdom");
+    assert.notEqual(phone.originalPrice.value.amount, null);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+    assert.equal(phone.display.peakBrightness.value, null);
+    assert.match(phone.display.peakBrightness.qualification ?? "", /numeric peak-brightness value is not stated/i);
+    assert.match(phone.charging.qualification ?? "", /does not state maximum/i);
+  }
+
+  const oneViii = sony.find(({ slug }) => slug === "sony-xperia-1-viii");
+  const tenVii = sony.find(({ slug }) => slug === "sony-xperia-10-vii");
+  const oneVii = sony.find(({ slug }) => slug === "sony-xperia-1-vii");
+  assert.ok(oneViii?.configurations);
+  assert.ok(tenVii);
+  assert.ok(oneVii);
+  assert.equal(oneViii.releasedOn.value, "2026-05-13");
+  assert.deepEqual(oneViii.originalPrice.value, {
+    amount: 1399,
+    currency: "GBP",
+    market: "United Kingdom",
+    configuration: "12 GB RAM + 256 GB storage"
+  });
+  assert.match(oneViii.configurations.value, /16 GB RAM \+ 1 TB storage/);
+  assert.match(oneViii.originalPrice.qualification ?? "", /approximate UK price.*1 TB.*£1,849/i);
+  assert.equal(tenVii.originalPrice.value.amount, 399);
+  assert.equal(oneVii.originalPrice.value.amount, 1399);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

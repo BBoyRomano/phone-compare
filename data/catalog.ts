@@ -757,6 +757,73 @@ export const sources = {
     url: "https://infinixmobiles.in/collections/smartphones/products/zero-flip",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "sony-uk-smartphone-catalogue": {
+    id: "sony-uk-smartphone-catalogue",
+    publisher: "Sony",
+    title: "Smartphones - Sony UK",
+    url: "https://www.sony.co.uk/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-1-viii-256gb-specs": {
+    id: "sony-xperia-1-viii-256gb-specs",
+    publisher: "Sony",
+    title: "Xperia 1 VIII 256GB Specifications",
+    url: "https://www.sony.co.uk/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-256gb/specifications",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-1-viii-1tb-specs": {
+    id: "sony-xperia-1-viii-1tb-specs",
+    publisher: "Sony",
+    title: "Xperia 1 VIII 1TB Specifications",
+    url: "https://www.sony.co.uk/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-1tb/specifications",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-1-viii-announcement": {
+    id: "sony-xperia-1-viii-announcement",
+    publisher: "Sony",
+    title: "Sony Announces the Launch of Xperia 1 VIII with Newly Integrated AI for Better Photos Every Time",
+    url: "https://www.sony.co.uk/presscentre/sony-announces-the-launch-of-xperia-1-viii-with-newly-integrated-ai-for-better-photos-every-time",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-05-13",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-10-vii-specs": {
+    id: "sony-xperia-10-vii-specs",
+    publisher: "Sony",
+    title: "Xperia 10 VII Specifications",
+    url: "https://www.sony.co.uk/electronics/support/mobile-phones-tablets-mobile-phones/xperia-10-vii/specifications",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-10-vii-announcement": {
+    id: "sony-xperia-10-vii-announcement",
+    publisher: "Sony",
+    title: "Sony Reimagines its 10 Series with Xperia 10 VII",
+    url: "https://www.sony.co.uk/presscentre/sony-reimagines-its-10-series-with-xperia-10-vii",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-09-12",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-1-vii-specs": {
+    id: "sony-xperia-1-vii-specs",
+    publisher: "Sony",
+    title: "Xperia 1 VII 256GB Specifications",
+    url: "https://www.sony.co.uk/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-vii-256gb/specifications",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "sony-xperia-1-vii-announcement": {
+    id: "sony-xperia-1-vii-announcement",
+    publisher: "Sony",
+    title: "Sony Introduces its Latest Flagship Smartphone Xperia 1 VII",
+    url: "https://www.sony.co.uk/presscentre/sony-introduces-its-latest-flagship-smartphone-xperia-1-vii",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-05-13",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -911,6 +978,14 @@ const infinixSmart10Specs = ["infinix-smart-10-specs"] as const;
 const infinixSmart20Specs = ["infinix-smart-20-specs"] as const;
 const infinixZero40Specs = ["infinix-zero-40-5g-specs"] as const;
 const infinixZeroFlipSpecs = ["infinix-zero-flip-specs"] as const;
+const sonyCatalogue = ["sony-uk-smartphone-catalogue"] as const;
+const sony1Viii256Specs = ["sony-xperia-1-viii-256gb-specs"] as const;
+const sony1ViiiSpecs = ["sony-xperia-1-viii-256gb-specs", "sony-xperia-1-viii-1tb-specs"] as const;
+const sony1ViiiLaunch = ["sony-xperia-1-viii-announcement"] as const;
+const sony10ViiSpecs = ["sony-xperia-10-vii-specs"] as const;
+const sony10ViiLaunch = ["sony-xperia-10-vii-announcement"] as const;
+const sony1ViiSpecs = ["sony-xperia-1-vii-specs"] as const;
+const sony1ViiLaunch = ["sony-xperia-1-vii-announcement"] as const;
 
 export const phones = [
   {
@@ -3441,6 +3516,111 @@ export const phones = [
     rearCameras: { value: "50 MP main + 50 MP ultrawide", sourceIds: infinixZeroFlipSpecs },
     batteryClaim: { value: "4,720 mAh", sourceIds: infinixZeroFlipSpecs, qualification: "Manufacturer-rated typical capacity" },
     resistance: { value: null, sourceIds: infinixZeroFlipSpecs, qualification: "No IP rating is stated on the cited product page" }
+  },
+  {
+    slug: "sony-xperia-1-viii",
+    maker: { value: "Sony", sourceIds: sony1Viii256Specs },
+    model: { value: "Xperia 1 VIII", sourceIds: sony1Viii256Specs },
+    generation: { value: "current", sourceIds: sonyCatalogue, qualification: "Shown in Sony UK's New Products smartphone catalogue; classification does not guarantee stock or availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: sony1Viii256Specs },
+    releasedOn: {
+      value: "2026-05-13",
+      sourceIds: sony1ViiiLaunch,
+      qualification: "Official UK announcement date; pre-orders opened the same day, while the announcement does not state a first-delivery date",
+      basis: "announcement"
+    },
+    originalPrice: {
+      value: { amount: 1399, currency: "GBP", market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: ["sony-xperia-1-viii-announcement", "sony-xperia-1-viii-256gb-specs"],
+      qualification: "Sony describes £1,399 as the approximate UK price for the 256 GB version; the separately documented 1 TB version was approximately £1,849"
+    },
+    display: {
+      size: { value: "6.5 inches", sourceIds: sony1Viii256Specs, qualification: "19.5:9 aspect ratio" },
+      panel: { value: "HDR OLED", sourceIds: sony1Viii256Specs },
+      resolution: { value: "FHD+ (1080 × 2340)", sourceIds: sony1Viii256Specs },
+      refreshRate: { value: "120 Hz", sourceIds: sony1Viii256Specs },
+      peakBrightness: { value: null, sourceIds: sony1Viii256Specs, qualification: "A numeric peak-brightness value is not stated on the cited specification page" }
+    },
+    weight: { value: "200 g", sourceIds: sony1ViiiSpecs },
+    storage: { value: { options: "256 GB or 1 TB", startsAtGb: 256 }, sourceIds: sony1ViiiSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 16 GB RAM + 1 TB storage", sourceIds: sony1ViiiSpecs },
+    colors: { value: "Graphite Black, Iolite Silver, Garnet Red, Native Gold", sourceIds: sony1ViiiLaunch, qualification: "Sony says colour availability can vary by market, variant, or sales channel; the 1 TB Native Gold version was Sony-online exclusive in select countries" },
+    dimensions: { value: "162 × 74 × 8.3 mm", sourceIds: sony1ViiiSpecs, qualification: "Height × width × depth" },
+    charging: { value: "USB Power Delivery fast charging; Qi wireless charging; Battery Share", sourceIds: sony1Viii256Specs, qualification: "The cited specification does not state maximum wired or wireless charging power" },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: sony1Viii256Specs },
+    rearCameras: { value: "48 MP effective main + 48 MP effective telephoto + 48 MP effective ultrawide", sourceIds: sony1Viii256Specs, qualification: "Sony separately states full-aspect and still-recording resolutions; effective resolutions are used consistently here" },
+    batteryClaim: { value: "5,000 mAh; up to two days", sourceIds: ["sony-xperia-1-viii-256gb-specs", "sony-xperia-1-viii-announcement"], qualification: "Manufacturer capacity and usage claim; Sony's two-day test uses 360 minutes of daily activity and 1,080 minutes of standby, and actual life varies" },
+    resistance: { value: "IPX5 / IPX8 water resistance; IP6X dust resistance", sourceIds: sony1Viii256Specs }
+  },
+  {
+    slug: "sony-xperia-10-vii",
+    maker: { value: "Sony", sourceIds: sony10ViiSpecs },
+    model: { value: "Xperia 10 VII", sourceIds: sony10ViiSpecs },
+    generation: { value: "current", sourceIds: sonyCatalogue, qualification: "Shown in Sony UK's New Products smartphone catalogue; classification does not guarantee stock or availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: sony10ViiSpecs },
+    releasedOn: {
+      value: "2025-09-12",
+      sourceIds: sony10ViiLaunch,
+      qualification: "Official UK announcement date; pre-orders opened the same day and general availability was stated only as September 2025",
+      basis: "announcement"
+    },
+    originalPrice: {
+      value: { amount: 399, currency: "GBP", market: "United Kingdom", configuration: "8 GB RAM + 128 GB storage" },
+      sourceIds: ["sony-xperia-10-vii-announcement", "sony-xperia-10-vii-specs"],
+      qualification: "Sony states the UK launch price as £399"
+    },
+    display: {
+      size: { value: "6.1 inches", sourceIds: sony10ViiSpecs, qualification: "19.5:9 aspect ratio" },
+      panel: { value: "OLED", sourceIds: sony10ViiSpecs },
+      resolution: { value: "FHD+ (1080 × 2340)", sourceIds: sony10ViiSpecs },
+      refreshRate: { value: "120 Hz", sourceIds: sony10ViiSpecs },
+      peakBrightness: { value: null, sourceIds: sony10ViiSpecs, qualification: "A numeric peak-brightness value is not stated on the cited specification page" }
+    },
+    weight: { value: "168 g", sourceIds: sony10ViiSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: sony10ViiSpecs },
+    configurations: { value: "8 GB RAM + 128 GB storage", sourceIds: sony10ViiSpecs },
+    colors: { value: "White, Turquoise, Charcoal Black", sourceIds: sony10ViiLaunch },
+    dimensions: { value: "153 × 72 × 8.3 mm", sourceIds: sony10ViiSpecs, qualification: "Height × width × depth" },
+    charging: { value: "USB Power Delivery fast charging", sourceIds: sony10ViiSpecs, qualification: "The cited specification does not state maximum charging power" },
+    processor: { value: "Qualcomm Snapdragon 6 Gen 3 Mobile Platform", sourceIds: sony10ViiSpecs },
+    rearCameras: { value: "50 MP effective main + 13 MP effective ultrawide", sourceIds: sony10ViiSpecs, qualification: "Sony also states 12 MP recording resolution for both rear cameras; effective resolutions are used consistently here" },
+    batteryClaim: { value: "5,000 mAh; approximately two days", sourceIds: ["sony-xperia-10-vii-specs", "sony-xperia-10-vii-announcement"], qualification: "Manufacturer capacity and usage claim; Sony's two-day test uses 360 minutes of daily activity and 1,080 minutes of standby, and actual life varies" },
+    resistance: { value: "IPX5 / IPX8 water resistance; IP6X dust resistance", sourceIds: sony10ViiSpecs }
+  },
+  {
+    slug: "sony-xperia-1-vii",
+    maker: { value: "Sony", sourceIds: sony1ViiSpecs },
+    model: { value: "Xperia 1 VII", sourceIds: sony1ViiSpecs },
+    generation: { value: "current", sourceIds: sonyCatalogue, qualification: "Shown in Sony UK's New Products smartphone catalogue; classification does not guarantee stock or availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: sony1ViiSpecs },
+    releasedOn: {
+      value: "2025-05-13",
+      sourceIds: sony1ViiLaunch,
+      qualification: "Official UK announcement date; orders opened the same day, while the announcement does not state a first-delivery date",
+      basis: "announcement"
+    },
+    originalPrice: {
+      value: { amount: 1399, currency: "GBP", market: "United Kingdom", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: ["sony-xperia-1-vii-announcement", "sony-xperia-1-vii-specs"],
+      qualification: "Sony describes £1,399 as the approximate UK launch price"
+    },
+    display: {
+      size: { value: "6.5 inches", sourceIds: sony1ViiSpecs, qualification: "19.5:9 aspect ratio" },
+      panel: { value: "HDR OLED", sourceIds: sony1ViiSpecs },
+      resolution: { value: "FHD+ (1080 × 2340)", sourceIds: sony1ViiSpecs },
+      refreshRate: { value: "120 Hz", sourceIds: sony1ViiSpecs },
+      peakBrightness: { value: null, sourceIds: sony1ViiSpecs, qualification: "A numeric peak-brightness value is not stated on the cited specification page" }
+    },
+    weight: { value: "197 g", sourceIds: sony1ViiSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: sony1ViiSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage", sourceIds: sony1ViiSpecs },
+    colors: { value: "Slate Black, Moss Green, Orchid Purple", sourceIds: sony1ViiLaunch, qualification: "Availability depends on country" },
+    dimensions: { value: "162 × 74 × 8.2 mm", sourceIds: sony1ViiSpecs, qualification: "Height × width × depth" },
+    charging: { value: "USB Power Delivery fast charging; Qi wireless charging; Battery Share", sourceIds: sony1ViiSpecs, qualification: "The cited specification does not state maximum wired or wireless charging power" },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: sony1ViiSpecs },
+    rearCameras: { value: "48 MP effective main + 12 MP telephoto + 48 MP effective ultrawide", sourceIds: sony1ViiSpecs, qualification: "Sony separately states full-aspect and still-recording resolutions; effective resolutions are used where available" },
+    batteryClaim: { value: "5,000 mAh; up to two days", sourceIds: ["sony-xperia-1-vii-specs", "sony-xperia-1-vii-announcement"], qualification: "Manufacturer capacity and usage claim; Sony's two-day test uses 360 minutes of daily activity and 1,080 minutes of standby, and actual life varies" },
+    resistance: { value: "IPX5 / IPX8 water resistance; IP6X dust resistance", sourceIds: sony1ViiSpecs }
   }
 ] as const satisfies readonly PhoneRecord[];
 

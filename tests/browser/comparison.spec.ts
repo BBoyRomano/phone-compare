@@ -51,7 +51,7 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
 
   const firstPhone = page.getByLabel("First phone");
   const secondPhone = page.getByLabel("Second phone");
-  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2", "hmd-skyline", "infinix-zero-flip"]) {
+  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2", "hmd-skyline", "infinix-zero-flip", "sony-xperia-1-viii"]) {
     await expect(firstPhone.locator(`option[value="${slug}"]`)).toHaveCount(1);
   }
 
@@ -104,6 +104,24 @@ test("keeps the Infinix India lineup discoverable with missing facts visible", a
   await expect(page.getByLabel("First phone").locator('optgroup[label="Infinix"] option')).toHaveCount(11);
   await expect(page.getByRole("rowheader", { name: /Cover display/ })).toBeVisible();
   await expect(page.getByRole("rowheader", { name: "Weight" })).toBeVisible();
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
+});
+
+test("keeps Sony's UK New Products lineup discoverable with GBP context", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=sony-xperia-10-vii&right=sony-xperia-1-viii");
+  await expect(page.getByRole("heading", { name: "Xperia 10 VII vs Xperia 1 VIII" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="Sony"] option')).toHaveCount(3);
+  await expect(page.getByText("£399", { exact: true })).toBeVisible();
+  await expect(page.getByText("£1,399", { exact: true })).toBeVisible();
   await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
 
   const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
