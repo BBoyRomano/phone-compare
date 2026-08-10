@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 61);
-  assert.equal(Object.keys(sources).length, 100);
+  assert.equal(phones.length, 73);
+  assert.equal(Object.keys(sources).length, 113);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -20,7 +20,8 @@ test("the catalogue includes current standard models from every represented manu
       "unihertz-titan-2",
       "hmd-skyline",
       "infinix-note-60-pro",
-      "sony-xperia-1-viii"
+      "sony-xperia-1-viii",
+      "honor-magic8-pro"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -33,7 +34,8 @@ test("the catalogue includes current standard models from every represented manu
       "unihertz-titan-2",
       "hmd-skyline",
       "infinix-note-60-pro",
-      "sony-xperia-1-viii"
+      "sony-xperia-1-viii",
+      "honor-magic8-pro"
     ]
   );
 });
@@ -98,7 +100,19 @@ test("every phone has a sourced, conservative generation classification", () => 
       "infinix-zero-flip",
       "sony-xperia-1-viii",
       "sony-xperia-10-vii",
-      "sony-xperia-1-vii"
+      "sony-xperia-1-vii",
+      "honor-magic-v6",
+      "honor-600-pro",
+      "honor-600",
+      "honor-magic8-pro",
+      "honor-magic8-lite",
+      "honor-magic-v5",
+      "honor-400-pro",
+      "honor-400",
+      "honor-600-smart-5g",
+      "honor-600-lite",
+      "honor-400-smart-5g",
+      "honor-400-smart-4g"
     ]
   );
   assert.deepEqual(
@@ -127,7 +141,9 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
       ["motorola-razr-ultra-2026", "flip-fold"],
       ["motorola-razr-plus-2026", "flip-fold"],
       ["motorola-razr-2026", "flip-fold"],
-      ["infinix-zero-flip", "flip-fold"]
+      ["infinix-zero-flip", "flip-fold"],
+      ["honor-magic-v6", "book-fold"],
+      ["honor-magic-v5", "book-fold"]
     ]
   );
 
@@ -138,7 +154,7 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
   assert.ok(Math.max(...pricedCurrentPhones) >= 1899.99);
 
   const folds = phones.filter(({ formFactor }) => formFactor.value === "book-fold" || formFactor.value === "flip-fold");
-  assert.equal(folds.length, 7);
+  assert.equal(folds.length, 9);
   for (const fold of folds) assert.ok("secondaryDisplay" in fold && fold.secondaryDisplay);
 });
 
@@ -408,8 +424,57 @@ test("the Sony UK New Products catalogue is fully represented with announcement 
   assert.equal(oneVii.originalPrice.value.amount, 1399);
 });
 
+test("the active HONOR UK store smartphone boundary is fully represented without sale-price substitution", () => {
+  const honor: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "HONOR");
+  assert.deepEqual(honor.map(({ slug }) => slug), [
+    "honor-magic-v6",
+    "honor-600-pro",
+    "honor-600",
+    "honor-magic8-pro",
+    "honor-magic8-lite",
+    "honor-magic-v5",
+    "honor-400-pro",
+    "honor-400",
+    "honor-600-smart-5g",
+    "honor-600-lite",
+    "honor-400-smart-5g",
+    "honor-400-smart-4g"
+  ]);
+
+  for (const phone of honor) {
+    assert.equal(phone.generation.value, "current");
+    assert.match(phone.generation.qualification ?? "", /UK store smartphone grid.*does not establish availability outside/i);
+    assert.equal(phone.releasedOn.value, null);
+    assert.match(phone.releasedOn.qualification ?? "", /do not state an exact announcement or first-availability date/i);
+    assert.deepEqual(
+      [phone.originalPrice.value.amount, phone.originalPrice.value.currency, phone.originalPrice.value.market],
+      [null, null, "United Kingdom"]
+    );
+    assert.match(phone.originalPrice.qualification ?? "", /current UK store price and promotional discounts are not substituted/i);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+  }
+
+  const magicV6 = honor.find(({ slug }) => slug === "honor-magic-v6");
+  const honor600Pro = honor.find(({ slug }) => slug === "honor-600-pro");
+  const smart5g = honor.find(({ slug }) => slug === "honor-400-smart-5g");
+  const smart4g = honor.find(({ slug }) => slug === "honor-400-smart-4g");
+  assert.ok(magicV6?.secondaryDisplay);
+  assert.ok(honor600Pro?.configurations);
+  assert.ok(smart5g);
+  assert.ok(smart4g);
+  assert.equal(magicV6.formFactor.value, "book-fold");
+  assert.match(honor600Pro.configurations.qualification ?? "", /MOLLY Limited Edition.*edition rather than a duplicate/i);
+  assert.equal(smart5g.processor.value, "Qualcomm Snapdragon 6s Gen 3");
+  assert.equal(smart4g.processor.value, "Qualcomm Snapdragon 685");
+  assert.match(smart4g.model.qualification ?? "", /store distinguishes.*4G/i);
+  assert.equal(smart4g.resistance.value, null);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

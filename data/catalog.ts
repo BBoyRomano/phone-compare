@@ -824,6 +824,110 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2025-05-13",
     accessedAt: "2026-08-10"
+  },
+  "honor-uk-smartphone-store": {
+    id: "honor-uk-smartphone-store",
+    publisher: "HONOR",
+    title: "HONOR Online Store United Kingdom - Smartphones",
+    url: "https://www.honor.com/uk/shop/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "honor-magic-v6-specs": {
+    id: "honor-magic-v6-specs",
+    publisher: "HONOR",
+    title: "HONOR Magic V6 specification",
+    url: "https://www.honor.com/uk/phones/honor-magic-v6/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-600-pro-specs": {
+    id: "honor-600-pro-specs",
+    publisher: "HONOR",
+    title: "Specification of HONOR 600 Pro",
+    url: "https://www.honor.com/uk/phones/honor-600-pro/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-600-specs": {
+    id: "honor-600-specs",
+    publisher: "HONOR",
+    title: "Specification of HONOR 600",
+    url: "https://www.honor.com/uk/phones/honor-600/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-magic8-pro-specs": {
+    id: "honor-magic8-pro-specs",
+    publisher: "HONOR",
+    title: "Specification of HONOR Magic8 Pro",
+    url: "https://www.honor.com/uk/phones/honor-magic8-pro/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-magic8-lite-specs": {
+    id: "honor-magic8-lite-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR Magic8 Lite",
+    url: "https://www.honor.com/uk/phones/honor-magic8-lite/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-magic-v5-specs": {
+    id: "honor-magic-v5-specs",
+    publisher: "HONOR",
+    title: "HONOR Magic V5 specification",
+    url: "https://www.honor.com/uk/phones/honor-magic-v5/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-400-pro-specs": {
+    id: "honor-400-pro-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 400 Pro",
+    url: "https://www.honor.com/uk/phones/honor-400-pro/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-400-specs": {
+    id: "honor-400-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 400",
+    url: "https://www.honor.com/uk/phones/honor-400/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-600-smart-5g-specs": {
+    id: "honor-600-smart-5g-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 600 Smart 5G",
+    url: "https://www.honor.com/uk/phones/honor-600-smart-5g/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-600-lite-specs": {
+    id: "honor-600-lite-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 600 Lite",
+    url: "https://www.honor.com/uk/phones/honor-600-lite/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-400-smart-5g-specs": {
+    id: "honor-400-smart-5g-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 400 Smart 5G",
+    url: "https://www.honor.com/uk/phones/honor-400-smart-5g/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "honor-400-smart-specs": {
+    id: "honor-400-smart-specs",
+    publisher: "HONOR",
+    title: "Specifications of HONOR 400 Smart",
+    url: "https://www.honor.com/uk/phones/honor-400-smart/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -986,6 +1090,19 @@ const sony10ViiSpecs = ["sony-xperia-10-vii-specs"] as const;
 const sony10ViiLaunch = ["sony-xperia-10-vii-announcement"] as const;
 const sony1ViiSpecs = ["sony-xperia-1-vii-specs"] as const;
 const sony1ViiLaunch = ["sony-xperia-1-vii-announcement"] as const;
+const honorCatalogue = ["honor-uk-smartphone-store"] as const;
+const honorMagicV6Specs = ["honor-magic-v6-specs"] as const;
+const honor600ProSpecs = ["honor-600-pro-specs"] as const;
+const honor600Specs = ["honor-600-specs"] as const;
+const honorMagic8ProSpecs = ["honor-magic8-pro-specs"] as const;
+const honorMagic8LiteSpecs = ["honor-magic8-lite-specs"] as const;
+const honorMagicV5Specs = ["honor-magic-v5-specs"] as const;
+const honor400ProSpecs = ["honor-400-pro-specs"] as const;
+const honor400Specs = ["honor-400-specs"] as const;
+const honor600SmartSpecs = ["honor-600-smart-5g-specs"] as const;
+const honor600LiteSpecs = ["honor-600-lite-specs"] as const;
+const honor400Smart5gSpecs = ["honor-400-smart-5g-specs"] as const;
+const honor400SmartSpecs = ["honor-400-smart-specs"] as const;
 
 export const phones = [
   {
@@ -3621,6 +3738,324 @@ export const phones = [
     rearCameras: { value: "48 MP effective main + 12 MP telephoto + 48 MP effective ultrawide", sourceIds: sony1ViiSpecs, qualification: "Sony separately states full-aspect and still-recording resolutions; effective resolutions are used where available" },
     batteryClaim: { value: "5,000 mAh; up to two days", sourceIds: ["sony-xperia-1-vii-specs", "sony-xperia-1-vii-announcement"], qualification: "Manufacturer capacity and usage claim; Sony's two-day test uses 360 minutes of daily activity and 1,080 minutes of standby, and actual life varies" },
     resistance: { value: "IPX5 / IPX8 water resistance; IP6X dust resistance", sourceIds: sony1ViiSpecs }
+  },
+  {
+    slug: "honor-magic-v6",
+    maker: { value: "HONOR", sourceIds: honorMagicV6Specs },
+    model: { value: "HONOR Magic V6", sourceIds: honorMagicV6Specs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "book-fold", sourceIds: honorMagicV6Specs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-magic-v6-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "United Kingdom", configuration: "16 GB RAM + 512 GB storage" },
+      sourceIds: ["honor-uk-smartphone-store", "honor-magic-v6-specs"],
+      qualification: "The current UK store price and promotional discounts are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "7.95 inches", sourceIds: honorMagicV6Specs, qualification: "Inner display; actual viewable area is slightly smaller" },
+      panel: { value: "Foldable OLED", sourceIds: honorMagicV6Specs },
+      resolution: { value: "2352 × 2172", sourceIds: honorMagicV6Specs, qualification: "Inner display; standard-rectangle resolution" },
+      refreshRate: { value: null, sourceIds: honorMagicV6Specs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "5,000 nits HDR peak", sourceIds: honorMagicV6Specs, qualification: "Inner display; the outer display is stated at 6,000 nits HDR peak" }
+    },
+    secondaryDisplay: { value: "6.52-inch OLED; 2420 × 1080; 6,000 nits HDR peak", sourceIds: honorMagicV6Specs },
+    weight: { value: "219 g (White); 224 g (other colours)", sourceIds: honorMagicV6Specs, qualification: "Approximate weight including battery; actual weight can vary" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honorMagicV6Specs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: honorMagicV6Specs },
+    colors: { value: "Red, Gold, White, Black", sourceIds: honorMagicV6Specs },
+    dimensions: { value: "White: folded 156.7 × 74.5 × 8.75 mm; unfolded 156.7 × 145.6 × 4.0 mm", sourceIds: honorMagicV6Specs, qualification: "Other colours are 9.0 mm folded and 4.1 mm unfolded; actual dimensions can vary" },
+    charging: { value: "80 W wired; 66 W wireless HONOR SuperCharge", sourceIds: honorMagicV6Specs, qualification: "Maximum supported power with compatible HONOR chargers; wireless charger sold separately" },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: honorMagicV6Specs },
+    rearCameras: { value: "50 MP main + 50 MP ultrawide + 64 MP telephoto", sourceIds: honorMagicV6Specs },
+    batteryClaim: { value: "6,660 mAh typical; 6,510 mAh rated", sourceIds: honorMagicV6Specs, qualification: "Manufacturer capacity; actual capacity can vary" },
+    resistance: { value: "IP68 / IP69", sourceIds: honorMagicV6Specs, qualification: "Lab rating under controlled conditions; protection can decrease with wear" }
+  },
+  {
+    slug: "honor-600-pro",
+    maker: { value: "HONOR", sourceIds: honor600ProSpecs },
+    model: { value: "HONOR 600 Pro", sourceIds: honor600ProSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor600ProSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-600-pro-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-600-pro-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: honor600ProSpecs },
+      panel: { value: "AMOLED", sourceIds: honor600ProSpecs },
+      resolution: { value: "2728 × 1264", sourceIds: honor600ProSpecs },
+      refreshRate: { value: null, sourceIds: honor600ProSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: null, sourceIds: honor600ProSpecs, qualification: "The cited UK specification table does not state a numeric brightness value" }
+    },
+    weight: { value: "195 g", sourceIds: honor600ProSpecs, qualification: "Approximate weight including battery; actual weight can vary" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honor600ProSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: honor600ProSpecs, qualification: "The MOLLY Limited Edition uses the same specification sheet and is represented as an edition rather than a duplicate phone record" },
+    colors: { value: "Golden White, Black", sourceIds: honor600ProSpecs },
+    dimensions: { value: "156.0 × 74.7 × 7.8 mm", sourceIds: honor600ProSpecs, qualification: "Height × width × depth; actual dimensions can vary" },
+    charging: { value: "80 W wired; 50 W wireless HONOR SuperCharge", sourceIds: honor600ProSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: honor600ProSpecs },
+    rearCameras: { value: "200 MP main + 50 MP telephoto + 12 MP ultrawide", sourceIds: honor600ProSpecs },
+    batteryClaim: { value: "6,400 mAh typical", sourceIds: honor600ProSpecs, qualification: "Manufacturer capacity; rated capacity is 6,210 mAh" },
+    resistance: { value: "IP68 / IP69 / IP69K", sourceIds: honor600ProSpecs, qualification: "Lab rating under controlled conditions; protection can decrease with wear" }
+  },
+  {
+    slug: "honor-600",
+    maker: { value: "HONOR", sourceIds: honor600Specs },
+    model: { value: "HONOR 600", sourceIds: honor600Specs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor600Specs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-600-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-600-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: honor600Specs },
+      panel: { value: "AMOLED", sourceIds: honor600Specs },
+      resolution: { value: "2728 × 1264", sourceIds: honor600Specs },
+      refreshRate: { value: null, sourceIds: honor600Specs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: null, sourceIds: honor600Specs, qualification: "The cited UK specification table does not state a numeric brightness value" }
+    },
+    weight: { value: "185 g", sourceIds: honor600Specs, qualification: "Approximate weight including battery; actual weight can vary" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: honor600Specs },
+    configurations: { value: "8 GB RAM + 256 GB storage; 8 GB RAM + 512 GB storage", sourceIds: honor600Specs },
+    colors: { value: "Orange, Black, Golden White", sourceIds: honor600Specs },
+    dimensions: { value: "156.0 × 74.7 × 7.8 mm", sourceIds: honor600Specs, qualification: "Height × width × depth; actual dimensions can vary" },
+    charging: { value: "80 W wired HONOR SuperCharge", sourceIds: honor600Specs },
+    processor: { value: "Qualcomm Snapdragon 7 Gen 4 Mobile Platform", sourceIds: honor600Specs },
+    rearCameras: { value: "200 MP main + 12 MP ultrawide", sourceIds: honor600Specs },
+    batteryClaim: { value: "6,400 mAh typical", sourceIds: honor600Specs, qualification: "Manufacturer capacity; rated capacity is 6,210 mAh" },
+    resistance: { value: "IP68 / IP69 / IP69K", sourceIds: honor600Specs, qualification: "Lab rating under controlled conditions; protection can decrease with wear" }
+  },
+  {
+    slug: "honor-magic8-pro",
+    maker: { value: "HONOR", sourceIds: honorMagic8ProSpecs },
+    model: { value: "HONOR Magic8 Pro", sourceIds: honorMagic8ProSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honorMagic8ProSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-magic8-pro-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-magic8-pro-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.71 inches", sourceIds: honorMagic8ProSpecs, qualification: "Actual viewable area is slightly smaller" },
+      panel: { value: "OLED", sourceIds: honorMagic8ProSpecs },
+      resolution: { value: "2808 × 1256", sourceIds: honorMagic8ProSpecs, qualification: "FHD+ standard-rectangle resolution" },
+      refreshRate: { value: null, sourceIds: honorMagic8ProSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "6,000 nits HDR peak", sourceIds: honorMagic8ProSpecs, qualification: "HONOR also states 1,800 nits global peak brightness" }
+    },
+    weight: { value: "219 g", sourceIds: honorMagic8ProSpecs, qualification: "Approximate weight including battery; actual weight can vary" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honorMagic8ProSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: honorMagic8ProSpecs },
+    colors: { value: "Sunrise Gold, Sky Cyan, Black", sourceIds: honorMagic8ProSpecs },
+    dimensions: { value: "161.15 × 75.0 × 8.4 mm", sourceIds: honorMagic8ProSpecs, qualification: "Height × width × depth; actual dimensions can vary" },
+    charging: { value: "100 W wired; 80 W wireless HONOR SuperCharge", sourceIds: honorMagic8ProSpecs, qualification: "Maximum supported power; wireless charger sold separately" },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: honorMagic8ProSpecs },
+    rearCameras: { value: "50 MP main + 50 MP ultrawide + 200 MP 3.7× telephoto", sourceIds: honorMagic8ProSpecs },
+    batteryClaim: { value: "6,270 mAh typical; 6,090 mAh rated", sourceIds: honorMagic8ProSpecs, qualification: "Manufacturer capacity; actual capacity can vary" },
+    resistance: { value: "IP68 / IP69 / IP69K", sourceIds: honorMagic8ProSpecs, qualification: "Lab rating under controlled conditions; protection can decrease with wear" }
+  },
+  {
+    slug: "honor-magic8-lite",
+    maker: { value: "HONOR", sourceIds: honorMagic8LiteSpecs },
+    model: { value: "HONOR Magic8 Lite", sourceIds: honorMagic8LiteSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honorMagic8LiteSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-magic8-lite-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 512 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-magic8-lite-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.79 inches", sourceIds: honorMagic8LiteSpecs },
+      panel: { value: "AMOLED", sourceIds: honorMagic8LiteSpecs },
+      resolution: { value: "2640 × 1200", sourceIds: honorMagic8LiteSpecs },
+      refreshRate: { value: null, sourceIds: honorMagic8LiteSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "6,000 nits APL peak", sourceIds: honorMagic8LiteSpecs, qualification: "HONOR also states 800 nits typical and 1,800 nits HBM brightness" }
+    },
+    weight: { value: "189 g", sourceIds: honorMagic8LiteSpecs, qualification: "Approximate weight including battery" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honorMagic8LiteSpecs },
+    configurations: { value: "8 GB RAM + 512 GB storage", sourceIds: honorMagic8LiteSpecs },
+    colors: { value: "Reddish Brown, Forest Green, Midnight Black", sourceIds: honorMagic8LiteSpecs },
+    dimensions: { value: "161.9 × 76.1 × 7.76 mm", sourceIds: honorMagic8LiteSpecs, qualification: "Height × width × depth" },
+    charging: { value: "66 W wired", sourceIds: honorMagic8LiteSpecs },
+    processor: { value: "Qualcomm Snapdragon 6 Gen 4", sourceIds: honorMagic8LiteSpecs },
+    rearCameras: { value: "108 MP main + 5 MP ultrawide", sourceIds: honorMagic8LiteSpecs },
+    batteryClaim: { value: "7,500 mAh typical", sourceIds: honorMagic8LiteSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP66 / IP68 / IP69 / IP69K", sourceIds: honorMagic8LiteSpecs }
+  },
+  {
+    slug: "honor-magic-v5",
+    maker: { value: "HONOR", sourceIds: honorMagicV5Specs },
+    model: { value: "HONOR Magic V5", sourceIds: honorMagicV5Specs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "book-fold", sourceIds: honorMagicV5Specs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-magic-v5-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "16 GB RAM + 512 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-magic-v5-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "7.95 inches", sourceIds: honorMagicV5Specs, qualification: "Inner display; actual viewable area is slightly smaller" },
+      panel: { value: "Foldable OLED", sourceIds: honorMagicV5Specs },
+      resolution: { value: "2352 × 2172", sourceIds: honorMagicV5Specs, qualification: "Inner display; standard-rectangle resolution" },
+      refreshRate: { value: null, sourceIds: honorMagicV5Specs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "5,000 nits HDR peak", sourceIds: honorMagicV5Specs }
+    },
+    secondaryDisplay: { value: "6.43-inch OLED; 2376 × 1060; 5,000 nits HDR peak", sourceIds: honorMagicV5Specs },
+    weight: { value: "217 g (Ivory White); 222 g (other colours)", sourceIds: honorMagicV5Specs, qualification: "Approximate weight including battery; actual weight can vary" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honorMagicV5Specs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: honorMagicV5Specs },
+    colors: { value: "Dawn Gold, Ivory White, Black", sourceIds: honorMagicV5Specs },
+    dimensions: { value: "Ivory White: folded 156.8 × 74.3 × 8.8 mm; unfolded 156.8 × 145.9 × 4.1 mm", sourceIds: honorMagicV5Specs, qualification: "Other colours are 9.0 mm folded and 4.2 mm unfolded; actual dimensions can vary" },
+    charging: { value: "66 W wired; 50 W wireless HONOR SuperCharge", sourceIds: honorMagicV5Specs, qualification: "Maximum supported power; wireless charger sold separately" },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: honorMagicV5Specs },
+    rearCameras: { value: "50 MP main + 50 MP ultrawide + 64 MP telephoto", sourceIds: honorMagicV5Specs },
+    batteryClaim: { value: "5,820 mAh typical; 5,690 mAh rated", sourceIds: honorMagicV5Specs, qualification: "Manufacturer capacity; actual capacity can vary" },
+    resistance: { value: "IP58 / IP59", sourceIds: honorMagicV5Specs }
+  },
+  {
+    slug: "honor-400-pro",
+    maker: { value: "HONOR", sourceIds: honor400ProSpecs },
+    model: { value: "HONOR 400 Pro", sourceIds: honor400ProSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor400ProSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-400-pro-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-400-pro-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.7 inches", sourceIds: honor400ProSpecs },
+      panel: { value: "AMOLED", sourceIds: honor400ProSpecs },
+      resolution: { value: "2800 × 1280", sourceIds: honor400ProSpecs },
+      refreshRate: { value: null, sourceIds: honor400ProSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: null, sourceIds: honor400ProSpecs, qualification: "The cited UK specification table does not state a numeric brightness value" }
+    },
+    weight: { value: "205 g", sourceIds: honor400ProSpecs, qualification: "Approximate weight including battery" },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: honor400ProSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: honor400ProSpecs },
+    colors: { value: "Lunar Grey, Midnight Black", sourceIds: honor400ProSpecs },
+    dimensions: { value: "160.8 × 76.1 × 8.1 mm", sourceIds: honor400ProSpecs, qualification: "Height × width × depth" },
+    charging: { value: "Up to 20 V / 5 A wired HONOR SuperCharge", sourceIds: honor400ProSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Gen 3", sourceIds: honor400ProSpecs },
+    rearCameras: { value: "200 MP main + 50 MP telephoto + 12 MP ultrawide", sourceIds: honor400ProSpecs },
+    batteryClaim: { value: "5,300 mAh typical", sourceIds: honor400ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68 / IP69", sourceIds: honor400ProSpecs }
+  },
+  {
+    slug: "honor-400",
+    maker: { value: "HONOR", sourceIds: honor400Specs },
+    model: { value: "HONOR 400", sourceIds: honor400Specs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor400Specs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-400-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-400-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.55 inches", sourceIds: honor400Specs },
+      panel: { value: "AMOLED", sourceIds: honor400Specs },
+      resolution: { value: "2736 × 1264", sourceIds: honor400Specs },
+      refreshRate: { value: null, sourceIds: honor400Specs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: null, sourceIds: honor400Specs, qualification: "The cited UK specification table does not state a numeric brightness value" }
+    },
+    weight: { value: "184 g", sourceIds: honor400Specs, qualification: "Approximate weight including battery" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: honor400Specs },
+    configurations: { value: "8 GB RAM + 256 GB storage; 8 GB RAM + 512 GB storage", sourceIds: honor400Specs },
+    colors: { value: "Desert Gold, Meteor Silver, Midnight Black", sourceIds: honor400Specs },
+    dimensions: { value: "156.5 × 74.6 × 7.3 mm", sourceIds: honor400Specs, qualification: "Height × width × depth" },
+    charging: { value: "Up to 20 V / 3.3 A wired HONOR SuperCharge", sourceIds: honor400Specs },
+    processor: { value: "Qualcomm Snapdragon 7 Gen 3", sourceIds: honor400Specs },
+    rearCameras: { value: "200 MP main + 12 MP ultrawide", sourceIds: honor400Specs },
+    batteryClaim: { value: "5,300 mAh typical", sourceIds: honor400Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP65", sourceIds: honor400Specs }
+  },
+  {
+    slug: "honor-600-smart-5g",
+    maker: { value: "HONOR", sourceIds: honor600SmartSpecs },
+    model: { value: "HONOR 600 Smart 5G", sourceIds: honor600SmartSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor600SmartSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-600-smart-5g-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-600-smart-5g-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.872 inches", sourceIds: honor600SmartSpecs },
+      panel: { value: "TFT LCD", sourceIds: honor600SmartSpecs },
+      resolution: { value: "1592 × 720", sourceIds: honor600SmartSpecs },
+      refreshRate: { value: null, sourceIds: honor600SmartSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "1,020 nits HBM", sourceIds: honor600SmartSpecs, qualification: "HONOR also states 860 nits typical brightness" }
+    },
+    weight: { value: "216.5 g", sourceIds: honor600SmartSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: honor600SmartSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage; 4 GB RAM + 256 GB storage", sourceIds: honor600SmartSpecs },
+    colors: { value: "Meteor Silver, Velvet Black", sourceIds: honor600SmartSpecs },
+    dimensions: { value: "168.3 × 78.54 × 8.30 mm", sourceIds: honor600SmartSpecs, qualification: "Height × width × depth" },
+    charging: { value: "45 W wired HONOR SuperCharge", sourceIds: honor600SmartSpecs },
+    processor: { value: "Qualcomm Snapdragon 4 Gen 4", sourceIds: honor600SmartSpecs },
+    rearCameras: { value: "50 MP main + auxiliary lens", sourceIds: honor600SmartSpecs },
+    batteryClaim: { value: "7,700 mAh typical; 7,500 mAh rated", sourceIds: honor600SmartSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64", sourceIds: honor600SmartSpecs }
+  },
+  {
+    slug: "honor-600-lite",
+    maker: { value: "HONOR", sourceIds: honor600LiteSpecs },
+    model: { value: "HONOR 600 Lite", sourceIds: honor600LiteSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor600LiteSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-600-lite-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-600-lite-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.6 inches", sourceIds: honor600LiteSpecs },
+      panel: { value: "AMOLED", sourceIds: honor600LiteSpecs },
+      resolution: { value: "2600 × 1200", sourceIds: honor600LiteSpecs },
+      refreshRate: { value: null, sourceIds: honor600LiteSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "6,500 nits APL peak", sourceIds: honor600LiteSpecs, qualification: "HONOR also states 800 nits typical and 2,000 nits HBM brightness" }
+    },
+    weight: { value: "180 g", sourceIds: honor600LiteSpecs, qualification: "Approximate weight including battery" },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: honor600LiteSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: honor600LiteSpecs, qualification: "The specification warns that storage versions vary by region; this is the cited UK page configuration" },
+    colors: { value: "Mint Green, Velvet Grey, Velvet Black", sourceIds: honor600LiteSpecs },
+    dimensions: { value: "157.43 × 75.35 × 7.34 mm", sourceIds: honor600LiteSpecs, qualification: "Height × width × depth" },
+    charging: { value: "45 W wired HONOR SuperCharge", sourceIds: honor600LiteSpecs },
+    processor: { value: "MediaTek Dimensity 7100 Elite", sourceIds: honor600LiteSpecs },
+    rearCameras: { value: "108 MP main + 5 MP ultrawide", sourceIds: honor600LiteSpecs },
+    batteryClaim: { value: "6,520 mAh typical; 6,320 mAh rated", sourceIds: honor600LiteSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP66", sourceIds: honor600LiteSpecs }
+  },
+  {
+    slug: "honor-400-smart-5g",
+    maker: { value: "HONOR", sourceIds: honor400Smart5gSpecs },
+    model: { value: "HONOR 400 Smart 5G", sourceIds: honor400Smart5gSpecs },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor400Smart5gSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-400-smart-5g-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-400-smart-5g-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: honor400Smart5gSpecs },
+      panel: { value: "TFT LCD", sourceIds: honor400Smart5gSpecs },
+      resolution: { value: "1610 × 720", sourceIds: honor400Smart5gSpecs },
+      refreshRate: { value: null, sourceIds: honor400Smart5gSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "850 nits HBM", sourceIds: honor400Smart5gSpecs, qualification: "HONOR also states 700 nits typical brightness" }
+    },
+    weight: { value: "206 g", sourceIds: honor400Smart5gSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: honor400Smart5gSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage; 4 GB RAM + 256 GB storage", sourceIds: honor400Smart5gSpecs },
+    colors: { value: "Meteor Silver, Velvet Black", sourceIds: honor400Smart5gSpecs },
+    dimensions: { value: "166.89 × 76.8 × 8.24 mm", sourceIds: honor400Smart5gSpecs, qualification: "Height × width × depth" },
+    charging: { value: "35 W wired HONOR SuperCharge", sourceIds: honor400Smart5gSpecs },
+    processor: { value: "Qualcomm Snapdragon 6s Gen 3", sourceIds: honor400Smart5gSpecs },
+    rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: honor400Smart5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,350 mAh rated", sourceIds: honor400Smart5gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP54", sourceIds: honor400Smart5gSpecs }
+  },
+  {
+    slug: "honor-400-smart-4g",
+    maker: { value: "HONOR", sourceIds: honor400SmartSpecs },
+    model: { value: "HONOR 400 Smart 4G", sourceIds: honor400SmartSpecs, qualification: "The official specification page title omits '4G'; the UK store distinguishes this product as HONOR 400 Smart 4G" },
+    generation: { value: "current", sourceIds: honorCatalogue, qualification: "Active non-refurbished phone in HONOR's UK store smartphone grid on 2026-08-10; this does not establish availability outside the United Kingdom" },
+    formFactor: { value: "slab", sourceIds: honor400SmartSpecs },
+    releasedOn: { value: null, sourceIds: ["honor-uk-smartphone-store", "honor-400-smart-specs"], qualification: "The current UK store and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "6 GB RAM + 128 GB storage" }, sourceIds: ["honor-uk-smartphone-store", "honor-400-smart-specs"], qualification: "The current UK store price and promotional discounts are not substituted for an original launch price" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: honor400SmartSpecs, qualification: "Actual viewable area is slightly smaller" },
+      panel: { value: "TFT LCD", sourceIds: honor400SmartSpecs },
+      resolution: { value: "1610 × 720", sourceIds: honor400SmartSpecs },
+      refreshRate: { value: null, sourceIds: honor400SmartSpecs, qualification: "The cited UK specification table does not state a refresh rate" },
+      peakBrightness: { value: "850 nits HBM", sourceIds: honor400SmartSpecs, qualification: "HONOR also states 700 nits typical brightness" }
+    },
+    weight: { value: "208 g", sourceIds: honor400SmartSpecs, qualification: "Approximate weight including battery" },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: honor400SmartSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: honor400SmartSpecs },
+    colors: { value: "Desert Gold, Velvet Black", sourceIds: honor400SmartSpecs },
+    dimensions: { value: "166.89 × 76.8 × 8.24 mm", sourceIds: honor400SmartSpecs, qualification: "Height × width × depth" },
+    charging: { value: "35 W wired HONOR SuperCharge", sourceIds: honor400SmartSpecs },
+    processor: { value: "Qualcomm Snapdragon 685", sourceIds: honor400SmartSpecs },
+    rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: honor400SmartSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,350 mAh rated", sourceIds: honor400SmartSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: honor400SmartSpecs, qualification: "The cited UK specification table does not state an IP rating" }
   }
 ] as const satisfies readonly PhoneRecord[];
 
