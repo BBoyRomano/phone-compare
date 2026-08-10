@@ -15,7 +15,7 @@ test("summarizes only directly comparable, sourced differences", () => {
   const highlights = comparisonHighlights(left, right);
 
   assert.deepEqual(highlights.map(({ kind }) => kind), ["price", "release", "display", "weight"]);
-  assert.equal(highlights[0].statement, "Same documented U.S. starting price");
+  assert.equal(highlights[0].statement, "Same documented United States starting price");
   assert.equal(highlights[1].statement, "iPhone 16 was released later");
   assert.equal(highlights[2].statement, "Pixel 9 has a 0.2-inch larger listed main display");
   assert.equal(highlights[3].statement, "iPhone 16 is 28 g lighter in the cited specifications");
@@ -31,7 +31,7 @@ test("summarizes only directly comparable, sourced differences", () => {
 test("does not manufacture conversions or emphasize immaterial weight differences", () => {
   const mixedUnits = comparisonHighlights(phone("samsung-galaxy-s24"), phone("apple-iphone-16"));
   assert.equal(mixedUnits.some(({ kind }) => kind === "weight"), false);
-  assert.equal(mixedUnits.find(({ kind }) => kind === "price")?.statement, "Nearly the same documented U.S. starting price");
+  assert.equal(mixedUnits.find(({ kind }) => kind === "price")?.statement, "Nearly the same documented United States starting price");
 
   const oneGramApart = comparisonHighlights(phone("apple-iphone-17e"), phone("apple-iphone-16"));
   assert.equal(oneGramApart.some(({ kind }) => kind === "weight"), false);
@@ -75,4 +75,26 @@ test("does not compare announcement dates with availability dates", () => {
 
   const availabilityBasis = comparisonHighlights(phone("nothing-phone-3"), phone("nothing-phone-4a-pro"));
   assert.equal(availabilityBasis.find(({ kind }) => kind === "release")?.statement, "Phone (4a) Pro was released later");
+});
+
+test("only compares original prices within the same market and currency", () => {
+  const left = phone("apple-iphone-16");
+  const baseRight = phone("google-pixel-9");
+  const europeanRight: PhoneRecord = {
+    ...baseRight,
+    originalPrice: {
+      ...baseRight.originalPrice,
+      value: { amount: 899, currency: "EUR", market: "Netherlands", configuration: "128 GB" }
+    }
+  };
+  const dollarRight: PhoneRecord = {
+    ...europeanRight,
+    originalPrice: {
+      ...europeanRight.originalPrice,
+      value: { ...europeanRight.originalPrice.value, currency: "USD" }
+    }
+  };
+
+  assert.equal(comparisonHighlights(left, europeanRight).some(({ kind }) => kind === "price"), false);
+  assert.equal(comparisonHighlights(left, dollarRight).some(({ kind }) => kind === "price"), false);
 });

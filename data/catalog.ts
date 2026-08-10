@@ -566,8 +566,8 @@ export interface PhoneRecord {
   readonly releasedOn: SourcedDate;
   readonly originalPrice: SourcedValue<{
     readonly amount: number | null;
-    readonly currency: "USD";
-    readonly market: "United States";
+    readonly currency: string;
+    readonly market: string;
     readonly configuration: string;
   }>;
   readonly display: {
@@ -2489,7 +2489,12 @@ export function validateCatalog(): string[] {
     }
 
     const price = phone.originalPrice.value;
-    if ((price.amount !== null && price.amount <= 0) || !price.market || !price.configuration) {
+    if (
+      (price.amount !== null && price.amount <= 0) ||
+      !/^[A-Z]{3}$/.test(price.currency) ||
+      !price.market.trim() ||
+      !price.configuration.trim()
+    ) {
       errors.push(`${phone.slug}: original price lacks interpretive context`);
     }
     if (price.amount === null && !phone.originalPrice.qualification) {

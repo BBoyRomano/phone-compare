@@ -79,8 +79,8 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
     return {
       kind: "price",
       label: "Launch price",
-      statement: "Same documented U.S. starting price",
-      context: `Both were announced from ${formatPrice(leftPrice.amount, leftPrice.currency)}. Configuration context remains attached in the table.`,
+      statement: `Same documented ${leftPrice.market} starting price`,
+      context: `Both have a documented original price of ${formatPrice(leftPrice.amount, leftPrice.currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
       sourceIds
     };
   }
@@ -95,8 +95,8 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
     return {
       kind: "price",
       label: "Launch price",
-      statement: "Nearly the same documented U.S. starting price",
-      context: `${formatPrice(leftPrice.amount, leftPrice.currency)} versus ${formatPrice(rightPrice.amount, rightPrice.currency)}. Configuration context remains attached in the table.`,
+      statement: `Nearly the same documented ${leftPrice.market} starting price`,
+      context: `${formatPrice(leftPrice.amount, leftPrice.currency)} versus ${formatPrice(rightPrice.amount, rightPrice.currency)} in ${leftPrice.market}. Configuration context remains attached in the table.`,
       sourceIds
     };
   }

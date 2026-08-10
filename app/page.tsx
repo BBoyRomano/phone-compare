@@ -289,7 +289,7 @@ const coreComparisonRows: readonly ComparisonRow[] = [
   {
     label: "Generation",
     render: (phone, sourceNumbers) => <GenerationFact phone={phone} sourceNumbers={sourceNumbers} />,
-    note: "A model in the manufacturer's latest comparison-ready lineup, based on official U.S. catalogue and launch data. This does not assert current retail availability."
+    note: "A model in the manufacturer's latest comparison-ready lineup for the record's stated market or regional scope. This does not assert current retail availability elsewhere."
   },
   { label: "Form factor", render: (phone, sourceNumbers) => <FormFactorFact phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Original price", render: (phone, sourceNumbers) => <Price phone={phone} sourceNumbers={sourceNumbers} /> },
@@ -451,7 +451,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
                       ? "Technical specification"
                       : source.kind === "manufacturer-announcement"
                         ? "Official announcement"
-                        : "Official U.S. catalogue"
+                        : "Official catalogue"
                   }</p>
                   <h3>{source.title}</h3>
                   <small>Accessed {source.accessedAt}</small>

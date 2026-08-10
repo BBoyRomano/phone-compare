@@ -28,9 +28,9 @@ test("server-renders the comparison and its provenance", async () => {
   for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
-  assert.match(html, /latest comparison-ready lineup, based on official U\.S\. catalogue and launch data/);
-  assert.match(html, /Official U\.S\. catalogue/);
-  assert.match(html, /Same documented U\.S\. starting price/);
+  assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
+  assert.match(html, /Official catalogue/);
+  assert.match(html, /Same documented United States starting price/);
   assert.match(html, /What the sources establish/);
   assert.match(html, /iPhone 17 was released later/);
   assert.doesNotMatch(html, /larger listed main display|g lighter in the cited specifications/);
@@ -82,7 +82,7 @@ test("server-renders a URL-selected comparison without client JavaScript", async
   assert.match(html, /value="samsung-galaxy-s24" selected/);
   assert.match(html, /U\.S\. mmWave configuration/);
   assert.match(html, /Not stated specifically for Galaxy S24/);
-  assert.match(html, /Nearly the same documented U\.S\. starting price/);
+  assert.match(html, /Nearly the same documented United States starting price/);
   assert.doesNotMatch(html, /g lighter in the cited specifications/);
   assert.match(html, /https:\/\/news\.samsung\.com\/us\/enter-new-era-of-mobile-ai-samsung-galaxy-s24-series/);
   assert.doesNotMatch(html, /store\.google\.com\/us\/product\/pixel_9_specs/);
