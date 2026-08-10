@@ -1291,6 +1291,94 @@ export const sources = {
     url: "https://www.vivo.com/eu/products/param/y21-5g",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "realme-eu-phone-catalogue": {
+    id: "realme-eu-phone-catalogue",
+    publisher: "realme",
+    title: "realme Europe",
+    url: "https://www.realme.com/eu/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-pro-plus-5g-specs": {
+    id: "realme-16-pro-plus-5g-specs",
+    publisher: "realme",
+    title: "realme 16 Pro+ 5G Specifications",
+    url: "https://www.realme.com/eu/realme-16-pro-plus-5g/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-pro-5g-specs": {
+    id: "realme-16-pro-5g-specs",
+    publisher: "realme",
+    title: "realme 16 Pro 5G Specifications",
+    url: "https://www.realme.com/eu/realme-16-pro-5g/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-5g-specs": {
+    id: "realme-16-5g-specs",
+    publisher: "realme",
+    title: "realme 16 5G Specifications",
+    url: "https://www.realme.com/eu/realme-16-5g/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-gt-8-pro-specs": {
+    id: "realme-gt-8-pro-specs",
+    publisher: "realme",
+    title: "realme GT 8 Pro Specifications",
+    url: "https://www.realme.com/eu/realme-gt-8-pro/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-c100-5g-specs": {
+    id: "realme-c100-5g-specs",
+    publisher: "realme",
+    title: "realme C100 5G Specifications",
+    url: "https://www.realme.com/eu/realme-c100-5g/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-pro-plus-5g-overview": {
+    id: "realme-16-pro-plus-5g-overview",
+    publisher: "realme",
+    title: "realme 16 Pro+ 5G",
+    url: "https://www.realme.com/eu/realme-16-pro-plus-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-pro-5g-overview": {
+    id: "realme-16-pro-5g-overview",
+    publisher: "realme",
+    title: "realme 16 Pro 5G",
+    url: "https://www.realme.com/eu/realme-16-pro-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-16-5g-overview": {
+    id: "realme-16-5g-overview",
+    publisher: "realme",
+    title: "realme 16 5G",
+    url: "https://www.realme.com/eu/realme-16-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-gt-8-pro-overview": {
+    id: "realme-gt-8-pro-overview",
+    publisher: "realme",
+    title: "realme GT 8 Pro",
+    url: "https://www.realme.com/eu/realme-gt-8-pro",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "realme-c100-5g-overview": {
+    id: "realme-c100-5g-overview",
+    publisher: "realme",
+    title: "realme C100 5G",
+    url: "https://www.realme.com/eu/realme-c100-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1339,7 +1427,7 @@ export interface PhoneRecord {
   readonly weight: SourcedValue<string | null>;
   readonly storage: SourcedValue<{
     readonly options: string;
-    readonly startsAtGb: number;
+    readonly startsAtGb: number | null;
   }>;
   readonly configurations?: SourcedValue<string>;
   readonly colors?: SourcedValue<string>;
@@ -1511,6 +1599,17 @@ const vivoX300ProSpecs = ["vivo-x300-pro-specs"] as const;
 const vivoX300Specs = ["vivo-x300-specs"] as const;
 const vivoV70Lite5gSpecs = ["vivo-v70-lite-5g-specs"] as const;
 const vivoY215gSpecs = ["vivo-y21-5g-specs"] as const;
+const realmeEuCatalogue = ["realme-eu-phone-catalogue"] as const;
+const realme16ProPlus5gSpecs = ["realme-16-pro-plus-5g-specs"] as const;
+const realme16Pro5gSpecs = ["realme-16-pro-5g-specs"] as const;
+const realme165gSpecs = ["realme-16-5g-specs"] as const;
+const realmeGt8ProSpecs = ["realme-gt-8-pro-specs"] as const;
+const realmeC1005gSpecs = ["realme-c100-5g-specs"] as const;
+const realme16ProPlus5gOverview = ["realme-16-pro-plus-5g-overview"] as const;
+const realme16Pro5gOverview = ["realme-16-pro-5g-overview"] as const;
+const realme165gOverview = ["realme-16-5g-overview"] as const;
+const realmeGt8ProOverview = ["realme-gt-8-pro-overview"] as const;
+const realmeC1005gOverview = ["realme-c100-5g-overview"] as const;
 
 export const phones = [
   {
@@ -5479,6 +5578,134 @@ export const phones = [
     rearCameras: { value: "50 MP main + 0.08 MP auxiliary", sourceIds: vivoY215gSpecs },
     batteryClaim: { value: "6,500 mAh typical", sourceIds: vivoY215gSpecs, qualification: "Manufacturer capacity; vivo states 5,200 mAh for the Austria-market variant" },
     resistance: { value: "IP65", sourceIds: vivoY215gSpecs }
+  },
+  {
+    slug: "realme-16-pro-plus-5g",
+    maker: { value: "realme", sourceIds: realme16ProPlus5gSpecs },
+    model: { value: "realme 16 Pro+ 5G", sourceIds: realme16ProPlus5gSpecs },
+    generation: { value: "current", sourceIds: realmeEuCatalogue, qualification: "Listed in realme Europe's maintained smartphone navigation on 2026-08-10; configurations and availability vary by European market" },
+    formFactor: { value: "slab", sourceIds: realme16ProPlus5gSpecs },
+    releasedOn: { value: null, sourceIds: ["realme-eu-phone-catalogue", "realme-16-pro-plus-5g-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["realme-eu-phone-catalogue", "realme-16-pro-plus-5g-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current store pricing is not substituted" },
+    display: {
+      size: { value: "6.8 inches", sourceIds: realme16ProPlus5gSpecs },
+      panel: { value: "AMOLED", sourceIds: realme16ProPlus5gSpecs },
+      resolution: { value: "2800 × 1280 (FHD+)", sourceIds: realme16ProPlus5gSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: realme16ProPlus5gSpecs },
+      peakBrightness: { value: "6,500 nits APL peak; 1,800 nits HBM", sourceIds: realme16ProPlus5gSpecs }
+    },
+    weight: { value: "About 198 g", sourceIds: realme16ProPlus5gSpecs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: realme16ProPlus5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage; 12 GB RAM + 512 GB storage", sourceIds: realme16ProPlus5gSpecs },
+    colors: { value: "Master Gold, Master Grey", sourceIds: realme16ProPlus5gOverview },
+    dimensions: { value: "About 162.45 × 76.27 × 8.49 mm", sourceIds: realme16ProPlus5gSpecs },
+    charging: { value: "Up to 80 W wired", sourceIds: realme16ProPlus5gSpecs },
+    processor: { value: "Qualcomm Snapdragon 7 Gen 4", sourceIds: realme16ProPlus5gSpecs },
+    rearCameras: { value: "200 MP main + 50 MP telephoto + 8 MP ultrawide", sourceIds: realme16ProPlus5gSpecs },
+    batteryClaim: { value: "7,000 mAh typical; 6,840 mAh rated", sourceIds: realme16ProPlus5gSpecs, qualification: "Manufacturer equivalent dual-cell capacity" },
+    resistance: { value: "IP66, IP68, IP69, and IP69K", sourceIds: realme16ProPlus5gOverview }
+  },
+  {
+    slug: "realme-16-pro-5g",
+    maker: { value: "realme", sourceIds: realme16Pro5gSpecs },
+    model: { value: "realme 16 Pro 5G", sourceIds: realme16Pro5gSpecs },
+    generation: { value: "current", sourceIds: realmeEuCatalogue, qualification: "Listed in realme Europe's maintained smartphone navigation on 2026-08-10; configurations and availability vary by European market" },
+    formFactor: { value: "slab", sourceIds: realme16Pro5gSpecs },
+    releasedOn: { value: null, sourceIds: ["realme-eu-phone-catalogue", "realme-16-pro-5g-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["realme-eu-phone-catalogue", "realme-16-pro-5g-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current store pricing is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: realme16Pro5gSpecs },
+      panel: { value: "AMOLED", sourceIds: realme16Pro5gSpecs },
+      resolution: { value: "2772 × 1272 (FHD+)", sourceIds: realme16Pro5gSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: realme16Pro5gSpecs },
+      peakBrightness: { value: "6,500 nits APL peak; 1,400 nits HBM", sourceIds: realme16Pro5gSpecs }
+    },
+    weight: { value: "About 192 g", sourceIds: realme16Pro5gSpecs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: realme16Pro5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage; 8 GB RAM + 512 GB storage", sourceIds: realme16Pro5gSpecs },
+    colors: { value: "Pebble Grey, Orchid Purple", sourceIds: realme16Pro5gSpecs },
+    dimensions: { value: "About 162.60 × 77.60 × 7.75 mm", sourceIds: realme16Pro5gSpecs },
+    charging: { value: "45 W wired", sourceIds: realme16Pro5gSpecs },
+    processor: { value: "MediaTek Dimensity 7300 Max 5G", sourceIds: realme16Pro5gSpecs },
+    rearCameras: { value: "200 MP main + 8 MP ultrawide", sourceIds: realme16Pro5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,345 mAh rated", sourceIds: realme16Pro5gSpecs, qualification: "Manufacturer equivalent capacity" },
+    resistance: { value: "IP66, IP68, IP69, and IP69K", sourceIds: realme16Pro5gOverview }
+  },
+  {
+    slug: "realme-16-5g",
+    maker: { value: "realme", sourceIds: realme165gSpecs },
+    model: { value: "realme 16 5G", sourceIds: realme165gSpecs },
+    generation: { value: "current", sourceIds: realmeEuCatalogue, qualification: "Listed in realme Europe's maintained smartphone navigation on 2026-08-10; configurations and availability vary by European market" },
+    formFactor: { value: "slab", sourceIds: realme165gSpecs },
+    releasedOn: { value: null, sourceIds: ["realme-eu-phone-catalogue", "realme-16-5g-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["realme-eu-phone-catalogue", "realme-16-5g-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current store pricing is not substituted" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: realme165gSpecs },
+      panel: { value: "Flexible AMOLED", sourceIds: realme165gSpecs },
+      resolution: { value: "2372 × 1080 (FHD+)", sourceIds: realme165gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: realme165gSpecs },
+      peakBrightness: { value: "4,200 nits peak; 1,400 nits HBM", sourceIds: realme165gSpecs }
+    },
+    weight: { value: "About 183 g", sourceIds: realme165gSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: realme165gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: realme165gSpecs },
+    dimensions: { value: "About 158.30 × 75.13 × 8.10 mm", sourceIds: realme165gSpecs },
+    charging: { value: "45 W wired", sourceIds: realme165gSpecs },
+    processor: { value: "MediaTek Dimensity 6400 Turbo", sourceIds: realme165gSpecs },
+    rearCameras: { value: "50 MP main + 2 MP monochrome", sourceIds: realme165gSpecs },
+    batteryClaim: { value: "6,550 mAh typical; 6,370 mAh rated", sourceIds: realme165gSpecs, qualification: "Manufacturer capacity for the cited European specification" },
+    resistance: { value: "IP66, IP68, IP69, and IP69K", sourceIds: realme165gOverview }
+  },
+  {
+    slug: "realme-gt-8-pro",
+    maker: { value: "realme", sourceIds: realmeGt8ProSpecs },
+    model: { value: "realme GT 8 Pro", sourceIds: realmeGt8ProSpecs },
+    generation: { value: "current", sourceIds: realmeEuCatalogue, qualification: "Listed in realme Europe's maintained smartphone navigation on 2026-08-10; configurations and availability vary by European market" },
+    formFactor: { value: "slab", sourceIds: realmeGt8ProSpecs },
+    releasedOn: { value: null, sourceIds: ["realme-eu-phone-catalogue", "realme-gt-8-pro-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "Up to 16 GB RAM + 512 GB storage" }, sourceIds: ["realme-eu-phone-catalogue", "realme-gt-8-pro-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price or an entry configuration; current store pricing is not substituted" },
+    display: {
+      size: { value: "6.79 inches", sourceIds: realmeGt8ProSpecs },
+      panel: { value: "AMOLED", sourceIds: realmeGt8ProSpecs },
+      resolution: { value: "3136 × 1440 (QHD+)", sourceIds: realmeGt8ProSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: realmeGt8ProSpecs },
+      peakBrightness: { value: "7,000 nits peak; 2,000 nits HBM", sourceIds: realmeGt8ProSpecs }
+    },
+    weight: { value: "About 214 g (Urban Blue); 218 g (Diary White)", sourceIds: realmeGt8ProSpecs },
+    storage: { value: { options: "Up to 512 GB", startsAtGb: null }, sourceIds: realmeGt8ProSpecs, qualification: "The cited European specification states only a 512 GB maximum, so starting storage remains unknown and is excluded from starting-storage comparisons" },
+    configurations: { value: "Up to 16 GB RAM + 512 GB storage", sourceIds: realmeGt8ProSpecs, qualification: "Maximum only; available configurations vary by country and region" },
+    colors: { value: "Diary White, Urban Blue", sourceIds: realmeGt8ProSpecs },
+    dimensions: { value: "About 161.80 × 76.87 × 8.2 mm (Diary White); 8.3 mm thick (Urban Blue)", sourceIds: realmeGt8ProSpecs },
+    charging: { value: "Up to 120 W wired; up to 50 W wireless", sourceIds: realmeGt8ProSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5", sourceIds: realmeGt8ProSpecs },
+    rearCameras: { value: "50 MP main + 200 MP telephoto + 50 MP ultrawide", sourceIds: realmeGt8ProSpecs },
+    batteryClaim: { value: "7,000 mAh typical; 6,850 mAh rated", sourceIds: realmeGt8ProSpecs, qualification: "Manufacturer equivalent dual-cell capacity" },
+    resistance: { value: "IP66, IP68, and IP69", sourceIds: realmeGt8ProOverview }
+  },
+  {
+    slug: "realme-c100-5g",
+    maker: { value: "realme", sourceIds: realmeC1005gSpecs },
+    model: { value: "realme C100 5G", sourceIds: realmeC1005gSpecs },
+    generation: { value: "current", sourceIds: realmeEuCatalogue, qualification: "Listed in realme Europe's maintained smartphone navigation on 2026-08-10; configurations and availability vary by European market" },
+    formFactor: { value: "slab", sourceIds: realmeC1005gSpecs },
+    releasedOn: { value: null, sourceIds: ["realme-eu-phone-catalogue", "realme-c100-5g-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["realme-eu-phone-catalogue", "realme-c100-5g-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current store pricing is not substituted" },
+    display: {
+      size: { value: "6.8 inches", sourceIds: realmeC1005gSpecs },
+      panel: { value: "LCD", sourceIds: realmeC1005gSpecs },
+      resolution: { value: "1570 × 720 (HD+)", sourceIds: realmeC1005gSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: realmeC1005gSpecs },
+      peakBrightness: { value: "900 nits HBM", sourceIds: realmeC1005gSpecs }
+    },
+    weight: { value: "About 212 g", sourceIds: realmeC1005gSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: realmeC1005gSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage; 4 GB RAM + 256 GB storage", sourceIds: realmeC1005gSpecs },
+    dimensions: { value: "About 166.38 × 78.13 × 8.45 mm", sourceIds: realmeC1005gSpecs },
+    charging: { value: "Up to 45 W wired", sourceIds: realmeC1005gSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: realmeC1005gSpecs },
+    rearCameras: { value: "50 MP main", sourceIds: realmeC1005gSpecs },
+    batteryClaim: { value: "6,600 mAh typical; 6,450 mAh rated", sourceIds: realmeC1005gSpecs, qualification: "Manufacturer equivalent dual-cell capacity for the cited European specification" },
+    resistance: { value: "IP64", sourceIds: realmeC1005gOverview }
   }
 ] as const satisfies readonly PhoneRecord[];
 
@@ -5538,11 +5765,16 @@ export function validateCatalog(): string[] {
     if (!isFoldable && secondaryDisplay) errors.push(`${phone.slug}: non-foldable phone has a secondary display`);
 
     const storage = phone.storage.value;
-    if (!Number.isInteger(storage.startsAtGb) || storage.startsAtGb <= 0) {
-      errors.push(`${phone.slug}: starting storage must be a positive whole number of GB`);
-    }
-    if (!storage.options.startsWith(`${storage.startsAtGb} GB`)) {
-      errors.push(`${phone.slug}: normalized starting storage does not match the sourced option text`);
+    if (storage.startsAtGb === null) {
+      const storageQualification = "qualification" in phone.storage ? phone.storage.qualification : undefined;
+      if (!storageQualification) errors.push(`${phone.slug}: unknown starting storage lacks an explicit qualification`);
+    } else {
+      if (!Number.isInteger(storage.startsAtGb) || storage.startsAtGb <= 0) {
+        errors.push(`${phone.slug}: starting storage must be a positive whole number of GB`);
+      }
+      if (!storage.options.startsWith(`${storage.startsAtGb} GB`)) {
+        errors.push(`${phone.slug}: normalized starting storage does not match the sourced option text`);
+      }
     }
 
     const timingBasis = "basis" in phone.releasedOn ? phone.releasedOn.basis : "availability";

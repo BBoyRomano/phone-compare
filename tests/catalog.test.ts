@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 110);
-  assert.equal(Object.keys(sources).length, 158);
+  assert.equal(phones.length, 115);
+  assert.equal(Object.keys(sources).length, 169);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -27,7 +27,8 @@ test("the catalogue includes current standard models from every represented manu
       "poco-x8-pro",
       "oppo-find-x9",
       "asus-zenfone-12-ultra",
-      "vivo-x300"
+      "vivo-x300",
+      "realme-16-5g"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -47,7 +48,8 @@ test("the catalogue includes current standard models from every represented manu
       "poco-x8-pro",
       "oppo-find-x9",
       "asus-zenfone-12-ultra",
-      "vivo-x300"
+      "vivo-x300",
+      "realme-16-5g"
     ]
   );
 });
@@ -160,7 +162,12 @@ test("every phone has a sourced, conservative generation classification", () => 
       "vivo-x300-pro",
       "vivo-x300",
       "vivo-v70-lite-5g",
-      "vivo-y21-5g"
+      "vivo-y21-5g",
+      "realme-16-pro-plus-5g",
+      "realme-16-pro-5g",
+      "realme-16-5g",
+      "realme-gt-8-pro",
+      "realme-c100-5g"
     ]
   );
   assert.deepEqual(
@@ -663,8 +670,28 @@ test("the vivo Europe navigation publishes a bounded six-phone current lineup", 
   assert.match(y21?.batteryClaim.qualification ?? "", /Austria-market variant/i);
 });
 
+test("the realme Europe navigation publishes five current phones without inventing entry storage", () => {
+  const realme: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "realme");
+  assert.deepEqual(realme.map(({ slug }) => slug), [
+    "realme-16-pro-plus-5g",
+    "realme-16-pro-5g",
+    "realme-16-5g",
+    "realme-gt-8-pro",
+    "realme-c100-5g"
+  ]);
+  assert.ok(realme.every(({ generation }) => generation.value === "current"));
+  assert.ok(realme.every(({ releasedOn, originalPrice }) => releasedOn.value === null && releasedOn.qualification && originalPrice.value.amount === null && originalPrice.qualification));
+
+  const gt8Pro = realme.find(({ slug }) => slug === "realme-gt-8-pro");
+  const c100 = realme.find(({ slug }) => slug === "realme-c100-5g");
+  assert.equal(gt8Pro?.storage.value.startsAtGb, null);
+  assert.match(gt8Pro?.storage.qualification ?? "", /maximum.*starting storage remains unknown/i);
+  assert.equal(gt8Pro?.charging?.value, "Up to 120 W wired; up to 50 W wireless");
+  assert.equal(c100?.resistance.value, "IP64");
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

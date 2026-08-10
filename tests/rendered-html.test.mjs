@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /105(?:<!-- -->)? current generation/);
-  assert.match(html, /110(?:<!-- -->)? phones/);
+  assert.match(html, /110(?:<!-- -->)? current generation/);
+  assert.match(html, /115(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -254,6 +254,21 @@ test("server-renders the bounded vivo Europe lineup with regional qualifications
   assert.match(html, /Not stated/);
   assert.match(html, /https:\/\/www\.vivo\.com\/es\/products\/param\/x300-pro/);
   assert.match(html, /https:\/\/www\.vivo\.com\/es\/products\/param\/v70-lite-5g/);
+});
+
+test("server-renders the realme Europe lineup without ranking an unknown storage minimum", async () => {
+  const response = await render("/?left=realme-gt-8-pro&right=realme-c100-5g");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /realme GT 8 Pro vs realme C100 5G/);
+  assert.match(html, /Up to 512 GB/);
+  assert.match(html, /starting storage remains unknown/);
+  assert.match(html, /IP66, IP68, and IP69/);
+  assert.match(html, /IP64/);
+  assert.doesNotMatch(html, /listed storage starts .* higher/);
+  assert.match(html, /https:\/\/www\.realme\.com\/eu\/realme-gt-8-pro\/specs/);
+  assert.match(html, /https:\/\/www\.realme\.com\/eu\/realme-c100-5g\/specs/);
 });
 
 test("server-renders the breadth expansion without inventing missing launch prices or ratings", async () => {
