@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 88);
-  assert.equal(Object.keys(sources).length, 129);
+  assert.equal(phones.length, 100);
+  assert.equal(Object.keys(sources).length, 142);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -24,7 +24,8 @@ test("the catalogue includes current standard models from every represented manu
       "honor-magic8-pro",
       "xiaomi-17",
       "redmi-note-15",
-      "poco-x8-pro"
+      "poco-x8-pro",
+      "oppo-find-x9"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -41,7 +42,8 @@ test("the catalogue includes current standard models from every represented manu
       "honor-magic8-pro",
       "xiaomi-17",
       "redmi-note-15",
-      "poco-x8-pro"
+      "poco-x8-pro",
+      "oppo-find-x9"
     ]
   );
 });
@@ -133,7 +135,19 @@ test("every phone has a sourced, conservative generation classification", () => 
       "poco-x8-pro",
       "poco-m8-5g",
       "poco-m8-pro-5g",
-      "poco-f8-ultra"
+      "poco-f8-ultra",
+      "oppo-find-x9-ultra",
+      "oppo-find-x9-pro",
+      "oppo-find-x9",
+      "oppo-reno16-pro-5g",
+      "oppo-reno16-5g",
+      "oppo-reno16-fs-5g",
+      "oppo-reno16-f-5g",
+      "oppo-find-n2-flip",
+      "oppo-a6-pro-5g",
+      "oppo-a6-5g",
+      "oppo-a6x",
+      "oppo-a60-5g"
     ]
   );
   assert.deepEqual(
@@ -164,7 +178,8 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
       ["motorola-razr-2026", "flip-fold"],
       ["infinix-zero-flip", "flip-fold"],
       ["honor-magic-v6", "book-fold"],
-      ["honor-magic-v5", "book-fold"]
+      ["honor-magic-v5", "book-fold"],
+      ["oppo-find-n2-flip", "flip-fold"]
     ]
   );
 
@@ -175,7 +190,7 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
   assert.ok(Math.max(...pricedCurrentPhones) >= 1899.99);
 
   const folds = phones.filter(({ formFactor }) => formFactor.value === "book-fold" || formFactor.value === "flip-fold");
-  assert.equal(folds.length, 9);
+  assert.equal(folds.length, 10);
   for (const fold of folds) assert.ok("secondaryDisplay" in fold && fold.secondaryDisplay);
 });
 
@@ -544,8 +559,54 @@ test("the Xiaomi UK featured-phone boundary preserves Xiaomi, REDMI, and POCO id
   assert.equal(m85g?.resistance.value, null);
 });
 
+test("the OPPO UK navigation boundary remains distinct from live stock status", () => {
+  const oppo: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "OPPO");
+  assert.deepEqual(oppo.map(({ slug }) => slug), [
+    "oppo-find-x9-ultra",
+    "oppo-find-x9-pro",
+    "oppo-find-x9",
+    "oppo-reno16-pro-5g",
+    "oppo-reno16-5g",
+    "oppo-reno16-fs-5g",
+    "oppo-reno16-f-5g",
+    "oppo-find-n2-flip",
+    "oppo-a6-pro-5g",
+    "oppo-a6-5g",
+    "oppo-a6x",
+    "oppo-a60-5g"
+  ]);
+
+  for (const phone of oppo) {
+    assert.equal(phone.generation.value, "current");
+    assert.match(phone.generation.qualification ?? "", /OPPO UK.*stable smartphone navigation.*2026-08-10.*out of stock/is);
+    assert.equal(phone.releasedOn.value, null);
+    assert.deepEqual(
+      [phone.originalPrice.value.amount, phone.originalPrice.value.currency, phone.originalPrice.value.market],
+      [null, null, "United Kingdom"]
+    );
+    assert.match(phone.originalPrice.qualification ?? "", /do not establish an original launch price/i);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+  }
+
+  const ultra = oppo.find(({ slug }) => slug === "oppo-find-x9-ultra");
+  const x9Pro = oppo.find(({ slug }) => slug === "oppo-find-x9-pro");
+  const n2Flip = oppo.find(({ slug }) => slug === "oppo-find-n2-flip");
+  const a6x = oppo.find(({ slug }) => slug === "oppo-a6x");
+  assert.ok(ultra);
+  assert.ok(x9Pro);
+  assert.ok(n2Flip?.secondaryDisplay);
+  assert.ok(a6x?.charging);
+  assert.equal(n2Flip.formFactor.value, "flip-fold");
+  assert.equal(x9Pro.resistance.value, null);
+  assert.equal(a6x.charging.value, "Fast charging unsupported");
+  assert.match(ultra.resistance.qualification ?? "", /EU eco-design interface displays IP68.*IP69/is);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

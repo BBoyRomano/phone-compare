@@ -166,6 +166,24 @@ test("keeps the Xiaomi UK featured phone set grouped by displayed brand", async 
   expect(consoleErrors).toEqual([]);
 });
 
+test("keeps the OPPO UK navigation boundary discoverable with stock uncertainty intact", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=oppo-find-x9-ultra&right=oppo-find-n2-flip");
+  await expect(page.getByRole("heading", { name: "OPPO Find X9 Ultra vs OPPO Find N2 Flip" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="OPPO"] option')).toHaveCount(12);
+  await expect(page.getByRole("rowheader", { name: /Cover display/ })).toBeVisible();
+  await expect(page.getByRole("row", { name: /Original price/ }).getByText(/United Kingdom/)).toHaveCount(2);
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
+});
+
 test("compares the compact and keyboard-led additions with missing facts kept visible", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("First phone").selectOption("unihertz-titan-2");

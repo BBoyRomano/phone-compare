@@ -1056,6 +1056,110 @@ export const sources = {
     url: "https://www.mi.com/uk/product/poco-f8-ultra/specs/",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "oppo-uk-featured-phones": {
+    id: "oppo-uk-featured-phones",
+    publisher: "OPPO",
+    title: "OPPO UK Smartphones catalogue and navigation",
+    url: "https://www.oppo.com/uk/smartphones/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-find-x9-ultra-specs": {
+    id: "oppo-find-x9-ultra-specs",
+    publisher: "OPPO",
+    title: "OPPO Find X9 Ultra Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-find-x/find-x9-ultra/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-find-x9-pro-specs": {
+    id: "oppo-find-x9-pro-specs",
+    publisher: "OPPO",
+    title: "OPPO Find X9 Pro Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-find-x/find-x9-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-find-x9-specs": {
+    id: "oppo-find-x9-specs",
+    publisher: "OPPO",
+    title: "OPPO Find X9 Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-find-x/find-x9/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-reno16-pro-specs": {
+    id: "oppo-reno16-pro-specs",
+    publisher: "OPPO",
+    title: "OPPO Reno16 Pro 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-reno/reno16-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-reno16-specs": {
+    id: "oppo-reno16-specs",
+    publisher: "OPPO",
+    title: "OPPO Reno16 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-reno/reno16/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-reno16-fs-specs": {
+    id: "oppo-reno16-fs-specs",
+    publisher: "OPPO",
+    title: "OPPO Reno16 FS 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-reno/reno16-fs/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-reno16-f-specs": {
+    id: "oppo-reno16-f-specs",
+    publisher: "OPPO",
+    title: "OPPO Reno16 F 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-reno/reno16-f/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-find-n2-flip-specs": {
+    id: "oppo-find-n2-flip-specs",
+    publisher: "OPPO",
+    title: "OPPO Find N2 Flip Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-find-n/find-n2-flip/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-a6-pro-5g-specs": {
+    id: "oppo-a6-pro-5g-specs",
+    publisher: "OPPO",
+    title: "OPPO A6 Pro 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-a/a6-pro-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-a6-5g-specs": {
+    id: "oppo-a6-5g-specs",
+    publisher: "OPPO",
+    title: "OPPO A6 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-a/a6-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-a6x-specs": {
+    id: "oppo-a6x-specs",
+    publisher: "OPPO",
+    title: "OPPO A6x Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-a/a6x/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oppo-a60-5g-specs": {
+    id: "oppo-a60-5g-specs",
+    publisher: "OPPO",
+    title: "OPPO A60 5G Specifications",
+    url: "https://www.oppo.com/uk/smartphones/series-a/a60-5g/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1247,6 +1351,19 @@ const pocoX8ProSpecs = ["poco-x8-pro-specs"] as const;
 const pocoM85gSpecs = ["poco-m8-5g-specs"] as const;
 const pocoM8Pro5gSpecs = ["poco-m8-pro-5g-specs"] as const;
 const pocoF8UltraSpecs = ["poco-f8-ultra-specs"] as const;
+const oppoUkCatalogue = ["oppo-uk-featured-phones"] as const;
+const oppoFindX9UltraSpecs = ["oppo-find-x9-ultra-specs"] as const;
+const oppoFindX9ProSpecs = ["oppo-find-x9-pro-specs"] as const;
+const oppoFindX9Specs = ["oppo-find-x9-specs"] as const;
+const oppoReno16ProSpecs = ["oppo-reno16-pro-specs"] as const;
+const oppoReno16Specs = ["oppo-reno16-specs"] as const;
+const oppoReno16FsSpecs = ["oppo-reno16-fs-specs"] as const;
+const oppoReno16FSpecs = ["oppo-reno16-f-specs"] as const;
+const oppoFindN2FlipSpecs = ["oppo-find-n2-flip-specs"] as const;
+const oppoA6Pro5gSpecs = ["oppo-a6-pro-5g-specs"] as const;
+const oppoA65gSpecs = ["oppo-a6-5g-specs"] as const;
+const oppoA6xSpecs = ["oppo-a6x-specs"] as const;
+const oppoA605gSpecs = ["oppo-a60-5g-specs"] as const;
 
 export const phones = [
   {
@@ -4590,6 +4707,319 @@ export const phones = [
     rearCameras: { value: "50 MP main + 50 MP periscope telephoto + 50 MP ultrawide", sourceIds: pocoF8UltraSpecs },
     batteryClaim: { value: "6,500 mAh typical", sourceIds: pocoF8UltraSpecs, qualification: "Manufacturer capacity" },
     resistance: { value: "IP68", sourceIds: pocoF8UltraSpecs }
+  },
+  {
+    slug: "oppo-find-x9-ultra",
+    maker: { value: "OPPO", sourceIds: oppoFindX9UltraSpecs },
+    model: { value: "OPPO Find X9 Ultra", sourceIds: oppoFindX9UltraSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoFindX9UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-ultra-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-ultra-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.82 inches", sourceIds: oppoFindX9UltraSpecs },
+      panel: { value: "AMOLED", sourceIds: oppoFindX9UltraSpecs },
+      resolution: { value: "3168 × 1440", sourceIds: oppoFindX9UltraSpecs },
+      refreshRate: { value: "1–120 Hz adaptive; up to 144 Hz in some games", sourceIds: oppoFindX9UltraSpecs },
+      peakBrightness: { value: "1,800 nits HBM typical", sourceIds: oppoFindX9UltraSpecs }
+    },
+    weight: { value: "About 235 g (Canyon Orange); 236 g (Tundra Umber)", sourceIds: oppoFindX9UltraSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoFindX9UltraSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: oppoFindX9UltraSpecs },
+    colors: { value: "Canyon Orange, Tundra Umber", sourceIds: oppoFindX9UltraSpecs },
+    dimensions: { value: "About 163.16 × 76.97 × 8.65 mm (Canyon Orange); 9.10 mm thick (Tundra Umber)", sourceIds: oppoFindX9UltraSpecs },
+    charging: { value: "Up to 100 W SUPERVOOC; 50 W AIRVOOC", sourceIds: oppoFindX9UltraSpecs },
+    processor: { value: "Snapdragon 8 Elite Gen 5 Mobile Platform", sourceIds: oppoFindX9UltraSpecs },
+    rearCameras: { value: "200 MP main + 200 MP telephoto + 50 MP ultra-telephoto + 50 MP ultrawide + 3.2 MP monochrome", sourceIds: oppoFindX9UltraSpecs },
+    batteryClaim: { value: "7,050 mAh typical; 6,890 mAh rated", sourceIds: oppoFindX9UltraSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69", sourceIds: oppoFindX9UltraSpecs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69 high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-find-x9-pro",
+    maker: { value: "OPPO", sourceIds: oppoFindX9ProSpecs },
+    model: { value: "OPPO Find X9 Pro", sourceIds: oppoFindX9ProSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoFindX9ProSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-pro-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "16 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-pro-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: oppoFindX9ProSpecs },
+      panel: { value: "Flexible AMOLED", sourceIds: oppoFindX9ProSpecs },
+      resolution: { value: "2772 × 1272", sourceIds: oppoFindX9ProSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoFindX9ProSpecs },
+      peakBrightness: { value: "1,800 nits HBM typical", sourceIds: oppoFindX9ProSpecs }
+    },
+    weight: { value: "About 224 g", sourceIds: oppoFindX9ProSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoFindX9ProSpecs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: oppoFindX9ProSpecs },
+    colors: { value: "Titanium Charcoal, Silk White", sourceIds: oppoFindX9ProSpecs },
+    dimensions: { value: "About 161.26 × 76.46 × 8.25 mm", sourceIds: oppoFindX9ProSpecs },
+    charging: { value: "Up to 80 W SUPERVOOC or UFCS; up to 50 W AIRVOOC", sourceIds: oppoFindX9ProSpecs },
+    processor: { value: "MediaTek Dimensity 9500", sourceIds: oppoFindX9ProSpecs },
+    rearCameras: { value: "50 MP main + 200 MP telephoto + 50 MP ultrawide + 2 MP monochrome", sourceIds: oppoFindX9ProSpecs },
+    batteryClaim: { value: "7,500 mAh typical; 7,290 mAh rated", sourceIds: oppoFindX9ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: oppoFindX9ProSpecs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "oppo-find-x9",
+    maker: { value: "OPPO", sourceIds: oppoFindX9Specs },
+    model: { value: "OPPO Find X9", sourceIds: oppoFindX9Specs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoFindX9Specs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-find-x9-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.59 inches", sourceIds: oppoFindX9Specs },
+      panel: { value: "Flexible AMOLED", sourceIds: oppoFindX9Specs },
+      resolution: { value: "2760 × 1256", sourceIds: oppoFindX9Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoFindX9Specs },
+      peakBrightness: { value: "1,800 nits HBM typical", sourceIds: oppoFindX9Specs }
+    },
+    weight: { value: "About 203 g", sourceIds: oppoFindX9Specs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoFindX9Specs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: oppoFindX9Specs },
+    colors: { value: "Space Black, Titanium Grey", sourceIds: oppoFindX9Specs },
+    dimensions: { value: "About 156.98 × 73.93 × 7.99 mm", sourceIds: oppoFindX9Specs },
+    charging: { value: "Up to 80 W SUPERVOOC or UFCS; up to 50 W AIRVOOC", sourceIds: oppoFindX9Specs },
+    processor: { value: "MediaTek Dimensity 9500", sourceIds: oppoFindX9Specs },
+    rearCameras: { value: "50 MP main + 50 MP telephoto + 50 MP ultrawide + 2 MP monochrome", sourceIds: oppoFindX9Specs },
+    batteryClaim: { value: "7,025 mAh typical; 6,840 mAh rated", sourceIds: oppoFindX9Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: oppoFindX9Specs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "oppo-reno16-pro-5g",
+    maker: { value: "OPPO", sourceIds: oppoReno16ProSpecs },
+    model: { value: "OPPO Reno16 Pro 5G", sourceIds: oppoReno16ProSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoReno16ProSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-pro-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-pro-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.32 inches", sourceIds: oppoReno16ProSpecs },
+      panel: { value: "Crystal Guard+ AMOLED", sourceIds: oppoReno16ProSpecs },
+      resolution: { value: "2640 × 1216", sourceIds: oppoReno16ProSpecs },
+      refreshRate: { value: "Up to 144 Hz in some games", sourceIds: oppoReno16ProSpecs },
+      peakBrightness: { value: "1,800 nits HBM typical", sourceIds: oppoReno16ProSpecs }
+    },
+    weight: { value: "About 191 g (Pop White); 188 g (Starlight Black)", sourceIds: oppoReno16ProSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoReno16ProSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: oppoReno16ProSpecs },
+    colors: { value: "Starlight Black, Pop White", sourceIds: oppoReno16ProSpecs },
+    dimensions: { value: "About 151.21 × 72.42 × 8.36 mm (Pop White); 8.20 mm thick (Starlight Black)", sourceIds: oppoReno16ProSpecs },
+    charging: { value: "Up to 80 W SUPERVOOC or UFCS", sourceIds: oppoReno16ProSpecs },
+    processor: { value: "MediaTek Dimensity 8550 SUPER", sourceIds: oppoReno16ProSpecs },
+    rearCameras: { value: "200 MP main + 50 MP telephoto + 50 MP ultrawide", sourceIds: oppoReno16ProSpecs },
+    batteryClaim: { value: "6,000 mAh typical; 5,820 mAh rated", sourceIds: oppoReno16ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: oppoReno16ProSpecs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "oppo-reno16-5g",
+    maker: { value: "OPPO", sourceIds: oppoReno16Specs },
+    model: { value: "OPPO Reno16 5G", sourceIds: oppoReno16Specs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoReno16Specs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.32 inches", sourceIds: oppoReno16Specs },
+      panel: { value: "Crystal Guard+ AMOLED", sourceIds: oppoReno16Specs },
+      resolution: { value: "2640 × 1216", sourceIds: oppoReno16Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoReno16Specs },
+      peakBrightness: { value: "1,800 nits HBM typical", sourceIds: oppoReno16Specs }
+    },
+    weight: { value: "About 188 g (Pop White); 177 g (Purple Black)", sourceIds: oppoReno16Specs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoReno16Specs },
+    configurations: { value: "8 GB RAM + 512 GB storage", sourceIds: oppoReno16Specs },
+    colors: { value: "Purple Black, Pop White", sourceIds: oppoReno16Specs },
+    dimensions: { value: "About 151.21 × 72.42 × 8.36 mm (Pop White); 8.22 mm thick (Purple Black)", sourceIds: oppoReno16Specs },
+    charging: { value: "Up to 80 W SUPERVOOC", sourceIds: oppoReno16Specs },
+    processor: { value: "Qualcomm Snapdragon 7 Gen 4 Mobile Platform", sourceIds: oppoReno16Specs },
+    rearCameras: { value: "50 MP main + 50 MP telephoto + 50 MP ultrawide", sourceIds: oppoReno16Specs },
+    batteryClaim: { value: "6,000 mAh typical; 5,820 mAh rated", sourceIds: oppoReno16Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69K", sourceIds: oppoReno16Specs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69K high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-reno16-fs-5g",
+    maker: { value: "OPPO", sourceIds: oppoReno16FsSpecs },
+    model: { value: "OPPO Reno16 FS 5G", sourceIds: oppoReno16FsSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoReno16FsSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-fs-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 512 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-fs-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: oppoReno16FsSpecs },
+      panel: { value: "Crystal Guard+ AMOLED", sourceIds: oppoReno16FsSpecs },
+      resolution: { value: "2372 × 1080", sourceIds: oppoReno16FsSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoReno16FsSpecs },
+      peakBrightness: { value: "1,400 nits HBM typical", sourceIds: oppoReno16FsSpecs }
+    },
+    weight: { value: "About 196 g (Pop White); 194 g (Purple Black)", sourceIds: oppoReno16FsSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: oppoReno16FsSpecs },
+    configurations: { value: "8 GB RAM + 512 GB storage", sourceIds: oppoReno16FsSpecs },
+    colors: { value: "Purple Black, Pop White", sourceIds: oppoReno16FsSpecs },
+    dimensions: { value: "About 158.16 × 74.93 × 8.58 mm (Pop White); 8.44 mm thick (Purple Black)", sourceIds: oppoReno16FsSpecs },
+    charging: { value: "Up to 45 W SUPERVOOC", sourceIds: oppoReno16FsSpecs },
+    processor: { value: "MediaTek Dimensity 7300-Energy", sourceIds: oppoReno16FsSpecs },
+    rearCameras: { value: "50 MP main + 50 MP telephoto + 8 MP ultrawide", sourceIds: oppoReno16FsSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,325 mAh rated", sourceIds: oppoReno16FsSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69K", sourceIds: oppoReno16FsSpecs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69K high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-reno16-f-5g",
+    maker: { value: "OPPO", sourceIds: oppoReno16FSpecs },
+    model: { value: "OPPO Reno16 F 5G", sourceIds: oppoReno16FSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoReno16FSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-f-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-reno16-f-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: oppoReno16FSpecs },
+      panel: { value: "Crystal Guard+ AMOLED", sourceIds: oppoReno16FSpecs },
+      resolution: { value: "2372 × 1080", sourceIds: oppoReno16FSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoReno16FSpecs },
+      peakBrightness: { value: "1,400 nits HBM typical", sourceIds: oppoReno16FSpecs }
+    },
+    weight: { value: "About 196 g (Pop White); 194 g (Purple Black)", sourceIds: oppoReno16FSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: oppoReno16FSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: oppoReno16FSpecs },
+    colors: { value: "Purple Black, Pop White", sourceIds: oppoReno16FSpecs },
+    dimensions: { value: "About 158.16 × 74.93 × 8.58 mm (Pop White); 8.44 mm thick (Purple Black)", sourceIds: oppoReno16FSpecs },
+    charging: { value: "Up to 45 W SUPERVOOC", sourceIds: oppoReno16FSpecs },
+    processor: { value: "MediaTek Dimensity 7300-Energy", sourceIds: oppoReno16FSpecs },
+    rearCameras: { value: "50 MP main + 50 MP telephoto + 8 MP ultrawide", sourceIds: oppoReno16FSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,325 mAh rated", sourceIds: oppoReno16FSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69K", sourceIds: oppoReno16FSpecs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69K high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-find-n2-flip",
+    maker: { value: "OPPO", sourceIds: oppoFindN2FlipSpecs },
+    model: { value: "OPPO Find N2 Flip", sourceIds: oppoFindN2FlipSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included as the sole Find N phone in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid labels it out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "flip-fold", sourceIds: oppoFindN2FlipSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-find-n2-flip-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-find-n2-flip-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.8 inches", sourceIds: oppoFindN2FlipSpecs, qualification: "Main display" },
+      panel: { value: "Flexible AMOLED", sourceIds: oppoFindN2FlipSpecs },
+      resolution: { value: "2520 × 1080", sourceIds: oppoFindN2FlipSpecs, qualification: "Main display" },
+      refreshRate: { value: "1–120 Hz LTPO", sourceIds: oppoFindN2FlipSpecs, qualification: "Main display" },
+      peakBrightness: { value: "1,600 nits area brightness", sourceIds: oppoFindN2FlipSpecs, qualification: "Main display; OPPO also states 1,200 nits maximum in sunlight" }
+    },
+    secondaryDisplay: { value: "3.26-inch cover screen; 720 × 382; 30–60 Hz; 900 nits area brightness", sourceIds: oppoFindN2FlipSpecs },
+    weight: { value: "About 191 g", sourceIds: oppoFindN2FlipSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: oppoFindN2FlipSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: oppoFindN2FlipSpecs },
+    colors: { value: "Astral Black, Moonlit Purple", sourceIds: oppoFindN2FlipSpecs },
+    dimensions: { value: "Expanded: about 166.2 × 75.2 × 7.45 mm; folded: about 85.5 × 75.2 × 16.02 mm", sourceIds: oppoFindN2FlipSpecs },
+    charging: { value: "44 W SUPERVOOC", sourceIds: oppoFindN2FlipSpecs },
+    processor: { value: "MediaTek Dimensity 9000+", sourceIds: oppoFindN2FlipSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: oppoFindN2FlipSpecs },
+    batteryClaim: { value: "4,300 mAh typical", sourceIds: oppoFindN2FlipSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: oppoFindN2FlipSpecs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "oppo-a6-pro-5g",
+    maker: { value: "OPPO", sourceIds: oppoA6Pro5gSpecs },
+    model: { value: "OPPO A6 Pro 5G", sourceIds: oppoA6Pro5gSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoA6Pro5gSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-a6-pro-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "8 GB RAM + 256 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-a6-pro-5g-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.57 inches", sourceIds: oppoA6Pro5gSpecs },
+      panel: { value: "Flexible AMOLED", sourceIds: oppoA6Pro5gSpecs },
+      resolution: { value: "2372 × 1080", sourceIds: oppoA6Pro5gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoA6Pro5gSpecs },
+      peakBrightness: { value: "1,400 nits HBM typical", sourceIds: oppoA6Pro5gSpecs }
+    },
+    weight: { value: "About 185 g", sourceIds: oppoA6Pro5gSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: oppoA6Pro5gSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: oppoA6Pro5gSpecs },
+    colors: { value: "Stellar Black, Lunar Titanium", sourceIds: oppoA6Pro5gSpecs },
+    dimensions: { value: "About 158.20 × 75.02 × 8.00 mm", sourceIds: oppoA6Pro5gSpecs },
+    charging: { value: "Up to 80 W SUPERVOOC", sourceIds: oppoA6Pro5gSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: oppoA6Pro5gSpecs },
+    rearCameras: { value: "50 MP main + 2 MP monochrome", sourceIds: oppoA6Pro5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,310 mAh rated", sourceIds: oppoA6Pro5gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69", sourceIds: oppoA6Pro5gSpecs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69 high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-a6-5g",
+    maker: { value: "OPPO", sourceIds: oppoA65gSpecs },
+    model: { value: "OPPO A6 5G", sourceIds: oppoA65gSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoA65gSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-a6-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "6 GB RAM + 256 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-a6-5g-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.75 inches", sourceIds: oppoA65gSpecs },
+      panel: { value: "LCD", sourceIds: oppoA65gSpecs },
+      resolution: { value: "1570 × 720", sourceIds: oppoA65gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoA65gSpecs },
+      peakBrightness: { value: "1,125 nits HBM typical", sourceIds: oppoA65gSpecs }
+    },
+    weight: { value: "About 209 g", sourceIds: oppoA65gSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: oppoA65gSpecs },
+    configurations: { value: "6 GB RAM + 256 GB storage", sourceIds: oppoA65gSpecs },
+    colors: { value: "Sapphire Black, Aurora Gold", sourceIds: oppoA65gSpecs },
+    dimensions: { value: "About 166.61 × 78.51 × 8.61 mm", sourceIds: oppoA65gSpecs },
+    charging: { value: "Up to 45 W SUPERVOOC", sourceIds: oppoA65gSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: oppoA65gSpecs },
+    rearCameras: { value: "50 MP main + 2 MP monochrome", sourceIds: oppoA65gSpecs },
+    batteryClaim: { value: "6,550 mAh typical; 6,395 mAh rated", sourceIds: oppoA65gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68; also tested to IP69", sourceIds: oppoA65gSpecs, qualification: "OPPO states the EU eco-design interface displays IP68 while the product also meets IP69 high-pressure, high-temperature ingress testing" }
+  },
+  {
+    slug: "oppo-a6x",
+    maker: { value: "OPPO", sourceIds: oppoA6xSpecs },
+    model: { value: "OPPO A6x", sourceIds: oppoA6xSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoA6xSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-a6x-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-a6x-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.75 inches", sourceIds: oppoA6xSpecs },
+      panel: { value: "LCD", sourceIds: oppoA6xSpecs },
+      resolution: { value: "1570 × 720", sourceIds: oppoA6xSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoA6xSpecs },
+      peakBrightness: { value: "1,125 nits HBM typical", sourceIds: oppoA6xSpecs }
+    },
+    weight: { value: "About 205 g", sourceIds: oppoA6xSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: oppoA6xSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: oppoA6xSpecs },
+    colors: { value: "Black Purple, Ice Blue", sourceIds: oppoA6xSpecs },
+    dimensions: { value: "About 166.61 × 78.51 × 8.61 mm", sourceIds: oppoA6xSpecs },
+    charging: { value: "Fast charging unsupported", sourceIds: oppoA6xSpecs },
+    processor: { value: "Qualcomm Snapdragon 685 Mobile Platform", sourceIds: oppoA6xSpecs },
+    rearCameras: { value: "13 MP main + QVGA monochrome", sourceIds: oppoA6xSpecs },
+    batteryClaim: { value: "6,100 mAh typical; 5,950 mAh rated", sourceIds: oppoA6xSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP64", sourceIds: oppoA6xSpecs }
+  },
+  {
+    slug: "oppo-a60-5g",
+    maker: { value: "OPPO", sourceIds: oppoA605gSpecs },
+    model: { value: "OPPO A60 5G", sourceIds: oppoA605gSpecs },
+    generation: { value: "current", sourceIds: oppoUkCatalogue, qualification: "Included in OPPO UK's stable smartphone navigation on 2026-08-10; the all-smartphones grid simultaneously labels every model out of stock, so this classifies the navigation boundary rather than confirmed stock status" },
+    formFactor: { value: "slab", sourceIds: oppoA605gSpecs },
+    releasedOn: { value: null, sourceIds: ["oppo-uk-featured-phones", "oppo-a60-5g-specs"], qualification: "The cited current UK catalogue boundary and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United Kingdom", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["oppo-uk-featured-phones", "oppo-a60-5g-specs"], qualification: "The cited UK sources do not establish an original launch price; current buying state is not substituted" },
+    display: {
+      size: { value: "6.67 inches", sourceIds: oppoA605gSpecs },
+      panel: { value: "LCD", sourceIds: oppoA605gSpecs },
+      resolution: { value: "1604 × 720", sourceIds: oppoA605gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: oppoA605gSpecs },
+      peakBrightness: { value: "1,000 nits maximum under sunlight", sourceIds: oppoA605gSpecs }
+    },
+    weight: { value: "About 187 g", sourceIds: oppoA605gSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: oppoA605gSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: oppoA605gSpecs },
+    colors: { value: "Black Red", sourceIds: oppoA605gSpecs },
+    dimensions: { value: "About 165.71 × 76.02 × 7.68 mm", sourceIds: oppoA605gSpecs },
+    charging: { value: "45 W SUPERVOOC", sourceIds: oppoA605gSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: oppoA605gSpecs },
+    rearCameras: { value: "50 MP main", sourceIds: oppoA605gSpecs },
+    batteryClaim: { value: "5,100 mAh typical; 4,970 mAh rated", sourceIds: oppoA605gSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: null, sourceIds: oppoA605gSpecs, qualification: "The cited UK specification table does not state an IP rating" }
   }
 ] as const satisfies readonly PhoneRecord[];
 

@@ -197,17 +197,18 @@ export const manufacturerSources = [
     manufacturer: "OPPO",
     officialDomains: ["oppo.com", "support.oppo.com"],
     sources: [
-      { role: "catalogue", url: "https://www.oppo.com/en/smartphones/", scope: { kind: "global" } },
+      { role: "catalogue", url: "https://www.oppo.com/uk/smartphones/", scope: { kind: "country", countryCode: "GB" } },
       {
         role: "specifications",
-        url: "https://www.oppo.com/en/smartphones/",
-        scope: { kind: "global" },
-        limitation: "Product pages expose specifications, but the global catalogue includes historical and out-of-stock entries."
+        url: "https://www.oppo.com/uk/smartphones/",
+        scope: { kind: "country", countryCode: "GB" },
+        urlPattern: "https://www.oppo.com/uk/smartphones/{series-path}/{product-slug}/specs/",
+        limitation: "The all-smartphones grid retains historical entries and currently labels every model out of stock; the stable smartphone navigation provides a smaller maintained catalogue boundary."
       },
-      { role: "newsroom", url: "https://www.oppo.com/en/newsroom/", scope: { kind: "global" } },
-      { role: "support-archive", url: "https://support.oppo.com/en/", scope: { kind: "global" } }
+      { role: "newsroom", url: "https://www.oppo.com/uk/newsroom/", scope: { kind: "country", countryCode: "GB" } },
+      { role: "support-archive", url: "https://support.oppo.com/uk/", scope: { kind: "country", countryCode: "GB" } }
     ],
-    marketCaveat: "Global announcements commonly defer exact price, configuration, and availability to local markets; do not infer U.S. availability."
+    marketCaveat: "Use the stable UK smartphone navigation as a bounded catalogue signal rather than proof of live stock; do not infer original launch prices from current buying state or availability outside the United Kingdom."
   },
   {
     id: "honor",
