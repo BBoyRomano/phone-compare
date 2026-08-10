@@ -190,7 +190,6 @@ footer p { color: var(--muted); font-size: 13px; }
   .site-header, .hero, .comparison, .sources, .support, footer { width: min(100% - 28px, 1180px); }
   .header-links { gap: 14px; }
   .header-links a { font-size: 13px; }
-  .header-links a:first-child { display: none; }
   .hero h1 { font-size: 52px; }
   .hero-copy { font-size: 16px; }
   .section-heading { align-items: start; flex-direction: column; gap: 10px; }

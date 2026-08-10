@@ -9,6 +9,10 @@ test("renders shareable comparisons without escaping the viewport", async ({ pag
   await expect(page.getByLabel("Second phone")).toHaveValue("samsung-galaxy-z-fold8");
   await expect(page.getByRole("heading", { name: "What the sources establish" })).toBeVisible();
   await expect(page.getByRole("rowheader", { name: /Cover display/ })).toBeVisible();
+  const pageLinks = page.getByRole("navigation", { name: "Page links" }).getByRole("link");
+  await expect(pageLinks).toHaveText(["View sources", "Support"]);
+  await expect(pageLinks.first()).toBeVisible();
+  await expect(pageLinks.last()).toBeVisible();
 
   const layout = await page.evaluate(() => {
     const tableShell = document.querySelector<HTMLElement>(".table-shell");
