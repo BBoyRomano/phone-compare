@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 73);
-  assert.equal(Object.keys(sources).length, 113);
+  assert.equal(phones.length, 88);
+  assert.equal(Object.keys(sources).length, 129);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -21,7 +21,10 @@ test("the catalogue includes current standard models from every represented manu
       "hmd-skyline",
       "infinix-note-60-pro",
       "sony-xperia-1-viii",
-      "honor-magic8-pro"
+      "honor-magic8-pro",
+      "xiaomi-17",
+      "redmi-note-15",
+      "poco-x8-pro"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -35,7 +38,10 @@ test("the catalogue includes current standard models from every represented manu
       "hmd-skyline",
       "infinix-note-60-pro",
       "sony-xperia-1-viii",
-      "honor-magic8-pro"
+      "honor-magic8-pro",
+      "xiaomi-17",
+      "redmi-note-15",
+      "poco-x8-pro"
     ]
   );
 });
@@ -112,7 +118,22 @@ test("every phone has a sourced, conservative generation classification", () => 
       "honor-600-smart-5g",
       "honor-600-lite",
       "honor-400-smart-5g",
-      "honor-400-smart-4g"
+      "honor-400-smart-4g",
+      "xiaomi-17-ultra",
+      "xiaomi-17",
+      "xiaomi-leica-leitzphone",
+      "xiaomi-17t",
+      "xiaomi-17t-pro",
+      "redmi-note-15-pro",
+      "redmi-note-15-5g",
+      "redmi-note-15",
+      "redmi-note-15-pro-plus-5g",
+      "redmi-note-15-pro-5g",
+      "poco-x8-pro-max",
+      "poco-x8-pro",
+      "poco-m8-5g",
+      "poco-m8-pro-5g",
+      "poco-f8-ultra"
     ]
   );
   assert.deepEqual(
@@ -473,8 +494,58 @@ test("the active HONOR UK store smartphone boundary is fully represented without
   assert.equal(smart4g.resistance.value, null);
 });
 
+test("the Xiaomi UK featured-phone boundary preserves Xiaomi, REDMI, and POCO identities", () => {
+  const featuredSlugs = [
+    "xiaomi-17-ultra",
+    "xiaomi-17",
+    "xiaomi-leica-leitzphone",
+    "xiaomi-17t",
+    "xiaomi-17t-pro",
+    "redmi-note-15-pro",
+    "redmi-note-15-5g",
+    "redmi-note-15",
+    "redmi-note-15-pro-plus-5g",
+    "redmi-note-15-pro-5g",
+    "poco-x8-pro-max",
+    "poco-x8-pro",
+    "poco-m8-5g",
+    "poco-m8-pro-5g",
+    "poco-f8-ultra"
+  ];
+  const featured: readonly PhoneRecord[] = phones.filter(({ slug }) => featuredSlugs.includes(slug));
+  assert.deepEqual(featured.map(({ slug }) => slug), featuredSlugs);
+  assert.deepEqual(
+    featured.map(({ maker }) => maker.value),
+    ["Xiaomi", "Xiaomi", "Xiaomi", "Xiaomi", "Xiaomi", "REDMI", "REDMI", "REDMI", "REDMI", "REDMI", "POCO", "POCO", "POCO", "POCO", "POCO"]
+  );
+
+  for (const phone of featured) {
+    assert.equal(phone.generation.value, "current");
+    assert.match(phone.generation.qualification ?? "", /official Xiaomi UK Mobile navigation.*2026-08-10/i);
+    assert.equal(phone.releasedOn.value, null);
+    assert.deepEqual(
+      [phone.originalPrice.value.amount, phone.originalPrice.value.currency, phone.originalPrice.value.market],
+      [null, null, "United Kingdom"]
+    );
+    assert.match(phone.originalPrice.qualification ?? "", /not substituted for an original UK launch price/i);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+  }
+
+  const leitzphone = featured.find(({ slug }) => slug === "xiaomi-leica-leitzphone");
+  const note15 = featured.find(({ slug }) => slug === "redmi-note-15");
+  const note15Pro = featured.find(({ slug }) => slug === "redmi-note-15-pro");
+  const m85g = featured.find(({ slug }) => slug === "poco-m8-5g");
+  assert.match(leitzphone?.maker.qualification ?? "", /Leica-co-branded.*Xiaomi Series/i);
+  assert.equal(note15?.storage.value.startsAtGb, 128);
+  assert.match(note15Pro?.charging?.qualification ?? "", /battery section.*package-contents.*conflicting/i);
+  assert.equal(m85g?.resistance.value, null);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

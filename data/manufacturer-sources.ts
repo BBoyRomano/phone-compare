@@ -179,17 +179,18 @@ export const manufacturerSources = [
     manufacturer: "Xiaomi",
     officialDomains: ["mi.com"],
     sources: [
-      { role: "catalogue", url: "https://www.mi.com/global/product-list/phone/", scope: { kind: "global" } },
+      { role: "catalogue", url: "https://www.mi.com/uk/product-list/phone/", scope: { kind: "country", countryCode: "GB" } },
       {
         role: "specifications",
-        url: "https://www.mi.com/global/product-list/phone/",
-        scope: { kind: "global" },
-        urlPattern: "https://www.mi.com/global/product/{product-slug}/specs/"
+        url: "https://www.mi.com/uk/product-list/phone/",
+        scope: { kind: "country", countryCode: "GB" },
+        urlPattern: "https://www.mi.com/uk/product/{product-slug}/specs/",
+        limitation: "The product grid is client-rendered and may fail to hydrate; the primary Mobile navigation provides a smaller stable featured-phone boundary."
       },
-      { role: "newsroom", url: "https://www.mi.com/global/discover/news", scope: { kind: "global" } },
-      { role: "support-archive", url: "https://www.mi.com/global/support/", scope: { kind: "global" } }
+      { role: "newsroom", url: "https://www.mi.com/uk/discover/news", scope: { kind: "country", countryCode: "GB" } },
+      { role: "support-archive", url: "https://www.mi.com/uk/support/", scope: { kind: "country", countryCode: "GB" } }
     ],
-    marketCaveat: "The global list includes Xiaomi, Redmi, and POCO products and is not a sales catalogue for one market; local availability and launch price require a regional source."
+    marketCaveat: "The UK site groups Xiaomi, REDMI, and POCO phones under one Mobile navigation; preserve those displayed brand identities, and do not infer original launch prices from current or promotional store prices."
   },
   {
     id: "oppo",

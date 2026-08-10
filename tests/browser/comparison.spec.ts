@@ -147,6 +147,25 @@ test("keeps the active HONOR UK lineup discoverable with market uncertainty inta
   expect(consoleErrors).toEqual([]);
 });
 
+test("keeps the Xiaomi UK featured phone set grouped by displayed brand", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=xiaomi-17&right=redmi-note-15");
+  await expect(page.getByRole("heading", { name: "Xiaomi 17 vs REDMI Note 15" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="Xiaomi"] option')).toHaveCount(5);
+  await expect(page.getByLabel("First phone").locator('optgroup[label="REDMI"] option')).toHaveCount(5);
+  await expect(page.getByLabel("First phone").locator('optgroup[label="POCO"] option')).toHaveCount(5);
+  await expect(page.getByRole("row", { name: /Original price/ }).getByText(/United Kingdom/)).toHaveCount(2);
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
+});
+
 test("compares the compact and keyboard-led additions with missing facts kept visible", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("First phone").selectOption("unihertz-titan-2");
