@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /116(?:<!-- -->)? current generation/);
-  assert.match(html, /121(?:<!-- -->)? phones/);
+  assert.match(html, /119(?:<!-- -->)? current generation/);
+  assert.match(html, /124(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone", "nubia", "ZTE"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony", "HONOR", "Xiaomi", "REDMI", "POCO", "OPPO", "ASUS", "vivo", "realme", "Fairphone", "nubia", "ZTE", "TECNO"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -298,6 +298,22 @@ test("server-renders the bounded ZTE and nubia headline set with global gaps vis
   assert.doesNotMatch(html, /listed storage starts .* higher/);
   assert.match(html, /https:\/\/www\.ztedevices\.com\/en\/products\/smartphones\/nubia\/nubia-z80-ultra\.html/);
   assert.match(html, /https:\/\/www\.ztedevices\.com\/en\/products\/smartphones\/blade\/zte-blade-a76\.html/);
+});
+
+test("server-renders TECNO's bounded global recommendations without flattening regional configurations", async () => {
+  const response = await render("/?left=tecno-camon-50-ultra-5g&right=tecno-pova-curve-2-5g");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /CAMON 50 Ultra 5G vs POVA Curve 2 5G/);
+  assert.match(html, /Recommendation of the Month/);
+  assert.match(html, /Bangladesh-market configuration only/);
+  assert.match(html, /4,500 nits peak; 1,600 nits HBM/);
+  assert.match(html, /IP66, IP68, IP69, and IP69K/);
+  assert.match(html, /regional pricing is not substituted/);
+  assert.doesNotMatch(html, /launched .* lower|was released later|was announced later/);
+  assert.match(html, /https:\/\/www\.tecno-mobile\.com\/phones\/tech-specs\/techspecs\/camon-50-ultra-5g/);
+  assert.match(html, /https:\/\/www\.tecno-mobile\.com\/bd\/phones\/tech-specs\/techspecs\/pova-curve-2-5g/);
 });
 
 test("server-renders the breadth expansion without inventing missing launch prices or ratings", async () => {
