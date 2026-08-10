@@ -1,0 +1,33 @@
+{
+  "sourceId": "wikidata",
+  "importedAt": "2026-08-10",
+  "queryService": "https://query.wikidata.org/sparql",
+  "entityApi": "https://www.wikidata.org/w/api.php",
+  "class": {
+    "id": "Q22645",
+    "url": "https://www.wikidata.org/wiki/Q22645",
+    "relationship": "direct subclass"
+  },
+  "query": "SELECT ?item WHERE { ?item wdt:P279 wd:Q22645. } ORDER BY ?item",
+  "license": {
+    "expression": "CC0-1.0",
+    "url": "https://www.wikidata.org/wiki/Wikidata:Licensing"
+  },
+  "result": {
+    "wikidataClass": "Q22645",
+    "wikidataEntities": 1842,
+    "skippedWithoutEnglishOrFallbackLabel": 27,
+    "wikidataCandidates": 1815,
+    "totalCandidatesAfterReconciliation": 1910,
+    "publishedMatchesFromWikidata": 5,
+    "publishedCatalogueBootstrapCandidates": 95,
+    "preservedExistingCandidatesAbsentFromCurrentImport": 0,
+    "candidatesWithManufacturer": 1803,
+    "candidatesWithBrand": 1579
+  },
+  "limitations": [
+    "Direct subclasses provide a bounded reproducible slice but omit phones modelled elsewhere in Wikidata.",
+    "Entities without an English or language-fallback label are skipped because a Q identifier alone is not a useful marketing-name candidate.",
+    "Manufacturer, brand, alias, and model-code claims are community discovery signals and require first-party resolution before publication."
+  ]
+}

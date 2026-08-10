@@ -4,16 +4,35 @@ import test from "node:test";
 import {
   buildCoverageReport,
   discoverySources,
+  mergeImportedCandidates,
   parseCandidateInventory,
   validateCandidate,
   validateDiscoverySourceRegistry,
   type CandidatePhone
 } from "../inventory/candidate-inventory.ts";
+import { phones } from "../data/catalog.ts";
 
 test("the committed candidate inventory and discovery-source registry are valid", async () => {
   const contents = await readFile(new URL("../inventory/candidates.ndjson", import.meta.url), "utf8");
   assert.deepEqual(validateDiscoverySourceRegistry(), []);
   assert.deepEqual(parseCandidateInventory(contents).errors, []);
+});
+
+test("the committed inventory is broad, reconciles the published catalogue, and retains Wikidata provenance", async () => {
+  const contents = await readFile(new URL("../inventory/candidates.ndjson", import.meta.url), "utf8");
+  const manifest = JSON.parse(await readFile(new URL("../inventory/imports/wikidata-smartphones.json", import.meta.url), "utf8")) as {
+    result: { wikidataEntities: number; skippedWithoutEnglishOrFallbackLabel: number; wikidataCandidates: number };
+  };
+  const { candidates } = parseCandidateInventory(contents);
+  assert.ok(candidates.length >= 1_500);
+  assert.equal(new Set(candidates.filter(({ publishedSlug }) => publishedSlug).map(({ publishedSlug }) => publishedSlug)).size, phones.length);
+  const wikidataCandidates = candidates.filter(({ discoverySources }) => discoverySources.some(({ sourceId }) => sourceId === "wikidata"));
+  assert.ok(wikidataCandidates.length >= 1_400);
+  assert.ok(candidates.some(({ manufacturer }) => manufacturer === null));
+  assert.ok(candidates.some(({ brand }) => brand === null));
+  assert.equal(manifest.result.wikidataEntities - manifest.result.skippedWithoutEnglishOrFallbackLabel, manifest.result.wikidataCandidates);
+  assert.equal(wikidataCandidates.length, manifest.result.wikidataCandidates);
+  assert.equal(candidates.filter(({ discoverySources }) => discoverySources.some(({ sourceId }) => sourceId === "manufacturer-first-party")).length, phones.length);
 });
 
 test("bulk discovery is limited to sources with clear collection and persistence permission", () => {
@@ -126,4 +145,35 @@ test("NDJSON parsing rejects duplicate identities, dangling aliases, and unstabl
   assert.ok(errors.some((error) => error.includes("duplicate candidateId")));
   assert.ok(errors.some((error) => error.includes("does not exist")));
   assert.ok(errors.some((error) => error.includes("sorted by candidateId")));
+});
+
+test("imports refresh untouched rows without erasing reviewed decisions or other-source candidates", () => {
+  const source = (sourceRecordId: string) => ({ sourceId: "wikidata", sourceRecordId });
+  const base = (candidateId: string, model: string): CandidatePhone => ({
+    candidateId,
+    manufacturer: "Acme",
+    brand: "Acme",
+    model,
+    discoverySources: [source(candidateId)],
+    verificationState: "unreviewed"
+  });
+  const existingReviewed: CandidatePhone = {
+    ...base("wikidata-q1", "Reviewed name"),
+    verificationState: "duplicate-alias",
+    duplicateOfCandidateId: "local-canonical",
+    reviewedAt: "2026-08-10"
+  };
+  const localCanonical: CandidatePhone = {
+    ...base("local-canonical", "Canonical name"),
+    discoverySources: [{ sourceId: "manufacturer-first-party", url: "https://example.com/phone" }],
+    verificationState: "verified-current",
+    reviewedAt: "2026-08-10"
+  };
+  const merged = mergeImportedCandidates(
+    [base("wikidata-q1", "Changed upstream name"), base("wikidata-q2", "Fresh upstream name")],
+    [existingReviewed, localCanonical, base("wikidata-q2", "Old upstream name")]
+  );
+  assert.deepEqual(merged.map(({ candidateId }) => candidateId), ["local-canonical", "wikidata-q1", "wikidata-q2"]);
+  assert.equal(merged.find(({ candidateId }) => candidateId === "wikidata-q1")?.model, "Reviewed name");
+  assert.equal(merged.find(({ candidateId }) => candidateId === "wikidata-q2")?.model, "Fresh upstream name");
 });
