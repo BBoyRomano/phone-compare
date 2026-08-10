@@ -108,6 +108,11 @@ test("does not rank unknown launch timing or unpriced international records", ()
   assert.equal(highlights.some(({ kind }) => kind === "price"), false);
 });
 
+test("does not rank a cited storage maximum as an unknown starting configuration", () => {
+  const highlights = comparisonHighlights(phone("realme-gt-8-pro"), phone("realme-c100-5g"));
+  assert.equal(highlights.some(({ kind }) => kind === "storage"), false);
+});
+
 test("does not rank unknown Infinix timing, launch price, or weight", () => {
   const smart20 = phone("infinix-smart-20");
   const zeroFlip = phone("infinix-zero-flip");

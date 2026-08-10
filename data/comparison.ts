@@ -161,16 +161,18 @@ function displayHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHigh
 function storageHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
   const leftStart = left.storage.value.startsAtGb;
   const rightStart = right.storage.value.startsAtGb;
+  if (leftStart === null || rightStart === null) return null;
   if (leftStart === rightStart) return null;
 
   const higher = leftStart > rightStart ? left : right;
-  const lower = leftStart > rightStart ? right : left;
+  const higherStart = Math.max(leftStart, rightStart);
+  const lowerStart = Math.min(leftStart, rightStart);
   const difference = Math.abs(leftStart - rightStart);
   return {
     kind: "storage",
     label: "Starting storage",
     statement: `${higher.model.value}'s listed storage starts ${difference.toLocaleString("en-US")} GB higher`,
-    context: `${higher.storage.value.startsAtGb.toLocaleString("en-US")} GB versus ${lower.storage.value.startsAtGb.toLocaleString("en-US")} GB. This compares cited storage options, not price configurations or channel availability.`,
+    context: `${higherStart.toLocaleString("en-US")} GB versus ${lowerStart.toLocaleString("en-US")} GB. This compares cited storage options, not price configurations or channel availability.`,
     sourceIds: uniqueSourceIds(left.storage.sourceIds, right.storage.sourceIds)
   };
 }
