@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /54(?:<!-- -->)? current generation/);
-  assert.match(html, /58(?:<!-- -->)? phones/);
+  assert.match(html, /57(?:<!-- -->)? current generation/);
+  assert.match(html, /61(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz", "HMD", "Infinix", "Sony"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup for the record's stated market or regional scope/);
@@ -289,4 +289,20 @@ test("server-renders the Infinix India lineup with editions, gaps, and conflicts
   assert.doesNotMatch(html, /launched .* lower|was released later|was announced later/);
   assert.match(html, /https:\/\/infinixmobiles\.in\/collections\/smartphones\/products\/zero-flip/);
   assert.match(html, /https:\/\/infinixmobiles\.in\/collections\/smartphones\/products\/launch-note-60-pro/);
+});
+
+test("server-renders Sony's complete UK New Products lineup with launch context", async () => {
+  const response = await render("/?left=sony-xperia-10-vii&right=sony-xperia-1-viii");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Xperia 10 VII vs Xperia 1 VIII/);
+  assert.match(html, /Xperia 10 VII launched £1,000 lower/);
+  assert.match(html, /Xperia 1 VIII was announced later/);
+  assert.match(html, /12 GB RAM \+ 256 GB storage; 16 GB RAM \+ 1 TB storage/);
+  assert.match(html, /A numeric peak-brightness value is not stated/);
+  assert.match(html, /does not state maximum wired or wireless charging power/);
+  assert.match(html, /approximately two days|up to two days/);
+  assert.match(html, /https:\/\/www\.sony\.co\.uk\/electronics\/support\/mobile-phones-tablets-mobile-phones\/xperia-10-vii\/specifications/);
+  assert.match(html, /https:\/\/www\.sony\.co\.uk\/presscentre\/sony-announces-the-launch-of-xperia-1-viii/);
 });

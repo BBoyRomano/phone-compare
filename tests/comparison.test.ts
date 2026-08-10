@@ -117,3 +117,14 @@ test("does not rank unknown Infinix timing, launch price, or weight", () => {
   assert.equal(highlights.some(({ kind }) => kind === "price"), false);
   assert.equal(highlights.some(({ kind }) => kind === "weight"), false);
 });
+
+test("compares Sony launch context only within the documented UK market", () => {
+  const highlights = comparisonHighlights(phone("sony-xperia-10-vii"), phone("sony-xperia-1-viii"));
+
+  assert.deepEqual(highlights.map(({ kind }) => kind), ["price", "release", "display", "storage", "weight"]);
+  assert.equal(highlights[0].statement, "Xperia 10 VII launched £1,000 lower");
+  assert.equal(highlights[1].statement, "Xperia 1 VIII was announced later");
+  assert.equal(highlights[2].statement, "Xperia 1 VIII has a 0.4-inch larger listed main display");
+  assert.equal(highlights[3].statement, "Xperia 1 VIII's listed storage starts 128 GB higher");
+  assert.equal(highlights[4].statement, "Xperia 10 VII is 32 g lighter in the cited specifications");
+});
