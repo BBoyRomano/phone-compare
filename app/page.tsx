@@ -170,7 +170,7 @@ function SecondaryDisplay({ phone, sourceNumbers }: { phone: PhoneRecord; source
     <>
       <span className="not-stated">Not applicable</span>
       <SourceMarks ids={phone.formFactor.sourceIds} sourceNumbers={sourceNumbers} />
-      <small>{formFactorLabels[phone.formFactor.value]} phone with one display</small>
+      <small>Not a foldable phone; no cover display applies</small>
     </>
   );
 }

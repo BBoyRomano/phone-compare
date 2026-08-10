@@ -384,6 +384,155 @@ export const sources = {
     url: "https://support.nothing.tech/hc/en-us/articles/36457446865169-What-are-the-dimensions-and-weight-of-Nothing-Phone-3",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-stylus-2026-specs": {
+    id: "motorola-moto-g-stylus-2026-specs",
+    publisher: "Motorola",
+    title: "moto g stylus - 2026",
+    url: "https://www.motorola.com/us/en/p/phones/moto-g/g-stylus-2026/pmipmjg43mp",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-stylus-2026-announcement": {
+    id: "motorola-moto-g-stylus-2026-announcement",
+    publisher: "Motorola",
+    title: "Introducing moto g stylus - 2026 and moto pad - 2026",
+    url: "https://motorolanews.com/introducing-moto-g-stylus-2026-and-moto-pad-2026-where-ideas-take-shape-across-screens/",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-power-2026-specs": {
+    id: "motorola-moto-g-power-2026-specs",
+    publisher: "Motorola",
+    title: "Specifications - moto g power 2026",
+    url: "https://en-us.support.motorola.com/app/answers/detail/a_id/190571/~/specifications---moto-g-power-2026",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-power-2026-announcement": {
+    id: "motorola-moto-g-power-2026-announcement",
+    publisher: "Motorola",
+    title: "Introducing the moto g power - 2026",
+    url: "https://motorolanews.com/introducing-the-moto-g-power-2026-where-design-meets-durability/",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-2026-specs": {
+    id: "motorola-moto-g-2026-specs",
+    publisher: "Motorola",
+    title: "moto g - 2026",
+    url: "https://www.motorola.com/us/en/p/phones/moto-g/moto-g-2026/pmipmhz42mm",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-moto-g-2026-announcement": {
+    id: "motorola-moto-g-2026-announcement",
+    publisher: "Motorola",
+    title: "Meet the new moto g and moto g play",
+    url: "https://motorolanews.com/meet-the-new-moto-g-and-moto-g-play-designed-for-streaming-snapping-and-staying-powered-up/",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-us-mobile-catalogue": {
+    id: "tcl-us-mobile-catalogue",
+    publisher: "TCL",
+    title: "Mobile | TCL USA",
+    url: "https://us.tcl.com/pages/mobile",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-nxtpaper-70-pro-specs": {
+    id: "tcl-nxtpaper-70-pro-specs",
+    publisher: "TCL",
+    title: "NXTPAPER 70 Pro",
+    url: "https://us.tcl.com/products/nxtpaper-70-pro-512g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-nxtpaper-70-pro-announcement": {
+    id: "tcl-nxtpaper-70-pro-announcement",
+    publisher: "TCL",
+    title: "TCL brings NXTPAPER 70 Pro to the U.S.",
+    url: "https://us.tcl.com/blogs/blog/tcl-brings-nxtpaper-70-pro-to-the-u-s",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-03-03",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-60-xe-nxtpaper-specs": {
+    id: "tcl-60-xe-nxtpaper-specs",
+    publisher: "TCL",
+    title: "60 XE NXTPAPER 5G",
+    url: "https://www.tcl.com/us/en/products/mobile/60-series/60-xe-nxtpaper-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-60-xe-nxtpaper-announcement": {
+    id: "tcl-60-xe-nxtpaper-announcement",
+    publisher: "TCL",
+    title: "TCL launches new TCL 60 XE NXTPAPER 5G smartphone",
+    url: "https://www.tcl.com/global/en/news/tcl-launches-new-tcl-60-xe-nxtpaper-5g-smartphone",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-01-06",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-50-xl-nxtpaper-specs": {
+    id: "tcl-50-xl-nxtpaper-specs",
+    publisher: "TCL",
+    title: "50 XL NXTPAPER 5G",
+    url: "https://us.tcl.com/products/50-xl-nxtpaper-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "tcl-50-series-announcement": {
+    id: "tcl-50-series-announcement",
+    publisher: "TCL",
+    title: "TCL launches seven new models in 50 Series at MWC 2024",
+    url: "https://www.tcl.com/global/en/news/tcl-launches-seven-new-models-in-50-series-at-mwc-2024",
+    kind: "manufacturer-announcement",
+    publishedAt: "2024-02-26",
+    accessedAt: "2026-08-10"
+  },
+  "unihertz-us-smartphone-catalogue": {
+    id: "unihertz-us-smartphone-catalogue",
+    publisher: "Unihertz",
+    title: "Shop Unihertz Smartphones",
+    url: "https://www.unihertz.com/collections/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "unihertz-titan-2-specs": {
+    id: "unihertz-titan-2-specs",
+    publisher: "Unihertz",
+    title: "Titan 2 - 5G QWERTY Physical Keyboard Smartphone",
+    url: "https://www.unihertz.com/products/titan-2",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "unihertz-titan-2-announcement": {
+    id: "unihertz-titan-2-announcement",
+    publisher: "Unihertz",
+    title: "Unihertz marks another crowdfunding success with Titan 2",
+    url: "https://www.unihertz.com/blogs/news/unihertz-marks-another-crowdfunding-success-with-new-qwerty-smartphone-titan-2",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-06-25",
+    accessedAt: "2026-08-10"
+  },
+  "unihertz-jelly-max-specs": {
+    id: "unihertz-jelly-max-specs",
+    publisher: "Unihertz",
+    title: "Jelly Max - The Smallest 5G Smartphone",
+    url: "https://www.unihertz.com/products/jelly-max",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "unihertz-jelly-max-announcement": {
+    id: "unihertz-jelly-max-announcement",
+    publisher: "Unihertz",
+    title: "Unihertz surpasses funding goal with Jelly Max",
+    url: "https://www.unihertz.com/blogs/news/unihertz-surpasses-funding-goal-on-kickstarter-with-the-latest-5g-small-smartphone-jelly-max",
+    kind: "manufacturer-announcement",
+    publishedAt: "2024-07-23",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -441,7 +590,7 @@ export interface PhoneRecord {
   readonly processor: SourcedValue<string | null>;
   readonly rearCameras: SourcedValue<string>;
   readonly batteryClaim: SourcedValue<string>;
-  readonly resistance: SourcedValue<string>;
+  readonly resistance: SourcedValue<string | null>;
 }
 
 const appleSpecs = ["apple-iphone-16-specs"] as const;
@@ -492,6 +641,24 @@ const nothing4aDimensions = ["nothing-phone-4a-pro-dimensions"] as const;
 const nothing3Product = ["nothing-phone-3-product"] as const;
 const nothing3Terms = ["nothing-phone-3-us-terms"] as const;
 const nothing3Dimensions = ["nothing-phone-3-dimensions"] as const;
+const motoGStylusSpecs = ["motorola-moto-g-stylus-2026-specs"] as const;
+const motoGStylusLaunch = ["motorola-moto-g-stylus-2026-announcement"] as const;
+const motoGPowerSpecs = ["motorola-moto-g-power-2026-specs"] as const;
+const motoGPowerLaunch = ["motorola-moto-g-power-2026-announcement"] as const;
+const motoGSpecs = ["motorola-moto-g-2026-specs"] as const;
+const motoGLaunch = ["motorola-moto-g-2026-announcement"] as const;
+const tclCatalogue = ["tcl-us-mobile-catalogue"] as const;
+const tcl70Specs = ["tcl-nxtpaper-70-pro-specs"] as const;
+const tcl70Launch = ["tcl-nxtpaper-70-pro-announcement"] as const;
+const tcl60Specs = ["tcl-60-xe-nxtpaper-specs"] as const;
+const tcl60Launch = ["tcl-60-xe-nxtpaper-announcement"] as const;
+const tcl50Specs = ["tcl-50-xl-nxtpaper-specs"] as const;
+const tcl50Launch = ["tcl-50-series-announcement"] as const;
+const unihertzCatalogue = ["unihertz-us-smartphone-catalogue"] as const;
+const titan2Specs = ["unihertz-titan-2-specs"] as const;
+const titan2Launch = ["unihertz-titan-2-announcement"] as const;
+const jellyMaxSpecs = ["unihertz-jelly-max-specs"] as const;
+const jellyMaxLaunch = ["unihertz-jelly-max-announcement"] as const;
 
 export const phones = [
   {
@@ -1885,6 +2052,363 @@ export const phones = [
       sourceIds: nothing3Product,
       qualification: "Laboratory rating; resistance can diminish with wear"
     }
+  },
+  {
+    slug: "motorola-moto-g-stylus-2026",
+    maker: { value: "Motorola", sourceIds: motoGStylusSpecs },
+    model: { value: "moto g stylus - 2026", sourceIds: motoGStylusSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Listed in Motorola's current U.S. smartphone catalogue; classification does not guarantee stock"
+    },
+    formFactor: {
+      value: "slab",
+      sourceIds: motoGStylusSpecs,
+      qualification: "Slab phone with an integrated active stylus"
+    },
+    releasedOn: {
+      value: "2026-04-16",
+      sourceIds: motoGStylusLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: { amount: 499.99, currency: "USD", market: "United States", configuration: "Starting configuration; capacity not tied to MSRP" },
+      sourceIds: motoGStylusLaunch,
+      qualification: "Official U.S. MSRP; the announcement does not tie the price to a storage capacity"
+    },
+    display: {
+      size: { value: "6.7 inches", sourceIds: motoGStylusSpecs },
+      panel: { value: "Extreme AMOLED", sourceIds: motoGStylusSpecs },
+      resolution: { value: "2712 × 1220", sourceIds: motoGStylusSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: motoGStylusSpecs },
+      peakBrightness: { value: "5,000 nits peak", sourceIds: motoGStylusSpecs }
+    },
+    weight: { value: "192.3 g", sourceIds: motoGStylusSpecs, qualification: "Including stylus" },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: motoGStylusSpecs },
+    configurations: {
+      value: "8 GB RAM + 128 GB or 256 GB storage",
+      sourceIds: motoGStylusSpecs,
+      qualification: "256 GB is a motorola.com-exclusive option; virtual RAM is not presented as physical memory"
+    },
+    colors: { value: "PANTONE Coal Smoke or PANTONE Lavender Mist", sourceIds: motoGStylusSpecs },
+    dimensions: { value: "162.15 × 74.78 × 8.29 mm", sourceIds: motoGStylusSpecs },
+    charging: { value: "68 W wired; 15 W wireless", sourceIds: motoGStylusSpecs },
+    processor: { value: "Snapdragon 6 Gen 3", sourceIds: motoGStylusSpecs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide/macro", sourceIds: motoGStylusLaunch },
+    batteryClaim: {
+      value: "5,200 mAh; up to 44 hours",
+      sourceIds: motoGStylusSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP68 and IP69 water and dust resistance",
+      sourceIds: motoGStylusSpecs,
+      qualification: "Laboratory ratings; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "motorola-moto-g-power-2026",
+    maker: { value: "Motorola", sourceIds: motoGPowerSpecs },
+    model: { value: "moto g power - 2026", sourceIds: motoGPowerSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Listed in Motorola's current U.S. smartphone catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: motoGPowerSpecs },
+    releasedOn: { value: "2026-01-08", sourceIds: motoGPowerLaunch, qualification: "Official U.S. availability date" },
+    originalPrice: {
+      value: { amount: 299.99, currency: "USD", market: "United States", configuration: "128 GB" },
+      sourceIds: motoGPowerLaunch,
+      qualification: "Official U.S. MSRP at launch"
+    },
+    display: {
+      size: { value: "6.8 inches", sourceIds: motoGPowerSpecs },
+      panel: { value: "LCD", sourceIds: motoGPowerSpecs },
+      resolution: { value: "2388 × 1080", sourceIds: motoGPowerSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: motoGPowerSpecs },
+      peakBrightness: { value: "1,000 nits high-brightness mode", sourceIds: motoGPowerSpecs }
+    },
+    weight: { value: "208 g", sourceIds: motoGPowerSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: motoGPowerSpecs },
+    configurations: { value: "8 GB RAM + 128 GB storage", sourceIds: motoGPowerSpecs },
+    colors: { value: "PANTONE Pure Cashmere or PANTONE Evening Blue", sourceIds: motoGPowerSpecs },
+    dimensions: { value: "166.62 × 77.10 × 8.72 mm", sourceIds: motoGPowerSpecs },
+    charging: { value: "30 W wired", sourceIds: motoGPowerSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: motoGPowerSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide/macro", sourceIds: motoGPowerLaunch },
+    batteryClaim: {
+      value: "5,200 mAh; up to 2 days",
+      sourceIds: motoGPowerSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP68 and IP69 water and dust resistance",
+      sourceIds: motoGPowerSpecs,
+      qualification: "Laboratory ratings; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "motorola-moto-g-2026",
+    maker: { value: "Motorola", sourceIds: motoGSpecs },
+    model: { value: "moto g - 2026", sourceIds: motoGSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Listed in Motorola's current U.S. smartphone catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: motoGSpecs },
+    releasedOn: { value: "2025-12-11", sourceIds: motoGLaunch, qualification: "Official U.S. motorola.com availability date" },
+    originalPrice: {
+      value: { amount: 199.99, currency: "USD", market: "United States", configuration: "128 GB" },
+      sourceIds: motoGLaunch,
+      qualification: "Official U.S. MSRP at launch"
+    },
+    display: {
+      size: { value: "6.7 inches", sourceIds: motoGSpecs },
+      panel: { value: "LCD", sourceIds: motoGSpecs },
+      resolution: { value: "1604 × 720", sourceIds: motoGSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: motoGSpecs },
+      peakBrightness: { value: "1,000 nits high-brightness mode", sourceIds: motoGSpecs }
+    },
+    weight: { value: "202 g", sourceIds: motoGSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: motoGSpecs },
+    configurations: {
+      value: "4 GB RAM + 128 GB storage",
+      sourceIds: motoGSpecs,
+      qualification: "Virtual RAM is not presented as physical memory"
+    },
+    colors: { value: "PANTONE Slipstream or PANTONE Cattleya Orchid", sourceIds: motoGSpecs },
+    dimensions: { value: "167.15 × 76.40 × 8.44 mm", sourceIds: motoGSpecs },
+    charging: { value: "30 W wired", sourceIds: motoGSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: motoGSpecs },
+    rearCameras: { value: "50 MP main + 2 MP macro", sourceIds: motoGSpecs },
+    batteryClaim: {
+      value: "5,200 mAh; up to 2 days",
+      sourceIds: motoGSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "Water-repellent design",
+      sourceIds: motoGSpecs,
+      qualification: "No IP rating is stated on the cited specification page"
+    }
+  },
+  {
+    slug: "tcl-nxtpaper-70-pro",
+    maker: { value: "TCL", sourceIds: tcl70Specs },
+    model: { value: "NXTPAPER 70 Pro", sourceIds: tcl70Specs },
+    generation: {
+      value: "current",
+      sourceIds: tclCatalogue,
+      qualification: "Listed in TCL's current U.S. mobile catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: tcl70Specs },
+    releasedOn: {
+      value: "2026-03-03",
+      basis: "announcement",
+      sourceIds: tcl70Launch,
+      qualification: "Official U.S. announcement date; TCL stated April 2026 arrival without an exact availability date"
+    },
+    originalPrice: {
+      value: { amount: null, currency: "USD", market: "United States", configuration: "Capacity not tied to an original price" },
+      sourceIds: tcl70Launch,
+      qualification: "The U.S. launch announcement does not state an original price; current store pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.9 inches", sourceIds: tcl70Specs },
+      panel: { value: "IPS LCD with NXTPAPER 4.0", sourceIds: tcl70Specs },
+      resolution: { value: "2340 × 1080", sourceIds: tcl70Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: tcl70Specs },
+      peakBrightness: { value: "900 nits high-brightness mode", sourceIds: tcl70Specs }
+    },
+    weight: { value: "207 g", sourceIds: tcl70Specs },
+    storage: { value: { options: "128 GB, 256 GB, or 512 GB", startsAtGb: 128 }, sourceIds: tcl70Specs },
+    configurations: {
+      value: "8 GB RAM + 512 GB storage",
+      sourceIds: tcl70Specs,
+      qualification: "Configuration in the reviewed T807W specification; the U.S. selector also lists 128 GB and 256 GB capacities"
+    },
+    colors: { value: "Blue", sourceIds: tcl70Specs },
+    dimensions: { value: "169.4 × 80.05 × 7.98 mm", sourceIds: tcl70Specs },
+    charging: { value: "33 W wired", sourceIds: tcl70Specs },
+    processor: { value: "MediaTek Dimensity 7300", sourceIds: tcl70Specs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: tcl70Specs },
+    batteryClaim: { value: "5,200 mAh", sourceIds: tcl70Specs, qualification: "Manufacturer-rated capacity" },
+    resistance: {
+      value: "IP68 water and dust resistance",
+      sourceIds: tcl70Specs,
+      qualification: "Laboratory rating; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "tcl-60-xe-nxtpaper-5g",
+    maker: { value: "TCL", sourceIds: tcl60Specs },
+    model: { value: "60 XE NXTPAPER 5G", sourceIds: tcl60Specs },
+    generation: {
+      value: "current",
+      sourceIds: tclCatalogue,
+      qualification: "Listed in TCL's current U.S. mobile catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: tcl60Specs },
+    releasedOn: {
+      value: "2025-01-06",
+      basis: "announcement",
+      sourceIds: tcl60Launch,
+      qualification: "Official North American announcement date; an exact U.S. first-sale date is not stated"
+    },
+    originalPrice: {
+      value: { amount: null, currency: "USD", market: "United States", configuration: "128 GB or 256 GB" },
+      sourceIds: tcl60Launch,
+      qualification: "Official launch material does not tie its North American pricing to a U.S.-specific configuration; current store pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: tcl60Specs },
+      panel: { value: "IPS LCD with NXTPAPER", sourceIds: tcl60Specs },
+      resolution: { value: "2460 × 1080", sourceIds: tcl60Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: tcl60Specs },
+      peakBrightness: { value: null, sourceIds: tcl60Specs, qualification: "Not stated on the cited U.S. specification page" }
+    },
+    weight: { value: "199.5 g", sourceIds: tcl60Specs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: tcl60Specs },
+    configurations: { value: "8 GB RAM + 128 GB or 256 GB storage", sourceIds: tcl60Specs },
+    colors: { value: "Space Blue", sourceIds: tcl60Specs },
+    dimensions: { value: "167.6 × 75.5 × 8.22 mm", sourceIds: tcl60Specs },
+    charging: { value: "18 W wired", sourceIds: tcl60Specs },
+    processor: { value: "MediaTek Dimensity 6100+", sourceIds: tcl60Specs },
+    rearCameras: { value: "50 MP main + 5 MP ultrawide + 2 MP depth", sourceIds: tcl60Specs },
+    batteryClaim: { value: "5,010 mAh", sourceIds: tcl60Specs, qualification: "Manufacturer-rated capacity" },
+    resistance: { value: null, sourceIds: tcl60Specs, qualification: "No IP rating is stated on the cited U.S. specification page" }
+  },
+  {
+    slug: "tcl-50-xl-nxtpaper-5g",
+    maker: { value: "TCL", sourceIds: tcl50Specs },
+    model: { value: "50 XL NXTPAPER 5G", sourceIds: tcl50Specs },
+    generation: {
+      value: "earlier",
+      sourceIds: ["tcl-us-mobile-catalogue", "tcl-50-xl-nxtpaper-specs"],
+      qualification: "Retained in TCL's U.S. mobile catalogue, but the reviewed product page is sold out and the newer 60 and 70 families are also listed"
+    },
+    formFactor: { value: "slab", sourceIds: tcl50Specs },
+    releasedOn: {
+      value: "2024-02-26",
+      basis: "announcement",
+      sourceIds: tcl50Launch,
+      qualification: "Official U.S.-market announcement date; TCL stated planned Q3 2024 availability without an exact first-sale date"
+    },
+    originalPrice: {
+      value: { amount: null, currency: "USD", market: "United States", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: tcl50Launch,
+      qualification: "The official announcement says under $229 for North America but does not state an exact U.S. launch price; current store pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: tcl50Specs },
+      panel: { value: "IPS LCD with NXTPAPER", sourceIds: tcl50Specs },
+      resolution: { value: "2460 × 1080", sourceIds: tcl50Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: tcl50Specs },
+      peakBrightness: { value: null, sourceIds: tcl50Specs, qualification: "Not stated on the cited U.S. specification page" }
+    },
+    weight: { value: "198.7 g", sourceIds: tcl50Specs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: tcl50Specs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: tcl50Specs },
+    colors: { value: "Space Blue", sourceIds: tcl50Specs },
+    dimensions: { value: "167.6 × 75.5 × 8.22 mm", sourceIds: tcl50Specs },
+    charging: { value: "18 W wired", sourceIds: tcl50Specs },
+    processor: {
+      value: "MediaTek Dimensity 6100+ or 6300",
+      sourceIds: tcl50Specs,
+      qualification: "The cited U.S. page lists Dimensity 6100+ for C Spire and Dimensity 6300 for Verizon and Boost variants"
+    },
+    rearCameras: { value: "50 MP main + 5 MP ultrawide + 2 MP depth", sourceIds: tcl50Specs },
+    batteryClaim: { value: "5,010 mAh", sourceIds: tcl50Specs, qualification: "Manufacturer-rated capacity" },
+    resistance: { value: null, sourceIds: tcl50Specs, qualification: "No IP rating is stated on the cited U.S. specification page" }
+  },
+  {
+    slug: "unihertz-titan-2",
+    maker: { value: "Unihertz", sourceIds: titan2Specs },
+    model: { value: "Titan 2", sourceIds: titan2Specs },
+    generation: {
+      value: "current",
+      sourceIds: unihertzCatalogue,
+      qualification: "Listed for direct sale in Unihertz's U.S.-selectable smartphone catalogue; classification does not guarantee carrier compatibility or stock"
+    },
+    formFactor: {
+      value: "slab",
+      sourceIds: titan2Specs,
+      qualification: "Slab phone with an integrated physical QWERTY keyboard and a 2-inch rear secondary display"
+    },
+    releasedOn: {
+      value: "2025-06-25",
+      basis: "announcement",
+      sourceIds: titan2Launch,
+      qualification: "Official crowdfunding launch date; a first retail availability date is not stated"
+    },
+    originalPrice: {
+      value: { amount: null, currency: "USD", market: "United States", configuration: "12 GB RAM + 512 GB storage" },
+      sourceIds: titan2Launch,
+      qualification: "The official launch post does not state a U.S. retail launch price; current direct-store pricing is not substituted"
+    },
+    display: {
+      size: { value: "4.5 inches", sourceIds: titan2Specs, qualification: "Main square display" },
+      panel: { value: "LCD", sourceIds: titan2Specs },
+      resolution: { value: "1440 × 1440", sourceIds: titan2Specs },
+      refreshRate: { value: null, sourceIds: titan2Specs, qualification: "Not stated on the cited product page" },
+      peakBrightness: { value: null, sourceIds: titan2Specs, qualification: "Not stated on the cited product page" }
+    },
+    weight: { value: "235 g", sourceIds: titan2Specs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: titan2Specs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: titan2Specs },
+    colors: { value: "Black", sourceIds: titan2Specs },
+    dimensions: { value: "137.8 × 88.7 × 10.8 mm", sourceIds: titan2Specs },
+    charging: { value: "33 W wired", sourceIds: titan2Specs },
+    processor: { value: "MediaTek Dimensity 7300", sourceIds: titan2Specs },
+    rearCameras: { value: "50 MP main + 8 MP telephoto", sourceIds: titan2Specs },
+    batteryClaim: { value: "5,050 mAh", sourceIds: titan2Specs, qualification: "Manufacturer-rated capacity" },
+    resistance: { value: null, sourceIds: titan2Specs, qualification: "No IP rating is stated on the cited product page" }
+  },
+  {
+    slug: "unihertz-jelly-max",
+    maker: { value: "Unihertz", sourceIds: jellyMaxSpecs },
+    model: { value: "Jelly Max", sourceIds: jellyMaxSpecs },
+    generation: {
+      value: "current",
+      sourceIds: unihertzCatalogue,
+      qualification: "Listed for direct sale in Unihertz's U.S.-selectable smartphone catalogue; classification does not guarantee carrier compatibility or stock"
+    },
+    formFactor: {
+      value: "slab",
+      sourceIds: jellyMaxSpecs,
+      qualification: "Compact 5.05-inch slab designed for one-hand use"
+    },
+    releasedOn: {
+      value: "2024-07-23",
+      basis: "announcement",
+      sourceIds: jellyMaxLaunch,
+      qualification: "Official crowdfunding launch date; a first retail availability date is not stated"
+    },
+    originalPrice: {
+      value: { amount: null, currency: "USD", market: "United States", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: jellyMaxLaunch,
+      qualification: "The official launch post does not state a U.S. retail launch price; current direct-store pricing is not substituted"
+    },
+    display: {
+      size: { value: "5.05 inches", sourceIds: jellyMaxSpecs },
+      panel: { value: "LCD", sourceIds: jellyMaxSpecs },
+      resolution: { value: "1520 × 720", sourceIds: jellyMaxSpecs },
+      refreshRate: { value: null, sourceIds: jellyMaxSpecs, qualification: "Not stated on the cited product page" },
+      peakBrightness: { value: null, sourceIds: jellyMaxSpecs, qualification: "Not stated on the cited product page" }
+    },
+    weight: { value: "180 g", sourceIds: jellyMaxSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: jellyMaxSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage", sourceIds: jellyMaxSpecs },
+    colors: { value: "Black", sourceIds: jellyMaxSpecs },
+    dimensions: { value: "128.7 × 62.7 × 16.3 mm", sourceIds: jellyMaxSpecs },
+    charging: { value: "66 W wired", sourceIds: jellyMaxSpecs },
+    processor: { value: "MediaTek Dimensity 7300", sourceIds: jellyMaxSpecs },
+    rearCameras: { value: "100 MP main + 8 MP telephoto", sourceIds: jellyMaxSpecs },
+    batteryClaim: { value: "4,000 mAh", sourceIds: jellyMaxSpecs, qualification: "Manufacturer-rated capacity" },
+    resistance: { value: null, sourceIds: jellyMaxSpecs, qualification: "No IP rating is stated on the cited product page" }
   }
 ] as const satisfies readonly PhoneRecord[];
 

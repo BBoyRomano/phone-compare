@@ -22,10 +22,10 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /21(?:<!-- -->)? current generation/);
-  assert.match(html, /24(?:<!-- -->)? phones/);
+  assert.match(html, /28(?:<!-- -->)? current generation/);
+  assert.match(html, /32(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing"]) {
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing", "TCL", "Unihertz"]) {
     assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
   }
   assert.match(html, /latest comparison-ready lineup, based on official U\.S\. catalogue and launch data/);
@@ -240,4 +240,20 @@ test("server-renders the expanded manufacturers with optional facts and timing q
   assert.doesNotMatch(html, /OnePlus 13 was released later|OnePlus 13 was announced later/);
   assert.match(html, /https:\/\/www\.motorola\.com\/us\/en\/p\/phones\/razr\/razr-plus-2026/);
   assert.match(html, /https:\/\/www\.oneplus\.com\/us\/13\/specs/);
+});
+
+test("server-renders the breadth expansion without inventing missing launch prices or ratings", async () => {
+  const response = await render("/?left=unihertz-titan-2&right=tcl-60-xe-nxtpaper-5g");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Titan 2 vs 60 XE NXTPAPER 5G/);
+  assert.match(html, /physical QWERTY keyboard and a 2-inch rear secondary display/);
+  assert.match(html, /IPS LCD with NXTPAPER/);
+  assert.match(html, /Not stated/);
+  assert.match(html, /current direct-store pricing is not substituted/);
+  assert.match(html, /current store pricing is not substituted/);
+  assert.doesNotMatch(html, /launched \$.*lower/);
+  assert.match(html, /https:\/\/www\.unihertz\.com\/products\/titan-2/);
+  assert.match(html, /https:\/\/www\.tcl\.com\/us\/en\/products\/mobile\/60-series\/60-xe-nxtpaper-5g/);
 });
