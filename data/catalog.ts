@@ -1160,6 +1160,81 @@ export const sources = {
     url: "https://www.oppo.com/uk/smartphones/series-a/a60-5g/specs/",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "asus-global-phone-catalogue": {
+    id: "asus-global-phone-catalogue",
+    publisher: "ASUS",
+    title: "Phones - All series",
+    url: "https://www.asus.com/mobile-handhelds/phones/all-series/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "asus-global-rog-phone-catalogue": {
+    id: "asus-global-rog-phone-catalogue",
+    publisher: "ASUS Republic of Gamers",
+    title: "Gaming Phones",
+    url: "https://rog.asus.com/phones-group/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "asus-zenfone-12-ultra-specs": {
+    id: "asus-zenfone-12-ultra-specs",
+    publisher: "ASUS",
+    title: "Zenfone 12 Ultra - Tech Specs",
+    url: "https://www.asus.com/mobile-handhelds/phones/zenfone/zenfone-12-ultra/techspec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "asus-zenfone-12-ultra-announcement": {
+    id: "asus-zenfone-12-ultra-announcement",
+    publisher: "ASUS",
+    title: "ASUS Announces Zenfone 12 Ultra",
+    url: "https://press.asus.com/news/press-releases/asus-zenfone-12-ultra-premium-smartphone",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-02-06",
+    accessedAt: "2026-08-10"
+  },
+  "asus-zenfone-11-ultra-specs": {
+    id: "asus-zenfone-11-ultra-specs",
+    publisher: "ASUS",
+    title: "Zenfone 11 Ultra - Tech Specs",
+    url: "https://www.asus.com/mobile-handhelds/phones/zenfone/zenfone-11-ultra/techspec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "asus-zenfone-11-ultra-announcement": {
+    id: "asus-zenfone-11-ultra-announcement",
+    publisher: "ASUS",
+    title: "ASUS Introduces Zenfone 11 Ultra - a New Era of Smartphone Innovation",
+    url: "https://press.asus.com/news/press-releases/en-asus-introduces-zenfone-11-ultra-smartphone-innovation/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2024-03-14",
+    accessedAt: "2026-08-10"
+  },
+  "asus-rog-phone-9-specs": {
+    id: "asus-rog-phone-9-specs",
+    publisher: "ASUS Republic of Gamers",
+    title: "ROG Phone 9 - Tech Specs",
+    url: "https://rog.asus.com/phones/rog-phone-9/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "asus-rog-phone-9-pro-specs": {
+    id: "asus-rog-phone-9-pro-specs",
+    publisher: "ASUS Republic of Gamers",
+    title: "ROG Phone 9 Pro - Tech Specs",
+    url: "https://rog.asus.com/phones/rog-phone-9-pro/spec/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "asus-rog-phone-9-series-announcement": {
+    id: "asus-rog-phone-9-series-announcement",
+    publisher: "ASUS Republic of Gamers",
+    title: "ASUS Republic of Gamers Announces the ROG Phone 9 Series",
+    url: "https://press.asus.com/news/press-releases/asus-rog-phone-9-series-features-anime-vision-display-and-ai-gaming/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2024-11-20",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1364,6 +1439,15 @@ const oppoA6Pro5gSpecs = ["oppo-a6-pro-5g-specs"] as const;
 const oppoA65gSpecs = ["oppo-a6-5g-specs"] as const;
 const oppoA6xSpecs = ["oppo-a6x-specs"] as const;
 const oppoA605gSpecs = ["oppo-a60-5g-specs"] as const;
+const asusCatalogue = ["asus-global-phone-catalogue"] as const;
+const asusRogCatalogue = ["asus-global-rog-phone-catalogue"] as const;
+const asusZenfone12Specs = ["asus-zenfone-12-ultra-specs"] as const;
+const asusZenfone12Launch = ["asus-zenfone-12-ultra-announcement"] as const;
+const asusZenfone11Specs = ["asus-zenfone-11-ultra-specs"] as const;
+const asusZenfone11Launch = ["asus-zenfone-11-ultra-announcement"] as const;
+const asusRog9Specs = ["asus-rog-phone-9-specs"] as const;
+const asusRog9ProSpecs = ["asus-rog-phone-9-pro-specs"] as const;
+const asusRog9Launch = ["asus-rog-phone-9-series-announcement"] as const;
 
 export const phones = [
   {
@@ -5020,6 +5104,162 @@ export const phones = [
     rearCameras: { value: "50 MP main", sourceIds: oppoA605gSpecs },
     batteryClaim: { value: "5,100 mAh typical; 4,970 mAh rated", sourceIds: oppoA605gSpecs, qualification: "Manufacturer capacity" },
     resistance: { value: null, sourceIds: oppoA605gSpecs, qualification: "The cited UK specification table does not state an IP rating" }
+  },
+  {
+    slug: "asus-zenfone-12-ultra",
+    maker: { value: "ASUS", sourceIds: asusZenfone12Specs },
+    model: { value: "Zenfone 12 Ultra", sourceIds: asusZenfone12Specs },
+    generation: {
+      value: "current",
+      sourceIds: asusCatalogue,
+      qualification: "ASUS's global phone catalogue spotlights Zenfone 12 Ultra as the current Zenfone on 2026-08-10; availability varies by country"
+    },
+    formFactor: { value: "slab", sourceIds: asusZenfone12Specs },
+    releasedOn: {
+      value: "2025-02-06",
+      sourceIds: asusZenfone12Launch,
+      basis: "announcement",
+      qualification: "Official global announcement date; country-specific availability followed"
+    },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "Global", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: ["asus-zenfone-12-ultra-specs", "asus-zenfone-12-ultra-announcement"],
+      qualification: "The cited global specification and announcement do not establish one global original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: asusZenfone12Specs },
+      panel: { value: "Samsung E6 Flexible AMOLED", sourceIds: asusZenfone12Specs },
+      resolution: { value: "2400 × 1080", sourceIds: asusZenfone12Specs },
+      refreshRate: { value: "1–120 Hz LTPO; up to 144 Hz for gaming", sourceIds: asusZenfone12Specs },
+      peakBrightness: { value: "2,500 nits peak; 1,600 nits HBM", sourceIds: asusZenfone12Specs }
+    },
+    weight: { value: "220 g", sourceIds: asusZenfone12Specs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: asusZenfone12Specs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 16 GB RAM + 512 GB storage", sourceIds: asusZenfone12Specs },
+    colors: { value: "Sakura White, Ebony Black, Sage Green", sourceIds: asusZenfone12Specs },
+    dimensions: { value: "163.8 × 77.0 × 8.9 mm", sourceIds: asusZenfone12Specs },
+    charging: { value: "Up to 65 W wired; up to 15 W Qi 1.3 wireless", sourceIds: asusZenfone12Specs },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: asusZenfone12Specs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide + 32 MP 3× telephoto", sourceIds: asusZenfone12Specs },
+    batteryClaim: { value: "5,500 mAh typical", sourceIds: asusZenfone12Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: asusZenfone12Specs }
+  },
+  {
+    slug: "asus-zenfone-11-ultra",
+    maker: { value: "ASUS", sourceIds: asusZenfone11Specs },
+    model: { value: "Zenfone 11 Ultra", sourceIds: asusZenfone11Specs },
+    generation: {
+      value: "earlier",
+      sourceIds: asusCatalogue,
+      qualification: "ASUS retains the model page, while its global phone catalogue spotlights Zenfone 12 Ultra as the current Zenfone on 2026-08-10"
+    },
+    formFactor: { value: "slab", sourceIds: asusZenfone11Specs },
+    releasedOn: {
+      value: "2024-03-14",
+      sourceIds: asusZenfone11Launch,
+      basis: "announcement",
+      qualification: "Official global announcement date; country-specific availability followed"
+    },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "Global", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: ["asus-zenfone-11-ultra-specs", "asus-zenfone-11-ultra-announcement"],
+      qualification: "The cited global specification and announcement do not establish one global original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: asusZenfone11Specs },
+      panel: { value: "Samsung Flexible AMOLED", sourceIds: asusZenfone11Specs },
+      resolution: { value: "2400 × 1080", sourceIds: asusZenfone11Specs },
+      refreshRate: { value: "1–120 Hz LTPO; up to 144 Hz for gaming", sourceIds: asusZenfone11Specs },
+      peakBrightness: { value: "2,500 nits peak; 1,600 nits HBM", sourceIds: asusZenfone11Specs }
+    },
+    weight: { value: "225 g", sourceIds: asusZenfone11Specs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: asusZenfone11Specs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 16 GB RAM + 512 GB storage", sourceIds: asusZenfone11Specs },
+    colors: { value: "Eternal Black, Misty Gray, Skyline Blue, Desert Sand", sourceIds: asusZenfone11Specs },
+    dimensions: { value: "163.8 × 76.8 × 8.9 mm", sourceIds: asusZenfone11Specs },
+    charging: { value: "Up to 65 W wired; up to 15 W Qi 1.3 wireless", sourceIds: asusZenfone11Specs },
+    processor: { value: "Qualcomm Snapdragon 8 Gen 3", sourceIds: asusZenfone11Specs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide + 32 MP 3× telephoto", sourceIds: asusZenfone11Specs },
+    batteryClaim: { value: "5,500 mAh typical", sourceIds: asusZenfone11Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: asusZenfone11Specs }
+  },
+  {
+    slug: "asus-rog-phone-9",
+    maker: { value: "ASUS", sourceIds: asusRog9Specs },
+    model: { value: "ROG Phone 9", sourceIds: asusRog9Specs },
+    generation: {
+      value: "current",
+      sourceIds: asusRogCatalogue,
+      qualification: "ASUS ROG's global phone catalogue lists ROG Phone 9 among its hot products on 2026-08-10; availability varies by country"
+    },
+    formFactor: { value: "slab", sourceIds: asusRog9Specs },
+    releasedOn: {
+      value: "2024-11-19",
+      sourceIds: asusRog9Launch,
+      basis: "announcement",
+      qualification: "Official global announcement date; country-specific availability followed"
+    },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "Global", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: ["asus-rog-phone-9-specs", "asus-rog-phone-9-series-announcement"],
+      qualification: "The cited global specification and announcement do not establish one global original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: asusRog9Specs },
+      panel: { value: "Samsung Flexible AMOLED", sourceIds: asusRog9Specs },
+      resolution: { value: "2400 × 1080", sourceIds: asusRog9Specs },
+      refreshRate: { value: "1–120 Hz LTPO; up to 165 Hz in system settings or 185 Hz in Game Genie", sourceIds: asusRog9Specs },
+      peakBrightness: { value: "2,500 nits peak; 1,600 nits HBM", sourceIds: asusRog9Specs }
+    },
+    weight: { value: "227 g", sourceIds: asusRog9Specs },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: asusRog9Specs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 16 GB RAM + 512 GB storage", sourceIds: asusRog9Specs },
+    colors: { value: "Storm White, Phantom Black", sourceIds: asusRog9Specs },
+    dimensions: { value: "163.8 × 77 × 8.9 mm", sourceIds: asusRog9Specs },
+    charging: { value: "Up to 65 W wired; 15 W wireless", sourceIds: ["asus-rog-phone-9-specs", "asus-rog-phone-9-series-announcement"] },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: asusRog9Specs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide + 5 MP macro", sourceIds: asusRog9Specs },
+    batteryClaim: { value: "5,800 mAh typical", sourceIds: asusRog9Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: asusRog9Specs }
+  },
+  {
+    slug: "asus-rog-phone-9-pro",
+    maker: { value: "ASUS", sourceIds: asusRog9ProSpecs },
+    model: { value: "ROG Phone 9 Pro", sourceIds: asusRog9ProSpecs },
+    generation: {
+      value: "current",
+      sourceIds: asusRogCatalogue,
+      qualification: "ASUS ROG's global phone catalogue lists ROG Phone 9 Pro among its hot products on 2026-08-10; availability varies by country"
+    },
+    formFactor: { value: "slab", sourceIds: asusRog9ProSpecs },
+    releasedOn: {
+      value: "2024-11-19",
+      sourceIds: asusRog9Launch,
+      basis: "announcement",
+      qualification: "Official global announcement date; country-specific availability followed"
+    },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "Global", configuration: "16 GB RAM + 512 GB storage" },
+      sourceIds: ["asus-rog-phone-9-pro-specs", "asus-rog-phone-9-series-announcement"],
+      qualification: "The cited global specification and announcement do not establish one global original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: asusRog9ProSpecs },
+      panel: { value: "Samsung Flexible AMOLED", sourceIds: asusRog9ProSpecs },
+      resolution: { value: "2400 × 1080", sourceIds: asusRog9ProSpecs },
+      refreshRate: { value: "1–120 Hz LTPO; up to 165 Hz in system settings or 185 Hz in Game Genie", sourceIds: asusRog9ProSpecs },
+      peakBrightness: { value: "2,500 nits peak; 1,600 nits HBM", sourceIds: asusRog9ProSpecs }
+    },
+    weight: { value: "227 g", sourceIds: asusRog9ProSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: asusRog9ProSpecs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: asusRog9ProSpecs, qualification: "The separately named Pro Edition has 24 GB RAM and 1 TB storage and is not merged into this record" },
+    colors: { value: "Phantom Black", sourceIds: asusRog9ProSpecs },
+    dimensions: { value: "163.8 × 77 × 8.9 mm", sourceIds: asusRog9ProSpecs },
+    charging: { value: "Up to 65 W wired; 15 W wireless", sourceIds: ["asus-rog-phone-9-pro-specs", "asus-rog-phone-9-series-announcement"] },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Mobile Platform", sourceIds: asusRog9ProSpecs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide + 32 MP 3× telephoto", sourceIds: asusRog9ProSpecs },
+    batteryClaim: { value: "5,800 mAh typical", sourceIds: asusRog9ProSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68", sourceIds: asusRog9ProSpecs }
   }
 ] as const satisfies readonly PhoneRecord[];
 
