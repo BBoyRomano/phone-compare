@@ -129,6 +129,24 @@ test("keeps Sony's UK New Products lineup discoverable with GBP context", async 
   expect(consoleErrors).toEqual([]);
 });
 
+test("keeps the active HONOR UK lineup discoverable with market uncertainty intact", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=honor-magic-v6&right=honor-400-smart-4g");
+  await expect(page.getByRole("heading", { name: "HONOR Magic V6 vs HONOR 400 Smart 4G" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="HONOR"] option')).toHaveCount(12);
+  await expect(page.getByRole("rowheader", { name: /Cover display/ })).toBeVisible();
+  await expect(page.getByRole("row", { name: /Original price/ }).getByText(/United Kingdom/)).toHaveCount(2);
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
+});
+
 test("compares the compact and keyboard-led additions with missing facts kept visible", async ({ page }) => {
   await page.goto("/");
   await page.getByLabel("First phone").selectOption("unihertz-titan-2");

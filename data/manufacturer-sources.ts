@@ -213,17 +213,18 @@ export const manufacturerSources = [
     manufacturer: "HONOR",
     officialDomains: ["honor.com"],
     sources: [
-      { role: "catalogue", url: "https://www.honor.com/global/phones.html", scope: { kind: "global" } },
+      { role: "catalogue", url: "https://www.honor.com/uk/shop/", scope: { kind: "country", countryCode: "GB" } },
+      { role: "store", url: "https://www.honor.com/uk/shop/", scope: { kind: "country", countryCode: "GB" } },
       {
         role: "specifications",
-        url: "https://www.honor.com/global/phones.html",
-        scope: { kind: "global" },
-        urlPattern: "https://www.honor.com/global/phones/{product-slug}/"
+        url: "https://www.honor.com/uk/phones/",
+        scope: { kind: "country", countryCode: "GB" },
+        urlPattern: "https://www.honor.com/uk/phones/{product-slug}/spec/"
       },
-      { role: "newsroom", url: "https://www.honor.com/global/news/", scope: { kind: "global" } },
-      { role: "support-archive", url: "https://www.honor.com/global/support/", scope: { kind: "global" } }
+      { role: "newsroom", url: "https://www.honor.com/uk/news/", scope: { kind: "country", countryCode: "GB" } },
+      { role: "support-archive", url: "https://www.honor.com/uk/support/", scope: { kind: "country", countryCode: "GB" } }
     ],
-    marketCaveat: "The global catalogue includes historical products and does not establish sale, configuration, or price in a particular country."
+    marketCaveat: "The UK store's active non-refurbished smartphone grid is the maintained current-lineup boundary; the broader phones catalogue mixes historical and refurbished products, and UK inclusion does not establish availability elsewhere."
   },
   {
     id: "vivo",
