@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { comparisonHighlights } from "@/data/comparison";
 import { factsFor, phones, sources, type PhoneRecord, type SourceId, type SourcedDate, type SourcedValue } from "@/data/catalog";
+import { PhonePicker, type PhonePickerOption } from "./phone-picker";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -200,29 +201,6 @@ function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers
   );
 }
 
-function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: string; phone: PhoneRecord }) {
-  const manufacturers = [...new Set(phones.map((option) => option.maker.value))];
-
-  return (
-    <label>
-      <span>{label}</span>
-      <select name={name} defaultValue={phone.slug}>
-        {manufacturers.map((manufacturer) => (
-          <optgroup label={manufacturer} key={manufacturer}>
-            {phones.filter((option) => option.maker.value === manufacturer).map((option) => (
-              <option value={option.slug} key={option.slug}>
-                {option.model.value}
-                {option.formFactor.value === "slab" ? "" : ` — ${formFactorLabels[option.formFactor.value]}`}
-                {option.generation.value === "earlier" ? " — earlier" : ""}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
-    </label>
-  );
-}
-
 function SelectionNotice({ replaced }: { replaced: SelectionResult["replaced"] }) {
   if (replaced.length === 0) return null;
   const message = replaced.length === 2
@@ -344,6 +322,13 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     .sort()
     .at(-1)!;
   const currentGenerationCount = phones.filter((phone) => phone.generation.value === "current").length;
+  const pickerOptions: readonly PhonePickerOption[] = phones.map((phone) => ({
+    slug: phone.slug,
+    maker: phone.maker.value,
+    model: phone.model.value,
+    generation: phone.generation.value,
+    formFactor: phone.formFactor.value
+  }));
   return (
     <main>
       <header className="site-header">
@@ -385,11 +370,11 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
         <form className="phone-selector" action="/" method="get" aria-label="Choose phones to compare">
           <p className="selector-help">
-            Open a manufacturer group to find its current phones; useful earlier-generation models are labeled.
+            Search by maker or model, narrow by generation, then choose from manufacturer-grouped results. Selected phones stay pinned when a filter excludes them.
           </p>
-          <PhoneSelect name="left" label="First phone" phone={left} />
+          <PhonePicker name="left" label="First phone" selectedSlug={left.slug} options={pickerOptions} />
           <span aria-hidden="true">vs</span>
-          <PhoneSelect name="right" label="Second phone" phone={right} />
+          <PhonePicker name="right" label="Second phone" selectedSlug={right.slug} options={pickerOptions} />
           <button type="submit">Compare phones</button>
         </form>
 

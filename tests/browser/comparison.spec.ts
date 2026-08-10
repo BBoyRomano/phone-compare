@@ -28,22 +28,61 @@ test("renders shareable comparisons without escaping the viewport", async ({ pag
 test("supports a keyboard-only selection and submit flow", async ({ page }) => {
   await page.goto("/");
 
+  const firstSearch = page.getByLabel("Search catalogue for first selection");
+  const firstGeneration = page.getByLabel("Generation for first selection");
   const firstPhone = page.getByLabel("First phone");
+  const secondSearch = page.getByLabel("Search catalogue for second selection");
+  const secondGeneration = page.getByLabel("Generation for second selection");
   const secondPhone = page.getByLabel("Second phone");
   const submit = page.getByRole("button", { name: "Compare phones" });
-  await firstPhone.selectOption("apple-iphone-17");
-  await secondPhone.selectOption("apple-iphone-16");
 
-  await firstPhone.focus();
+  await firstSearch.focus();
+  await page.keyboard.type("Apple 16");
+  await page.keyboard.press("Tab");
+  await expect(firstGeneration).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(firstPhone).toBeFocused();
+  await page.keyboard.press("End");
+  await page.keyboard.press("Tab");
+  await expect(secondSearch).toBeFocused();
+  await page.keyboard.type("Samsung S24");
+  await page.keyboard.press("Tab");
+  await expect(secondGeneration).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(secondPhone).toBeFocused();
+  await page.keyboard.press("End");
   await page.keyboard.press("Tab");
   await expect(submit).toBeFocused();
   await page.keyboard.press("Enter");
 
-  await expect(page).toHaveURL(/\?left=apple-iphone-17&right=apple-iphone-16$/);
-  await expect(page.getByRole("heading", { name: "iPhone 17 vs iPhone 16" })).toBeVisible();
-  await expect(page.getByText("iPhone 17 is in the current comparison-ready lineup")).toBeVisible();
+  await expect(page).toHaveURL(/\?left=apple-iphone-16&right=samsung-galaxy-s24$/);
+  await expect(page.getByRole("heading", { name: "iPhone 16 vs Galaxy S24" })).toBeVisible();
+  await expect(page.getByRole("row", { name: /Generation/ }).getByText("Earlier generation", { exact: true })).toHaveCount(2);
+});
+
+test("filters by maker, model, and generation without losing the selected phone", async ({ page }) => {
+  await page.goto("/?left=apple-iphone-16&right=google-pixel-10");
+
+  const firstPicker = page.locator(".phone-picker").first();
+  const search = page.getByLabel("Search catalogue for first selection");
+  const generation = page.getByLabel("Generation for first selection");
+  const phone = page.getByLabel("First phone");
+
+  await search.fill("HONOR 600");
+  await expect(firstPicker.locator('optgroup[label="HONOR"] option')).toHaveCount(4);
+  await expect(firstPicker.getByRole("status")).toContainText("4 of 124 phones shown");
+  await expect(firstPicker.getByRole("status")).toContainText("selected phone is also preserved");
+  await expect(phone).toHaveValue("apple-iphone-16");
+  await expect(firstPicker.locator('optgroup[label="Selected phone"] option')).toHaveCount(1);
+
+  await generation.selectOption("earlier");
+  await expect(firstPicker.getByRole("status")).toContainText("No other phones match");
+  await expect(phone).toHaveValue("apple-iphone-16");
+
+  await search.fill("");
+  await expect(firstPicker.getByRole("status")).toContainText("5 of 124 phones shown");
+  await expect(phone.locator('option[value="apple-iphone-16"]')).toContainText("earlier");
+  await expect(phone.locator('option[value="apple-iphone-17"]')).toHaveCount(0);
 });
 
 test("keeps expanded manufacturers discoverable and their sourced facts usable", async ({ page }) => {
@@ -234,8 +273,9 @@ test("keeps support external and separate from comparison functionality", async 
 
 test("makes stale selections and unknown routes recoverable", async ({ page }) => {
   await page.goto("/?left=not-in-catalogue&right=samsung-galaxy-z-fold8");
-  await expect(page.getByRole("status")).toContainText("Shared selection adjusted");
-  await expect(page.getByRole("status")).toContainText("first selection");
+  const selectionNotice = page.locator(".selection-notice");
+  await expect(selectionNotice).toContainText("Shared selection adjusted");
+  await expect(selectionNotice).toContainText("first selection");
   await expect(page.getByLabel("First phone")).toHaveValue("apple-iphone-17");
   await expect(page.getByLabel("Second phone")).toHaveValue("samsung-galaxy-z-fold8");
 
