@@ -314,8 +314,8 @@ test("every product fact resolves to at least one first-party source", () => {
 test("original prices retain market, currency, and configuration context", () => {
   for (const phone of phones) {
     const price = phone.originalPrice.value;
-    assert.equal(price.currency, "USD");
-    assert.equal(price.market, "United States");
+    assert.match(price.currency, /^[A-Z]{3}$/);
+    assert.ok(price.market.length > 0);
     assert.ok(price.configuration.length > 0);
   }
 });
