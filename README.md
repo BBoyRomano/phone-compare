@@ -37,6 +37,6 @@ Run the complete verification suite with:
 pnpm check
 ```
 
-The production build is emitted as Cloudflare Worker-compatible output and has no database or other hosted resource dependency. Each protected `main` commit is verified and deployed automatically. See [`docs/decisions/0001-application-and-data-foundation.md`](docs/decisions/0001-application-and-data-foundation.md) for the durable architecture and data-provenance decision and [`docs/decisions/0003-production-deployment.md`](docs/decisions/0003-production-deployment.md) for the production deployment policy.
+The production build is emitted as Cloudflare Worker-compatible output and has no database or other hosted resource dependency. Each protected `main` commit is verified, and every commit that can affect production is deployed automatically. See [`docs/decisions/0001-application-and-data-foundation.md`](docs/decisions/0001-application-and-data-foundation.md) for the durable architecture and data-provenance decision and [`docs/decisions/0003-production-deployment.md`](docs/decisions/0003-production-deployment.md) for the production deployment policy.
 
 Repository changes follow the workflow defined in [`AGENTS.md`](AGENTS.md).
