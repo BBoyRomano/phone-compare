@@ -12,6 +12,7 @@ models:
 
 engine:
   id: copilot
+  version: "1.0.79-9"
   harness:
     max-retries: 1
 network: {}
