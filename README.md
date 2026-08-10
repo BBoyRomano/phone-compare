@@ -37,6 +37,8 @@ Run the complete verification suite with:
 pnpm check
 ```
 
+Candidate discovery is maintained separately from published product truth in `inventory/candidates.ndjson`. Validate the review queue with `pnpm inventory:check`, or derive machine-readable coverage and backlog information with `pnpm inventory:coverage`. Discovery records contain identity and investigation state only; facts shown by the application continue to require first-party provenance in the published catalogue.
+
 The production build is emitted as Cloudflare Worker-compatible output and has no database or other hosted resource dependency. Each protected `main` commit is verified, and every commit that can affect production is deployed automatically. See [`docs/decisions/0001-application-and-data-foundation.md`](docs/decisions/0001-application-and-data-foundation.md) for the durable architecture and data-provenance decision and [`docs/decisions/0003-production-deployment.md`](docs/decisions/0003-production-deployment.md) for the production deployment policy.
 
 Repository changes follow the workflow defined in [`AGENTS.md`](AGENTS.md).
