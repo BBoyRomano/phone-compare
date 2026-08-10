@@ -1379,6 +1379,31 @@ export const sources = {
     url: "https://www.realme.com/eu/realme-c100-5g",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "fairphone-eu-smartphone-catalogue": {
+    id: "fairphone-eu-smartphone-catalogue",
+    publisher: "Fairphone",
+    title: "Browse our Fairphone selection",
+    url: "https://www.fairphone.com/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "fairphone-gen-6-specs": {
+    id: "fairphone-gen-6-specs",
+    publisher: "Fairphone",
+    title: "The Fairphone (Gen. 6) - A new kind of smartphone experience",
+    url: "https://www.fairphone.com/the-new-fairphone",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "fairphone-gen-6-announcement": {
+    id: "fairphone-gen-6-announcement",
+    publisher: "Fairphone",
+    title: "Pushing the limits for modular and sustainable tech: Fairphone launches its most advanced smartphone yet",
+    url: "https://www.fairphone.com/wp-content/uploads/2025/07/The-Fairphone-Gen.-6-Press-Release-Final.docx.pdf",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-06-25",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1610,6 +1635,9 @@ const realme16Pro5gOverview = ["realme-16-pro-5g-overview"] as const;
 const realme165gOverview = ["realme-16-5g-overview"] as const;
 const realmeGt8ProOverview = ["realme-gt-8-pro-overview"] as const;
 const realmeC1005gOverview = ["realme-c100-5g-overview"] as const;
+const fairphoneEuCatalogue = ["fairphone-eu-smartphone-catalogue"] as const;
+const fairphoneGen6Specs = ["fairphone-gen-6-specs"] as const;
+const fairphoneGen6Launch = ["fairphone-gen-6-announcement"] as const;
 
 export const phones = [
   {
@@ -5706,6 +5734,48 @@ export const phones = [
     rearCameras: { value: "50 MP main", sourceIds: realmeC1005gSpecs },
     batteryClaim: { value: "6,600 mAh typical; 6,450 mAh rated", sourceIds: realmeC1005gSpecs, qualification: "Manufacturer equivalent dual-cell capacity for the cited European specification" },
     resistance: { value: "IP64", sourceIds: realmeC1005gOverview }
+  },
+  {
+    slug: "fairphone-gen-6",
+    maker: { value: "Fairphone", sourceIds: fairphoneGen6Specs },
+    model: { value: "The Fairphone (Gen. 6)", sourceIds: fairphoneGen6Specs },
+    generation: {
+      value: "current",
+      sourceIds: fairphoneEuCatalogue,
+      qualification: "Fairphone's maintained European smartphone catalogue lists this one physical device in Android and /e/OS configurations on 2026-08-10"
+    },
+    formFactor: { value: "slab", sourceIds: fairphoneGen6Specs },
+    releasedOn: {
+      value: "2025-06-25",
+      sourceIds: fairphoneGen6Launch,
+      qualification: "Official European market-launch date"
+    },
+    originalPrice: {
+      value: { amount: 599, currency: "EUR", market: "Europe", configuration: "8 GB RAM + 256 GB storage, Android" },
+      sourceIds: fairphoneGen6Launch,
+      qualification: "Fairphone's launch press release states a €599 recommended retail price; the separately sold /e/OS software configuration is not used as the hardware record's starting price"
+    },
+    display: {
+      size: { value: "6.31 inches", sourceIds: fairphoneGen6Specs },
+      panel: { value: "Full HD LTPO P-OLED", sourceIds: fairphoneGen6Specs },
+      resolution: { value: "1116 × 2484", sourceIds: fairphoneGen6Specs },
+      refreshRate: { value: "10–120 Hz", sourceIds: fairphoneGen6Specs },
+      peakBrightness: { value: "1,400 nits peak; 800 nits typical", sourceIds: fairphoneGen6Specs }
+    },
+    weight: { value: "191.4 g", sourceIds: fairphoneGen6Specs },
+    storage: { value: { options: "256 GB; microSD expansion up to 2 TB", startsAtGb: 256 }, sourceIds: fairphoneGen6Specs },
+    configurations: {
+      value: "8 GB RAM + 256 GB storage; Android or /e/OS software configuration",
+      sourceIds: ["fairphone-gen-6-specs", "fairphone-eu-smartphone-catalogue"],
+      qualification: "Fairphone sells the Android and /e/OS versions separately but explicitly identifies the physical device as the same"
+    },
+    colors: { value: "White, Green, Black", sourceIds: fairphoneGen6Specs },
+    dimensions: { value: "156.5 × 73.3 × 9.6 mm", sourceIds: fairphoneGen6Specs },
+    charging: { value: "50% in 25 minutes with a 30 W charger", sourceIds: fairphoneGen6Specs },
+    processor: { value: "Qualcomm Snapdragon 7s Gen 3", sourceIds: fairphoneGen6Specs },
+    rearCameras: { value: "50 MP main + 13 MP ultrawide", sourceIds: fairphoneGen6Specs },
+    batteryClaim: { value: "4,415 mAh removable", sourceIds: fairphoneGen6Specs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP55", sourceIds: fairphoneGen6Specs }
   }
 ] as const satisfies readonly PhoneRecord[];
 

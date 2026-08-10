@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 115);
-  assert.equal(Object.keys(sources).length, 169);
+  assert.equal(phones.length, 116);
+  assert.equal(Object.keys(sources).length, 172);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -28,7 +28,8 @@ test("the catalogue includes current standard models from every represented manu
       "oppo-find-x9",
       "asus-zenfone-12-ultra",
       "vivo-x300",
-      "realme-16-5g"
+      "realme-16-5g",
+      "fairphone-gen-6"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -49,7 +50,8 @@ test("the catalogue includes current standard models from every represented manu
       "oppo-find-x9",
       "asus-zenfone-12-ultra",
       "vivo-x300",
-      "realme-16-5g"
+      "realme-16-5g",
+      "fairphone-gen-6"
     ]
   );
 });
@@ -167,7 +169,8 @@ test("every phone has a sourced, conservative generation classification", () => 
       "realme-16-pro-5g",
       "realme-16-5g",
       "realme-gt-8-pro",
-      "realme-c100-5g"
+      "realme-c100-5g",
+      "fairphone-gen-6"
     ]
   );
   assert.deepEqual(
@@ -690,8 +693,28 @@ test("the realme Europe navigation publishes five current phones without inventi
   assert.equal(c100?.resistance.value, "IP64");
 });
 
+test("the Fairphone European store publishes one physical Gen. 6 phone across two OS configurations", () => {
+  const fairphones: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "Fairphone");
+  assert.deepEqual(fairphones.map(({ slug }) => slug), ["fairphone-gen-6"]);
+
+  const phone = fairphones[0];
+  assert.ok(phone);
+  assert.equal(phone.generation.value, "current");
+  assert.deepEqual(phone.generation.sourceIds, ["fairphone-eu-smartphone-catalogue"]);
+  assert.equal(phone.releasedOn.value, "2025-06-25");
+  assert.deepEqual(phone.originalPrice.value, {
+    amount: 599,
+    currency: "EUR",
+    market: "Europe",
+    configuration: "8 GB RAM + 256 GB storage, Android"
+  });
+  assert.match(phone.configurations?.qualification ?? "", /physical device as the same/i);
+  assert.equal(phone.batteryClaim.value, "4,415 mAh removable");
+  assert.equal(phone.resistance.value, "IP55");
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
