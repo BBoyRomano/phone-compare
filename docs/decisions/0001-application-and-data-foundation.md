@@ -8,6 +8,8 @@ Accepted — 2026-08-08
 
 Build the initial product as a server-rendered TypeScript and React application using Vinext and Vite, with Cloudflare Worker-compatible output. Keep the first catalogue in version-controlled TypeScript and model every displayed product fact as a value plus one or more source references and an optional qualification.
 
+Launch timing also records whether a date represents availability or only an announcement. Comparisons may rank dates only when those bases match. Configuration, colour, dimensions, and charging are optional sourced fields: an absent field means the catalogue has not captured it, not that the product lacks the feature.
+
 The first vertical slice compares two phones without a database, user accounts, background jobs, or a data-acquisition pipeline.
 
 ## Why

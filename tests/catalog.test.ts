@@ -6,11 +6,25 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 16);
-  assert.equal(Object.keys(sources).length, 26);
+  assert.equal(phones.length, 24);
+  assert.equal(Object.keys(sources).length, 46);
   assert.deepEqual(
-    phones.filter(({ slug }) => ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"].includes(slug)).map(({ slug }) => slug),
-    ["apple-iphone-17", "google-pixel-10", "samsung-galaxy-s26"]
+    phones.filter(({ slug }) => [
+      "apple-iphone-17",
+      "google-pixel-10",
+      "samsung-galaxy-s26",
+      "motorola-edge-2026",
+      "oneplus-13",
+      "nothing-phone-4a-pro"
+    ].includes(slug)).map(({ slug }) => slug),
+    [
+      "apple-iphone-17",
+      "google-pixel-10",
+      "samsung-galaxy-s26",
+      "motorola-edge-2026",
+      "oneplus-13",
+      "nothing-phone-4a-pro"
+    ]
   );
 });
 
@@ -30,7 +44,15 @@ test("every phone has a sourced, conservative generation classification", () => 
       "samsung-galaxy-s26",
       "samsung-galaxy-z-fold8",
       "samsung-galaxy-z-flip8",
-      "samsung-galaxy-a57-5g"
+      "samsung-galaxy-a57-5g",
+      "motorola-razr-ultra-2026",
+      "motorola-razr-plus-2026",
+      "motorola-razr-2026",
+      "motorola-edge-2026",
+      "oneplus-13",
+      "oneplus-13r",
+      "nothing-phone-4a-pro",
+      "nothing-phone-3"
     ]
   );
   assert.deepEqual(
@@ -39,8 +61,9 @@ test("every phone has a sourced, conservative generation classification", () => 
   );
 
   for (const phone of phones) {
-    assert.equal(phone.generation.sourceIds.length, 1);
-    assert.equal(sources[phone.generation.sourceIds[0]].kind, "manufacturer-catalogue");
+    const generationSources = phone.generation.sourceIds.map((sourceId) => sources[sourceId]);
+    assert.equal(generationSources.filter(({ kind }) => kind === "manufacturer-catalogue").length, 1);
+    assert.ok(generationSources.every(({ kind }) => kind === "manufacturer-catalogue" || kind === "manufacturer-specification"));
   }
   const iphone16: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-16");
   assert.ok(iphone16);
@@ -54,7 +77,10 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
       ["apple-iphone-air", "thin-slab"],
       ["google-pixel-10-pro-fold", "book-fold"],
       ["samsung-galaxy-z-fold8", "book-fold"],
-      ["samsung-galaxy-z-flip8", "flip-fold"]
+      ["samsung-galaxy-z-flip8", "flip-fold"],
+      ["motorola-razr-ultra-2026", "flip-fold"],
+      ["motorola-razr-plus-2026", "flip-fold"],
+      ["motorola-razr-2026", "flip-fold"]
     ]
   );
 
@@ -65,7 +91,7 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
   assert.ok(Math.max(...pricedCurrentPhones) >= 1899.99);
 
   const folds = phones.filter(({ formFactor }) => formFactor.value === "book-fold" || formFactor.value === "flip-fold");
-  assert.equal(folds.length, 3);
+  assert.equal(folds.length, 6);
   for (const fold of folds) assert.ok("secondaryDisplay" in fold && fold.secondaryDisplay);
 });
 
@@ -81,16 +107,23 @@ test("catalogue gaps and source conflicts stay visible", () => {
   assert.match(galaxyA57.processor.qualification ?? "", /not stated/i);
 });
 
-test("the catalogue includes a sourced premium flagship from every represented manufacturer", () => {
-  const premiumSlugs = ["apple-iphone-17-pro", "google-pixel-10-pro", "samsung-galaxy-s26-ultra"];
+test("the catalogue includes a sourced premium reference from every represented manufacturer", () => {
+  const premiumSlugs = [
+    "apple-iphone-17-pro",
+    "google-pixel-10-pro",
+    "samsung-galaxy-s26-ultra",
+    "motorola-razr-ultra-2026",
+    "oneplus-13",
+    "nothing-phone-3"
+  ];
   assert.deepEqual(
     phones.filter(({ slug }) => premiumSlugs.includes(slug)).map(({ slug }) => slug),
     premiumSlugs
   );
 
-  const iphone = phones.find(({ slug }) => slug === "apple-iphone-17-pro");
-  const pixel = phones.find(({ slug }) => slug === "google-pixel-10-pro");
-  const galaxy = phones.find(({ slug }) => slug === "samsung-galaxy-s26-ultra");
+  const iphone: PhoneRecord | undefined = phones.find(({ slug }) => slug === "apple-iphone-17-pro");
+  const pixel: PhoneRecord | undefined = phones.find(({ slug }) => slug === "google-pixel-10-pro");
+  const galaxy: PhoneRecord | undefined = phones.find(({ slug }) => slug === "samsung-galaxy-s26-ultra");
   assert.ok(iphone);
   assert.ok(pixel);
   assert.ok(galaxy);
@@ -111,6 +144,56 @@ test("the catalogue includes a sourced premium flagship from every represented m
   assert.equal(galaxy.originalPrice.value.amount, 1299.99);
   assert.equal(galaxy.display.resolution.value, "QHD+");
   assert.match(galaxy.display.resolution.qualification ?? "", /Pixel dimensions are not stated/);
+});
+
+test("the expansion preserves U.S. launch context and explicit timing bases", () => {
+  const expansionSlugs = [
+    "motorola-razr-ultra-2026",
+    "motorola-razr-plus-2026",
+    "motorola-razr-2026",
+    "motorola-edge-2026",
+    "oneplus-13",
+    "oneplus-13r",
+    "nothing-phone-4a-pro",
+    "nothing-phone-3"
+  ];
+  const expansion: readonly PhoneRecord[] = phones.filter(({ slug }) => expansionSlugs.includes(slug));
+  assert.deepEqual(expansion.map(({ slug }) => slug), expansionSlugs);
+
+  for (const phone of expansion) {
+    assert.equal(phone.originalPrice.value.currency, "USD");
+    assert.equal(phone.originalPrice.value.market, "United States");
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+    assert.ok(phone.charging);
+  }
+
+  assert.deepEqual(
+    expansion.filter(({ releasedOn }) => releasedOn.basis === "announcement").map(({ slug }) => slug),
+    ["oneplus-13", "oneplus-13r"]
+  );
+  const onePlus = expansion.find(({ slug }) => slug === "oneplus-13");
+  const nothing = expansion.find(({ slug }) => slug === "nothing-phone-4a-pro");
+  assert.ok(onePlus);
+  assert.ok(nothing?.colors);
+  assert.deepEqual(onePlus.generation.sourceIds, ["oneplus-us-phone-catalogue", "oneplus-13-specs"]);
+  assert.match(onePlus.releasedOn.qualification ?? "", /does not state a first-sale date/i);
+  assert.match(nothing.colors.qualification ?? "", /global colours are not inferred/i);
+});
+
+test("source registry keys and URLs resolve to reviewed first-party domains", () => {
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community"];
+
+  for (const [sourceId, source] of Object.entries(sources)) {
+    assert.equal(source.id, sourceId);
+    const url = new URL(source.url);
+    assert.equal(url.protocol, "https:");
+    assert.ok(
+      firstPartyDomains.some((domain) => url.hostname === domain || url.hostname.endsWith(`.${domain}`)),
+      `${sourceId} uses an unreviewed domain: ${url.hostname}`
+    );
+  }
 });
 
 test("current standard models preserve official launch context and source-local measurements", () => {

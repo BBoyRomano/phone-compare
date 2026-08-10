@@ -68,3 +68,11 @@ test("same-phone comparisons do not pretend there are differences", () => {
   const selected = phone("apple-iphone-16");
   assert.deepEqual(comparisonHighlights(selected, selected), []);
 });
+
+test("does not compare announcement dates with availability dates", () => {
+  const mixedBasis = comparisonHighlights(phone("oneplus-13"), phone("nothing-phone-3"));
+  assert.equal(mixedBasis.some(({ kind }) => kind === "release"), false);
+
+  const availabilityBasis = comparisonHighlights(phone("nothing-phone-3"), phone("nothing-phone-4a-pro"));
+  assert.equal(availabilityBasis.find(({ kind }) => kind === "release")?.statement, "Phone (4a) Pro was released later");
+});
