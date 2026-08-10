@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { comparisonHighlights } from "@/data/comparison";
-import { factsFor, phones, sources, type PhoneRecord, type SourceId, type SourcedValue } from "@/data/catalog";
+import { factsFor, phones, sources, type PhoneRecord, type SourceId, type SourcedDate, type SourcedValue } from "@/data/catalog";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -111,12 +111,28 @@ function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: Re
   );
 }
 
-function DateFact({ fact, sourceNumbers }: { fact: SourcedValue<string>; sourceNumbers: ReadonlyMap<SourceId, number> }) {
+function DateFact({ fact, sourceNumbers }: { fact: SourcedDate; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   return (
     <>
       <time dateTime={fact.value}>{formatDate(fact.value)}</time>
       <SourceMarks ids={fact.sourceIds} sourceNumbers={sourceNumbers} />
       {fact.qualification ? <small>{fact.qualification}</small> : null}
+    </>
+  );
+}
+
+function OptionalFact({
+  fact,
+  sourceNumbers
+}: {
+  fact: SourcedValue<string> | undefined;
+  sourceNumbers: ReadonlyMap<SourceId, number>;
+}) {
+  if (fact) return <Fact fact={fact} sourceNumbers={sourceNumbers} />;
+  return (
+    <>
+      <span className="not-stated">Not captured</span>
+      <small>Optional field added for newer catalogue records; no value inferred.</small>
     </>
   );
 }
@@ -161,6 +177,7 @@ function SecondaryDisplay({ phone, sourceNumbers }: { phone: PhoneRecord; source
 
 function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
+  const timingLabel = phone.releasedOn.basis === "announcement" ? "Announced" : "Released";
   return (
     <article className="phone-card">
       <div className={`phone-silhouette ${makerClass}`} aria-hidden="true"><i /><b /><b /></div>
@@ -175,27 +192,26 @@ function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers
         </span>
         <span>{phone.maker.value}<SourceMarks ids={phone.maker.sourceIds} sourceNumbers={sourceNumbers} /></span>
         <strong>{phone.model.value}<SourceMarks ids={phone.model.sourceIds} sourceNumbers={sourceNumbers} /></strong>
-        <small>Released <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /></small>
+        <small>{timingLabel} <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /></small>
       </div>
     </article>
   );
 }
 
 function PhoneSelect({ name, label, phone }: { name: "left" | "right"; label: string; phone: PhoneRecord }) {
-  const generationGroups = [
-    { value: "current", label: "Current generation" },
-    { value: "earlier", label: "Earlier generation" }
-  ] as const;
+  const manufacturers = [...new Set(phones.map((option) => option.maker.value))];
 
   return (
     <label>
       <span>{label}</span>
       <select name={name} defaultValue={phone.slug}>
-        {generationGroups.map((group) => (
-          <optgroup label={group.label} key={group.value}>
-            {phones.filter((option) => option.generation.value === group.value).map((option) => (
+        {manufacturers.map((manufacturer) => (
+          <optgroup label={manufacturer} key={manufacturer}>
+            {phones.filter((option) => option.maker.value === manufacturer).map((option) => (
               <option value={option.slug} key={option.slug}>
-                {option.maker.value} {option.model.value}{option.formFactor.value === "slab" ? "" : ` — ${formFactorLabels[option.formFactor.value]}`}
+                {option.model.value}
+                {option.formFactor.value === "slab" ? "" : ` — ${formFactorLabels[option.formFactor.value]}`}
+                {option.generation.value === "earlier" ? " — earlier" : ""}
               </option>
             ))}
           </optgroup>
@@ -263,11 +279,13 @@ function KeyDifferences({
   );
 }
 
-const comparisonRows: readonly {
+type ComparisonRow = {
   label: string;
   render: (phone: PhoneRecord, sourceNumbers: ReadonlyMap<SourceId, number>) => React.ReactNode;
   note?: string;
-}[] = [
+};
+
+const coreComparisonRows: readonly ComparisonRow[] = [
   {
     label: "Generation",
     render: (phone, sourceNumbers) => <GenerationFact phone={phone} sourceNumbers={sourceNumbers} />,
@@ -275,7 +293,11 @@ const comparisonRows: readonly {
   },
   { label: "Form factor", render: (phone, sourceNumbers) => <FormFactorFact phone={phone} sourceNumbers={sourceNumbers} /> },
   { label: "Original price", render: (phone, sourceNumbers) => <Price phone={phone} sourceNumbers={sourceNumbers} /> },
-  { label: "Release date", render: (phone, sourceNumbers) => <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} /> },
+  {
+    label: "Launch timing",
+    render: (phone, sourceNumbers) => <DateFact fact={phone.releasedOn} sourceNumbers={sourceNumbers} />,
+    note: "Availability dates and announcement dates are distinguished in each record; mixed bases are never ranked as if equivalent."
+  },
   { label: "Main display size", render: (phone, sourceNumbers) => <Fact fact={phone.display.size} sourceNumbers={sourceNumbers} /> },
   { label: "Main display", render: (phone, sourceNumbers) => <Fact fact={phone.display.panel} sourceNumbers={sourceNumbers} /> },
   { label: "Resolution", render: (phone, sourceNumbers) => <Fact fact={phone.display.resolution} sourceNumbers={sourceNumbers} /> },
@@ -294,8 +316,22 @@ const comparisonRows: readonly {
   { label: "Water & dust", render: (phone, sourceNumbers) => <Fact fact={phone.resistance} sourceNumbers={sourceNumbers} /> }
 ];
 
+const optionalComparisonRows: readonly (ComparisonRow & { field: "configurations" | "colors" | "dimensions" | "charging" })[] = [
+  { field: "configurations", label: "Configurations", render: (phone, sourceNumbers) => <OptionalFact fact={phone.configurations} sourceNumbers={sourceNumbers} /> },
+  { field: "colors", label: "Colors", render: (phone, sourceNumbers) => <OptionalFact fact={phone.colors} sourceNumbers={sourceNumbers} /> },
+  { field: "dimensions", label: "Dimensions", render: (phone, sourceNumbers) => <OptionalFact fact={phone.dimensions} sourceNumbers={sourceNumbers} /> },
+  { field: "charging", label: "Charging", render: (phone, sourceNumbers) => <OptionalFact fact={phone.charging} sourceNumbers={sourceNumbers} /> }
+];
+
+function comparisonRowsFor(left: PhoneRecord, right: PhoneRecord): readonly ComparisonRow[] {
+  const optionalRows = optionalComparisonRows.filter(({ field }) => left[field] || right[field]);
+  const storageIndex = coreComparisonRows.findIndex(({ label }) => label === "Storage") + 1;
+  return [...coreComparisonRows.slice(0, storageIndex), ...optionalRows, ...coreComparisonRows.slice(storageIndex)];
+}
+
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const { phones: [left, right], replaced } = await selectedPhones(searchParams);
+  const comparisonRows = comparisonRowsFor(left, right);
   const usedSourceIdSet = new Set([...factsFor(left), ...factsFor(right)].flatMap((fact) => fact.sourceIds));
   const usedSourceIds = (Object.keys(sources) as SourceId[]).filter((sourceId) => usedSourceIdSet.has(sourceId));
   const sourceNumbers = new Map<SourceId, number>(
@@ -347,7 +383,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
         <form className="phone-selector" action="/" method="get" aria-label="Choose phones to compare">
           <p className="selector-help">
-            Start with the current generation, or open the earlier-generation group for useful historical comparisons.
+            Open a manufacturer group to find its current phones; useful earlier-generation models are labeled.
           </p>
           <PhoneSelect name="left" label="First phone" phone={left} />
           <span aria-hidden="true">vs</span>

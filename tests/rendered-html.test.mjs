@@ -22,11 +22,12 @@ test("server-renders the comparison and its provenance", async () => {
   const html = await response.text();
   assert.match(html, /iPhone 17 vs Pixel 10/);
   assert.match(html, /6(?:<!-- -->)? cited sources/);
-  assert.match(html, /13(?:<!-- -->)? current generation/);
-  assert.match(html, /16(?:<!-- -->)? phones/);
+  assert.match(html, /21(?:<!-- -->)? current generation/);
+  assert.match(html, /24(?:<!-- -->)? phones/);
   assert.match(html, /16(?:<!-- -->)? comparison points/);
-  assert.match(html, /<optgroup label="Current generation">/);
-  assert.match(html, /<optgroup label="Earlier generation">/);
+  for (const manufacturer of ["Apple", "Google", "Samsung", "Motorola", "OnePlus", "Nothing"]) {
+    assert.match(html, new RegExp(`<optgroup label="${manufacturer}">`));
+  }
   assert.match(html, /latest comparison-ready lineup, based on official U\.S\. catalogue and launch data/);
   assert.match(html, /Official U\.S\. catalogue/);
   assert.match(html, /Same documented U\.S\. starting price/);
@@ -220,4 +221,23 @@ test("server-renders the sourced thin-slab iPhone Air", async () => {
   assert.match(html, /5\.64 mm thin/);
   assert.match(html, /Up to 27 hours of video playback/);
   assert.match(html, /https:\/\/www\.apple\.com\/iphone-air\/specs/);
+});
+
+test("server-renders the expanded manufacturers with optional facts and timing qualifications", async () => {
+  const response = await render("/?left=motorola-razr-plus-2026&right=oneplus-13");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /razr\+ - 2026 vs OnePlus 13/);
+  assert.match(html, /20(?:<!-- -->)? comparison points/);
+  assert.match(html, /Configurations/);
+  assert.match(html, /12 GB RAM \+ 256 GB storage/);
+  assert.match(html, /PANTONE Mountain View/);
+  assert.match(html, /Open: 171\.42 × 73\.99 × 7\.09 mm/);
+  assert.match(html, /45 W wired, 15 W wireless, 5 W reverse/);
+  assert.match(html, /Announced/);
+  assert.match(html, /does not state a first-sale date/);
+  assert.doesNotMatch(html, /OnePlus 13 was released later|OnePlus 13 was announced later/);
+  assert.match(html, /https:\/\/www\.motorola\.com\/us\/en\/p\/phones\/razr\/razr-plus-2026/);
+  assert.match(html, /https:\/\/www\.oneplus\.com\/us\/13\/specs/);
 });

@@ -219,6 +219,171 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2026-07-22",
     accessedAt: "2026-08-09"
+  },
+  "motorola-us-smartphone-catalogue": {
+    id: "motorola-us-smartphone-catalogue",
+    publisher: "Motorola",
+    title: "All Moto phones",
+    url: "https://www.motorola.com/us/en/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-razr-ultra-2026-specs": {
+    id: "motorola-razr-ultra-2026-specs",
+    publisher: "Motorola",
+    title: "motorola razr ultra - 2026",
+    url: "https://www.motorola.com/us/en/p/phones/razr/razr-ultra-2026/pmipmjk44m3",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-razr-plus-2026-specs": {
+    id: "motorola-razr-plus-2026-specs",
+    publisher: "Motorola",
+    title: "motorola razr+ - 2026",
+    url: "https://www.motorola.com/us/en/p/phones/razr/razr-plus-2026/pmipmjq44ms",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-razr-2026-specs": {
+    id: "motorola-razr-2026-specs",
+    publisher: "Motorola",
+    title: "motorola razr - 2026",
+    url: "https://www.motorola.com/us/en/p/phones/razr/razr-2026/pmipmjl44m7",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-razr-2026-announcement": {
+    id: "motorola-razr-2026-announcement",
+    publisher: "Motorola",
+    title: "Motorola introduces three new flip devices to the razr family",
+    url: "https://motorolanews.com/power-style-and-flexibility-motorola-introduces-three-new-flip-devices-to-the-razr-family/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-04-29",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-edge-2026-specs": {
+    id: "motorola-edge-2026-specs",
+    publisher: "Motorola",
+    title: "Specifications - motorola edge 2026",
+    url: "https://en-us.support.motorola.com/app/answers/detail/a_id/193052/p/10860",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "motorola-edge-2026-announcement": {
+    id: "motorola-edge-2026-announcement",
+    publisher: "Motorola",
+    title: "Introducing the new motorola edge 2026 and moto buds 2",
+    url: "https://motorolanews.com/designed-for-comfort-built-for-everyday-entertainment-introducing-the-new-motorola-edge-2026-and-moto-buds-2/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-06-03",
+    accessedAt: "2026-08-10"
+  },
+  "oneplus-us-phone-catalogue": {
+    id: "oneplus-us-phone-catalogue",
+    publisher: "OnePlus",
+    title: "OnePlus phones",
+    url: "https://www.oneplus.com/us/product",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "oneplus-13-specs": {
+    id: "oneplus-13-specs",
+    publisher: "OnePlus",
+    title: "OnePlus 13 Specs",
+    url: "https://www.oneplus.com/us/13/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oneplus-13r-specs": {
+    id: "oneplus-13r-specs",
+    publisher: "OnePlus",
+    title: "OnePlus 13R Specs",
+    url: "https://www.oneplus.com/us/13r/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "oneplus-13-series-announcement": {
+    id: "oneplus-13-series-announcement",
+    publisher: "OnePlus",
+    title: "OnePlus launches its new flagship series in North America",
+    url: "https://www.oneplus.com/us/press/press-release/oneplus-launches-new-smartphone-flagship-series-in-north-america-oneplus-13-and-oneplus-13r",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-01-07",
+    accessedAt: "2026-08-10"
+  },
+  "oneplus-13-series-pricing": {
+    id: "oneplus-13-series-pricing",
+    publisher: "OnePlus",
+    title: "The OnePlus 13 Series is here",
+    url: "https://community.oneplus.com/thread/1734468328384102406",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-01-07",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-us-phone-catalogue": {
+    id: "nothing-us-phone-catalogue",
+    publisher: "Nothing",
+    title: "Nothing phones - United States",
+    url: "https://us.nothing.tech/collections/phones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-4a-pro-product": {
+    id: "nothing-phone-4a-pro-product",
+    publisher: "Nothing",
+    title: "Phone (4a) Pro - United States",
+    url: "https://us.nothing.tech/products/phone-4a-pro",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-4a-pro-announcement": {
+    id: "nothing-phone-4a-pro-announcement",
+    publisher: "Nothing",
+    title: "Phone (4a) Pro has arrived",
+    url: "https://nothing.community/en/d/53745-phone-4a-pro-has-arrived",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-03-05",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-4a-series-us-terms": {
+    id: "nothing-phone-4a-series-us-terms",
+    publisher: "Nothing",
+    title: "Nothing Phone (4a) Series pre-order terms and conditions",
+    url: "https://us.nothing.tech/pages/nothing-phone-4a-series-pre-order-terms-and-conditions/",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-4a-pro-dimensions": {
+    id: "nothing-phone-4a-pro-dimensions",
+    publisher: "Nothing",
+    title: "Phone (4a) Pro dimensions and weight",
+    url: "https://support.nothing.tech/hc/en-us/articles/43270507668113-What-are-the-dimensions-weight-of-Phone-4a-Pro",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-3-product": {
+    id: "nothing-phone-3-product",
+    publisher: "Nothing",
+    title: "Phone (3)",
+    url: "https://nothing.tech/products/phone-3",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-3-us-terms": {
+    id: "nothing-phone-3-us-terms",
+    publisher: "Nothing",
+    title: "Phone (3) U.S. pre-order offer",
+    url: "https://us.nothing.tech/pages/pre-order-offer",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-10"
+  },
+  "nothing-phone-3-dimensions": {
+    id: "nothing-phone-3-dimensions",
+    publisher: "Nothing",
+    title: "Phone (3) dimensions and weight",
+    url: "https://support.nothing.tech/hc/en-us/articles/36457446865169-What-are-the-dimensions-and-weight-of-Nothing-Phone-3",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -239,13 +404,17 @@ export interface SourcedValue<T> {
   readonly qualification?: string;
 }
 
+export interface SourcedDate extends SourcedValue<string> {
+  readonly basis?: "availability" | "announcement";
+}
+
 export interface PhoneRecord {
   readonly slug: string;
   readonly maker: SourcedValue<string>;
   readonly model: SourcedValue<string>;
   readonly generation: SourcedValue<"current" | "earlier">;
   readonly formFactor: SourcedValue<"slab" | "thin-slab" | "book-fold" | "flip-fold">;
-  readonly releasedOn: SourcedValue<string>;
+  readonly releasedOn: SourcedDate;
   readonly originalPrice: SourcedValue<{
     readonly amount: number | null;
     readonly currency: "USD";
@@ -265,6 +434,10 @@ export interface PhoneRecord {
     readonly options: string;
     readonly startsAtGb: number;
   }>;
+  readonly configurations?: SourcedValue<string>;
+  readonly colors?: SourcedValue<string>;
+  readonly dimensions?: SourcedValue<string>;
+  readonly charging?: SourcedValue<string>;
   readonly processor: SourcedValue<string | null>;
   readonly rearCameras: SourcedValue<string>;
   readonly batteryClaim: SourcedValue<string>;
@@ -298,6 +471,27 @@ const samsung26Launch = ["samsung-galaxy-s26-announcement"] as const;
 const samsungCatalogue = ["samsung-us-smartphone-catalogue"] as const;
 const samsungA57Launch = ["samsung-galaxy-a57-announcement"] as const;
 const samsungZ8Launch = ["samsung-galaxy-z8-announcement"] as const;
+const motorolaCatalogue = ["motorola-us-smartphone-catalogue"] as const;
+const motorolaRazrUltraSpecs = ["motorola-razr-ultra-2026-specs"] as const;
+const motorolaRazrPlusSpecs = ["motorola-razr-plus-2026-specs"] as const;
+const motorolaRazrSpecs = ["motorola-razr-2026-specs"] as const;
+const motorolaRazrLaunch = ["motorola-razr-2026-announcement"] as const;
+const motorolaEdgeSpecs = ["motorola-edge-2026-specs"] as const;
+const motorolaEdgeLaunch = ["motorola-edge-2026-announcement"] as const;
+const onePlus13Specs = ["oneplus-13-specs"] as const;
+const onePlus13RSpecs = ["oneplus-13r-specs"] as const;
+const onePlus13Generation = ["oneplus-us-phone-catalogue", "oneplus-13-specs"] as const;
+const onePlus13RGeneration = ["oneplus-us-phone-catalogue", "oneplus-13r-specs"] as const;
+const onePlus13Launch = ["oneplus-13-series-announcement"] as const;
+const onePlus13Pricing = ["oneplus-13-series-pricing"] as const;
+const nothingCatalogue = ["nothing-us-phone-catalogue"] as const;
+const nothing4aProduct = ["nothing-phone-4a-pro-product"] as const;
+const nothing4aLaunch = ["nothing-phone-4a-pro-announcement"] as const;
+const nothing4aTerms = ["nothing-phone-4a-series-us-terms"] as const;
+const nothing4aDimensions = ["nothing-phone-4a-pro-dimensions"] as const;
+const nothing3Product = ["nothing-phone-3-product"] as const;
+const nothing3Terms = ["nothing-phone-3-us-terms"] as const;
+const nothing3Dimensions = ["nothing-phone-3-dimensions"] as const;
 
 export const phones = [
   {
@@ -1227,6 +1421,470 @@ export const phones = [
       sourceIds: samsungLaunch,
       qualification: "Laboratory conditions; not advised for beach or pool use, and resistance can diminish with wear"
     }
+  },
+  {
+    slug: "motorola-razr-ultra-2026",
+    maker: { value: "Motorola", sourceIds: motorolaRazrUltraSpecs },
+    model: { value: "razr ultra - 2026", sourceIds: motorolaRazrUltraSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Part of Motorola's 2026 U.S. razr family; classification does not assert channel stock"
+    },
+    formFactor: { value: "flip-fold", sourceIds: motorolaRazrUltraSpecs },
+    releasedOn: {
+      value: "2026-05-21",
+      basis: "availability",
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: {
+        amount: 1499.99,
+        currency: "USD",
+        market: "United States",
+        configuration: "Capacity not stated in the MSRP announcement"
+      },
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. MSRP at announcement; the product page separately describes 256 GB and 512 GB storage"
+    },
+    display: {
+      size: { value: "7.0 inches", sourceIds: motorolaRazrUltraSpecs },
+      panel: { value: "LTPO Extreme AMOLED", sourceIds: motorolaRazrUltraSpecs },
+      resolution: { value: "1224 × 2992", sourceIds: motorolaRazrUltraSpecs },
+      refreshRate: { value: "Up to 165 Hz", sourceIds: motorolaRazrUltraSpecs },
+      peakBrightness: { value: "5,000 nits peak", sourceIds: motorolaRazrUltraSpecs }
+    },
+    secondaryDisplay: {
+      value: "4.0-inch Extreme AMOLED, 1272 × 1080, up to 165 Hz, 3,000 nits peak",
+      sourceIds: motorolaRazrUltraSpecs
+    },
+    weight: { value: "199 g", sourceIds: motorolaRazrUltraSpecs },
+    storage: {
+      value: { options: "256 GB or 512 GB", startsAtGb: 256 },
+      sourceIds: motorolaRazrUltraSpecs,
+      qualification: "Product-page marketing describes both capacities; reviewed selections can vary"
+    },
+    configurations: {
+      value: "16 GB RAM; 256 GB or 512 GB storage",
+      sourceIds: motorolaRazrUltraSpecs,
+      qualification: "The reviewed specification lists 16 GB RAM and 512 GB storage; product-page marketing also describes a 256 GB capacity, so channel availability can vary"
+    },
+    colors: { value: "PANTONE Orient Blue or PANTONE Cocoa", sourceIds: motorolaRazrUltraSpecs },
+    dimensions: {
+      value: "Open: 171.48 × 73.99 × 7.19 mm; closed: 88.12 × 73.99 × 15.69 mm",
+      sourceIds: motorolaRazrUltraSpecs
+    },
+    charging: { value: "68 W wired, 30 W wireless, 5 W reverse", sourceIds: motorolaRazrUltraSpecs },
+    processor: { value: "Snapdragon 8 Elite Mobile Platform", sourceIds: motorolaRazrUltraSpecs },
+    rearCameras: { value: "50 MP wide + 50 MP ultrawide", sourceIds: motorolaRazrUltraSpecs },
+    batteryClaim: {
+      value: "5,000 mAh; up to 36 hours",
+      sourceIds: motorolaRazrUltraSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP48 dust and water resistance",
+      sourceIds: motorolaRazrUltraSpecs,
+      qualification: "Laboratory rating; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "motorola-razr-plus-2026",
+    maker: { value: "Motorola", sourceIds: motorolaRazrPlusSpecs },
+    model: { value: "razr+ - 2026", sourceIds: motorolaRazrPlusSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Part of Motorola's 2026 U.S. razr family; classification does not assert channel stock"
+    },
+    formFactor: { value: "flip-fold", sourceIds: motorolaRazrPlusSpecs },
+    releasedOn: {
+      value: "2026-05-21",
+      basis: "availability",
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: { amount: 1099.99, currency: "USD", market: "United States", configuration: "256 GB" },
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. MSRP at announcement; capacity is from the cited U.S. specification"
+    },
+    display: {
+      size: { value: "6.9 inches", sourceIds: motorolaRazrPlusSpecs },
+      panel: { value: "LTPO Extreme AMOLED", sourceIds: motorolaRazrPlusSpecs },
+      resolution: { value: "1084 × 2640 (FHD+)", sourceIds: motorolaRazrPlusSpecs },
+      refreshRate: { value: "Up to 165 Hz", sourceIds: motorolaRazrPlusSpecs },
+      peakBrightness: { value: "3,000 nits peak", sourceIds: motorolaRazrPlusSpecs }
+    },
+    secondaryDisplay: {
+      value: "4.0-inch LTPS Extreme AMOLED, 1272 × 1080, up to 165 Hz, 2,400 nits peak",
+      sourceIds: motorolaRazrPlusSpecs
+    },
+    weight: { value: "189 g", sourceIds: motorolaRazrPlusSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: motorolaRazrPlusSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage", sourceIds: motorolaRazrPlusSpecs },
+    colors: { value: "PANTONE Mountain View", sourceIds: motorolaRazrPlusSpecs },
+    dimensions: {
+      value: "Open: 171.42 × 73.99 × 7.09 mm; closed: 88.09 × 73.99 × 15.32 mm",
+      sourceIds: motorolaRazrPlusSpecs
+    },
+    charging: { value: "45 W wired, 15 W wireless, 5 W reverse", sourceIds: motorolaRazrPlusSpecs },
+    processor: { value: "Snapdragon 8s Gen 3 Mobile Platform", sourceIds: motorolaRazrPlusSpecs },
+    rearCameras: { value: "50 MP wide + 50 MP ultrawide", sourceIds: motorolaRazrPlusSpecs },
+    batteryClaim: {
+      value: "4,500 mAh; over 31 hours",
+      sourceIds: motorolaRazrPlusSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP48; water protection up to 1.5 m",
+      sourceIds: motorolaRazrPlusSpecs,
+      qualification: "Laboratory rating; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "motorola-razr-2026",
+    maker: { value: "Motorola", sourceIds: motorolaRazrSpecs },
+    model: { value: "razr - 2026", sourceIds: motorolaRazrSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Part of Motorola's 2026 U.S. razr family; classification does not assert channel stock"
+    },
+    formFactor: { value: "flip-fold", sourceIds: motorolaRazrSpecs },
+    releasedOn: {
+      value: "2026-05-21",
+      basis: "availability",
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: { amount: 799.99, currency: "USD", market: "United States", configuration: "256 GB" },
+      sourceIds: motorolaRazrLaunch,
+      qualification: "Official U.S. MSRP at announcement; capacity is from the cited U.S. specification"
+    },
+    display: {
+      size: { value: "6.9 inches", sourceIds: motorolaRazrSpecs },
+      panel: { value: "LTPO Extreme AMOLED", sourceIds: motorolaRazrSpecs },
+      resolution: { value: "1080 × 2640", sourceIds: motorolaRazrSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: motorolaRazrSpecs },
+      peakBrightness: { value: "3,000 nits peak", sourceIds: motorolaRazrSpecs }
+    },
+    secondaryDisplay: {
+      value: "3.6-inch LTPS Extreme AMOLED, 1056 × 1066, up to 90 Hz, 1,700 nits peak",
+      sourceIds: motorolaRazrSpecs
+    },
+    weight: { value: "188 g", sourceIds: motorolaRazrSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: motorolaRazrSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: motorolaRazrSpecs },
+    colors: {
+      value: "PANTONE Bright White, Sporting Green, Violet Ice, or Hematite",
+      sourceIds: motorolaRazrSpecs
+    },
+    dimensions: {
+      value: "Open: 171.30 × 73.99 × 7.25 mm; closed: 88.08 × 73.99 × 15.85 mm",
+      sourceIds: motorolaRazrSpecs
+    },
+    charging: { value: "30 W wired or 15 W wireless", sourceIds: motorolaRazrSpecs },
+    processor: { value: "MediaTek Dimensity 7450X", sourceIds: motorolaRazrSpecs },
+    rearCameras: { value: "50 MP wide + 50 MP ultrawide", sourceIds: motorolaRazrSpecs },
+    batteryClaim: {
+      value: "4,800 mAh; over 36 hours",
+      sourceIds: motorolaRazrSpecs,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP48; MIL-STD-810H tested",
+      sourceIds: motorolaRazrSpecs,
+      qualification: "Laboratory rating and durability testing; not a guarantee against damage"
+    }
+  },
+  {
+    slug: "motorola-edge-2026",
+    maker: { value: "Motorola", sourceIds: motorolaEdgeSpecs },
+    model: { value: "edge - 2026", sourceIds: motorolaEdgeSpecs },
+    generation: {
+      value: "current",
+      sourceIds: motorolaCatalogue,
+      qualification: "Motorola's current numbered U.S. edge model; classification does not assert channel stock"
+    },
+    formFactor: { value: "slab", sourceIds: motorolaEdgeSpecs },
+    releasedOn: {
+      value: "2026-06-11",
+      basis: "availability",
+      sourceIds: motorolaEdgeLaunch,
+      qualification: "Official U.S. availability date"
+    },
+    originalPrice: {
+      value: { amount: 599.99, currency: "USD", market: "United States", configuration: "128 GB" },
+      sourceIds: motorolaEdgeLaunch,
+      qualification: "Official U.S. MSRP at announcement; capacity is from the cited U.S. support specification"
+    },
+    display: {
+      size: { value: "6.3 inches", sourceIds: motorolaEdgeSpecs },
+      panel: { value: "Extreme AMOLED", sourceIds: motorolaEdgeSpecs },
+      resolution: { value: "2640 × 1216 (Super HD+)", sourceIds: motorolaEdgeSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: motorolaEdgeSpecs },
+      peakBrightness: { value: "5,200 nits peak", sourceIds: motorolaEdgeSpecs }
+    },
+    weight: { value: "160.5 g", sourceIds: motorolaEdgeSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: motorolaEdgeSpecs },
+    configurations: { value: "8 GB RAM + 128 GB storage", sourceIds: motorolaEdgeSpecs },
+    colors: {
+      value: "PANTONE Martini Olive",
+      sourceIds: motorolaEdgeLaunch,
+      qualification: "Colour shown for the announced U.S. model"
+    },
+    dimensions: { value: "152.3 × 71.98 × 7.22 mm", sourceIds: motorolaEdgeSpecs },
+    charging: { value: "60 W wired or 15 W wireless", sourceIds: motorolaEdgeSpecs },
+    processor: { value: "MediaTek Dimensity 7450", sourceIds: motorolaEdgeSpecs },
+    rearCameras: {
+      value: "50 MP wide + 50 MP ultrawide + 10 MP 3× telephoto",
+      sourceIds: motorolaEdgeSpecs
+    },
+    batteryClaim: {
+      value: "5,000 mAh",
+      sourceIds: motorolaEdgeSpecs,
+      qualification: "Manufacturer-rated battery size; no cross-brand endurance inference"
+    },
+    resistance: {
+      value: "IP68 and IP69; MIL-STD-810H tested",
+      sourceIds: motorolaEdgeSpecs,
+      qualification: "Laboratory ratings and durability testing; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "oneplus-13",
+    maker: { value: "OnePlus", sourceIds: onePlus13Specs },
+    model: { value: "OnePlus 13", sourceIds: onePlus13Specs },
+    generation: {
+      value: "current",
+      sourceIds: onePlus13Generation,
+      qualification: "Retained in OnePlus's U.S. phone catalogue with a Buy now action; the catalogue also retains older products, so this does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: onePlus13Specs },
+    releasedOn: {
+      value: "2025-01-07",
+      basis: "announcement",
+      sourceIds: onePlus13Launch,
+      qualification: "Official North American announcement date; the cited first-party release does not state a first-sale date"
+    },
+    originalPrice: {
+      value: { amount: 899.99, currency: "USD", market: "United States", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: onePlus13Pricing,
+      qualification: "Official North American starting price at announcement"
+    },
+    display: {
+      size: { value: "6.82 inches", sourceIds: onePlus13Specs },
+      panel: { value: "LTPO 4.1 ProXDR", sourceIds: onePlus13Specs },
+      resolution: { value: "3168 × 1440 (QHD+)", sourceIds: onePlus13Specs },
+      refreshRate: { value: "1–120 Hz dynamic", sourceIds: onePlus13Specs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: onePlus13Specs }
+    },
+    weight: {
+      value: "210 g or 213 g",
+      sourceIds: onePlus13Specs,
+      qualification: "210 g for Midnight Ocean; 213 g for Arctic Dawn and Black Eclipse"
+    },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: onePlus13Specs },
+    configurations: { value: "12 GB + 256 GB or 16 GB + 512 GB", sourceIds: onePlus13Specs },
+    colors: { value: "Midnight Ocean, Arctic Dawn, or Black Eclipse", sourceIds: onePlus13Pricing },
+    dimensions: {
+      value: "162.9 × 76.5 × 8.5 mm; Midnight Ocean is 8.9 mm thick",
+      sourceIds: onePlus13Specs
+    },
+    charging: {
+      value: "80 W SUPERVOOC or 50 W AIRVOOC",
+      sourceIds: onePlus13Specs,
+      qualification: "U.S. specification; up to 100 W with OnePlus's named dual-port adapter"
+    },
+    processor: { value: "Snapdragon 8 Elite Mobile Platform", sourceIds: onePlus13Specs },
+    rearCameras: {
+      value: "50 MP wide + 50 MP 3× telephoto + 50 MP ultrawide",
+      sourceIds: onePlus13Specs
+    },
+    batteryClaim: {
+      value: "6,000 mAh typical capacity",
+      sourceIds: onePlus13Specs,
+      qualification: "Equivalent capacity of the dual-cell battery; actual endurance varies"
+    },
+    resistance: {
+      value: "IP68 and IP69 dust and water resistance",
+      sourceIds: onePlus13Launch,
+      qualification: "Controlled laboratory conditions; resistance can decrease with wear"
+    }
+  },
+  {
+    slug: "oneplus-13r",
+    maker: { value: "OnePlus", sourceIds: onePlus13RSpecs },
+    model: { value: "OnePlus 13R", sourceIds: onePlus13RSpecs },
+    generation: {
+      value: "current",
+      sourceIds: onePlus13RGeneration,
+      qualification: "Retained in OnePlus's U.S. phone catalogue with a Buy now action; the catalogue also retains older products, so this does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: onePlus13RSpecs },
+    releasedOn: {
+      value: "2025-01-07",
+      basis: "announcement",
+      sourceIds: onePlus13Launch,
+      qualification: "Official North American announcement date; the cited first-party release does not state a first-sale date"
+    },
+    originalPrice: {
+      value: { amount: 599.99, currency: "USD", market: "United States", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: onePlus13Pricing,
+      qualification: "Official North American starting price at announcement"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: onePlus13RSpecs },
+      panel: { value: "LTPO 4.1 ProXDR", sourceIds: onePlus13RSpecs },
+      resolution: { value: "2780 × 1264", sourceIds: onePlus13RSpecs },
+      refreshRate: { value: "1–120 Hz dynamic", sourceIds: onePlus13RSpecs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: onePlus13RSpecs }
+    },
+    weight: { value: "206 g", sourceIds: onePlus13RSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: onePlus13RSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage", sourceIds: onePlus13RSpecs },
+    colors: { value: "Nebula Noir or Astral Trail", sourceIds: onePlus13Pricing },
+    dimensions: { value: "161.72 × 75.77 × 8.02 mm", sourceIds: onePlus13RSpecs },
+    charging: {
+      value: "55 W SUPERVOOC",
+      sourceIds: onePlus13RSpecs,
+      qualification: "U.S. specification; up to 80 W with OnePlus's named dual-port adapters"
+    },
+    processor: { value: "Snapdragon 8 Gen 3 Mobile Platform", sourceIds: onePlus13RSpecs },
+    rearCameras: {
+      value: "50 MP wide + 50 MP 2× telephoto + 8 MP ultrawide",
+      sourceIds: onePlus13RSpecs
+    },
+    batteryClaim: {
+      value: "6,000 mAh typical capacity",
+      sourceIds: onePlus13RSpecs,
+      qualification: "Manufacturer-rated typical capacity; actual endurance varies"
+    },
+    resistance: {
+      value: "IP65 water and dust resistance",
+      sourceIds: onePlus13Launch,
+      qualification: "Controlled laboratory conditions; resistance can decrease with wear"
+    }
+  },
+  {
+    slug: "nothing-phone-4a-pro",
+    maker: { value: "Nothing", sourceIds: nothing4aProduct },
+    model: { value: "Phone (4a) Pro", sourceIds: nothing4aProduct },
+    generation: {
+      value: "current",
+      sourceIds: nothingCatalogue,
+      qualification: "Listed for purchase in Nothing's U.S. phone catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: nothing4aLaunch },
+    releasedOn: {
+      value: "2026-03-27",
+      basis: "availability",
+      sourceIds: nothing4aTerms,
+      qualification: "First U.S. delivery date stated in the official pre-order terms"
+    },
+    originalPrice: {
+      value: { amount: 499, currency: "USD", market: "United States", configuration: "8 GB RAM + 128 GB storage" },
+      sourceIds: nothing4aTerms,
+      qualification: "Official U.S. pre-order price; current retail price is not substituted"
+    },
+    display: {
+      size: { value: "6.83 inches", sourceIds: nothing4aLaunch },
+      panel: { value: "AMOLED", sourceIds: nothing4aLaunch },
+      resolution: {
+        value: "1.5K",
+        sourceIds: nothing4aLaunch,
+        qualification: "Pixel dimensions are not stated in the cited official announcement"
+      },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: nothing4aLaunch },
+      peakBrightness: { value: "5,000 nits peak", sourceIds: nothing4aLaunch }
+    },
+    weight: { value: "210 g", sourceIds: nothing4aDimensions },
+    storage: {
+      value: { options: "128 GB or 256 GB", startsAtGb: 128 },
+      sourceIds: nothing4aTerms,
+      qualification: "U.S. pre-order configurations"
+    },
+    configurations: { value: "8 GB + 128 GB or 12 GB + 256 GB", sourceIds: nothing4aTerms },
+    colors: {
+      value: "Silver",
+      sourceIds: nothing4aProduct,
+      qualification: "Colour shown for the reviewed U.S. 8 GB + 128 GB selection; global colours are not inferred as U.S. options"
+    },
+    dimensions: { value: "163.2 × 77.4 × 8.0 mm", sourceIds: nothing4aDimensions },
+    charging: { value: "50 W wired", sourceIds: nothing4aLaunch },
+    processor: { value: "Snapdragon 7 Gen 4", sourceIds: nothing4aLaunch },
+    rearCameras: {
+      value: "Sony OIS wide + 50 MP 3.5× OIS telephoto + Sony ultrawide",
+      sourceIds: nothing4aLaunch,
+      qualification: "The cited official announcement does not state megapixel counts for the wide and ultrawide cameras"
+    },
+    batteryClaim: {
+      value: "5,080 mAh; up to 17 hours mixed use",
+      sourceIds: nothing4aLaunch,
+      qualification: "Manufacturer claim; actual results vary"
+    },
+    resistance: {
+      value: "IP65 dust and water resistance",
+      sourceIds: nothing4aLaunch,
+      qualification: "Laboratory rating; resistance can diminish with wear"
+    }
+  },
+  {
+    slug: "nothing-phone-3",
+    maker: { value: "Nothing", sourceIds: nothing3Product },
+    model: { value: "Phone (3)", sourceIds: nothing3Product },
+    generation: {
+      value: "current",
+      sourceIds: nothingCatalogue,
+      qualification: "Listed for purchase in Nothing's U.S. phone catalogue; classification does not guarantee stock"
+    },
+    formFactor: { value: "slab", sourceIds: nothing3Product },
+    releasedOn: {
+      value: "2025-07-15",
+      basis: "availability",
+      sourceIds: nothing3Terms,
+      qualification: "First U.S. delivery date stated in the official pre-order terms"
+    },
+    originalPrice: {
+      value: { amount: 799, currency: "USD", market: "United States", configuration: "12 GB RAM + 256 GB storage" },
+      sourceIds: nothing3Terms,
+      qualification: "Official U.S. pre-order price; later promotional prices are not substituted"
+    },
+    display: {
+      size: { value: "6.67 inches", sourceIds: nothing3Product },
+      panel: { value: "Flexible AMOLED", sourceIds: nothing3Product },
+      resolution: { value: "1260 × 2800", sourceIds: nothing3Product },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: nothing3Product },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: nothing3Product }
+    },
+    weight: { value: "218 g", sourceIds: nothing3Dimensions },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: nothing3Terms },
+    configurations: { value: "12 GB + 256 GB or 16 GB + 512 GB", sourceIds: nothing3Terms },
+    colors: { value: "Black or White", sourceIds: nothing3Product },
+    dimensions: { value: "160.60 × 75.59 × 8.99 mm", sourceIds: nothing3Dimensions },
+    charging: {
+      value: "1–50% in under 20 minutes; 15 W wireless; 5 W reverse wireless",
+      sourceIds: nothing3Product,
+      qualification: "Official product-page claims; no unlisted wired wattage is inferred"
+    },
+    processor: { value: "Snapdragon 8s Gen 4", sourceIds: nothing3Product },
+    rearCameras: {
+      value: "50 MP wide + 50 MP 3× periscope telephoto + 50 MP ultrawide",
+      sourceIds: nothing3Product
+    },
+    batteryClaim: {
+      value: "5,150 mAh typical capacity",
+      sourceIds: nothing3Product,
+      qualification: "Manufacturer-rated typical capacity; actual endurance varies"
+    },
+    resistance: {
+      value: "IP68 dust and water resistance",
+      sourceIds: nothing3Product,
+      qualification: "Laboratory rating; resistance can diminish with wear"
+    }
   }
 ] as const satisfies readonly PhoneRecord[];
 
@@ -1248,6 +1906,10 @@ export function factsFor(phone: PhoneRecord): readonly CatalogFact[] {
     ...(phone.secondaryDisplay ? [phone.secondaryDisplay] : []),
     phone.weight,
     phone.storage,
+    ...(phone.configurations ? [phone.configurations] : []),
+    ...(phone.colors ? [phone.colors] : []),
+    ...(phone.dimensions ? [phone.dimensions] : []),
+    ...(phone.charging ? [phone.charging] : []),
     phone.processor,
     phone.rearCameras,
     phone.batteryClaim,
@@ -1260,9 +1922,15 @@ export function validateCatalog(): string[] {
   const sourceIds = new Set(Object.keys(sources));
   const slugs = new Set<string>();
 
-  for (const source of Object.values(sources)) {
+  for (const [sourceKey, source] of Object.entries(sources)) {
     const sourceId = source.id;
+    if (sourceId !== sourceKey) errors.push(`${sourceId}: source key and id must match`);
     if (!source.url.startsWith("https://")) errors.push(`${sourceId}: source URL must use HTTPS`);
+    try {
+      new URL(source.url);
+    } catch {
+      errors.push(`${sourceId}: source URL must be valid`);
+    }
     if (!source.accessedAt) errors.push(`${sourceId}: access date is required`);
   }
 
@@ -1281,6 +1949,12 @@ export function validateCatalog(): string[] {
     }
     if (!storage.options.startsWith(`${storage.startsAtGb} GB`)) {
       errors.push(`${phone.slug}: normalized starting storage does not match the sourced option text`);
+    }
+
+    const timingBasis = "basis" in phone.releasedOn ? phone.releasedOn.basis : "availability";
+    const timingQualification = "qualification" in phone.releasedOn ? phone.releasedOn.qualification : undefined;
+    if (timingBasis === "announcement" && !timingQualification) {
+      errors.push(`${phone.slug}: announcement-based launch timing requires an explicit qualification`);
     }
 
     for (const fact of factsFor(phone)) {

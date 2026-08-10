@@ -111,14 +111,18 @@ function priceHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighli
 }
 
 function releaseHighlight(left: PhoneRecord, right: PhoneRecord): ComparisonHighlight | null {
+  const leftBasis = left.releasedOn.basis ?? "availability";
+  const rightBasis = right.releasedOn.basis ?? "availability";
+  if (leftBasis !== rightBasis) return null;
   if (left.releasedOn.value === right.releasedOn.value) return null;
 
   const [later, earlier] = left.releasedOn.value > right.releasedOn.value ? [left, right] : [right, left];
+  const isAnnouncement = leftBasis === "announcement";
   return {
     kind: "release",
-    label: "Release timing",
-    statement: `${later.model.value} was released later`,
-    context: `${formatDate(later.releasedOn.value)} versus ${formatDate(earlier.releasedOn.value)}. This compares the cited official availability dates only.`,
+    label: isAnnouncement ? "Announcement timing" : "Release timing",
+    statement: `${later.model.value} was ${isAnnouncement ? "announced" : "released"} later`,
+    context: `${formatDate(later.releasedOn.value)} versus ${formatDate(earlier.releasedOn.value)}. This compares the cited official ${isAnnouncement ? "announcement" : "availability"} dates only.`,
     sourceIds: uniqueSourceIds(left.releasedOn.sourceIds, right.releasedOn.sourceIds)
   };
 }

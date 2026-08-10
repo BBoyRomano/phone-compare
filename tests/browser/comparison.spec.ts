@@ -46,6 +46,36 @@ test("supports a keyboard-only selection and submit flow", async ({ page }) => {
   await expect(page.getByText("iPhone 17 is in the current comparison-ready lineup")).toBeVisible();
 });
 
+test("keeps expanded manufacturers discoverable and their sourced facts usable", async ({ page }) => {
+  await page.goto("/");
+
+  const firstPhone = page.getByLabel("First phone");
+  const secondPhone = page.getByLabel("Second phone");
+  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro"]) {
+    await expect(firstPhone.locator(`option[value="${slug}"]`)).toHaveCount(1);
+  }
+
+  await firstPhone.selectOption("nothing-phone-4a-pro");
+  await secondPhone.selectOption("motorola-edge-2026");
+  await page.getByRole("button", { name: "Compare phones" }).click();
+
+  await expect(page).toHaveURL(/\?left=nothing-phone-4a-pro&right=motorola-edge-2026$/);
+  await expect(page.getByRole("heading", { name: "Phone (4a) Pro vs edge - 2026" })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Configurations" })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Colors" })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Dimensions" })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Charging" })).toBeVisible();
+  await expect(page.getByText("Silver", { exact: true })).toBeVisible();
+  await expect(page.getByText("PANTONE Martini Olive", { exact: true })).toBeVisible();
+
+  const sourceLinks = page.locator("#sources a[target='_blank']");
+  await expect(sourceLinks).not.toHaveCount(0);
+  for (const link of await sourceLinks.all()) {
+    await expect(link).toHaveAttribute("href", /^https:\/\//);
+    await expect(link).toHaveAttribute("rel", "noreferrer");
+  }
+});
+
 test("keeps support external and separate from comparison functionality", async ({ page }) => {
   const consoleErrors: string[] = [];
   const pageErrors: string[] = [];
