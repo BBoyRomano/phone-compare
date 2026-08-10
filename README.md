@@ -16,6 +16,10 @@ The canonical project documents are:
 
 Autonomous agents working in this repository should begin with [`AGENTS.md`](AGENTS.md).
 
+## Support
+
+Phone Compare is an independent open-source project. Voluntary support through [GitHub Sponsors](https://github.com/sponsors/BBoyRomano) or [Ko-fi](https://ko-fi.com/bboyromano) helps sustain development and operating costs, but never influences product data or comparisons.
+
 ## Development
 
 The product is a server-rendered TypeScript and React application. Users can compare any two phones in a curated, typed catalogue and share the selection through URL query parameters. Every displayed fact links to first-party provenance.
