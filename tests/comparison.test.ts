@@ -107,3 +107,13 @@ test("does not rank unknown launch timing or unpriced international records", ()
   assert.equal(highlights.some(({ kind }) => kind === "release"), false);
   assert.equal(highlights.some(({ kind }) => kind === "price"), false);
 });
+
+test("does not rank unknown Infinix timing, launch price, or weight", () => {
+  const smart20 = phone("infinix-smart-20");
+  const zeroFlip = phone("infinix-zero-flip");
+  const highlights = comparisonHighlights(smart20, zeroFlip);
+
+  assert.equal(highlights.some(({ kind }) => kind === "release"), false);
+  assert.equal(highlights.some(({ kind }) => kind === "price"), false);
+  assert.equal(highlights.some(({ kind }) => kind === "weight"), false);
+});

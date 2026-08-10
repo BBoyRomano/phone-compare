@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 47);
-  assert.equal(Object.keys(sources).length, 80);
+  assert.equal(phones.length, 58);
+  assert.equal(Object.keys(sources).length, 92);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -18,7 +18,8 @@ test("the catalogue includes current standard models from every represented manu
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
-      "hmd-skyline"
+      "hmd-skyline",
+      "infinix-note-60-pro"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -29,7 +30,8 @@ test("the catalogue includes current standard models from every represented manu
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
-      "hmd-skyline"
+      "hmd-skyline",
+      "infinix-note-60-pro"
     ]
   );
 });
@@ -80,7 +82,18 @@ test("every phone has a sourced, conservative generation classification", () => 
       "hmd-xr21",
       "hmd-pulse",
       "hmd-pulse-plus",
-      "hmd-pulse-pro"
+      "hmd-pulse-pro",
+      "infinix-gt-30-5g-plus",
+      "infinix-gt-30-pro-5g-plus",
+      "infinix-hot-60-5g-plus",
+      "infinix-hot-60i-5g",
+      "infinix-note-60-pro",
+      "infinix-note-40-5g",
+      "infinix-note-edge",
+      "infinix-smart-10",
+      "infinix-smart-20",
+      "infinix-zero-40-5g",
+      "infinix-zero-flip"
     ]
   );
   assert.deepEqual(
@@ -108,7 +121,8 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
       ["samsung-galaxy-z-flip8", "flip-fold"],
       ["motorola-razr-ultra-2026", "flip-fold"],
       ["motorola-razr-plus-2026", "flip-fold"],
-      ["motorola-razr-2026", "flip-fold"]
+      ["motorola-razr-2026", "flip-fold"],
+      ["infinix-zero-flip", "flip-fold"]
     ]
   );
 
@@ -119,7 +133,7 @@ test("the public catalogue spans meaningful price bands and form factors", () =>
   assert.ok(Math.max(...pricedCurrentPhones) >= 1899.99);
 
   const folds = phones.filter(({ formFactor }) => formFactor.value === "book-fold" || formFactor.value === "flip-fold");
-  assert.equal(folds.length, 6);
+  assert.equal(folds.length, 7);
   for (const fold of folds) assert.ok("secondaryDisplay" in fold && fold.secondaryDisplay);
 });
 
@@ -297,8 +311,58 @@ test("the HMD international catalogue is substantially covered without invented 
   assert.equal(hmd.find(({ slug }) => slug === "hmd-xr21")?.resistance.value, "IP68 / IP69K");
 });
 
+test("the Infinix India collection is substantially covered without duplicating editions or hiding conflicts", () => {
+  const infinix: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "Infinix");
+  assert.deepEqual(infinix.map(({ slug }) => slug), [
+    "infinix-gt-30-5g-plus",
+    "infinix-gt-30-pro-5g-plus",
+    "infinix-hot-60-5g-plus",
+    "infinix-hot-60i-5g",
+    "infinix-note-60-pro",
+    "infinix-note-40-5g",
+    "infinix-note-edge",
+    "infinix-smart-10",
+    "infinix-smart-20",
+    "infinix-zero-40-5g",
+    "infinix-zero-flip"
+  ]);
+
+  for (const phone of infinix) {
+    assert.equal(phone.generation.value, "current");
+    assert.equal(phone.releasedOn.value, null);
+    assert.match(phone.releasedOn.qualification ?? "", /do not state an exact announcement or first-availability date/i);
+    assert.deepEqual(
+      [phone.originalPrice.value.amount, phone.originalPrice.value.currency, phone.originalPrice.value.market],
+      [null, "INR", "India"]
+    );
+    assert.match(phone.originalPrice.qualification ?? "", /current sale price and MRP are not substituted/i);
+    assert.ok(phone.configurations);
+    assert.ok(phone.colors);
+    assert.ok(phone.dimensions);
+  }
+
+  const note60 = infinix.find(({ slug }) => slug === "infinix-note-60-pro");
+  const noteEdge = infinix.find(({ slug }) => slug === "infinix-note-edge");
+  const smart20 = infinix.find(({ slug }) => slug === "infinix-smart-20");
+  const zero40 = infinix.find(({ slug }) => slug === "infinix-zero-40-5g");
+  const zeroFlip = infinix.find(({ slug }) => slug === "infinix-zero-flip");
+  assert.ok(note60?.configurations);
+  assert.ok(noteEdge?.configurations);
+  assert.ok(smart20);
+  assert.ok(zero40?.charging);
+  assert.ok(zeroFlip?.secondaryDisplay);
+  assert.match(note60.configurations.qualification ?? "", /Pininfarina and CODM editions.*rather than duplicate phone records/i);
+  assert.match(noteEdge.configurations.qualification ?? "", /JBL edition.*rather than a duplicate phone record/i);
+  assert.equal(smart20.weight.value, null);
+  assert.match(smart20.weight.qualification ?? "", /not stated/i);
+  assert.match(zero40.processor.qualification ?? "", /Dimensity 8200 Ultimate.*Dimensity 8020/i);
+  assert.match(zero40.charging.qualification ?? "", /58 W.*68 W/i);
+  assert.equal(zeroFlip.formFactor.value, "flip-fold");
+  assert.match(zeroFlip.secondaryDisplay.value, /3\.64-inch AMOLED cover display/i);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

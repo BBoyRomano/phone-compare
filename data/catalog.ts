@@ -661,6 +661,102 @@ export const sources = {
     url: "https://www.hmd.com/en_int/hmd-pulse-pro/specs",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "infinix-india-smartphone-catalogue": {
+    id: "infinix-india-smartphone-catalogue",
+    publisher: "Infinix",
+    title: "Smartphones - Infinix Mobiles India",
+    url: "https://infinixmobiles.in/collections/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-gt-30-5g-specs": {
+    id: "infinix-gt-30-5g-specs",
+    publisher: "Infinix",
+    title: "GT 30 5G+ - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/gt-30-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-gt-30-pro-5g-specs": {
+    id: "infinix-gt-30-pro-5g-specs",
+    publisher: "Infinix",
+    title: "GT 30 Pro 5G - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/gt-30-pro-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-hot-60-5g-specs": {
+    id: "infinix-hot-60-5g-specs",
+    publisher: "Infinix",
+    title: "Hot 60 5G+ - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/hot-60-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-hot-60i-5g-specs": {
+    id: "infinix-hot-60i-5g-specs",
+    publisher: "Infinix",
+    title: "Hot 60i 5G - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/hot-60i-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-note-60-pro-specs": {
+    id: "infinix-note-60-pro-specs",
+    publisher: "Infinix",
+    title: "Note 60 Pro - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/launch-note-60-pro",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-note-40-5g-specs": {
+    id: "infinix-note-40-5g-specs",
+    publisher: "Infinix",
+    title: "Note 40 5G - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/note-40-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-note-edge-specs": {
+    id: "infinix-note-edge-specs",
+    publisher: "Infinix",
+    title: "Note Edge - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/note-edge",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-smart-10-specs": {
+    id: "infinix-smart-10-specs",
+    publisher: "Infinix",
+    title: "Smart 10 - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/smart-10",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-smart-20-specs": {
+    id: "infinix-smart-20-specs",
+    publisher: "Infinix",
+    title: "Smart 20 - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/smart-20",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-zero-40-5g-specs": {
+    id: "infinix-zero-40-5g-specs",
+    publisher: "Infinix",
+    title: "ZERO 40 5G - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/zero-40-5g-ai-phone",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "infinix-zero-flip-specs": {
+    id: "infinix-zero-flip-specs",
+    publisher: "Infinix",
+    title: "Zero Flip - Product Specifications",
+    url: "https://infinixmobiles.in/collections/smartphones/products/zero-flip",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -706,7 +802,7 @@ export interface PhoneRecord {
     readonly peakBrightness: SourcedValue<string | null>;
   };
   readonly secondaryDisplay?: SourcedValue<string>;
-  readonly weight: SourcedValue<string>;
+  readonly weight: SourcedValue<string | null>;
   readonly storage: SourcedValue<{
     readonly options: string;
     readonly startsAtGb: number;
@@ -803,6 +899,18 @@ const hmdXr21Specs = ["hmd-xr21-specs"] as const;
 const hmdPulseSpecs = ["hmd-pulse-specs"] as const;
 const hmdPulsePlusSpecs = ["hmd-pulse-plus-specs"] as const;
 const hmdPulseProSpecs = ["hmd-pulse-pro-specs"] as const;
+const infinixCatalogue = ["infinix-india-smartphone-catalogue"] as const;
+const infinixGt30Specs = ["infinix-gt-30-5g-specs"] as const;
+const infinixGt30ProSpecs = ["infinix-gt-30-pro-5g-specs"] as const;
+const infinixHot60Specs = ["infinix-hot-60-5g-specs"] as const;
+const infinixHot60iSpecs = ["infinix-hot-60i-5g-specs"] as const;
+const infinixNote60ProSpecs = ["infinix-note-60-pro-specs"] as const;
+const infinixNote40Specs = ["infinix-note-40-5g-specs"] as const;
+const infinixNoteEdgeSpecs = ["infinix-note-edge-specs"] as const;
+const infinixSmart10Specs = ["infinix-smart-10-specs"] as const;
+const infinixSmart20Specs = ["infinix-smart-20-specs"] as const;
+const infinixZero40Specs = ["infinix-zero-40-5g-specs"] as const;
+const infinixZeroFlipSpecs = ["infinix-zero-flip-specs"] as const;
 
 export const phones = [
   {
@@ -3002,6 +3110,337 @@ export const phones = [
     rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: hmdPulseProSpecs },
     batteryClaim: { value: "5,000 mAh QuickFix replaceable battery; up to 59 hours", sourceIds: hmdPulseProSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
     resistance: { value: "IP52", sourceIds: hmdPulseProSpecs }
+  },
+  {
+    slug: "infinix-gt-30-5g-plus",
+    maker: { value: "Infinix", sourceIds: infinixGt30Specs },
+    model: { value: "GT 30 5G+", sourceIds: infinixGt30Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixGt30Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-gt-30-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB RAM + 128 GB or 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-gt-30-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixGt30Specs },
+      panel: { value: "LTPS AMOLED", sourceIds: infinixGt30Specs },
+      resolution: { value: "1.5K (1224 × 2720)", sourceIds: infinixGt30Specs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: infinixGt30Specs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: infinixGt30Specs }
+    },
+    weight: { value: "187 g", sourceIds: infinixGt30Specs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: infinixGt30Specs },
+    configurations: { value: "8 GB RAM + 128 GB or 256 GB storage", sourceIds: infinixGt30Specs },
+    colors: { value: "Cyber Blue, Pulse Green, Blade White", sourceIds: infinixGt30Specs },
+    dimensions: { value: "163.7 × 75.8 × 7.99 mm", sourceIds: infinixGt30Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "45 W wired; 10 W reverse wired", sourceIds: infinixGt30Specs },
+    processor: { value: "MediaTek Dimensity 7400", sourceIds: infinixGt30Specs },
+    rearCameras: { value: "64 MP Sony dual-camera system", sourceIds: infinixGt30Specs, qualification: "The FAQ states a dual-camera system but does not state the secondary camera resolution" },
+    batteryClaim: { value: "5,500 mAh", sourceIds: infinixGt30Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixGt30Specs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-gt-30-pro-5g-plus",
+    maker: { value: "Infinix", sourceIds: infinixGt30ProSpecs },
+    model: { value: "GT 30 Pro 5G+", sourceIds: infinixGt30ProSpecs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixGt30ProSpecs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-gt-30-pro-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB or 12 GB RAM + 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-gt-30-pro-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixGt30ProSpecs },
+      panel: { value: "LTPS AMOLED", sourceIds: infinixGt30ProSpecs },
+      resolution: { value: "1.5K (1224 × 2720)", sourceIds: infinixGt30ProSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: infinixGt30ProSpecs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: infinixGt30ProSpecs }
+    },
+    weight: { value: "188 g", sourceIds: infinixGt30ProSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: infinixGt30ProSpecs },
+    configurations: { value: "8 GB or 12 GB RAM + 256 GB storage", sourceIds: infinixGt30ProSpecs },
+    colors: { value: "Dark Flare, Blade White, Prism White", sourceIds: infinixGt30ProSpecs },
+    dimensions: { value: "163.7 × 75.8 × 7.99 mm", sourceIds: infinixGt30ProSpecs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "45 W wired, 30 W wireless, 10 W reverse wired, 5 W reverse wireless", sourceIds: infinixGt30ProSpecs },
+    processor: { value: "MediaTek Dimensity 8350 Ultimate", sourceIds: infinixGt30ProSpecs },
+    rearCameras: { value: "108 MP main + 8 MP ultrawide", sourceIds: infinixGt30ProSpecs },
+    batteryClaim: { value: "5,500 mAh", sourceIds: infinixGt30ProSpecs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixGt30ProSpecs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-hot-60-5g-plus",
+    maker: { value: "Infinix", sourceIds: infinixHot60Specs },
+    model: { value: "Hot 60 5G+", sourceIds: infinixHot60Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixHot60Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-hot-60-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-hot-60-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.7 inches", sourceIds: infinixHot60Specs },
+      panel: { value: "IPS LCD", sourceIds: infinixHot60Specs },
+      resolution: { value: "HD+ (720 × 1600)", sourceIds: infinixHot60Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixHot60Specs },
+      peakBrightness: { value: "700 nits HBM", sourceIds: infinixHot60Specs }
+    },
+    weight: { value: "193 g", sourceIds: infinixHot60Specs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: infinixHot60Specs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: infinixHot60Specs },
+    colors: { value: "Sleek Black, Tundra Green, Shadow Blue, Caramel Glow", sourceIds: infinixHot60Specs },
+    dimensions: { value: "166 × 76.8 × 7.8 mm", sourceIds: infinixHot60Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "18 W wired; 10 W reverse wired", sourceIds: infinixHot60Specs },
+    processor: { value: "MediaTek Dimensity 7020", sourceIds: infinixHot60Specs },
+    rearCameras: { value: "50 MP main", sourceIds: infinixHot60Specs },
+    batteryClaim: { value: "5,200 mAh", sourceIds: infinixHot60Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixHot60Specs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-hot-60i-5g",
+    maker: { value: "Infinix", sourceIds: infinixHot60iSpecs },
+    model: { value: "Hot 60i 5G", sourceIds: infinixHot60iSpecs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixHot60iSpecs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-hot-60i-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "4 GB RAM + 128 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-hot-60i-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.75 inches", sourceIds: infinixHot60iSpecs },
+      panel: { value: "IPS a-Si LCD", sourceIds: infinixHot60iSpecs },
+      resolution: { value: "HD+ (720 × 1600)", sourceIds: infinixHot60iSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixHot60iSpecs },
+      peakBrightness: { value: "670 nits HBM", sourceIds: infinixHot60iSpecs }
+    },
+    weight: { value: "199 g", sourceIds: infinixHot60iSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: infinixHot60iSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: infinixHot60iSpecs },
+    colors: { value: "Sleek Black, Shadow Blue, Monsoon Green, Plum Red", sourceIds: infinixHot60iSpecs },
+    dimensions: { value: "167.64 × 77.67 × 8.14 mm", sourceIds: infinixHot60iSpecs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "18 W wired; 10 W reverse wired", sourceIds: infinixHot60iSpecs },
+    processor: { value: "MediaTek Dimensity 6400", sourceIds: infinixHot60iSpecs },
+    rearCameras: { value: "50 MP main", sourceIds: infinixHot60iSpecs },
+    batteryClaim: { value: "6,000 mAh", sourceIds: infinixHot60iSpecs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixHot60iSpecs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-note-60-pro",
+    maker: { value: "Infinix", sourceIds: infinixNote60ProSpecs },
+    model: { value: "Note 60 Pro", sourceIds: infinixNote60ProSpecs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixNote60ProSpecs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-60-pro-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB RAM + 128 GB or 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-60-pro-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixNote60ProSpecs },
+      panel: { value: "LTPS AMOLED", sourceIds: infinixNote60ProSpecs },
+      resolution: { value: "1.5K (1208 × 2644)", sourceIds: infinixNote60ProSpecs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: infinixNote60ProSpecs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: infinixNote60ProSpecs }
+    },
+    weight: { value: "200 g", sourceIds: infinixNote60ProSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: infinixNote60ProSpecs },
+    configurations: { value: "8 GB RAM + 128 GB or 256 GB storage; named editions also listed", sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-60-pro-specs"], qualification: "The Pininfarina and CODM editions are separate storefront listings of this model family; they are retained as named editions rather than duplicate phone records" },
+    colors: { value: "Solar Orange, Deep Ocean Blue, Mist Titanium, Frost Silver, Mocha Brown", sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-60-pro-specs"], qualification: "The storefront separately lists the Pininfarina edition in Torino Black and the CODM edition as Tactical Edition" },
+    dimensions: { value: "162.37 × 77.17 × 7.45 mm", sourceIds: infinixNote60ProSpecs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "90 W wired, 30 W wireless, 7.5 W reverse wired, 5 W reverse wireless", sourceIds: infinixNote60ProSpecs },
+    processor: { value: "Qualcomm Snapdragon 7s Gen 4", sourceIds: infinixNote60ProSpecs },
+    rearCameras: { value: "50 MP main + 8 MP ultrawide", sourceIds: infinixNote60ProSpecs },
+    batteryClaim: { value: "6,500 mAh", sourceIds: infinixNote60ProSpecs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixNote60ProSpecs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-note-40-5g",
+    maker: { value: "Infinix", sourceIds: infinixNote40Specs },
+    model: { value: "Note 40 5G", sourceIds: infinixNote40Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixNote40Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-40-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB RAM + 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-40-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "17.22 cm", sourceIds: infinixNote40Specs },
+      panel: { value: "Flexible AMOLED", sourceIds: infinixNote40Specs },
+      resolution: { value: "FHD+ (1080 × 2436)", sourceIds: infinixNote40Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixNote40Specs },
+      peakBrightness: { value: "1,300 nits typical", sourceIds: infinixNote40Specs }
+    },
+    weight: { value: "185 g", sourceIds: infinixNote40Specs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: infinixNote40Specs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: infinixNote40Specs },
+    colors: { value: "Titan Gold, Obsidian Black", sourceIds: infinixNote40Specs },
+    dimensions: { value: "165.51 × 75.93 × 7.91 mm", sourceIds: infinixNote40Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "33 W wired, 15 W wireless", sourceIds: infinixNote40Specs },
+    processor: { value: "MediaTek Dimensity 7020", sourceIds: infinixNote40Specs },
+    rearCameras: { value: "108 MP rear camera system", sourceIds: infinixNote40Specs, qualification: "The cited specification identifies the 108 MP autofocus camera but does not enumerate the other rear sensor resolutions" },
+    batteryClaim: { value: "5,000 mAh", sourceIds: infinixNote40Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP53", sourceIds: infinixNote40Specs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-note-edge",
+    maker: { value: "Infinix", sourceIds: infinixNoteEdgeSpecs },
+    model: { value: "Note Edge", sourceIds: infinixNoteEdgeSpecs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixNoteEdgeSpecs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-edge-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "6 GB or 8 GB RAM + 128 GB storage; 8 GB RAM + 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-edge-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixNoteEdgeSpecs },
+      panel: { value: "3D curved AMOLED", sourceIds: infinixNoteEdgeSpecs },
+      resolution: { value: "1.5K (1208 × 2644)", sourceIds: infinixNoteEdgeSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixNoteEdgeSpecs },
+      peakBrightness: { value: "4,500 nits peak", sourceIds: infinixNoteEdgeSpecs }
+    },
+    weight: { value: "185 g or 190 g", sourceIds: infinixNoteEdgeSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: infinixNoteEdgeSpecs },
+    configurations: { value: "6 GB or 8 GB RAM + 128 GB storage; 8 GB RAM + 256 GB storage; named editions also listed", sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-edge-specs"], qualification: "The JBL edition is a separate storefront listing of this model family and is retained as a named edition rather than a duplicate phone record" },
+    colors: { value: "Stellar Blue, Lunar Titanium, Silk Green, Solar Orange", sourceIds: ["infinix-india-smartphone-catalogue", "infinix-note-edge-specs"], qualification: "The JBL edition is separately listed in Solar Orange" },
+    dimensions: { value: "163.1 × 7.4 × 7.2 mm", sourceIds: infinixNoteEdgeSpecs, qualification: "Published dimensions are retained exactly; the cited width appears incomplete and is not corrected" },
+    charging: { value: "45 W wired; 10 W reverse wired", sourceIds: infinixNoteEdgeSpecs },
+    processor: { value: "MediaTek Dimensity 7100", sourceIds: infinixNoteEdgeSpecs },
+    rearCameras: { value: "50 MP main", sourceIds: infinixNoteEdgeSpecs },
+    batteryClaim: { value: "6,500 mAh", sourceIds: infinixNoteEdgeSpecs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP65", sourceIds: infinixNoteEdgeSpecs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-smart-10",
+    maker: { value: "Infinix", sourceIds: infinixSmart10Specs },
+    model: { value: "Smart 10", sourceIds: infinixSmart10Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixSmart10Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-smart-10-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "3 GB RAM + 64 GB storage; 4 GB RAM + 64 GB, 128 GB, or 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-smart-10-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.67 inches", sourceIds: infinixSmart10Specs },
+      panel: { value: "IPS LCD", sourceIds: infinixSmart10Specs },
+      resolution: { value: "HD+ (720 × 1600)", sourceIds: infinixSmart10Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixSmart10Specs },
+      peakBrightness: { value: "700 nits HBM", sourceIds: infinixSmart10Specs }
+    },
+    weight: { value: "187 g", sourceIds: infinixSmart10Specs },
+    storage: { value: { options: "64 GB, 128 GB, or 256 GB", startsAtGb: 64 }, sourceIds: infinixSmart10Specs },
+    configurations: { value: "3 GB RAM + 64 GB storage; 4 GB RAM + 64 GB, 128 GB, or 256 GB storage", sourceIds: infinixSmart10Specs },
+    colors: { value: "Sleek Black, Titanium Silver, Iris Blue, Twilight Gold", sourceIds: infinixSmart10Specs },
+    dimensions: { value: "165.62 × 77.01 × 8.25 mm", sourceIds: infinixSmart10Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "15 W wired", sourceIds: infinixSmart10Specs },
+    processor: { value: "Unisoc T7250", sourceIds: infinixSmart10Specs },
+    rearCameras: { value: "8 MP main", sourceIds: infinixSmart10Specs },
+    batteryClaim: { value: "5,000 mAh", sourceIds: infinixSmart10Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixSmart10Specs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-smart-20",
+    maker: { value: "Infinix", sourceIds: infinixSmart20Specs },
+    model: { value: "Smart 20", sourceIds: infinixSmart20Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixSmart20Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-smart-20-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "4 GB RAM + 64 GB or 128 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-smart-20-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixSmart20Specs },
+      panel: { value: "IPS a-Si LCD", sourceIds: infinixSmart20Specs },
+      resolution: { value: "HD+ (720 × 1576)", sourceIds: infinixSmart20Specs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: infinixSmart20Specs },
+      peakBrightness: { value: "700 nits HBM", sourceIds: infinixSmart20Specs }
+    },
+    weight: { value: null, sourceIds: infinixSmart20Specs, qualification: "Weight is not stated on the cited product page" },
+    storage: { value: { options: "64 GB or 128 GB", startsAtGb: 64 }, sourceIds: infinixSmart20Specs },
+    configurations: { value: "4 GB RAM + 64 GB or 128 GB storage", sourceIds: infinixSmart20Specs },
+    colors: { value: "Shadow Black, Polaris Titanium, Sunlike Orange, Cloudline Blue", sourceIds: infinixSmart20Specs },
+    dimensions: { value: "167.7 × 78.8 × 7.7 mm", sourceIds: infinixSmart20Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "15 W supported; 10 W charger listed", sourceIds: infinixSmart20Specs },
+    processor: { value: "MediaTek Helio G81 Ultimate", sourceIds: infinixSmart20Specs },
+    rearCameras: { value: "8 MP main", sourceIds: infinixSmart20Specs },
+    batteryClaim: { value: "5,200 mAh", sourceIds: infinixSmart20Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: "IP64", sourceIds: infinixSmart20Specs, qualification: "Tested under IEC 60529; wear, damage, or disassembly can reduce protection" }
+  },
+  {
+    slug: "infinix-zero-40-5g",
+    maker: { value: "Infinix", sourceIds: infinixZero40Specs },
+    model: { value: "ZERO 40 5G", sourceIds: infinixZero40Specs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "slab", sourceIds: infinixZero40Specs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-zero-40-5g-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB or 12 GB RAM + 256 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-zero-40-5g-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "6.78 inches", sourceIds: infinixZero40Specs },
+      panel: { value: "3D curved AMOLED", sourceIds: infinixZero40Specs },
+      resolution: { value: "FHD+ (1080 × 2400)", sourceIds: infinixZero40Specs },
+      refreshRate: { value: "Up to 144 Hz", sourceIds: infinixZero40Specs },
+      peakBrightness: { value: "950 nits", sourceIds: infinixZero40Specs }
+    },
+    weight: { value: "185 g", sourceIds: infinixZero40Specs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: infinixZero40Specs, qualification: "The specification table lists 256 GB; the page FAQ separately says up to 512 GB without tying that claim to a reviewed configuration" },
+    configurations: { value: "8 GB or 12 GB RAM + 256 GB storage", sourceIds: infinixZero40Specs },
+    colors: { value: "Rock Black, Violet Garden, Moving Titanium", sourceIds: infinixZero40Specs },
+    dimensions: { value: "164.51 × 75.03 × 7.9 mm", sourceIds: infinixZero40Specs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "68 W wired", sourceIds: infinixZero40Specs, qualification: "The detailed specification table prints 58 W while the product summary and FAQ state 68 W; the marketed 68 W Super Charge claim is retained with this conflict explicit" },
+    processor: { value: "MediaTek Dimensity 8020", sourceIds: infinixZero40Specs, qualification: "The product FAQ says Dimensity 8200 Ultimate while the detailed specification table states Dimensity 8020; the table value is retained and the conflict remains explicit" },
+    rearCameras: { value: "108 MP main + 13 MP ultrawide + 2 MP auxiliary", sourceIds: infinixZero40Specs },
+    batteryClaim: { value: "5,000 mAh", sourceIds: infinixZero40Specs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: null, sourceIds: infinixZero40Specs, qualification: "No IP rating is stated on the cited product page" }
+  },
+  {
+    slug: "infinix-zero-flip",
+    maker: { value: "Infinix", sourceIds: infinixZeroFlipSpecs },
+    model: { value: "Zero Flip", sourceIds: infinixZeroFlipSpecs },
+    generation: { value: "current", sourceIds: infinixCatalogue, qualification: "Listed in Infinix's current India smartphone collection; classification does not guarantee stock and does not imply availability outside India" },
+    formFactor: { value: "flip-fold", sourceIds: infinixZeroFlipSpecs },
+    releasedOn: { value: null, sourceIds: ["infinix-india-smartphone-catalogue", "infinix-zero-flip-specs"], qualification: "The current India storefront and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: "INR", market: "India", configuration: "8 GB RAM + 512 GB storage" },
+      sourceIds: ["infinix-india-smartphone-catalogue", "infinix-zero-flip-specs"],
+      qualification: "The storefront's current sale price and MRP are not substituted for an original launch price"
+    },
+    display: {
+      size: { value: "17.53 cm", sourceIds: infinixZeroFlipSpecs },
+      panel: { value: "Foldable LTPO AMOLED", sourceIds: infinixZeroFlipSpecs },
+      resolution: { value: "1080 × 2640", sourceIds: infinixZeroFlipSpecs },
+      refreshRate: { value: "120 Hz", sourceIds: infinixZeroFlipSpecs },
+      peakBrightness: { value: "1,400 nits peak", sourceIds: infinixZeroFlipSpecs }
+    },
+    secondaryDisplay: { value: "3.64-inch AMOLED cover display; 1056 × 1066; 120 Hz; 1,100 nits peak", sourceIds: infinixZeroFlipSpecs },
+    weight: { value: "195 g", sourceIds: infinixZeroFlipSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: infinixZeroFlipSpecs },
+    configurations: { value: "8 GB RAM + 512 GB storage", sourceIds: infinixZeroFlipSpecs },
+    colors: { value: "Rock Black, Blossom Glow", sourceIds: infinixZeroFlipSpecs },
+    dimensions: { value: "Unfolded: 170.75 × 73.4 × 7.64 mm; folded: 87.97 × 73.4 × 16.04 mm", sourceIds: infinixZeroFlipSpecs, qualification: "Height × width × depth unless folded and unfolded states are shown" },
+    charging: { value: "70 W wired", sourceIds: infinixZeroFlipSpecs },
+    processor: { value: "MediaTek Dimensity 8020", sourceIds: infinixZeroFlipSpecs },
+    rearCameras: { value: "50 MP main + 50 MP ultrawide", sourceIds: infinixZeroFlipSpecs },
+    batteryClaim: { value: "4,720 mAh", sourceIds: infinixZeroFlipSpecs, qualification: "Manufacturer-rated typical capacity" },
+    resistance: { value: null, sourceIds: infinixZeroFlipSpecs, qualification: "No IP rating is stated on the cited product page" }
   }
 ] as const satisfies readonly PhoneRecord[];
 

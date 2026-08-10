@@ -51,7 +51,7 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
 
   const firstPhone = page.getByLabel("First phone");
   const secondPhone = page.getByLabel("Second phone");
-  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2", "hmd-skyline"]) {
+  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2", "hmd-skyline", "infinix-zero-flip"]) {
     await expect(firstPhone.locator(`option[value="${slug}"]`)).toHaveCount(1);
   }
 
@@ -86,6 +86,24 @@ test("keeps the full HMD lineup discoverable without page-level overflow", async
   await expect(page.getByRole("heading", { name: "HMD Skyline vs HMD XR21" })).toBeVisible();
   await expect(page.getByLabel("First phone").locator('optgroup[label="HMD"] option')).toHaveCount(15);
   await expect(page.locator("small").filter({ hasText: "HMD international product-information scope" })).toHaveCount(2);
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
+});
+
+test("keeps the Infinix India lineup discoverable with missing facts visible", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=infinix-zero-flip&right=infinix-smart-20");
+  await expect(page.getByRole("heading", { name: "Zero Flip vs Smart 20" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="Infinix"] option')).toHaveCount(11);
+  await expect(page.getByRole("rowheader", { name: /Cover display/ })).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: "Weight" })).toBeVisible();
   await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
 
   const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
