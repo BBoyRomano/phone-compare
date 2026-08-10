@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 100);
-  assert.equal(Object.keys(sources).length, 142);
+  assert.equal(phones.length, 104);
+  assert.equal(Object.keys(sources).length, 151);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -25,7 +25,8 @@ test("the catalogue includes current standard models from every represented manu
       "xiaomi-17",
       "redmi-note-15",
       "poco-x8-pro",
-      "oppo-find-x9"
+      "oppo-find-x9",
+      "asus-zenfone-12-ultra"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -43,7 +44,8 @@ test("the catalogue includes current standard models from every represented manu
       "xiaomi-17",
       "redmi-note-15",
       "poco-x8-pro",
-      "oppo-find-x9"
+      "oppo-find-x9",
+      "asus-zenfone-12-ultra"
     ]
   );
 });
@@ -147,12 +149,15 @@ test("every phone has a sourced, conservative generation classification", () => 
       "oppo-a6-pro-5g",
       "oppo-a6-5g",
       "oppo-a6x",
-      "oppo-a60-5g"
+      "oppo-a60-5g",
+      "asus-zenfone-12-ultra",
+      "asus-rog-phone-9",
+      "asus-rog-phone-9-pro"
     ]
   );
   assert.deepEqual(
     phones.filter(({ generation }) => generation.value === "earlier").map(({ slug }) => slug),
-    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24", "tcl-50-xl-nxtpaper-5g"]
+    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24", "tcl-50-xl-nxtpaper-5g", "asus-zenfone-11-ultra"]
   );
 
   for (const phone of phones) {
@@ -605,8 +610,28 @@ test("the OPPO UK navigation boundary remains distinct from live stock status", 
   assert.match(ultra.resistance.qualification ?? "", /EU eco-design interface displays IP68.*IP69/is);
 });
 
+test("the ASUS global catalogues publish the active Zenfone and ROG boundaries conservatively", () => {
+  const asus: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "ASUS");
+  assert.deepEqual(asus.map(({ slug }) => slug), [
+    "asus-zenfone-12-ultra",
+    "asus-zenfone-11-ultra",
+    "asus-rog-phone-9",
+    "asus-rog-phone-9-pro"
+  ]);
+  assert.deepEqual(asus.map(({ generation }) => generation.value), ["current", "earlier", "current", "current"]);
+  assert.ok(asus.every(({ releasedOn }) => releasedOn.basis === "announcement"));
+  assert.ok(asus.every(({ originalPrice }) => originalPrice.value.amount === null && originalPrice.qualification));
+
+  const rog9 = asus.find(({ slug }) => slug === "asus-rog-phone-9");
+  const rog9Pro = asus.find(({ slug }) => slug === "asus-rog-phone-9-pro");
+  assert.equal(rog9?.rearCameras.value, "50 MP main + 13 MP ultrawide + 5 MP macro");
+  assert.equal(rog9Pro?.rearCameras.value, "50 MP main + 13 MP ultrawide + 32 MP 3× telephoto");
+  assert.match(rog9Pro?.configurations?.qualification ?? "", /separately named Pro Edition.*not merged/i);
+  assert.deepEqual(rog9?.generation.sourceIds, ["asus-global-rog-phone-catalogue"]);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
