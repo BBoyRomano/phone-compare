@@ -103,7 +103,7 @@ function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: Re
   const { amount, currency, market, configuration } = phone.originalPrice.value;
   return (
     <>
-      <span className={amount === null ? "not-stated" : undefined}>{amount === null ? "Not stated" : formatPrice(amount, currency)}</span>
+      <span className={amount === null ? "not-stated" : undefined}>{amount === null ? "Not stated" : formatPrice(amount, currency!)}</span>
       <SourceMarks ids={phone.originalPrice.sourceIds} sourceNumbers={sourceNumbers} />
       <small>{market} · {configuration}</small>
       {phone.originalPrice.qualification ? <small>{phone.originalPrice.qualification}</small> : null}
@@ -114,7 +114,9 @@ function Price({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: Re
 function DateFact({ fact, sourceNumbers }: { fact: SourcedDate; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   return (
     <>
-      <time dateTime={fact.value}>{formatDate(fact.value)}</time>
+      {fact.value === null
+        ? <span className="not-stated">Not stated</span>
+        : <time dateTime={fact.value}>{formatDate(fact.value)}</time>}
       <SourceMarks ids={fact.sourceIds} sourceNumbers={sourceNumbers} />
       {fact.qualification ? <small>{fact.qualification}</small> : null}
     </>
@@ -177,7 +179,7 @@ function SecondaryDisplay({ phone, sourceNumbers }: { phone: PhoneRecord; source
 
 function PhoneCard({ phone, sourceNumbers }: { phone: PhoneRecord; sourceNumbers: ReadonlyMap<SourceId, number> }) {
   const makerClass = `${phone.maker.value.toLowerCase()}-phone`;
-  const timingLabel = phone.releasedOn.basis === "announcement" ? "Announced" : "Released";
+  const timingLabel = phone.releasedOn.value === null ? "Timing" : phone.releasedOn.basis === "announcement" ? "Announced" : "Released";
   return (
     <article className="phone-card">
       <div className={`phone-silhouette ${makerClass}`} aria-hidden="true"><i /><b /><b /></div>

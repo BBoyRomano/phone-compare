@@ -51,7 +51,7 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
 
   const firstPhone = page.getByLabel("First phone");
   const secondPhone = page.getByLabel("Second phone");
-  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2"]) {
+  for (const slug of ["motorola-razr-ultra-2026", "oneplus-13", "nothing-phone-4a-pro", "tcl-nxtpaper-70-pro", "unihertz-titan-2", "hmd-skyline"]) {
     await expect(firstPhone.locator(`option[value="${slug}"]`)).toHaveCount(1);
   }
 
@@ -74,6 +74,23 @@ test("keeps expanded manufacturers discoverable and their sourced facts usable",
     await expect(link).toHaveAttribute("href", /^https:\/\//);
     await expect(link).toHaveAttribute("rel", "noreferrer");
   }
+});
+
+test("keeps the full HMD lineup discoverable without page-level overflow", async ({ page }) => {
+  const consoleErrors: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text());
+  });
+
+  await page.goto("/?left=hmd-skyline&right=hmd-xr21");
+  await expect(page.getByRole("heading", { name: "HMD Skyline vs HMD XR21" })).toBeVisible();
+  await expect(page.getByLabel("First phone").locator('optgroup[label="HMD"] option')).toHaveCount(15);
+  await expect(page.locator("small").filter({ hasText: "HMD international product-information scope" })).toHaveCount(2);
+  await expect(page.getByText("Not stated", { exact: true })).not.toHaveCount(0);
+
+  const pageOverflows = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(pageOverflows).toBe(false);
+  expect(consoleErrors).toEqual([]);
 });
 
 test("compares the compact and keyboard-led additions with missing facts kept visible", async ({ page }) => {

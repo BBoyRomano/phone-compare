@@ -533,6 +533,134 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2024-07-23",
     accessedAt: "2026-08-10"
+  },
+  "hmd-international-smartphone-catalogue": {
+    id: "hmd-international-smartphone-catalogue",
+    publisher: "HMD",
+    title: "HMD Smartphones - Android 5G Collection",
+    url: "https://www.hmd.com/en_int/smartphones",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-arc2-specs": {
+    id: "hmd-arc2-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Arc²",
+    url: "https://www.hmd.com/en_int/hmd-arc2/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-fuse-specs": {
+    id: "hmd-fuse-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Fuse",
+    url: "https://www.hmd.com/en_int/hmd-fuse/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-barca-fusion-specs": {
+    id: "hmd-barca-fusion-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Barça Fusion",
+    url: "https://www.hmd.com/en_int/hmd-barca-fusion/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-aura2-specs": {
+    id: "hmd-aura2-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Aura²",
+    url: "https://www.hmd.com/en_int/hmd-aura-2/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-key-specs": {
+    id: "hmd-key-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Key",
+    url: "https://www.hmd.com/en_int/hmd-key/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-arc-specs": {
+    id: "hmd-arc-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Arc",
+    url: "https://www.hmd.com/en_int/hmd-arc/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-crest-max-specs": {
+    id: "hmd-crest-max-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Crest Max 5G",
+    url: "https://www.hmd.com/en_int/hmd-crest-max/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-fusion-specs": {
+    id: "hmd-fusion-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Fusion",
+    url: "https://www.hmd.com/en_int/hmd-fusion/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-crest-specs": {
+    id: "hmd-crest-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Crest 5G",
+    url: "https://www.hmd.com/en_int/hmd-crest/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-skyline-specs": {
+    id: "hmd-skyline-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Skyline",
+    url: "https://www.hmd.com/en_int/hmd-skyline/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-aura-specs": {
+    id: "hmd-aura-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Aura",
+    url: "https://www.hmd.com/en_int/hmd-aura/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-xr21-specs": {
+    id: "hmd-xr21-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD XR21",
+    url: "https://www.hmd.com/en_int/hmd-xr-21/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-pulse-specs": {
+    id: "hmd-pulse-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Pulse",
+    url: "https://www.hmd.com/en_int/hmd-pulse/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-pulse-plus-specs": {
+    id: "hmd-pulse-plus-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Pulse+",
+    url: "https://www.hmd.com/en_int/hmd-pulse-plus/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "hmd-pulse-pro-specs": {
+    id: "hmd-pulse-pro-specs",
+    publisher: "HMD",
+    title: "Technical specifications HMD Pulse Pro",
+    url: "https://www.hmd.com/en_int/hmd-pulse-pro/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -553,7 +681,7 @@ export interface SourcedValue<T> {
   readonly qualification?: string;
 }
 
-export interface SourcedDate extends SourcedValue<string> {
+export interface SourcedDate extends SourcedValue<string | null> {
   readonly basis?: "availability" | "announcement";
 }
 
@@ -566,13 +694,13 @@ export interface PhoneRecord {
   readonly releasedOn: SourcedDate;
   readonly originalPrice: SourcedValue<{
     readonly amount: number | null;
-    readonly currency: string;
+    readonly currency: string | null;
     readonly market: string;
     readonly configuration: string;
   }>;
   readonly display: {
     readonly size: SourcedValue<string>;
-    readonly panel: SourcedValue<string>;
+    readonly panel: SourcedValue<string | null>;
     readonly resolution: SourcedValue<string>;
     readonly refreshRate: SourcedValue<string | null>;
     readonly peakBrightness: SourcedValue<string | null>;
@@ -659,6 +787,22 @@ const titan2Specs = ["unihertz-titan-2-specs"] as const;
 const titan2Launch = ["unihertz-titan-2-announcement"] as const;
 const jellyMaxSpecs = ["unihertz-jelly-max-specs"] as const;
 const jellyMaxLaunch = ["unihertz-jelly-max-announcement"] as const;
+const hmdCatalogue = ["hmd-international-smartphone-catalogue"] as const;
+const hmdArc2Specs = ["hmd-arc2-specs"] as const;
+const hmdFuseSpecs = ["hmd-fuse-specs"] as const;
+const hmdBarcaFusionSpecs = ["hmd-barca-fusion-specs"] as const;
+const hmdAura2Specs = ["hmd-aura2-specs"] as const;
+const hmdKeySpecs = ["hmd-key-specs"] as const;
+const hmdArcSpecs = ["hmd-arc-specs"] as const;
+const hmdCrestMaxSpecs = ["hmd-crest-max-specs"] as const;
+const hmdFusionSpecs = ["hmd-fusion-specs"] as const;
+const hmdCrestSpecs = ["hmd-crest-specs"] as const;
+const hmdSkylineSpecs = ["hmd-skyline-specs"] as const;
+const hmdAuraSpecs = ["hmd-aura-specs"] as const;
+const hmdXr21Specs = ["hmd-xr21-specs"] as const;
+const hmdPulseSpecs = ["hmd-pulse-specs"] as const;
+const hmdPulsePlusSpecs = ["hmd-pulse-plus-specs"] as const;
+const hmdPulseProSpecs = ["hmd-pulse-pro-specs"] as const;
 
 export const phones = [
   {
@@ -2409,6 +2553,455 @@ export const phones = [
     rearCameras: { value: "100 MP main + 8 MP telephoto", sourceIds: jellyMaxSpecs },
     batteryClaim: { value: "4,000 mAh", sourceIds: jellyMaxSpecs, qualification: "Manufacturer-rated capacity" },
     resistance: { value: null, sourceIds: jellyMaxSpecs, qualification: "No IP rating is stated on the cited product page" }
+  },
+  {
+    slug: "hmd-arc2",
+    maker: { value: "HMD", sourceIds: hmdArc2Specs },
+    model: { value: "HMD Arc²", sourceIds: hmdArc2Specs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdArc2Specs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-arc2-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 64 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-arc2-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.52 inches", sourceIds: hmdArc2Specs },
+      panel: { value: null, sourceIds: hmdArc2Specs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "576 × 1280", sourceIds: hmdArc2Specs },
+      refreshRate: { value: "60 Hz", sourceIds: hmdArc2Specs },
+      peakBrightness: { value: "460 nits peak", sourceIds: hmdArc2Specs }
+    },
+    weight: { value: "184.5 g", sourceIds: hmdArc2Specs },
+    storage: { value: { options: "64 GB", startsAtGb: 64 }, sourceIds: hmdArc2Specs },
+    configurations: { value: "4 GB RAM + 64 GB storage", sourceIds: hmdArc2Specs },
+    colors: { value: "Golden Beige", sourceIds: hmdArc2Specs },
+    dimensions: { value: "166.4 × 76.9 × 8.95 mm", sourceIds: hmdArc2Specs, qualification: "Height × width × depth" },
+    processor: { value: "Unisoc 9863A", sourceIds: hmdArc2Specs },
+    rearCameras: { value: "13 MP main", sourceIds: hmdArc2Specs },
+    batteryClaim: { value: "5,000 mAh; up to 51 hours", sourceIds: hmdArc2Specs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: null, sourceIds: hmdArc2Specs, qualification: "No IP rating is stated on the cited specification page" }
+  },
+  {
+    slug: "hmd-fuse",
+    maker: { value: "HMD", sourceIds: hmdFuseSpecs },
+    model: { value: "HMD Fuse", sourceIds: hmdFuseSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdFuseSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-fuse-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-fuse-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdFuseSpecs },
+      panel: { value: null, sourceIds: hmdFuseSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD+ (720 × 1612)", sourceIds: hmdFuseSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdFuseSpecs },
+      peakBrightness: { value: "600 nits peak", sourceIds: hmdFuseSpecs }
+    },
+    weight: { value: "202.5 g", sourceIds: hmdFuseSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdFuseSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdFuseSpecs },
+    colors: { value: "Noir", sourceIds: hmdFuseSpecs },
+    dimensions: { value: "164.15 × 75.5 × 8.32 mm", sourceIds: hmdFuseSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired (PD and QC)", sourceIds: hmdFuseSpecs },
+    processor: { value: "Qualcomm Snapdragon 4 Gen 2", sourceIds: hmdFuseSpecs },
+    rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: hmdFuseSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 56 hours", sourceIds: hmdFuseSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP54", sourceIds: hmdFuseSpecs }
+  },
+  {
+    slug: "hmd-barca-fusion",
+    maker: { value: "HMD", sourceIds: hmdBarcaFusionSpecs },
+    model: { value: "HMD Barça Fusion", sourceIds: hmdBarcaFusionSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdBarcaFusionSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-barca-fusion-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-barca-fusion-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdBarcaFusionSpecs },
+      panel: { value: null, sourceIds: hmdBarcaFusionSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD+ (720 × 1612)", sourceIds: hmdBarcaFusionSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdBarcaFusionSpecs },
+      peakBrightness: { value: "600 nits peak", sourceIds: hmdBarcaFusionSpecs }
+    },
+    weight: { value: "202.5 g", sourceIds: hmdBarcaFusionSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdBarcaFusionSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdBarcaFusionSpecs },
+    colors: { value: "Noir", sourceIds: hmdBarcaFusionSpecs },
+    dimensions: { value: "164.15 × 75.5 × 8.32 mm", sourceIds: hmdBarcaFusionSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired (PD and QC)", sourceIds: hmdBarcaFusionSpecs },
+    processor: { value: "Qualcomm Snapdragon 4 Gen 2", sourceIds: hmdBarcaFusionSpecs },
+    rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: hmdBarcaFusionSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 61 hours", sourceIds: hmdBarcaFusionSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: null, sourceIds: hmdBarcaFusionSpecs, qualification: "No IP rating is stated on the cited specification page" }
+  },
+  {
+    slug: "hmd-aura2",
+    maker: { value: "HMD", sourceIds: hmdAura2Specs },
+    model: { value: "HMD Aura²", sourceIds: hmdAura2Specs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdAura2Specs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-aura2-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 256 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-aura2-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.52 inches", sourceIds: hmdAura2Specs },
+      panel: { value: null, sourceIds: hmdAura2Specs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD (576 × 1280)", sourceIds: hmdAura2Specs },
+      refreshRate: { value: "60 Hz", sourceIds: hmdAura2Specs },
+      peakBrightness: { value: "460 nits peak", sourceIds: hmdAura2Specs }
+    },
+    weight: { value: "185.4 g", sourceIds: hmdAura2Specs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: hmdAura2Specs },
+    configurations: { value: "4 GB RAM + 256 GB storage", sourceIds: hmdAura2Specs },
+    colors: { value: "Midnight Black, Icy Blue", sourceIds: hmdAura2Specs },
+    dimensions: { value: "166.4 × 76.9 × 8.95 mm", sourceIds: hmdAura2Specs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdAura2Specs },
+    processor: { value: "Unisoc 9863A", sourceIds: hmdAura2Specs },
+    rearCameras: { value: "13 MP main", sourceIds: hmdAura2Specs },
+    batteryClaim: { value: "5,000 mAh; up to 51 hours", sourceIds: hmdAura2Specs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52 (AMEA) / IP54 (EUR)", sourceIds: hmdAura2Specs, qualification: "Rating varies by the regional specification" }
+  },
+  {
+    slug: "hmd-key",
+    maker: { value: "HMD", sourceIds: hmdKeySpecs },
+    model: { value: "HMD Key", sourceIds: hmdKeySpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdKeySpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-key-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "2 GB RAM + 32 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-key-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.52 inches", sourceIds: hmdKeySpecs },
+      panel: { value: null, sourceIds: hmdKeySpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD (576 × 1280)", sourceIds: hmdKeySpecs },
+      refreshRate: { value: "60 Hz", sourceIds: hmdKeySpecs },
+      peakBrightness: { value: "460 nits peak", sourceIds: hmdKeySpecs }
+    },
+    weight: { value: "185.4 g", sourceIds: hmdKeySpecs },
+    storage: { value: { options: "32 GB", startsAtGb: 32 }, sourceIds: hmdKeySpecs },
+    configurations: { value: "2 GB RAM + 32 GB storage", sourceIds: hmdKeySpecs },
+    colors: { value: "Icy Blue, Midnight Black", sourceIds: hmdKeySpecs },
+    dimensions: { value: "166.4 × 76.9 × 8.95 mm", sourceIds: hmdKeySpecs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdKeySpecs },
+    processor: { value: "Unisoc 9832E", sourceIds: hmdKeySpecs },
+    rearCameras: { value: "8 MP main", sourceIds: hmdKeySpecs },
+    batteryClaim: { value: "4,000 mAh; up to 47 hours", sourceIds: hmdKeySpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdKeySpecs }
+  },
+  {
+    slug: "hmd-arc",
+    maker: { value: "HMD", sourceIds: hmdArcSpecs },
+    model: { value: "HMD Arc", sourceIds: hmdArcSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdArcSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-arc-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 64 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-arc-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.52 inches", sourceIds: hmdArcSpecs },
+      panel: { value: null, sourceIds: hmdArcSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD (576 × 1280)", sourceIds: hmdArcSpecs },
+      refreshRate: { value: "60 Hz", sourceIds: hmdArcSpecs },
+      peakBrightness: { value: "460 nits peak", sourceIds: hmdArcSpecs }
+    },
+    weight: { value: "185.4 g", sourceIds: hmdArcSpecs },
+    storage: { value: { options: "64 GB", startsAtGb: 64 }, sourceIds: hmdArcSpecs },
+    configurations: { value: "4 GB RAM + 64 GB storage", sourceIds: hmdArcSpecs },
+    colors: { value: "Shadow Black", sourceIds: hmdArcSpecs },
+    dimensions: { value: "166.4 × 76.9 × 8.95 mm", sourceIds: hmdArcSpecs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdArcSpecs },
+    processor: { value: "Unisoc 9863A", sourceIds: hmdArcSpecs },
+    rearCameras: { value: "13 MP main", sourceIds: hmdArcSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 51 hours", sourceIds: hmdArcSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52 (AMEA) / IP54 (EUR)", sourceIds: hmdArcSpecs, qualification: "Rating varies by the regional specification" }
+  },
+  {
+    slug: "hmd-crest-max-5g",
+    maker: { value: "HMD", sourceIds: hmdCrestMaxSpecs },
+    model: { value: "HMD Crest Max 5G", sourceIds: hmdCrestMaxSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdCrestMaxSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-crest-max-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "8 GB RAM + 256 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-crest-max-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdCrestMaxSpecs },
+      panel: { value: "Rigid OLED", sourceIds: hmdCrestMaxSpecs },
+      resolution: { value: "2400 × 1080", sourceIds: hmdCrestMaxSpecs },
+      refreshRate: { value: null, sourceIds: hmdCrestMaxSpecs, qualification: "Not stated on the cited specification page" },
+      peakBrightness: { value: null, sourceIds: hmdCrestMaxSpecs, qualification: "Not stated on the cited specification page" }
+    },
+    weight: { value: "205 g", sourceIds: hmdCrestMaxSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: hmdCrestMaxSpecs },
+    configurations: { value: "8 GB RAM + 256 GB storage", sourceIds: hmdCrestMaxSpecs },
+    colors: { value: "Royal Pink, Deep Purple", sourceIds: hmdCrestMaxSpecs },
+    dimensions: { value: "163.86 × 76.42 × 8.41 mm", sourceIds: hmdCrestMaxSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired", sourceIds: hmdCrestMaxSpecs },
+    processor: { value: "Unisoc T760", sourceIds: hmdCrestMaxSpecs },
+    rearCameras: { value: "64 MP main + 5 MP ultrawide + 2 MP macro", sourceIds: hmdCrestMaxSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 44 hours", sourceIds: hmdCrestMaxSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdCrestMaxSpecs }
+  },
+  {
+    slug: "hmd-fusion",
+    maker: { value: "HMD", sourceIds: hmdFusionSpecs },
+    model: { value: "HMD Fusion", sourceIds: hmdFusionSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdFusionSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-fusion-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-fusion-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdFusionSpecs },
+      panel: { value: null, sourceIds: hmdFusionSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "HD+ (720 × 1612)", sourceIds: hmdFusionSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdFusionSpecs },
+      peakBrightness: { value: "600 nits peak", sourceIds: hmdFusionSpecs }
+    },
+    weight: { value: "202.5 g", sourceIds: hmdFusionSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdFusionSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdFusionSpecs },
+    colors: { value: "Noir", sourceIds: hmdFusionSpecs },
+    dimensions: { value: "164.15 × 75.5 × 8.32 mm", sourceIds: hmdFusionSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired (PD and QC)", sourceIds: hmdFusionSpecs },
+    processor: { value: "Qualcomm Snapdragon 4 Gen 2", sourceIds: hmdFusionSpecs },
+    rearCameras: { value: "108 MP main + 2 MP depth", sourceIds: hmdFusionSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 65 hours", sourceIds: hmdFusionSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP54", sourceIds: hmdFusionSpecs }
+  },
+  {
+    slug: "hmd-crest-5g",
+    maker: { value: "HMD", sourceIds: hmdCrestSpecs },
+    model: { value: "HMD Crest 5G", sourceIds: hmdCrestSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdCrestSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-crest-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-crest-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.67 inches", sourceIds: hmdCrestSpecs },
+      panel: { value: "Rigid OLED", sourceIds: hmdCrestSpecs },
+      resolution: { value: "2400 × 1080", sourceIds: hmdCrestSpecs },
+      refreshRate: { value: null, sourceIds: hmdCrestSpecs, qualification: "Not stated on the cited specification page" },
+      peakBrightness: { value: null, sourceIds: hmdCrestSpecs, qualification: "Not stated on the cited specification page" }
+    },
+    weight: { value: "205 g", sourceIds: hmdCrestSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdCrestSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdCrestSpecs },
+    colors: { value: "Royal Pink, Lush Lilac, Midnight Blue", sourceIds: hmdCrestSpecs },
+    dimensions: { value: "163.86 × 76.42 × 8.41 mm", sourceIds: hmdCrestSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired", sourceIds: hmdCrestSpecs },
+    processor: { value: "Unisoc T760", sourceIds: hmdCrestSpecs },
+    rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: hmdCrestSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 44 hours", sourceIds: hmdCrestSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdCrestSpecs }
+  },
+  {
+    slug: "hmd-skyline",
+    maker: { value: "HMD", sourceIds: hmdSkylineSpecs },
+    model: { value: "HMD Skyline", sourceIds: hmdSkylineSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdSkylineSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-skyline-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "8 GB RAM + 128 GB storage or 12 GB RAM + 256 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-skyline-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.55 inches", sourceIds: hmdSkylineSpecs },
+      panel: { value: "pOLED", sourceIds: hmdSkylineSpecs },
+      resolution: { value: "FHD+ (1080 × 2400)", sourceIds: hmdSkylineSpecs },
+      refreshRate: { value: "144 Hz", sourceIds: hmdSkylineSpecs },
+      peakBrightness: { value: "1,000 nits peak", sourceIds: hmdSkylineSpecs }
+    },
+    weight: { value: "209.5 g", sourceIds: hmdSkylineSpecs },
+    storage: { value: { options: "128 GB or 256 GB", startsAtGb: 128 }, sourceIds: hmdSkylineSpecs },
+    configurations: { value: "8 GB RAM + 128 GB storage or 12 GB RAM + 256 GB storage", sourceIds: hmdSkylineSpecs },
+    colors: { value: "Blue Topaz, Twisted Black, Neon Pink", sourceIds: hmdSkylineSpecs },
+    dimensions: { value: "159.84 × 75.66 × 8.9 mm", sourceIds: hmdSkylineSpecs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired, 15 W Qi2 wireless, 5 W reverse wireless", sourceIds: hmdSkylineSpecs },
+    processor: { value: "Qualcomm Snapdragon 7s Gen 2", sourceIds: hmdSkylineSpecs },
+    rearCameras: { value: "108 MP main + 13 MP ultrawide + 50 MP telephoto", sourceIds: hmdSkylineSpecs },
+    batteryClaim: { value: "4,600 mAh replaceable battery; up to 48 hours", sourceIds: hmdSkylineSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP54", sourceIds: hmdSkylineSpecs }
+  },
+  {
+    slug: "hmd-aura",
+    maker: { value: "HMD", sourceIds: hmdAuraSpecs },
+    model: { value: "HMD Aura", sourceIds: hmdAuraSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdAuraSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-aura-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-aura-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdAuraSpecs },
+      panel: { value: null, sourceIds: hmdAuraSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "1612 × 720", sourceIds: hmdAuraSpecs },
+      refreshRate: { value: "60 Hz", sourceIds: hmdAuraSpecs },
+      peakBrightness: { value: "480 nits typical", sourceIds: hmdAuraSpecs }
+    },
+    weight: { value: "175 g", sourceIds: hmdAuraSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdAuraSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: hmdAuraSpecs },
+    colors: { value: "Glacier Green", sourceIds: hmdAuraSpecs },
+    dimensions: { value: "163.86 × 75.51 × 8.9 mm", sourceIds: hmdAuraSpecs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdAuraSpecs },
+    processor: { value: "Unisoc SC9863A1", sourceIds: hmdAuraSpecs },
+    rearCameras: { value: "13 MP main", sourceIds: hmdAuraSpecs },
+    batteryClaim: { value: "5,000 mAh; up to 3 days", sourceIds: hmdAuraSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: null, sourceIds: hmdAuraSpecs, qualification: "No IP rating is stated on the cited specification page" }
+  },
+  {
+    slug: "hmd-xr21",
+    maker: { value: "HMD", sourceIds: hmdXr21Specs },
+    model: { value: "HMD XR21", sourceIds: hmdXr21Specs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdXr21Specs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-xr21-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-xr21-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.49 inches", sourceIds: hmdXr21Specs },
+      panel: { value: null, sourceIds: hmdXr21Specs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "FHD+ (1080 × 2400)", sourceIds: hmdXr21Specs },
+      refreshRate: { value: "120 Hz", sourceIds: hmdXr21Specs },
+      peakBrightness: { value: "550 nits sunlight boost", sourceIds: hmdXr21Specs, qualification: "Boost value; the specification also states 480 nits typical" }
+    },
+    weight: { value: "231 g", sourceIds: hmdXr21Specs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdXr21Specs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdXr21Specs },
+    colors: { value: "Midnight Black", sourceIds: hmdXr21Specs },
+    dimensions: { value: "168 × 78.58 × 10.45 mm", sourceIds: hmdXr21Specs, qualification: "Height × width × depth" },
+    charging: { value: "33 W wired (QC 3.0 and PD 2.0)", sourceIds: hmdXr21Specs },
+    processor: { value: "Qualcomm Snapdragon 695 5G", sourceIds: hmdXr21Specs },
+    rearCameras: { value: "64 MP main + 8 MP ultrawide", sourceIds: hmdXr21Specs },
+    batteryClaim: { value: "4,800 mAh; up to 2 days", sourceIds: hmdXr21Specs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP68 / IP69K", sourceIds: hmdXr21Specs, qualification: "The overview also states MIL-STD-810H certification" }
+  },
+  {
+    slug: "hmd-pulse",
+    maker: { value: "HMD", sourceIds: hmdPulseSpecs },
+    model: { value: "HMD Pulse", sourceIds: hmdPulseSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdPulseSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 64 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdPulseSpecs },
+      panel: { value: null, sourceIds: hmdPulseSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "1612 × 720", sourceIds: hmdPulseSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdPulseSpecs },
+      peakBrightness: { value: "600 nits boost", sourceIds: hmdPulseSpecs, qualification: "Boost value; the specification also states 480 nits typical" }
+    },
+    weight: { value: "187 g", sourceIds: hmdPulseSpecs },
+    storage: { value: { options: "64 GB", startsAtGb: 64 }, sourceIds: hmdPulseSpecs },
+    configurations: { value: "4 GB RAM + 64 GB storage", sourceIds: hmdPulseSpecs },
+    colors: { value: "Dreamy Pink, Meteor Black, Atmos Blue", sourceIds: hmdPulseSpecs },
+    dimensions: { value: "163.19 × 75.02 × 8.45 mm", sourceIds: hmdPulseSpecs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdPulseSpecs },
+    processor: { value: "Unisoc T606", sourceIds: hmdPulseSpecs },
+    rearCameras: { value: "13 MP main", sourceIds: hmdPulseSpecs },
+    batteryClaim: { value: "5,000 mAh QuickFix replaceable battery; up to 59 hours", sourceIds: hmdPulseSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdPulseSpecs }
+  },
+  {
+    slug: "hmd-pulse-plus",
+    maker: { value: "HMD", sourceIds: hmdPulsePlusSpecs },
+    model: { value: "HMD Pulse+", sourceIds: hmdPulsePlusSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdPulsePlusSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-plus-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "4 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-plus-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdPulsePlusSpecs },
+      panel: { value: null, sourceIds: hmdPulsePlusSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "1612 × 720", sourceIds: hmdPulsePlusSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdPulsePlusSpecs },
+      peakBrightness: { value: "600 nits boost", sourceIds: hmdPulsePlusSpecs, qualification: "Boost value; the specification also states 480 nits typical" }
+    },
+    weight: { value: "187 g", sourceIds: hmdPulsePlusSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdPulsePlusSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: hmdPulsePlusSpecs },
+    colors: { value: "Apricot Crush, Midnight Blue, Glacier Green", sourceIds: hmdPulsePlusSpecs },
+    dimensions: { value: "163.19 × 75.02 × 8.45 mm", sourceIds: hmdPulsePlusSpecs, qualification: "Height × width × depth" },
+    charging: { value: "10 W wired", sourceIds: hmdPulsePlusSpecs },
+    processor: { value: "Unisoc T606", sourceIds: hmdPulsePlusSpecs },
+    rearCameras: { value: "50 MP main", sourceIds: hmdPulsePlusSpecs },
+    batteryClaim: { value: "5,000 mAh QuickFix replaceable battery; up to 59 hours", sourceIds: hmdPulsePlusSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdPulsePlusSpecs }
+  },
+  {
+    slug: "hmd-pulse-pro",
+    maker: { value: "HMD", sourceIds: hmdPulseProSpecs },
+    model: { value: "HMD Pulse Pro", sourceIds: hmdPulseProSpecs },
+    generation: { value: "current", sourceIds: hmdCatalogue, qualification: "Listed in HMD's current international smartphone catalogue; regional availability can vary and classification does not guarantee stock" },
+    formFactor: { value: "slab", sourceIds: hmdPulseProSpecs },
+    releasedOn: { value: null, sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-pro-specs"], qualification: "The current international catalogue and cited specification do not state an exact announcement or first-availability date" },
+    originalPrice: {
+      value: { amount: null, currency: null, market: "HMD international product-information scope", configuration: "6 GB RAM + 128 GB storage" },
+      sourceIds: ["hmd-international-smartphone-catalogue", "hmd-pulse-pro-specs"],
+      qualification: "The cited international product sources do not state an original price or currency; current regional pricing is not substituted"
+    },
+    display: {
+      size: { value: "6.56 inches", sourceIds: hmdPulseProSpecs },
+      panel: { value: null, sourceIds: hmdPulseProSpecs, qualification: "Panel technology is not stated on the cited specification page" },
+      resolution: { value: "1612 × 720", sourceIds: hmdPulseProSpecs },
+      refreshRate: { value: "90 Hz", sourceIds: hmdPulseProSpecs },
+      peakBrightness: { value: "600 nits boost", sourceIds: hmdPulseProSpecs, qualification: "Boost value; the specification also states 480 nits typical" }
+    },
+    weight: { value: "196 g", sourceIds: hmdPulseProSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: hmdPulseProSpecs },
+    configurations: { value: "6 GB RAM + 128 GB storage", sourceIds: hmdPulseProSpecs },
+    colors: { value: "Glacier Green, Black Ocean, Twilight Purple", sourceIds: hmdPulseProSpecs },
+    dimensions: { value: "163.19 × 75.02 × 8.55 mm", sourceIds: hmdPulseProSpecs, qualification: "Height × width × depth" },
+    charging: { value: "20 W wired", sourceIds: hmdPulseProSpecs },
+    processor: { value: "Unisoc T606", sourceIds: hmdPulseProSpecs },
+    rearCameras: { value: "50 MP main + 2 MP depth", sourceIds: hmdPulseProSpecs },
+    batteryClaim: { value: "5,000 mAh QuickFix replaceable battery; up to 59 hours", sourceIds: hmdPulseProSpecs, qualification: "Manufacturer capacity and usage claim; actual battery life varies" },
+    resistance: { value: "IP52", sourceIds: hmdPulseProSpecs }
   }
 ] as const satisfies readonly PhoneRecord[];
 
@@ -2491,7 +3084,8 @@ export function validateCatalog(): string[] {
     const price = phone.originalPrice.value;
     if (
       (price.amount !== null && price.amount <= 0) ||
-      !/^[A-Z]{3}$/.test(price.currency) ||
+      (price.amount !== null && (price.currency === null || !/^[A-Z]{3}$/.test(price.currency))) ||
+      (price.currency !== null && !/^[A-Z]{3}$/.test(price.currency)) ||
       !price.market.trim() ||
       !price.configuration.trim()
     ) {
@@ -2499,6 +3093,9 @@ export function validateCatalog(): string[] {
     }
     if (price.amount === null && !phone.originalPrice.qualification) {
       errors.push(`${phone.slug}: missing original price lacks an explicit qualification`);
+    }
+    if (phone.releasedOn.value === null && !phone.releasedOn.qualification) {
+      errors.push(`${phone.slug}: missing launch timing lacks an explicit qualification`);
     }
   }
 
