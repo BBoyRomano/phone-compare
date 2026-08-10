@@ -22,6 +22,8 @@
     "app/**/*.tsx",
     "build/**/*.ts",
     "data/**/*.ts",
+    "inventory/**/*.ts",
+    "scripts/**/*.ts",
     "tests/**/*.ts",
     "worker/**/*.ts",
     "*.ts",
