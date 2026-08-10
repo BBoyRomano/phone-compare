@@ -1235,6 +1235,62 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2024-11-20",
     accessedAt: "2026-08-10"
+  },
+  "vivo-eu-phone-catalogue": {
+    id: "vivo-eu-phone-catalogue",
+    publisher: "vivo",
+    title: "vivo Europe - Products",
+    url: "https://www.vivo.com/eu/products",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-x300-ultra-specs": {
+    id: "vivo-x300-ultra-specs",
+    publisher: "vivo",
+    title: "vivo X300 Ultra - Specifications",
+    url: "https://www.vivo.com/eu/products/param/x300-ultra",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-x300-fe-specs": {
+    id: "vivo-x300-fe-specs",
+    publisher: "vivo",
+    title: "vivo X300 FE - Specifications",
+    url: "https://www.vivo.com/eu/products/param/x300-fe",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-x300-pro-specs": {
+    id: "vivo-x300-pro-specs",
+    publisher: "vivo",
+    title: "vivo X300 Pro - Specifications",
+    url: "https://www.vivo.com/es/products/param/x300-pro",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-x300-specs": {
+    id: "vivo-x300-specs",
+    publisher: "vivo",
+    title: "vivo X300 - Specifications",
+    url: "https://www.vivo.com/es/products/param/x300",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-v70-lite-5g-specs": {
+    id: "vivo-v70-lite-5g-specs",
+    publisher: "vivo",
+    title: "vivo V70 Lite 5G - Specifications",
+    url: "https://www.vivo.com/es/products/param/v70-lite-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
+  },
+  "vivo-y21-5g-specs": {
+    id: "vivo-y21-5g-specs",
+    publisher: "vivo",
+    title: "vivo Y21 5G - Specifications",
+    url: "https://www.vivo.com/eu/products/param/y21-5g",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-10"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1448,6 +1504,13 @@ const asusZenfone11Launch = ["asus-zenfone-11-ultra-announcement"] as const;
 const asusRog9Specs = ["asus-rog-phone-9-specs"] as const;
 const asusRog9ProSpecs = ["asus-rog-phone-9-pro-specs"] as const;
 const asusRog9Launch = ["asus-rog-phone-9-series-announcement"] as const;
+const vivoEuCatalogue = ["vivo-eu-phone-catalogue"] as const;
+const vivoX300UltraSpecs = ["vivo-x300-ultra-specs"] as const;
+const vivoX300FeSpecs = ["vivo-x300-fe-specs"] as const;
+const vivoX300ProSpecs = ["vivo-x300-pro-specs"] as const;
+const vivoX300Specs = ["vivo-x300-specs"] as const;
+const vivoV70Lite5gSpecs = ["vivo-v70-lite-5g-specs"] as const;
+const vivoY215gSpecs = ["vivo-y21-5g-specs"] as const;
 
 export const phones = [
   {
@@ -5260,6 +5323,162 @@ export const phones = [
     rearCameras: { value: "50 MP main + 13 MP ultrawide + 32 MP 3× telephoto", sourceIds: asusRog9ProSpecs },
     batteryClaim: { value: "5,800 mAh typical", sourceIds: asusRog9ProSpecs, qualification: "Manufacturer capacity" },
     resistance: { value: "IP68", sourceIds: asusRog9ProSpecs }
+  },
+  {
+    slug: "vivo-x300-ultra",
+    maker: { value: "vivo", sourceIds: vivoX300UltraSpecs },
+    model: { value: "vivo X300 Ultra", sourceIds: vivoX300UltraSpecs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; availability and configurations vary within Europe" },
+    formFactor: { value: "slab", sourceIds: vivoX300UltraSpecs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-ultra-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "16 GB RAM + 1 TB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-ultra-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current regional buying state is not substituted" },
+    display: {
+      size: { value: "6.82 inches", sourceIds: vivoX300UltraSpecs },
+      panel: { value: "AMOLED", sourceIds: vivoX300UltraSpecs },
+      resolution: { value: "3168 × 1440", sourceIds: vivoX300UltraSpecs },
+      refreshRate: { value: "1–144 Hz", sourceIds: vivoX300UltraSpecs },
+      peakBrightness: { value: "4,500 nits local peak", sourceIds: vivoX300UltraSpecs }
+    },
+    weight: { value: "232 g (Black); 237 g (Green)", sourceIds: vivoX300UltraSpecs },
+    storage: { value: { options: "1024 GB (1 TB)", startsAtGb: 1024 }, sourceIds: vivoX300UltraSpecs },
+    configurations: { value: "16 GB RAM + 1 TB storage", sourceIds: vivoX300UltraSpecs },
+    colors: { value: "Black, Green", sourceIds: vivoX300UltraSpecs },
+    dimensions: { value: "162.98 × 76.81 × 8.19 mm (Black); 8.49 mm thick (Green)", sourceIds: vivoX300UltraSpecs },
+    charging: { value: "100 W wired; 40 W wireless", sourceIds: vivoX300UltraSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Elite Gen 5", sourceIds: vivoX300UltraSpecs },
+    rearCameras: { value: "200 MP + 50 MP + 200 MP + 5 MP", sourceIds: vivoX300UltraSpecs, qualification: "Preserves vivo's camera specification order without inferring roles for every sensor" },
+    batteryClaim: { value: "6,600 mAh typical; 6,395 mAh rated", sourceIds: vivoX300UltraSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68 and IP69", sourceIds: vivoX300UltraSpecs }
+  },
+  {
+    slug: "vivo-x300-fe",
+    maker: { value: "vivo", sourceIds: vivoX300FeSpecs },
+    model: { value: "vivo X300 FE", sourceIds: vivoX300FeSpecs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; availability and configurations vary within Europe" },
+    formFactor: { value: "slab", sourceIds: vivoX300FeSpecs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-fe-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "12 GB RAM + 512 GB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-fe-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current regional buying state is not substituted" },
+    display: {
+      size: { value: "6.31 inches", sourceIds: vivoX300FeSpecs },
+      panel: { value: "AMOLED", sourceIds: vivoX300FeSpecs },
+      resolution: { value: "2640 × 1216", sourceIds: vivoX300FeSpecs },
+      refreshRate: { value: "1–120 Hz", sourceIds: vivoX300FeSpecs },
+      peakBrightness: { value: "5,000 nits local peak", sourceIds: vivoX300FeSpecs }
+    },
+    weight: { value: "191 g", sourceIds: vivoX300FeSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: vivoX300FeSpecs },
+    configurations: { value: "12 GB RAM + 512 GB storage", sourceIds: vivoX300FeSpecs },
+    colors: { value: "Black, Purple", sourceIds: vivoX300FeSpecs },
+    dimensions: { value: "150.83 × 71.76 × 7.99 mm", sourceIds: vivoX300FeSpecs },
+    charging: { value: "90 W wired; 40 W wireless", sourceIds: vivoX300FeSpecs },
+    processor: { value: "Qualcomm Snapdragon 8 Gen 5", sourceIds: vivoX300FeSpecs },
+    rearCameras: { value: "50 MP + 8 MP + 50 MP", sourceIds: vivoX300FeSpecs },
+    batteryClaim: { value: "6,500 mAh typical; 6,350 mAh rated", sourceIds: vivoX300FeSpecs, qualification: "Manufacturer capacity" },
+    resistance: { value: "IP68 and IP69", sourceIds: vivoX300FeSpecs }
+  },
+  {
+    slug: "vivo-x300-pro",
+    maker: { value: "vivo", sourceIds: vivoX300ProSpecs },
+    model: { value: "vivo X300 Pro", sourceIds: vivoX300ProSpecs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; specification facts use vivo's Spain-market European configuration" },
+    formFactor: { value: "slab", sourceIds: vivoX300ProSpecs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-pro-specs"], qualification: "The cited European catalogue and Spain-market specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Spain", configuration: "16 GB RAM + 512 GB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-pro-specs"], qualification: "The cited sources do not establish an original launch price for the Spain-market configuration; current buying state is not substituted" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: vivoX300ProSpecs },
+      panel: { value: "AMOLED", sourceIds: vivoX300ProSpecs },
+      resolution: { value: "2800 × 1260", sourceIds: vivoX300ProSpecs },
+      refreshRate: { value: "1–120 Hz LTPO adaptive", sourceIds: vivoX300ProSpecs },
+      peakBrightness: { value: "4,500 nits local peak", sourceIds: vivoX300ProSpecs }
+    },
+    weight: { value: "226 g", sourceIds: vivoX300ProSpecs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: vivoX300ProSpecs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: vivoX300ProSpecs },
+    colors: { value: "Dune Brown, Phantom Black", sourceIds: vivoX300ProSpecs },
+    dimensions: { value: "161.98 × 75.48 × 7.99 mm", sourceIds: vivoX300ProSpecs },
+    charging: { value: "90 W wired; 40 W wireless", sourceIds: vivoX300ProSpecs },
+    processor: { value: "MediaTek Dimensity 9500", sourceIds: vivoX300ProSpecs },
+    rearCameras: { value: "50 MP + 50 MP + 200 MP", sourceIds: vivoX300ProSpecs },
+    batteryClaim: { value: "5,440 mAh typical; 5,325 mAh rated", sourceIds: vivoX300ProSpecs, qualification: "Manufacturer capacity for vivo's Spain-market configuration" },
+    resistance: { value: "IP68 and IP69", sourceIds: vivoX300ProSpecs }
+  },
+  {
+    slug: "vivo-x300",
+    maker: { value: "vivo", sourceIds: vivoX300Specs },
+    model: { value: "vivo X300", sourceIds: vivoX300Specs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; specification facts use vivo's Spain-market European configuration" },
+    formFactor: { value: "slab", sourceIds: vivoX300Specs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-specs"], qualification: "The cited European catalogue and Spain-market specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Spain", configuration: "16 GB RAM + 512 GB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-x300-specs"], qualification: "The cited sources do not establish an original launch price for the Spain-market configuration; current buying state is not substituted" },
+    display: {
+      size: { value: "6.31 inches", sourceIds: vivoX300Specs },
+      panel: { value: "AMOLED", sourceIds: vivoX300Specs },
+      resolution: { value: "2640 × 1216", sourceIds: vivoX300Specs },
+      refreshRate: { value: "1–120 Hz LTPO adaptive", sourceIds: vivoX300Specs },
+      peakBrightness: { value: "4,500 nits local peak", sourceIds: vivoX300Specs }
+    },
+    weight: { value: "190 g", sourceIds: vivoX300Specs },
+    storage: { value: { options: "512 GB", startsAtGb: 512 }, sourceIds: vivoX300Specs },
+    configurations: { value: "16 GB RAM + 512 GB storage", sourceIds: vivoX300Specs },
+    colors: { value: "Halo Pink, Phantom Black", sourceIds: vivoX300Specs },
+    dimensions: { value: "150.57 × 71.92 × 7.95 mm", sourceIds: vivoX300Specs },
+    charging: { value: "90 W wired; 40 W wireless", sourceIds: vivoX300Specs },
+    processor: { value: "MediaTek Dimensity 9500", sourceIds: vivoX300Specs },
+    rearCameras: { value: "200 MP + 50 MP + 50 MP", sourceIds: vivoX300Specs },
+    batteryClaim: { value: "5,360 mAh typical; 5,255 mAh rated", sourceIds: vivoX300Specs, qualification: "Manufacturer capacity for vivo's Spain-market configuration" },
+    resistance: { value: "IP68 and IP69", sourceIds: vivoX300Specs }
+  },
+  {
+    slug: "vivo-v70-lite-5g",
+    maker: { value: "vivo", sourceIds: vivoV70Lite5gSpecs },
+    model: { value: "vivo V70 Lite 5G", sourceIds: vivoV70Lite5gSpecs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; specification facts use vivo's Spain-market European configuration" },
+    formFactor: { value: "slab", sourceIds: vivoV70Lite5gSpecs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-v70-lite-5g-specs"], qualification: "The cited European catalogue and Spain-market specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Spain", configuration: "6 GB RAM + 256 GB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-v70-lite-5g-specs"], qualification: "The cited sources do not establish an original launch price for the Spain-market configuration; current buying state is not substituted" },
+    display: {
+      size: { value: "6.77 inches", sourceIds: vivoV70Lite5gSpecs },
+      panel: { value: "AMOLED", sourceIds: vivoV70Lite5gSpecs },
+      resolution: { value: "2392 × 1080 (FHD+)", sourceIds: vivoV70Lite5gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: vivoV70Lite5gSpecs },
+      peakBrightness: { value: null, sourceIds: vivoV70Lite5gSpecs, qualification: "The cited Spain-market product specification does not state a numeric peak-brightness value" }
+    },
+    weight: { value: "194 g", sourceIds: vivoV70Lite5gSpecs },
+    storage: { value: { options: "256 GB", startsAtGb: 256 }, sourceIds: vivoV70Lite5gSpecs },
+    configurations: { value: "6 GB RAM + 256 GB storage", sourceIds: vivoV70Lite5gSpecs, qualification: "Spain-market configuration; vivo's broader European marketing page describes higher configurations, so they are not merged into this record" },
+    colors: { value: "Titanium Blue, Pop Pink, Elegant Black", sourceIds: vivoV70Lite5gSpecs },
+    dimensions: { value: "163.77 × 76.28 × 7.59 mm (Black/Blue); 7.69 mm thick (Pink)", sourceIds: vivoV70Lite5gSpecs },
+    charging: { value: "90 W wired", sourceIds: vivoV70Lite5gSpecs },
+    processor: { value: "MediaTek Dimensity 7400-Turbo", sourceIds: vivoV70Lite5gSpecs },
+    rearCameras: { value: "50 MP Sony main + 8 MP ultrawide", sourceIds: vivoV70Lite5gSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: vivoV70Lite5gSpecs, qualification: "Manufacturer capacity for vivo's Spain-market configuration; capacity can differ in other European markets" },
+    resistance: { value: "IP65", sourceIds: vivoV70Lite5gSpecs }
+  },
+  {
+    slug: "vivo-y21-5g",
+    maker: { value: "vivo", sourceIds: vivoY215gSpecs },
+    model: { value: "vivo Y21 5G", sourceIds: vivoY215gSpecs },
+    generation: { value: "current", sourceIds: vivoEuCatalogue, qualification: "Listed in vivo Europe's maintained product navigation on 2026-08-10; availability and configurations vary within Europe" },
+    formFactor: { value: "slab", sourceIds: vivoY215gSpecs },
+    releasedOn: { value: null, sourceIds: ["vivo-eu-phone-catalogue", "vivo-y21-5g-specs"], qualification: "The cited European catalogue and specification do not state an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Europe", configuration: "4 GB RAM + 128 GB storage" }, sourceIds: ["vivo-eu-phone-catalogue", "vivo-y21-5g-specs"], qualification: "The cited European catalogue and specification do not establish an original launch price; current regional buying state is not substituted" },
+    display: {
+      size: { value: "6.74 inches", sourceIds: vivoY215gSpecs },
+      panel: { value: "LCD", sourceIds: vivoY215gSpecs },
+      resolution: { value: "1600 × 720", sourceIds: vivoY215gSpecs },
+      refreshRate: { value: "Up to 120 Hz", sourceIds: vivoY215gSpecs },
+      peakBrightness: { value: "1,200 nits HBM", sourceIds: vivoY215gSpecs }
+    },
+    weight: { value: "209 g", sourceIds: vivoY215gSpecs },
+    storage: { value: { options: "128 GB", startsAtGb: 128 }, sourceIds: vivoY215gSpecs },
+    configurations: { value: "4 GB RAM + 128 GB storage", sourceIds: vivoY215gSpecs },
+    colors: { value: "Voyage Black, Champagne Gold", sourceIds: vivoY215gSpecs },
+    dimensions: { value: "167.40 × 77.10 × 8.39 mm", sourceIds: vivoY215gSpecs },
+    charging: { value: "44 W wired", sourceIds: vivoY215gSpecs },
+    processor: { value: "MediaTek Dimensity 6300", sourceIds: vivoY215gSpecs },
+    rearCameras: { value: "50 MP main + 0.08 MP auxiliary", sourceIds: vivoY215gSpecs },
+    batteryClaim: { value: "6,500 mAh typical", sourceIds: vivoY215gSpecs, qualification: "Manufacturer capacity; vivo states 5,200 mAh for the Austria-market variant" },
+    resistance: { value: "IP65", sourceIds: vivoY215gSpecs }
   }
 ] as const satisfies readonly PhoneRecord[];
 

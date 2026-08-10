@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 104);
-  assert.equal(Object.keys(sources).length, 151);
+  assert.equal(phones.length, 110);
+  assert.equal(Object.keys(sources).length, 158);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -26,7 +26,8 @@ test("the catalogue includes current standard models from every represented manu
       "redmi-note-15",
       "poco-x8-pro",
       "oppo-find-x9",
-      "asus-zenfone-12-ultra"
+      "asus-zenfone-12-ultra",
+      "vivo-x300"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -45,7 +46,8 @@ test("the catalogue includes current standard models from every represented manu
       "redmi-note-15",
       "poco-x8-pro",
       "oppo-find-x9",
-      "asus-zenfone-12-ultra"
+      "asus-zenfone-12-ultra",
+      "vivo-x300"
     ]
   );
 });
@@ -152,7 +154,13 @@ test("every phone has a sourced, conservative generation classification", () => 
       "oppo-a60-5g",
       "asus-zenfone-12-ultra",
       "asus-rog-phone-9",
-      "asus-rog-phone-9-pro"
+      "asus-rog-phone-9-pro",
+      "vivo-x300-ultra",
+      "vivo-x300-fe",
+      "vivo-x300-pro",
+      "vivo-x300",
+      "vivo-v70-lite-5g",
+      "vivo-y21-5g"
     ]
   );
   assert.deepEqual(
@@ -630,8 +638,33 @@ test("the ASUS global catalogues publish the active Zenfone and ROG boundaries c
   assert.deepEqual(rog9?.generation.sourceIds, ["asus-global-rog-phone-catalogue"]);
 });
 
+test("the vivo Europe navigation publishes a bounded six-phone current lineup", () => {
+  const vivo: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "vivo");
+  assert.deepEqual(vivo.map(({ slug }) => slug), [
+    "vivo-x300-ultra",
+    "vivo-x300-fe",
+    "vivo-x300-pro",
+    "vivo-x300",
+    "vivo-v70-lite-5g",
+    "vivo-y21-5g"
+  ]);
+  assert.ok(vivo.every(({ generation }) => generation.value === "current"));
+  assert.ok(vivo.every(({ generation }) => generation.sourceIds.length === 1 && generation.sourceIds[0] === "vivo-eu-phone-catalogue"));
+  assert.ok(vivo.every(({ releasedOn, originalPrice }) => releasedOn.value === null && releasedOn.qualification && originalPrice.value.amount === null && originalPrice.qualification));
+
+  const ultra = vivo.find(({ slug }) => slug === "vivo-x300-ultra");
+  const pro = vivo.find(({ slug }) => slug === "vivo-x300-pro");
+  const v70Lite = vivo.find(({ slug }) => slug === "vivo-v70-lite-5g");
+  const y21 = vivo.find(({ slug }) => slug === "vivo-y21-5g");
+  assert.equal(ultra?.storage.value.startsAtGb, 1024);
+  assert.equal(pro?.display.refreshRate.value, "1–120 Hz LTPO adaptive");
+  assert.equal(v70Lite?.resistance.value, "IP65");
+  assert.match(v70Lite?.configurations?.qualification ?? "", /Spain-market.*not merged/i);
+  assert.match(y21?.batteryClaim.qualification ?? "", /Austria-market variant/i);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);
