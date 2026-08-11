@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — 2026-08-09
+Superseded by [0006: Multi-app monorepo and isolated delivery](0006-multi-app-monorepo.md) — 2026-08-11
 
 ## Decision
 

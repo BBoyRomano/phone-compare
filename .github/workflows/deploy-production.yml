@@ -1,109 +1,102 @@
-name: Deploy production
+name: Deploy production apps
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - 'README.md'
-      - 'docs/**'
-      - '.github/FUNDING.yml'
+    branches: [main]
   workflow_dispatch:
+    inputs:
+      app:
+        description: App id to release, or "all"
+        required: true
+        default: all
+        type: string
 
 permissions:
   contents: read
 
-# Keep the active deployment running and retain only the newest pending main run.
-concurrency:
-  group: production-deploy
-  cancel-in-progress: false
-
 jobs:
+  changes:
+    name: Plan production releases
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      has_apps: ${{ steps.impact.outputs.has_apps }}
+      matrix: ${{ steps.impact.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22.x
+          package-manager-cache: false
+      - name: Compute dependency-aware release plan
+        id: impact
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          SELECTED_APP: ${{ inputs.app }}
+        run: |
+          if [[ -n "$SELECTED_APP" ]]; then
+            node tooling/affected-workspaces.mjs --select "$SELECTED_APP" --github-output "$GITHUB_OUTPUT"
+          else
+            node tooling/affected-workspaces.mjs --base "$BASE_SHA" --head "$GITHUB_SHA" --github-output "$GITHUB_OUTPUT"
+          fi
+
   deploy:
-    name: Verify and deploy production
-    if: github.ref == 'refs/heads/main'
+    name: Release ${{ matrix.app }}
+    needs: changes
+    if: needs.changes.outputs.has_apps == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
+    concurrency:
+      group: production-${{ matrix.app }}
+      cancel-in-progress: false
     environment:
-      name: production
-      url: https://phone-compare.bboyromano.workers.dev
-
+      name: production-${{ matrix.app }}
+      url: ${{ matrix.productionUrl }}
     steps:
-      - name: Check out triggering commit
+      - name: Check out the exact release commit
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: 22.x
           package-manager-cache: false
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
       - name: Install browser runtime
+        if: matrix.browserTests
         run: pnpm exec playwright install --with-deps chromium
-
-      - name: Verify project and build production artifact
-        run: pnpm check
-
+      - name: Verify app and all internal dependencies
+        run: pnpm --filter "${{ matrix.package }}..." check
       - name: Validate generated Worker configuration
-        run: pnpm exec wrangler deploy --dry-run --config dist/server/wrangler.json
-
-      - name: Deploy existing Worker
+        run: pnpm exec wrangler deploy --dry-run --config "apps/${{ matrix.app }}/dist/server/wrangler.json"
+      - name: Deploy app Worker
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4.120.0"
           packageManager: pnpm
-          command: deploy --config dist/server/wrangler.json
-
-      - name: Smoke test production
+          command: deploy --config "apps/${{ matrix.app }}/dist/server/wrangler.json"
+      - name: Smoke test production identity and routing
         shell: bash
         env:
-          PRODUCTION_URL: https://phone-compare.bboyromano.workers.dev
+          PRODUCTION_URL: ${{ matrix.productionUrl }}
+          SMOKE_MARKER: ${{ matrix.smokeMarker }}
         run: |
           set -euo pipefail
-
-          home_metadata="$(
-            curl --proto '=https' --tlsv1.2 \
-              --fail-with-body --silent --show-error --location \
-              --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 \
-              --output "${RUNNER_TEMP}/production-home.html" \
-              --write-out '%{http_code} %{content_type}' \
-              "${PRODUCTION_URL}/"
-          )"
+          home_metadata="$(curl --proto '=https' --tlsv1.2 --fail-with-body --silent --show-error --location --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 --output "${RUNNER_TEMP}/production-home.html" --write-out '%{http_code} %{content_type}' "${PRODUCTION_URL}/")"
           read -r home_status home_content_type <<< "${home_metadata}"
-
-          if [[ ! "${home_status}" =~ ^2[0-9]{2}$ ]]; then
-            echo "Expected the production home page to return 2xx; received ${home_status}." >&2
-            exit 1
-          fi
-          if [[ "${home_content_type}" != text/html* ]]; then
-            echo "Expected the production home page to be HTML; received ${home_content_type}." >&2
-            exit 1
-          fi
-          if ! grep --quiet --ignore-case '<html' "${RUNNER_TEMP}/production-home.html"; then
-            echo "Expected the production home page body to contain an HTML document." >&2
-            exit 1
-          fi
-
-          unknown_status="$(
-            curl --proto '=https' --tlsv1.2 \
-              --silent --show-error --location \
-              --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 \
-              --output /dev/null --write-out '%{http_code}' \
-              "${PRODUCTION_URL}/__deployment-smoke/unknown-route"
-          )"
-
-          if [[ "${unknown_status}" != "404" ]]; then
-            echo "Expected an unknown production route to return 404; received ${unknown_status}." >&2
-            exit 1
-          fi
+          [[ "${home_status}" =~ ^2[0-9]{2}$ ]]
+          [[ "${home_content_type}" == text/html* ]]
+          grep --fixed-strings --quiet "${SMOKE_MARKER}" "${RUNNER_TEMP}/production-home.html"
+          unknown_status="$(curl --proto '=https' --tlsv1.2 --silent --show-error --location --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 --output /dev/null --write-out '%{http_code}' "${PRODUCTION_URL}/__deployment-smoke/unknown-route")"
+          [[ "${unknown_status}" == "404" ]]

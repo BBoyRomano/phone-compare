@@ -1,14 +1,14 @@
 # Dependencies
-/node_modules/
+**/node_modules/
 /.pnpm-store/
 
 # Build and framework output
-/dist/
-/.next/
-/.vinext/
-/.wrangler/
-/playwright-report/
-/test-results/
+**/dist/
+**/.next/
+**/.vinext/
+**/.wrangler/
+**/playwright-report/
+**/test-results/
 *.tsbuildinfo
 
 # Local configuration and logs

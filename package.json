@@ -1,28 +1,28 @@
 {
-  "name": "phone-compare",
+  "name": "product-compare-platform",
   "private": true,
-  "description": "An evidence-led mobile phone comparison application.",
+  "description": "An evidence-led multi-app product lookup and comparison platform.",
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "vinext start",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "inventory:check": "node scripts/candidate-inventory.ts",
-    "inventory:coverage": "node scripts/candidate-inventory.ts --coverage",
-    "inventory:import:wikidata": "node scripts/import-wikidata-candidates.ts --write",
-    "test:data": "node --test tests/catalog.test.ts tests/comparison.test.ts tests/manufacturer-sources.test.ts tests/candidate-inventory.test.ts",
-    "test:render": "node --test tests/rendered-html.test.mjs",
-    "test:browser": "node tests/browser/run.mjs",
-    "test": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render && pnpm run test:browser",
-    "check": "pnpm run test"
-  },
-  "dependencies": {
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "dev:phones": "pnpm --filter @product-compare/phones dev",
+    "dev:tablets": "pnpm --filter @product-compare/tablets dev",
+    "dev:cars": "pnpm --filter @product-compare/cars dev",
+    "dev:laptops": "pnpm --filter @product-compare/laptops dev",
+    "build": "pnpm --recursive --filter './apps/*' build",
+    "typecheck": "pnpm --recursive --if-present typecheck",
+    "lint": "pnpm --recursive --if-present lint",
+    "test:data": "pnpm --recursive --if-present test:data",
+    "check:workspace": "node --test tooling/*.test.mjs && node tooling/validate-workspaces.mjs",
+    "check": "pnpm run check:workspace && pnpm --recursive --if-present check",
+    "check:phones": "pnpm --filter @product-compare/phones check",
+    "check:tablets": "pnpm --filter @product-compare/tablets check",
+    "check:cars": "pnpm --filter @product-compare/cars check",
+    "check:laptops": "pnpm --filter @product-compare/laptops check",
+    "inventory:check": "pnpm --filter @product-compare/phones inventory:check",
+    "inventory:coverage": "pnpm --filter @product-compare/phones inventory:coverage",
+    "inventory:import:wikidata": "pnpm --filter @product-compare/phones inventory:import:wikidata"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.12.1",

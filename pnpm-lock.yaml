@@ -7,13 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      react:
-        specifier: 19.2.8
-        version: 19.2.8
-      react-dom:
-        specifier: 19.2.8
-        version: 19.2.8(react@19.2.8)
     devDependencies:
       '@axe-core/playwright':
         specifier: 4.12.1
@@ -75,6 +68,141 @@ importers:
       wrangler:
         specifier: 4.120.0
         version: 4.120.0
+
+  apps/cars:
+    dependencies:
+      '@product-compare/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
+      '@product-compare/web':
+        specifier: workspace:*
+        version: link:../../packages/web
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: 1.51.1
+        version: 1.51.1(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))(wrangler@4.120.0)
+      '@product-compare/build':
+        specifier: workspace:*
+        version: link:../../packages/build
+      vinext:
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(@vitejs/plugin-react@6.0.5(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(@vitejs/plugin-rsc@0.5.34(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))
+      vite:
+        specifier: 8.2.1
+        version: 8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)
+      wrangler:
+        specifier: 4.120.0
+        version: 4.120.0
+
+  apps/laptops:
+    dependencies:
+      '@product-compare/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
+      '@product-compare/web':
+        specifier: workspace:*
+        version: link:../../packages/web
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: 1.51.1
+        version: 1.51.1(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))(wrangler@4.120.0)
+      '@product-compare/build':
+        specifier: workspace:*
+        version: link:../../packages/build
+      vinext:
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(@vitejs/plugin-react@6.0.5(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(@vitejs/plugin-rsc@0.5.34(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))
+      vite:
+        specifier: 8.2.1
+        version: 8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)
+      wrangler:
+        specifier: 4.120.0
+        version: 4.120.0
+
+  apps/phones:
+    dependencies:
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: 1.51.1
+        version: 1.51.1(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))(wrangler@4.120.0)
+      '@product-compare/build':
+        specifier: workspace:*
+        version: link:../../packages/build
+      vinext:
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(@vitejs/plugin-react@6.0.5(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(@vitejs/plugin-rsc@0.5.34(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))
+      vite:
+        specifier: 8.2.1
+        version: 8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)
+      wrangler:
+        specifier: 4.120.0
+        version: 4.120.0
+
+  apps/tablets:
+    dependencies:
+      '@product-compare/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
+      '@product-compare/web':
+        specifier: workspace:*
+        version: link:../../packages/web
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: 1.51.1
+        version: 1.51.1(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))(wrangler@4.120.0)
+      '@product-compare/build':
+        specifier: workspace:*
+        version: link:../../packages/build
+      vinext:
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(@vitejs/plugin-react@6.0.5(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(@vitejs/plugin-rsc@0.5.34(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)))(react-dom@19.2.8(react@19.2.8))(react-server-dom-webpack@19.2.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(webpack@5.109.2(esbuild@0.28.1)(lightningcss@1.33.0)(postcss@8.5.26)))(react@19.2.8)(vite@8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2))
+      vite:
+        specifier: 8.2.1
+        version: 8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)
+      wrangler:
+        specifier: 4.120.0
+        version: 4.120.0
+
+  packages/build:
+    devDependencies:
+      vite:
+        specifier: 8.2.1
+        version: 8.2.1(@types/node@22.19.19)(esbuild@0.28.1)(terser@5.49.2)
+
+  packages/catalog: {}
+
+  packages/web:
+    dependencies:
+      '@product-compare/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
 
 packages:
 

@@ -1,0 +1,17 @@
+{
+  "name": "@product-compare/build",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./cloudflare-worker": "./cloudflare-worker.ts",
+    "./sites-vite-plugin": "./sites-vite-plugin.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "check": "pnpm run typecheck && pnpm run lint"
+  },
+  "devDependencies": {
+    "vite": "8.2.1"
+  }
+}

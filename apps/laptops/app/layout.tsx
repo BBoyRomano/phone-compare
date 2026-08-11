@@ -1,0 +1,8 @@
+import { catalogueMetadata } from "@product-compare/web";
+import "@product-compare/web/styles.css";
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { laptopCatalogue } from "../data/catalog";
+const fallbackOrigin="https://product-compare-laptops.bboyromano.workers.dev";
+export async function generateMetadata():Promise<Metadata>{const h=await headers();const host=h.get("x-forwarded-host")?.split(",")[0]?.trim()??h.get("host");const protocol=h.get("x-forwarded-proto")?.split(",")[0]?.trim()==="http"?"http":"https";let origin=fallbackOrigin;if(host){try{origin=new URL(`${protocol}://${host}`).origin;}catch{origin=fallbackOrigin;}}return catalogueMetadata(laptopCatalogue,origin) as Metadata;}
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body>{children}</body></html>;}
