@@ -401,17 +401,17 @@ export const manufacturerSources = [
     manufacturer: "MEIZU",
     officialDomains: ["meizu.com"],
     sources: [
-      { role: "catalogue", url: "https://m.meizu.com/global/product", scope: { kind: "global" } },
+      { role: "catalogue", url: "https://www.meizu.com/global/product-list/phones", scope: { kind: "global" } },
       {
         role: "specifications",
-        url: "https://m.meizu.com/global/product",
+        url: "https://www.meizu.com/global/product-list/phones",
         scope: { kind: "global" },
-        urlPattern: "https://m.meizu.com/global/product/{product-slug}"
+        urlPattern: "https://www.meizu.com/global/product/{product-slug}"
       },
       { role: "newsroom", url: "https://m.meizu.com/global/news", scope: { kind: "global" } },
       { role: "support-archive", url: "https://m.meizu.com/global/support/user-manuals", scope: { kind: "global" } }
     ],
-    marketCaveat: "The global mobile site is a product-information source; local sale, configuration, price, and support eligibility need regional evidence."
+    marketCaveat: "The global AI Phones navigation is a product-information surface, not a sales market; lifecycle, local sale, configuration, price, and support eligibility need stronger evidence."
   },
   {
     id: "doro",
