@@ -16,6 +16,7 @@ test("release identity collisions are rejected", async () => {
       ...second,
       config: {
         ...second.config,
+        databaseName: first.config.databaseName,
         workerName: first.config.workerName,
         productionUrl: first.config.productionUrl,
         smokeMarker: first.config.smokeMarker
@@ -24,6 +25,7 @@ test("release identity collisions are rejected", async () => {
   };
   const errors = await validateWorkspace(invalid);
   assert.ok(errors.some((error) => error.includes("workerName must be unique")));
+  assert.ok(errors.some((error) => error.includes("databaseName must be unique")));
   assert.ok(errors.some((error) => error.includes("productionUrl must be unique")));
   assert.ok(errors.some((error) => error.includes("smokeMarker must be unique")));
 });

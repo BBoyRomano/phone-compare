@@ -3,12 +3,14 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./relational": "./src/relational.ts",
+    "./worker": "./src/worker.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "test:data": "node --test tests/catalog.test.ts",
+    "test:data": "node --test tests/*.test.ts",
     "check": "pnpm run typecheck && pnpm run lint && pnpm run test:data"
   }
 }

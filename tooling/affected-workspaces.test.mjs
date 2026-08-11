@@ -10,7 +10,7 @@ test("an app-only change affects only that app", () => {
 });
 
 test("shared package changes affect only transitive consumers", () => {
-  assert.deepEqual(impactForFiles(workspace, ["packages/catalog/src/index.ts"]).apps, ["cars", "laptops", "tablets"]);
+  assert.deepEqual(impactForFiles(workspace, ["packages/catalog/src/index.ts"]).apps, ["cars", "laptops", "phones", "tablets"]);
   assert.deepEqual(impactForFiles(workspace, ["packages/web/src/index.tsx"]).apps, ["cars", "laptops", "tablets"]);
   assert.deepEqual(impactForFiles(workspace, ["packages/build/cloudflare-worker.ts"]).apps, ["cars", "laptops", "phones", "tablets"]);
 });
@@ -25,6 +25,7 @@ test("deployment matrix is sourced from app-owned metadata", () => {
   assert.deepEqual(impact.matrix.include, [{
     app: "tablets",
     package: "@product-compare/tablets",
+    databaseName: "product-compare-tablets-production",
     productionUrl: "https://product-compare-tablets.bboyromano.workers.dev",
     smokeMarker: "Tablet Compare",
     browserTests: false

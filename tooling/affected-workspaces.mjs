@@ -111,6 +111,7 @@ export function impactForFiles(workspace, inputFiles) {
     return {
       app: id,
       package: app.name,
+      databaseName: app.config.databaseName,
       productionUrl: app.config.productionUrl,
       smokeMarker: app.config.smokeMarker,
       browserTests: app.config.browserTests

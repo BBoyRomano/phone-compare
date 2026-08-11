@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const fallbackOrigin = "https://phone-compare.bboyromano.workers.dev";
+const fallbackOrigin = "https://product-compare-phones.bboyromano.workers.dev";
 const title = "Phone Compare — evidence before opinion";
 const description = "Compare meaningful phone differences with clear, first-party sources.";
 

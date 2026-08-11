@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "test:data": "node --test tests/catalog.test.ts",
     "test:render": "node --test tests/rendered-html.test.mjs",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render"
+    "catalog:sql": "node ../../tooling/generate-catalog-sql.mjs .",
+    "test:database": "node ../../tooling/validate-catalog-database.mjs .",
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run catalog:sql && pnpm run test:database && pnpm run test:render"
   },
   "dependencies": {
     "@product-compare/catalog": "workspace:*",

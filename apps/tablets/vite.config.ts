@@ -8,6 +8,12 @@ import appConfig from "./app.config.json" with { type: "json" };
 export default defineConfig({
   plugins: [vinext(), sites(), cloudflare({
     viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-    config: productWorkerConfig({ name: appConfig.workerName })
+    config: productWorkerConfig({
+      name: appConfig.workerName,
+      catalogDatabase: {
+        name: appConfig.databaseName,
+        id: process.env.CLOUDFLARE_D1_DATABASE_ID ?? "00000000-0000-0000-0000-000000000000"
+      }
+    })
   })]
 });

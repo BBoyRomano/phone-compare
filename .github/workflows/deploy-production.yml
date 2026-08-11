@@ -59,6 +59,8 @@ jobs:
     environment:
       name: production-${{ matrix.app }}
       url: ${{ matrix.productionUrl }}
+    env:
+      CLOUDFLARE_D1_DATABASE_ID: ${{ vars.CLOUDFLARE_D1_DATABASE_ID }}
     steps:
       - name: Check out the exact release commit
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -76,8 +78,30 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Verify app and all internal dependencies
         run: pnpm --filter "${{ matrix.package }}..." check
+      - name: Require app-scoped D1 identity
+        shell: bash
+        run: |
+          [[ "${CLOUDFLARE_D1_DATABASE_ID}" =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ ]]
       - name: Validate generated Worker configuration
         run: pnpm exec wrangler deploy --dry-run --config "apps/${{ matrix.app }}/dist/server/wrangler.json"
+      - name: Verify remote D1 identity
+        shell: bash
+        run: |
+          pnpm exec wrangler d1 info "${{ matrix.databaseName }}" --json > "${RUNNER_TEMP}/d1-info.json"
+          node tooling/verify-d1-identity.mjs "${RUNNER_TEMP}/d1-info.json" "${{ matrix.databaseName }}" "${CLOUDFLARE_D1_DATABASE_ID}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Apply forward-only catalogue schema migrations
+        run: pnpm exec wrangler d1 migrations apply CATALOG_DB --remote --config "apps/${{ matrix.app }}/dist/server/wrangler.json"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Publish the verified catalogue projection
+        run: pnpm exec wrangler d1 execute CATALOG_DB --remote --config "apps/${{ matrix.app }}/dist/server/wrangler.json" --file "apps/${{ matrix.app }}/dist/catalog/catalog.sql"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
       - name: Deploy app Worker
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
@@ -98,5 +122,7 @@ jobs:
           [[ "${home_status}" =~ ^2[0-9]{2}$ ]]
           [[ "${home_content_type}" == text/html* ]]
           grep --fixed-strings --quiet "${SMOKE_MARKER}" "${RUNNER_TEMP}/production-home.html"
+          catalog_status="$(curl --proto '=https' --tlsv1.2 --fail-with-body --silent --show-error --location --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 "${PRODUCTION_URL}/api/catalog/status")"
+          grep --fixed-strings --quiet '"appId":"${{ matrix.app }}"' <<< "${catalog_status}"
           unknown_status="$(curl --proto '=https' --tlsv1.2 --silent --show-error --location --retry 4 --retry-delay 2 --retry-all-errors --max-time 30 --output /dev/null --write-out '%{http_code}' "${PRODUCTION_URL}/__deployment-smoke/unknown-route")"
           [[ "${unknown_status}" == "404" ]]

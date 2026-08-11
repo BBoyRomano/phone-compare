@@ -2,6 +2,7 @@
   "id": "laptops",
   "packageName": "@product-compare/laptops",
   "workerName": "product-compare-laptops",
+  "databaseName": "product-compare-laptops-production",
   "productionUrl": "https://product-compare-laptops.bboyromano.workers.dev",
   "smokeMarker": "Laptop Compare",
   "browserTests": false

@@ -8,7 +8,7 @@ import {
 } from "../inventory/candidate-inventory.ts";
 
 const importDate = new Date().toISOString().slice(0, 10);
-const userAgent = "PhoneCompareCandidateInventory/1.0 (+https://github.com/BBoyRomano/phone-compare)";
+const userAgent = "ProductCompareCandidateInventory/1.0 (+https://github.com/BBoyRomano/product-compare)";
 const wikidataApi = "https://www.wikidata.org/w/api.php";
 const wikidataQueryService = "https://query.wikidata.org/sparql";
 const smartphoneClass = "Q22645";
