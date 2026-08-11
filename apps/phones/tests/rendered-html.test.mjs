@@ -73,7 +73,7 @@ test("server-renders only the owner-approved external support destinations", asy
 });
 
 test("GitHub funding configuration contains only the approved accounts", async () => {
-  const funding = await readFile(new URL("../.github/FUNDING.yml", import.meta.url), "utf8");
+  const funding = await readFile(new URL("../../../.github/FUNDING.yml", import.meta.url), "utf8");
   assert.equal(funding, "github: BBoyRomano\nko_fi: bboyromano\n");
 });
 

@@ -1,7 +1,9 @@
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { productWorkerConfig } from "@product-compare/build/cloudflare-worker";
+import { sites } from "@product-compare/build/sites-vite-plugin";
 import vinext from "vinext";
 import { defineConfig } from "vite";
-import { sites } from "./build/sites-vite-plugin.ts";
+import appConfig from "./app.config.json" with { type: "json" };
 
 export default defineConfig({
   plugins: [
@@ -9,10 +11,7 @@ export default defineConfig({
     sites(),
     cloudflare({
       viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-      config: {
-        main: "./worker/index.ts",
-        compatibility_flags: ["nodejs_compat"]
-      }
+      config: productWorkerConfig({ name: appConfig.workerName })
     })
   ]
 });

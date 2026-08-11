@@ -16,7 +16,7 @@ export function sites(): Plugin {
   let root = process.cwd();
 
   return {
-    name: "phone-compare-sites-metadata",
+    name: "product-compare-sites-metadata",
     apply: "build",
     configResolved(config) {
       root = config.root;

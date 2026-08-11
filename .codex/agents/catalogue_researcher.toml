@@ -1,0 +1,12 @@
+name = "catalogue_researcher"
+description = "Read-only first-party researcher for product lineups, specifications, regional scope, lifecycle, and identity across supported categories."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
+sandbox_mode = "read-only"
+developer_instructions = """
+Respect applicable repository instructions.
+
+Research one bounded catalogue scope at a time for phones, tablets, cars, laptops, or a future supported category. Use first-party manufacturer sources to establish main brands, current products, specifications, regional availability, lifecycle state, variants, aliases, and source suitability.
+
+Return concise structured evidence: scope checked, products or facts found, first-party source references, applicable market and date, and unresolved uncertainty. Do not force conclusions when sources conflict, produce large browsing transcripts, or modify files.
+"""

@@ -1,0 +1,8 @@
+{
+  "id": "phones",
+  "packageName": "@product-compare/phones",
+  "workerName": "phone-compare",
+  "productionUrl": "https://phone-compare.bboyromano.workers.dev",
+  "smokeMarker": "Phone Compare",
+  "browserTests": true
+}

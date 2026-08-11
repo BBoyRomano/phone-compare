@@ -1,0 +1,8 @@
+{
+  "id": "cars",
+  "packageName": "@product-compare/cars",
+  "workerName": "product-compare-cars",
+  "productionUrl": "https://product-compare-cars.bboyromano.workers.dev",
+  "smokeMarker": "Car Compare",
+  "browserTests": false
+}

@@ -7,7 +7,13 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  globalIgnores([".next/**", ".vinext/**", ".wrangler/**", "dist/**", "next-env.d.ts"]),
+  globalIgnores([
+    "**/.next/**",
+    "**/.vinext/**",
+    "**/.wrangler/**",
+    "**/dist/**",
+    "**/next-env.d.ts"
+  ]),
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   react.configs.flat.recommended,
@@ -22,8 +28,6 @@ export default defineConfig([
         ...globals.serviceworker
       }
     },
-    settings: {
-      react: { version: "detect" }
-    }
+    settings: { react: { version: "19.2" } }
   }
 ]);

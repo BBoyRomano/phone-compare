@@ -1,0 +1,5 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { productsFor,validateCatalogue } from "@product-compare/catalog";
+import { laptopCatalogue } from "../data/catalog.ts";
+test("laptop catalogue is valid and preserves manufacturer-distinguished current identities",()=>{const products=productsFor(laptopCatalogue);assert.deepEqual(validateCatalogue(laptopCatalogue),[]);assert.equal(laptopCatalogue.brands.length,12);assert.equal(products.length,86);assert.deepEqual(laptopCatalogue.brands.map(({name})=>name),["Apple","Dell","HP","Lenovo","ASUS","Acer","Microsoft","Samsung","LG","Framework","Razer","MSI"]);assert.ok(products.every((product)=>product.evidence.length>0&&product.lifecycle.status==="current"));for(const name of ["MacBook Air 13-inch (M5)","MacBook Pro 14-inch (M5)","MacBook Pro 14-inch (M5 Pro)","MacBook Pro 14-inch (M5 Max)","MacBook Pro 16-inch (M5 Pro)","MacBook Pro 16-inch (M5 Max)","Framework Laptop 12","Framework Laptop 13 Pro"]){assert.ok(products.some((product)=>product.name===name),`Missing ${name}`);}});

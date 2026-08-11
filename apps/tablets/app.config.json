@@ -1,0 +1,8 @@
+{
+  "id": "tablets",
+  "packageName": "@product-compare/tablets",
+  "workerName": "product-compare-tablets",
+  "productionUrl": "https://product-compare-tablets.bboyromano.workers.dev",
+  "smokeMarker": "Tablet Compare",
+  "browserTests": false
+}

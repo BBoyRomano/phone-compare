@@ -1,44 +1,61 @@
-# Phone Compare
+# Product Compare
 
-An autonomous public web application for accurately comparing mobile phones using well-sourced product information.
+Product Compare is an evidence-led family of independently deployed web apps for understanding products through traceable first-party information. The platform currently contains phones, tablets, cars, and laptops and is designed to add categories without coupling their releases.
 
-The product is intended to evolve with minimal routine intervention from the repository owner.
+| App | Package | Production Worker |
+| --- | --- | --- |
+| Phones | `@product-compare/phones` | [phone-compare.bboyromano.workers.dev](https://phone-compare.bboyromano.workers.dev) |
+| Tablets | `@product-compare/tablets` | [product-compare-tablets.bboyromano.workers.dev](https://product-compare-tablets.bboyromano.workers.dev) |
+| Cars | `@product-compare/cars` | [product-compare-cars.bboyromano.workers.dev](https://product-compare-cars.bboyromano.workers.dev) |
+| Laptops | `@product-compare/laptops` | [product-compare-laptops.bboyromano.workers.dev](https://product-compare-laptops.bboyromano.workers.dev) |
 
-The production application is live at [phone-compare.bboyromano.workers.dev](https://phone-compare.bboyromano.workers.dev).
-
-## Project Direction
-
-The canonical project documents are:
-
-- [`docs/PRODUCT_GOAL.md`](docs/PRODUCT_GOAL.md) — product mission, outcomes, and long-term quality principles.
-- [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) — autonomous decision authority and non-negotiable boundaries.
-- [`docs/RESOURCE_POLICY.md`](docs/RESOURCE_POLICY.md) — resource-efficiency principles for autonomous work.
-
-Autonomous agents working in this repository should begin with [`AGENTS.md`](AGENTS.md).
-
-## Support
-
-Phone Compare is an independent open-source project. Voluntary support through [GitHub Sponsors](https://github.com/sponsors/BBoyRomano) or [Ko-fi](https://ko-fi.com/bboyromano) helps sustain development and operating costs, but never influences product data or comparisons.
+The phone app has domain-specific, fact-level comparisons. The other apps begin as product-identity and lifecycle directories: they expose their evidence boundary rather than inventing specifications before domain review is complete.
 
 ## Development
-
-The product is a server-rendered TypeScript and React application. Users can compare any two phones in a curated, typed catalogue and share the selection through URL query parameters. Every displayed fact links to first-party provenance.
 
 Requirements: Node.js 22.13 or newer and pnpm 11.
 
 ```sh
-pnpm install
-pnpm dev
+pnpm install --frozen-lockfile
+pnpm dev:phones
+pnpm dev:tablets
+pnpm dev:cars
+pnpm dev:laptops
 ```
 
-Run the complete verification suite with:
+Each app is independently verifiable:
+
+```sh
+pnpm check:phones
+pnpm check:tablets
+pnpm check:cars
+pnpm check:laptops
+```
+
+Run the workspace policy checks and the complete suite with:
 
 ```sh
 pnpm check
 ```
 
-Candidate discovery is maintained separately from published product truth in `inventory/candidates.ndjson`. Validate the review queue with `pnpm inventory:check`, or derive machine-readable coverage and backlog information with `pnpm inventory:coverage`. The bounded CC0 Wikidata slice can be refreshed with `pnpm inventory:import:wikidata`; the importer preserves reviewed decisions and candidates from other sources. Discovery records contain identity and investigation state only; facts shown by the application continue to require first-party provenance in the published catalogue.
+Phone discovery remains separate from published truth in `apps/phones/inventory/candidates.ndjson`. Use `pnpm inventory:check`, `pnpm inventory:coverage`, or `pnpm inventory:import:wikidata` for that bounded workflow.
 
-The production build is emitted as Cloudflare Worker-compatible output and has no database or other hosted resource dependency. Each protected `main` commit is verified, and every commit that can affect production is deployed automatically. See [`docs/decisions/0001-application-and-data-foundation.md`](docs/decisions/0001-application-and-data-foundation.md) for the durable architecture and data-provenance decision and [`docs/decisions/0003-production-deployment.md`](docs/decisions/0003-production-deployment.md) for the production deployment policy.
+## Architecture and delivery
 
-Repository changes follow the workflow defined in [`AGENTS.md`](AGENTS.md).
+- `apps/*` owns category data, domain behavior, Worker identity, tests, and release metadata.
+- `packages/catalog` owns the generic identity/provenance contract and deterministic validation.
+- `packages/web` owns the shared identity-directory presentation and depends only on the catalogue contract.
+- `packages/build` owns build-time Sites packaging and safe non-secret Worker defaults.
+- `tooling` owns workspace-boundary and changed-dependency validation.
+
+CI calculates the dependency closure of the changed files. An app-only change checks only that app; a shared-package change checks its package and affected consumers. Production deployment uses the same planner, one Cloudflare Worker and GitHub environment per app, and app-specific concurrency.
+
+See [Architecture](docs/ARCHITECTURE.md), [Operations](docs/OPERATIONS.md), and [ADR 0006](docs/decisions/0006-multi-app-monorepo.md) for the durable design.
+
+## Project governance
+
+Autonomous work begins with [AGENTS.md](AGENTS.md). The canonical controls are [Product Goal](docs/PRODUCT_GOAL.md), [Governance](docs/GOVERNANCE.md), and [Resource Policy](docs/RESOURCE_POLICY.md).
+
+## Support
+
+Voluntary support through [GitHub Sponsors](https://github.com/sponsors/BBoyRomano) or [Ko-fi](https://ko-fi.com/bboyromano) helps sustain development and operating costs but never influences product data, coverage, or comparisons.
