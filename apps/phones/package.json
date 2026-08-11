@@ -14,9 +14,12 @@
     "test:data": "node --test tests/catalog.test.ts tests/comparison.test.ts tests/manufacturer-sources.test.ts tests/candidate-inventory.test.ts",
     "test:render": "node --test tests/rendered-html.test.mjs",
     "test:browser": "node tests/browser/run.mjs",
-    "check": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render && pnpm run test:browser"
+    "catalog:sql": "node ../../tooling/generate-catalog-sql.mjs .",
+    "test:database": "node ../../tooling/validate-catalog-database.mjs .",
+    "check": "pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run catalog:sql && pnpm run test:database && pnpm run test:render && pnpm run test:browser"
   },
   "dependencies": {
+    "@product-compare/catalog": "workspace:*",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

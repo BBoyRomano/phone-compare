@@ -2,6 +2,7 @@
   "id": "cars",
   "packageName": "@product-compare/cars",
   "workerName": "product-compare-cars",
+  "databaseName": "product-compare-cars-production",
   "productionUrl": "https://product-compare-cars.bboyromano.workers.dev",
   "smokeMarker": "Car Compare",
   "browserTests": false

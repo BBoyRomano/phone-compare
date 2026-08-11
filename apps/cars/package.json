@@ -1,6 +1,6 @@
 {
   "name":"@product-compare/cars","private":true,"type":"module",
-  "scripts":{"dev":"vinext dev","build":"vinext build","start":"vinext start","typecheck":"tsc --noEmit","lint":"eslint .","test:data":"node --test tests/catalog.test.ts","test:render":"node --test tests/rendered-html.test.mjs","check":"pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run test:render"},
+  "scripts":{"dev":"vinext dev","build":"vinext build","start":"vinext start","typecheck":"tsc --noEmit","lint":"eslint .","test:data":"node --test tests/catalog.test.ts","test:render":"node --test tests/rendered-html.test.mjs","catalog:sql":"node ../../tooling/generate-catalog-sql.mjs .","test:database":"node ../../tooling/validate-catalog-database.mjs .","check":"pnpm run typecheck && pnpm run lint && pnpm run test:data && pnpm run build && pnpm run catalog:sql && pnpm run test:database && pnpm run test:render"},
   "dependencies":{"@product-compare/catalog":"workspace:*","@product-compare/web":"workspace:*","react":"19.2.8","react-dom":"19.2.8"},
   "devDependencies":{"@cloudflare/vite-plugin":"1.51.1","@product-compare/build":"workspace:*","vinext":"1.0.0-beta.5","vite":"8.2.1","wrangler":"4.120.0"}
 }

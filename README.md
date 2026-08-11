@@ -4,7 +4,7 @@ Product Compare is an evidence-led family of independently deployed web apps for
 
 | App | Package | Production Worker |
 | --- | --- | --- |
-| Phones | `@product-compare/phones` | [phone-compare.bboyromano.workers.dev](https://phone-compare.bboyromano.workers.dev) |
+| Phones | `@product-compare/phones` | [product-compare-phones.bboyromano.workers.dev](https://product-compare-phones.bboyromano.workers.dev) |
 | Tablets | `@product-compare/tablets` | [product-compare-tablets.bboyromano.workers.dev](https://product-compare-tablets.bboyromano.workers.dev) |
 | Cars | `@product-compare/cars` | [product-compare-cars.bboyromano.workers.dev](https://product-compare-cars.bboyromano.workers.dev) |
 | Laptops | `@product-compare/laptops` | [product-compare-laptops.bboyromano.workers.dev](https://product-compare-laptops.bboyromano.workers.dev) |
@@ -43,14 +43,14 @@ Phone discovery remains separate from published truth in `apps/phones/inventory/
 ## Architecture and delivery
 
 - `apps/*` owns category data, domain behavior, Worker identity, tests, and release metadata.
-- `packages/catalog` owns the generic identity/provenance contract and deterministic validation.
+- `packages/catalog` owns the generic identity/provenance contract, relational schema/projection, catalogue API, and deterministic validation.
 - `packages/web` owns the shared identity-directory presentation and depends only on the catalogue contract.
 - `packages/build` owns build-time Sites packaging and safe non-secret Worker defaults.
 - `tooling` owns workspace-boundary and changed-dependency validation.
 
-CI calculates the dependency closure of the changed files. An app-only change checks only that app; a shared-package change checks its package and affected consumers. Production deployment uses the same planner, one Cloudflare Worker and GitHub environment per app, and app-specific concurrency.
+CI calculates the dependency closure of the changed files. An app-only change checks only that app; a shared-package change checks its package and affected consumers. Production deployment uses the same planner, one Cloudflare Worker, D1 database, and GitHub environment per app, and app-specific concurrency. Git remains the catalogue source of truth; releases publish content-addressed relational projections to D1.
 
-See [Architecture](docs/ARCHITECTURE.md), [Operations](docs/OPERATIONS.md), and [ADR 0006](docs/decisions/0006-multi-app-monorepo.md) for the durable design.
+See [Architecture](docs/ARCHITECTURE.md), [Operations](docs/OPERATIONS.md), [ADR 0006](docs/decisions/0006-multi-app-monorepo.md), and [ADR 0007](docs/decisions/0007-relational-catalogue-storage.md) for the durable design.
 
 ## Project governance
 

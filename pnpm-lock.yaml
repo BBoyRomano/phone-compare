@@ -133,6 +133,9 @@ importers:
 
   apps/phones:
     dependencies:
+      '@product-compare/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
       react:
         specifier: 19.2.8
         version: 19.2.8
