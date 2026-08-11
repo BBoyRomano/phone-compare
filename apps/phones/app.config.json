@@ -2,6 +2,7 @@
   "id": "phones",
   "packageName": "@product-compare/phones",
   "workerName": "product-compare-phones",
+  "databaseName": "product-compare-phones-production",
   "productionUrl": "https://product-compare-phones.bboyromano.workers.dev",
   "smokeMarker": "Phone Compare",
   "browserTests": true

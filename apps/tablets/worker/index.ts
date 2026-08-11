@@ -1,2 +1,3 @@
 import handler from "vinext/server/app-router-entry";
-export default handler;
+import { withCatalogueApi } from "@product-compare/catalog/worker";
+export default withCatalogueApi(handler, "tablets");

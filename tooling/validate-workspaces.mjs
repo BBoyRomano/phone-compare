@@ -23,10 +23,11 @@ export async function validateWorkspace(workspace) {
   }
 
   const workerNames = new Set();
+  const databaseNames = new Set();
   const productionUrls = new Set();
   const smokeMarkers = new Set();
   for (const app of workspace.apps) {
-    for (const script of ["dev", "build", "typecheck", "lint", "test:data", "test:render", "check"]) {
+    for (const script of ["dev", "build", "typecheck", "lint", "test:data", "test:render", "catalog:sql", "test:database", "check"]) {
       if (!app.manifest.scripts?.[script]) errors.push(`${app.name} is missing the ${script} script.`);
     }
     if (app.config.id !== app.directory.split("/").at(-1)) errors.push(`${app.name} app id must match its directory.`);
@@ -34,12 +35,16 @@ export async function validateWorkspace(workspace) {
     if (!String(app.config.productionUrl).startsWith("https://")) errors.push(`${app.name} productionUrl must use HTTPS.`);
     for (const [field, value, values] of [
       ["workerName", app.config.workerName, workerNames],
+      ["databaseName", app.config.databaseName, databaseNames],
       ["productionUrl", app.config.productionUrl, productionUrls],
       ["smokeMarker", app.config.smokeMarker, smokeMarkers]
     ]) {
       if (!String(value ?? "").trim()) errors.push(`${app.name} ${field} must not be empty.`);
       if (values.has(value)) errors.push(`${app.name} ${field} must be unique: ${value}.`);
       values.add(value);
+    }
+    if (app.config.databaseName !== `product-compare-${app.config.id}-production`) {
+      errors.push(`${app.name} databaseName must follow product-compare-<app>-production.`);
     }
   }
 

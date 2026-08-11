@@ -40,4 +40,4 @@ Shared-package changes intentionally fan out to every consumer, and the deployme
 
 The repository remains appropriate while apps share tooling and a meaningful set of stable contracts. Reconsider repository separation when access control, team ownership, legal boundaries, dependency cadence, or release scale makes a shared lockfile a larger liability than benefit.
 
-Reconsider a shared domain package only when at least two apps have the same proven semantics without category conditionals. Revisit the stateless catalogue architecture when editorial volume, runtime updates, correction history, or ingestion workflows justify persistent storage.
+Reconsider a shared domain package only when at least two apps have the same proven semantics without category conditionals. The later decision to add Git-canonical, app-isolated relational projections is recorded in [0007](0007-relational-catalogue-storage.md).
