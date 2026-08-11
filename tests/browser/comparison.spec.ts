@@ -70,7 +70,7 @@ test("filters by maker, model, and generation without losing the selected phone"
 
   await search.fill("HONOR 600");
   await expect(firstPicker.locator('optgroup[label="HONOR"] option')).toHaveCount(4);
-  await expect(firstPicker.getByRole("status")).toContainText("4 of 126 phones shown");
+  await expect(firstPicker.getByRole("status")).toContainText("4 of 128 phones shown");
   await expect(firstPicker.getByRole("status")).toContainText("selected phone is also preserved");
   await expect(phone).toHaveValue("apple-iphone-16");
   await expect(firstPicker.locator('optgroup[label="Selected phone"] option')).toHaveCount(1);
@@ -80,7 +80,7 @@ test("filters by maker, model, and generation without losing the selected phone"
   await expect(phone).toHaveValue("apple-iphone-16");
 
   await search.fill("");
-  await expect(firstPicker.getByRole("status")).toContainText("5 of 126 phones shown");
+  await expect(firstPicker.getByRole("status")).toContainText("7 of 128 phones shown");
   await expect(phone.locator('option[value="apple-iphone-16"]')).toContainText("earlier");
   await expect(phone.locator('option[value="apple-iphone-17"]')).toHaveCount(0);
 });

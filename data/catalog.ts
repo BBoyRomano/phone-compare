@@ -281,10 +281,10 @@ export const sources = {
   "oneplus-us-phone-catalogue": {
     id: "oneplus-us-phone-catalogue",
     publisher: "OnePlus",
-    title: "OnePlus phones",
-    url: "https://www.oneplus.com/us/product",
+    title: "OnePlus phones — United States store",
+    url: "https://www.oneplus.com/us/store/phone",
     kind: "manufacturer-catalogue",
-    accessedAt: "2026-08-10"
+    accessedAt: "2026-08-11"
   },
   "oneplus-13-specs": {
     id: "oneplus-13-specs",
@@ -319,6 +319,55 @@ export const sources = {
     kind: "manufacturer-announcement",
     publishedAt: "2025-01-07",
     accessedAt: "2026-08-10"
+  },
+  "oneplus-15-specs": {
+    id: "oneplus-15-specs",
+    publisher: "OnePlus",
+    title: "OnePlus 15 Specs",
+    url: "https://www.oneplus.com/us/15/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "oneplus-15-product": {
+    id: "oneplus-15-product",
+    publisher: "OnePlus",
+    title: "OnePlus 15",
+    url: "https://www.oneplus.com/us/15",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "oneplus-15-north-america-announcement": {
+    id: "oneplus-15-north-america-announcement",
+    publisher: "OnePlus",
+    title: "OnePlus launches the OnePlus 15, the ultimate performance flagship smartphone for North America",
+    url: "https://www.oneplus.com/ca_en/press/press-release/oneplus-launches-the-oneplus-15--the-ultimate-performance-flagship-smartphone-for-north-america",
+    kind: "manufacturer-announcement",
+    publishedAt: "2025-11-13",
+    accessedAt: "2026-08-11"
+  },
+  "oneplus-15-us-pricing": {
+    id: "oneplus-15-us-pricing",
+    publisher: "OnePlus",
+    title: "OnePlus 15 North America launch pricing",
+    url: "https://community.oneplus.com/thread/1990936918031859718",
+    kind: "manufacturer-announcement",
+    accessedAt: "2026-08-11"
+  },
+  "oneplus-15r-specs": {
+    id: "oneplus-15r-specs",
+    publisher: "OnePlus",
+    title: "OnePlus 15R Specs",
+    url: "https://www.oneplus.com/us/15r/specs",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "oneplus-15r-product": {
+    id: "oneplus-15r-product",
+    publisher: "OnePlus",
+    title: "OnePlus 15R",
+    url: "https://www.oneplus.com/us/15r",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
   },
   "nothing-us-phone-catalogue": {
     id: "nothing-us-phone-catalogue",
@@ -1657,6 +1706,14 @@ const onePlus13Generation = ["oneplus-us-phone-catalogue", "oneplus-13-specs"] a
 const onePlus13RGeneration = ["oneplus-us-phone-catalogue", "oneplus-13r-specs"] as const;
 const onePlus13Launch = ["oneplus-13-series-announcement"] as const;
 const onePlus13Pricing = ["oneplus-13-series-pricing"] as const;
+const onePlus15Specs = ["oneplus-15-specs"] as const;
+const onePlus15Product = ["oneplus-15-product"] as const;
+const onePlus15Generation = ["oneplus-us-phone-catalogue", "oneplus-15-product"] as const;
+const onePlus15Launch = ["oneplus-15-north-america-announcement"] as const;
+const onePlus15Pricing = ["oneplus-15-us-pricing"] as const;
+const onePlus15RSpec = ["oneplus-15r-specs"] as const;
+const onePlus15RProduct = ["oneplus-15r-product"] as const;
+const onePlus15RGeneration = ["oneplus-us-phone-catalogue", "oneplus-15r-product"] as const;
 const nothingCatalogue = ["nothing-us-phone-catalogue"] as const;
 const nothing4aProduct = ["nothing-phone-4a-pro-product"] as const;
 const nothing4aLaunch = ["nothing-phone-4a-pro-announcement"] as const;
@@ -2978,9 +3035,9 @@ export const phones = [
     maker: { value: "OnePlus", sourceIds: onePlus13Specs },
     model: { value: "OnePlus 13", sourceIds: onePlus13Specs },
     generation: {
-      value: "current",
+      value: "earlier",
       sourceIds: onePlus13Generation,
-      qualification: "Retained in OnePlus's U.S. phone catalogue with a Buy now action; the catalogue also retains older products, so this does not guarantee stock"
+      qualification: "The specification page remains available, but the model is absent from OnePlus's maintained U.S. phone store as of 2026-08-11"
     },
     formFactor: { value: "slab", sourceIds: onePlus13Specs },
     releasedOn: {
@@ -3039,9 +3096,9 @@ export const phones = [
     maker: { value: "OnePlus", sourceIds: onePlus13RSpecs },
     model: { value: "OnePlus 13R", sourceIds: onePlus13RSpecs },
     generation: {
-      value: "current",
+      value: "earlier",
       sourceIds: onePlus13RGeneration,
-      qualification: "Retained in OnePlus's U.S. phone catalogue with a Buy now action; the catalogue also retains older products, so this does not guarantee stock"
+      qualification: "The specification page remains available, but the model is absent from OnePlus's maintained U.S. phone store as of 2026-08-11"
     },
     formFactor: { value: "slab", sourceIds: onePlus13RSpecs },
     releasedOn: {
@@ -3087,6 +3144,58 @@ export const phones = [
       sourceIds: onePlus13Launch,
       qualification: "Controlled laboratory conditions; resistance can decrease with wear"
     }
+  },
+  {
+    slug: "oneplus-15",
+    maker: { value: "OnePlus", sourceIds: onePlus15Specs },
+    model: { value: "OnePlus 15", sourceIds: onePlus15Specs },
+    generation: { value: "current", sourceIds: onePlus15Generation, qualification: "One of exactly two phones in OnePlus's maintained U.S. store on 2026-08-11; the card is marked Out of stock and Stop sale, so current classification does not assert purchasable stock" },
+    formFactor: { value: "slab", sourceIds: onePlus15Product },
+    releasedOn: { value: "2025-11-13", basis: "announcement", sourceIds: onePlus15Launch, qualification: "Official North American announcement date; the cited source does not establish a first-sale date" },
+    originalPrice: { value: { amount: 999.99, currency: "USD", market: "United States", configuration: "16 GB RAM + 512 GB storage, all colours" }, sourceIds: onePlus15Pricing, qualification: "Official OnePlus community launch price for the North American configuration" },
+    display: {
+      size: { value: "6.78 inches", sourceIds: onePlus15Specs },
+      panel: { value: null, sourceIds: onePlus15Specs, qualification: "The reviewed U.S. specification evidence does not state a concise panel-technology label" },
+      resolution: { value: "2772 × 1272 (FHD+)", sourceIds: onePlus15Specs },
+      refreshRate: { value: "1–120 Hz adaptive; up to 165 Hz for supported games", sourceIds: onePlus15Specs },
+      peakBrightness: { value: "1,800 nits HBM", sourceIds: onePlus15Specs }
+    },
+    weight: { value: "211 g or 215 g", sourceIds: onePlus15Specs, qualification: "211 g for Sand Storm; 215 g for Infinite Black and Ultra Violet" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: onePlus15Specs },
+    configurations: { value: "12 GB LPDDR5X Ultra RAM + 256 GB UFS 4.1; 16 GB LPDDR5X Ultra+ RAM + 512 GB UFS 4.1", sourceIds: onePlus15Specs },
+    colors: { value: "Sand Storm, Infinite Black, Ultra Violet", sourceIds: onePlus15Product },
+    dimensions: { value: "161.42 × 76.67 × 8.10 mm (Sand Storm); 8.20 mm thick (other colours)", sourceIds: onePlus15Specs },
+    charging: { value: "80 W SUPERVOOC wired; 50 W AIRVOOC wireless", sourceIds: onePlus15Specs },
+    processor: { value: "Snapdragon 8 Elite Gen 5", sourceIds: onePlus15Specs },
+    rearCameras: { value: "50 MP Sony IMX906 main + 50 MP Samsung JN5 3.5× telephoto + 50 MP OmniVision OV50D ultrawide", sourceIds: onePlus15Specs },
+    batteryClaim: { value: "7,300 mAh typical dual-cell capacity", sourceIds: onePlus15Specs, qualification: "Manufacturer typical equivalent capacity" },
+    resistance: { value: "IP66, IP68, IP69, and IP69K", sourceIds: ["oneplus-15-product", "oneplus-15-north-america-announcement"], qualification: "Laboratory ratings under stated conditions; resistance can decrease with normal wear" }
+  },
+  {
+    slug: "oneplus-15r",
+    maker: { value: "OnePlus", sourceIds: onePlus15RSpec },
+    model: { value: "OnePlus 15R", sourceIds: onePlus15RSpec },
+    generation: { value: "current", sourceIds: onePlus15RGeneration, qualification: "One of exactly two phones in OnePlus's maintained U.S. store on 2026-08-11; the store card is marked Out of stock, while the product page still says Pre-order Now, so current classification does not assert purchasable stock" },
+    formFactor: { value: "slab", sourceIds: onePlus15RProduct },
+    releasedOn: { value: null, sourceIds: ["oneplus-us-phone-catalogue", "oneplus-15r-specs"], qualification: "The cited current U.S. store and specification sources do not establish an exact announcement or first-availability date" },
+    originalPrice: { value: { amount: null, currency: null, market: "United States", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["oneplus-us-phone-catalogue", "oneplus-15r-specs"], qualification: "The current U.S. store says from $699.99 but the reviewed first-party sources do not establish that as the original launch price; current pricing is not substituted" },
+    display: {
+      size: { value: "6.83 inches", sourceIds: onePlus15RSpec },
+      panel: { value: null, sourceIds: onePlus15RSpec, qualification: "The reviewed U.S. specification evidence does not state a concise panel-technology label" },
+      resolution: { value: "2800 × 1272 (FHD+)", sourceIds: onePlus15RSpec },
+      refreshRate: { value: "60, 90, 120, 144, or 165 Hz adaptive", sourceIds: onePlus15RSpec, qualification: "144 Hz and 165 Hz modes are limited to supported applications listed by OnePlus" },
+      peakBrightness: { value: "1,800 nits HBM", sourceIds: onePlus15RSpec }
+    },
+    weight: { value: "214 g or 215 g", sourceIds: onePlus15RSpec, qualification: "214 g for Charcoal Black; 215 g for Mint Breeze" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: onePlus15RSpec },
+    configurations: { value: "12 GB LPDDR5X Ultra RAM + 256 GB UFS 4.1; 12 GB LPDDR5X Ultra RAM + 512 GB UFS 4.1", sourceIds: onePlus15RSpec },
+    colors: { value: "Charcoal Black, Mint Breeze", sourceIds: onePlus15RProduct },
+    dimensions: { value: "163.41 × 77.04 × 8.30 mm", sourceIds: onePlus15RSpec },
+    charging: { value: "55 W SUPERVOOC; up to 80 W with the named OnePlus Dual Ports SUPERVOOC Power Adapter", sourceIds: onePlus15RSpec },
+    processor: { value: "Snapdragon 8 Gen 5", sourceIds: onePlus15RSpec },
+    rearCameras: { value: "50 MP Sony IMX906 main + 8 MP ultrawide", sourceIds: onePlus15RSpec },
+    batteryClaim: { value: "7,400 mAh typical dual-cell capacity", sourceIds: onePlus15RSpec, qualification: "Manufacturer typical equivalent capacity" },
+    resistance: { value: null, sourceIds: onePlus15RProduct, qualification: "The reviewed U.S. product evidence claims broad IP coverage but does not enumerate exact ratings, so no numeric IP claim is published" }
   },
   {
     slug: "nothing-phone-4a-pro",
