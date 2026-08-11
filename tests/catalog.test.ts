@@ -6,8 +6,8 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 124);
-  assert.equal(Object.keys(sources).length, 185);
+  assert.equal(phones.length, 126);
+  assert.equal(Object.keys(sources).length, 191);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
@@ -32,7 +32,8 @@ test("the catalogue includes current standard models from every represented manu
       "fairphone-gen-6",
       "nubia-z80-ultra",
       "zte-blade-a76",
-      "tecno-camon-50-ultra-5g"
+      "tecno-camon-50-ultra-5g",
+      "huawei-pura-90s-pro"
     ].includes(slug)).map(({ slug }) => slug),
     [
       "apple-iphone-17",
@@ -57,7 +58,8 @@ test("the catalogue includes current standard models from every represented manu
       "fairphone-gen-6",
       "nubia-z80-ultra",
       "zte-blade-a76",
-      "tecno-camon-50-ultra-5g"
+      "tecno-camon-50-ultra-5g",
+      "huawei-pura-90s-pro"
     ]
   );
 });
@@ -184,7 +186,9 @@ test("every phone has a sourced, conservative generation classification", () => 
       "zte-blade-a76",
       "tecno-camon-50-ultra-5g",
       "tecno-pova-curve-2-5g",
-      "tecno-spark-50-5g"
+      "tecno-spark-50-5g",
+      "huawei-pura-90s-pro-max",
+      "huawei-pura-90s-pro"
     ]
   );
   assert.deepEqual(
@@ -777,8 +781,27 @@ test("TECNO's global recommendations publish three current phones with regional 
   assert.equal(spark?.resistance.value, "IP64");
 });
 
+test("HUAWEI's global launch boundary publishes both comparison-ready Pura 90s phones", () => {
+  const huawei: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "HUAWEI");
+  assert.deepEqual(huawei.map(({ slug }) => slug), ["huawei-pura-90s-pro-max", "huawei-pura-90s-pro"]);
+  assert.ok(huawei.every(({ generation }) => generation.value === "current"));
+  assert.ok(huawei.every(({ generation }) => generation.sourceIds.includes("huawei-global-phone-catalogue")));
+  assert.ok(huawei.every(({ generation }) => generation.sourceIds.some((sourceId) => sourceId.endsWith("-product"))));
+  assert.ok(huawei.every(({ releasedOn }) => releasedOn.value === "2026-07-14" && releasedOn.basis === "announcement"));
+  assert.ok(huawei.every(({ originalPrice }) => originalPrice.value.amount === null && originalPrice.value.market === "Global" && originalPrice.qualification));
+  assert.ok(huawei.every(({ processor, display }) => processor.value === null && processor.qualification && display.peakBrightness.value === null && display.peakBrightness.qualification));
+
+  const proMax = huawei.find(({ slug }) => slug === "huawei-pura-90s-pro-max");
+  const pro = huawei.find(({ slug }) => slug === "huawei-pura-90s-pro");
+  assert.equal(proMax?.charging?.value, "Up to 100 W HUAWEI SuperCharge; wireless HUAWEI SuperCharge (wattage not stated)");
+  assert.equal(pro?.charging?.value, "Up to 66 W HUAWEI SuperCharge; wireless HUAWEI SuperCharge (wattage not stated)");
+  assert.equal(proMax?.storage.value.startsAtGb, 256);
+  assert.equal(pro?.storage.value.startsAtGb, 256);
+  assert.match(proMax?.batteryClaim.value ?? "", /Non-EU.*EU/i);
+});
+
 test("source registry keys and URLs resolve to reviewed first-party domains", () => {
-  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com", "ztedevices.com", "tecno-mobile.com"];
+  const firstPartyDomains = ["apple.com", "google.com", "blog.google", "samsung.com", "motorola.com", "motorolanews.com", "oneplus.com", "nothing.tech", "nothing.community", "tcl.com", "unihertz.com", "hmd.com", "infinixmobiles.in", "sony.co.uk", "honor.com", "mi.com", "oppo.com", "asus.com", "vivo.com", "realme.com", "fairphone.com", "ztedevices.com", "tecno-mobile.com", "huawei.com"];
 
   for (const [sourceId, source] of Object.entries(sources)) {
     assert.equal(source.id, sourceId);

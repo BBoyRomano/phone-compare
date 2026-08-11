@@ -32,7 +32,11 @@ test("the committed inventory is broad, reconciles the published catalogue, and 
   assert.ok(candidates.some(({ brand }) => brand === null));
   assert.equal(manifest.result.wikidataEntities - manifest.result.skippedWithoutEnglishOrFallbackLabel, manifest.result.wikidataCandidates);
   assert.equal(wikidataCandidates.length, manifest.result.wikidataCandidates);
-  assert.equal(candidates.filter(({ discoverySources }) => discoverySources.some(({ sourceId }) => sourceId === "manufacturer-first-party")).length, phones.length);
+  assert.equal(
+    candidates.filter(({ verificationState, discoverySources }) => verificationState === "published" && discoverySources.some(({ sourceId }) => sourceId === "manufacturer-first-party")).length,
+    phones.length
+  );
+  assert.ok(candidates.some(({ verificationState, discoverySources }) => verificationState === "verified-earlier" && discoverySources.some(({ sourceId }) => sourceId === "manufacturer-first-party")));
 });
 
 test("bulk discovery is limited to sources with clear collection and persistence permission", () => {

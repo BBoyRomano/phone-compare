@@ -1508,6 +1508,55 @@ export const sources = {
     url: "https://www.tecno-mobile.com/phones/product-detail/product/spark-50-5g/",
     kind: "manufacturer-specification",
     accessedAt: "2026-08-10"
+  },
+  "huawei-global-phone-catalogue": {
+    id: "huawei-global-phone-catalogue",
+    publisher: "HUAWEI",
+    title: "HUAWEI Phones",
+    url: "https://consumer.huawei.com/en/phones/",
+    kind: "manufacturer-catalogue",
+    accessedAt: "2026-08-11"
+  },
+  "huawei-pura-90s-series-launch": {
+    id: "huawei-pura-90s-series-launch",
+    publisher: "HUAWEI",
+    title: "HUAWEI Flagship Product Launch — July 14",
+    url: "https://consumer.huawei.com/en/press/events/2026/huawei-flagship-product-launch-july-14/",
+    kind: "manufacturer-announcement",
+    publishedAt: "2026-07-14",
+    accessedAt: "2026-08-11"
+  },
+  "huawei-pura-90s-pro-max-specs": {
+    id: "huawei-pura-90s-pro-max-specs",
+    publisher: "HUAWEI",
+    title: "HUAWEI Pura 90s Pro Max Specification",
+    url: "https://consumer.huawei.com/en/phones/pura90s-pro-max/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "huawei-pura-90s-pro-max-product": {
+    id: "huawei-pura-90s-pro-max-product",
+    publisher: "HUAWEI",
+    title: "HUAWEI Pura 90s Pro Max",
+    url: "https://consumer.huawei.com/en/phones/pura90s-pro-max/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "huawei-pura-90s-pro-specs": {
+    id: "huawei-pura-90s-pro-specs",
+    publisher: "HUAWEI",
+    title: "HUAWEI Pura 90s Pro Specification",
+    url: "https://consumer.huawei.com/en/phones/pura90s-pro/specs/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
+  },
+  "huawei-pura-90s-pro-product": {
+    id: "huawei-pura-90s-pro-product",
+    publisher: "HUAWEI",
+    title: "HUAWEI Pura 90s Pro",
+    url: "https://consumer.huawei.com/en/phones/pura90s-pro/",
+    kind: "manufacturer-specification",
+    accessedAt: "2026-08-11"
   }
 } as const satisfies Record<string, Source>;
 
@@ -1755,6 +1804,13 @@ const tecnoCamon50UltraOverview = ["tecno-camon-50-ultra-5g-overview"] as const;
 const tecnoPovaCurve2BdSpecs = ["tecno-pova-curve-2-5g-bd-specs"] as const;
 const tecnoSpark50Specs = ["tecno-spark-50-5g-specs"] as const;
 const tecnoSpark50Overview = ["tecno-spark-50-5g-overview"] as const;
+const huaweiPura90sLaunch = ["huawei-pura-90s-series-launch"] as const;
+const huaweiPura90sProMaxSpecs = ["huawei-pura-90s-pro-max-specs"] as const;
+const huaweiPura90sProMaxProduct = ["huawei-pura-90s-pro-max-product"] as const;
+const huaweiPura90sProMaxCurrent = ["huawei-global-phone-catalogue", "huawei-pura-90s-pro-max-product"] as const;
+const huaweiPura90sProSpecs = ["huawei-pura-90s-pro-specs"] as const;
+const huaweiPura90sProProduct = ["huawei-pura-90s-pro-product"] as const;
+const huaweiPura90sProCurrent = ["huawei-global-phone-catalogue", "huawei-pura-90s-pro-max-product", "huawei-pura-90s-pro-product"] as const;
 
 export const phones = [
   {
@@ -6090,6 +6146,58 @@ export const phones = [
     rearCameras: { value: "50 MP main", sourceIds: tecnoSpark50Specs },
     batteryClaim: { value: "6,500 mAh", sourceIds: tecnoSpark50Specs, qualification: "Manufacturer capacity" },
     resistance: { value: "IP64", sourceIds: tecnoSpark50Overview }
+  },
+  {
+    slug: "huawei-pura-90s-pro-max",
+    maker: { value: "HUAWEI", sourceIds: huaweiPura90sProMaxSpecs },
+    model: { value: "HUAWEI Pura 90s Pro Max", sourceIds: huaweiPura90sProMaxSpecs },
+    generation: { value: "current", sourceIds: huaweiPura90sProMaxCurrent, qualification: "The maintained global phone catalogue features the Pura 90s Pro Max, whose current global product page links the Pura 90s Pro sibling; global information does not prove availability in every market" },
+    formFactor: { value: "slab", sourceIds: huaweiPura90sProMaxProduct },
+    releasedOn: { value: "2026-07-14", basis: "announcement", sourceIds: huaweiPura90sLaunch, qualification: "Global announcement date at HUAWEI's Kuala Lumpur flagship-product launch; the cited source does not state a first-sale date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["huawei-global-phone-catalogue", "huawei-pura-90s-pro-max-specs", "huawei-pura-90s-series-launch"], qualification: "The cited global sources do not establish an original launch price; regional prices are not substituted" },
+    display: {
+      size: { value: "6.9 inches", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Rounded-corner display measured as a standard rectangle; HUAWEI states 6.87 inches and a smaller actual viewable area under that method" },
+      panel: { value: "LTPO OLED", sourceIds: huaweiPura90sProMaxSpecs },
+      resolution: { value: "2880 × 1308", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Effective pixels are slightly lower because the display has rounded corners" },
+      refreshRate: { value: "1–120 Hz adaptive", sourceIds: huaweiPura90sProMaxSpecs },
+      peakBrightness: { value: null, sourceIds: huaweiPura90sProMaxSpecs, qualification: "The cited global specification page does not state an absolute peak-brightness value" }
+    },
+    weight: { value: "Approx. 230.5 g including battery", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Theoretical value; actual measurements can vary by configuration, manufacturing process, and method" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: huaweiPura90sProMaxSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 12 GB RAM + 512 GB storage", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Global specification-page configurations; availability can vary by market" },
+    colors: { value: "Blush Gold, Orange Ocean, Blaze Purple, Graphite Black", sourceIds: huaweiPura90sProMaxProduct, qualification: "Global feature-page colours; HUAWEI states colour availability can vary by region" },
+    dimensions: { value: "164 × 77.1 × 8.1 mm", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Theoretical values; actual measurements can vary by configuration, manufacturing process, and method" },
+    charging: { value: "Up to 100 W HUAWEI SuperCharge; wireless HUAWEI SuperCharge (wattage not stated)", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Maximum wired power requires a compatible HUAWEI SuperCharge cable and charger; wireless charger is sold separately and actual power varies" },
+    processor: { value: null, sourceIds: huaweiPura90sProMaxSpecs, qualification: "The cited global specification page does not identify the processor" },
+    rearCameras: { value: "50 MP Ultra Lighting HDR main + 40 MP ultrawide + 200 MP telephoto + True-to-Colour Camera 2.0", sourceIds: huaweiPura90sProMaxSpecs },
+    batteryClaim: { value: "6,000 mAh typical Non-EU; 5,850 mAh rated Non-EU; 5,270 mAh rated EU", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Manufacturer nominal capacities; HUAWEI publishes region-specific values and states actual capacity can vary slightly" },
+    resistance: { value: "IP68 and IP69", sourceIds: huaweiPura90sProMaxSpecs, qualification: "Controlled IEC 60529 testing; HUAWEI describes IP68 as static water up to 2 m for 30 minutes under stated conditions, says resistance is not permanent, and excludes liquid damage from warranty" }
+  },
+  {
+    slug: "huawei-pura-90s-pro",
+    maker: { value: "HUAWEI", sourceIds: huaweiPura90sProSpecs },
+    model: { value: "HUAWEI Pura 90s Pro", sourceIds: huaweiPura90sProSpecs },
+    generation: { value: "current", sourceIds: huaweiPura90sProCurrent, qualification: "The maintained global phone catalogue features the Pura 90s Pro Max, whose current global product page links the Pura 90s Pro sibling; global information does not prove availability in every market" },
+    formFactor: { value: "slab", sourceIds: huaweiPura90sProProduct },
+    releasedOn: { value: "2026-07-14", basis: "announcement", sourceIds: huaweiPura90sLaunch, qualification: "Global announcement date at HUAWEI's Kuala Lumpur flagship-product launch; the cited source does not state a first-sale date" },
+    originalPrice: { value: { amount: null, currency: null, market: "Global", configuration: "12 GB RAM + 256 GB storage" }, sourceIds: ["huawei-global-phone-catalogue", "huawei-pura-90s-pro-specs", "huawei-pura-90s-series-launch"], qualification: "The cited global sources do not establish an original launch price; regional prices are not substituted" },
+    display: {
+      size: { value: "6.6 inches", sourceIds: huaweiPura90sProSpecs, qualification: "Rounded-corner display measured as a standard rectangle; HUAWEI states 6.58 inches and a smaller actual viewable area under that method" },
+      panel: { value: "LTPO OLED", sourceIds: huaweiPura90sProSpecs },
+      resolution: { value: "2760 × 1256", sourceIds: huaweiPura90sProSpecs, qualification: "Effective pixels are slightly lower because the display has rounded corners" },
+      refreshRate: { value: "1–120 Hz adaptive", sourceIds: huaweiPura90sProSpecs },
+      peakBrightness: { value: null, sourceIds: huaweiPura90sProSpecs, qualification: "The cited global specification page does not state an absolute peak-brightness value" }
+    },
+    weight: { value: "Approx. 213.5 g including battery", sourceIds: huaweiPura90sProSpecs, qualification: "Theoretical value; actual measurements can vary by configuration, manufacturing process, and method" },
+    storage: { value: { options: "256 GB or 512 GB", startsAtGb: 256 }, sourceIds: huaweiPura90sProSpecs },
+    configurations: { value: "12 GB RAM + 256 GB storage; 12 GB RAM + 512 GB storage", sourceIds: huaweiPura90sProSpecs, qualification: "Global specification-page configurations; availability can vary by market" },
+    colors: { value: "Guava Soda, Orange Soda, Coconut White, Mulberry Black", sourceIds: huaweiPura90sProProduct, qualification: "Global feature-page colours; HUAWEI states colour availability can vary by region" },
+    dimensions: { value: "157.8 × 74.5 × 8.2 mm", sourceIds: huaweiPura90sProSpecs, qualification: "Theoretical values; actual measurements can vary by configuration, manufacturing process, and method" },
+    charging: { value: "Up to 66 W HUAWEI SuperCharge; wireless HUAWEI SuperCharge (wattage not stated)", sourceIds: huaweiPura90sProSpecs, qualification: "Maximum wired power requires a compatible HUAWEI SuperCharge cable and charger; wireless charger is sold separately and actual power varies" },
+    processor: { value: null, sourceIds: huaweiPura90sProSpecs, qualification: "The cited global specification page does not identify the processor" },
+    rearCameras: { value: "50 MP Ultra Lighting main + 12.5 MP ultrawide + 50 MP macro telephoto + True-to-Colour Camera 2.0", sourceIds: huaweiPura90sProSpecs },
+    batteryClaim: { value: "6,000 mAh typical Non-EU; 5,850 mAh rated Non-EU; 5,270 mAh rated EU", sourceIds: huaweiPura90sProSpecs, qualification: "Manufacturer nominal capacities; HUAWEI publishes region-specific values and states actual capacity can vary slightly" },
+    resistance: { value: "IP68 and IP69", sourceIds: huaweiPura90sProSpecs, qualification: "Controlled IEC 60529 testing; HUAWEI describes IP68 as static water up to 2 m for 30 minutes under stated conditions, says resistance is not permanent, and excludes liquid damage from warranty" }
   }
 ] as const satisfies readonly PhoneRecord[];
 
