@@ -6,15 +6,15 @@ test("catalog passes provenance and pricing-context validation", () => {
   assert.deepEqual(validateCatalog(), []);
 });
 test("the catalogue includes current standard models from every represented manufacturer", () => {
-  assert.equal(phones.length, 126);
-  assert.equal(Object.keys(sources).length, 191);
+  assert.equal(phones.length, 128);
+  assert.equal(Object.keys(sources).length, 197);
   assert.deepEqual(
     phones.filter(({ slug }) => [
       "apple-iphone-17",
       "google-pixel-10",
       "samsung-galaxy-s26",
       "motorola-edge-2026",
-      "oneplus-13",
+      "oneplus-15",
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
@@ -40,7 +40,7 @@ test("the catalogue includes current standard models from every represented manu
       "google-pixel-10",
       "samsung-galaxy-s26",
       "motorola-edge-2026",
-      "oneplus-13",
+      "oneplus-15",
       "nothing-phone-4a-pro",
       "tcl-nxtpaper-70-pro",
       "unihertz-titan-2",
@@ -85,8 +85,8 @@ test("every phone has a sourced, conservative generation classification", () => 
       "motorola-razr-plus-2026",
       "motorola-razr-2026",
       "motorola-edge-2026",
-      "oneplus-13",
-      "oneplus-13r",
+      "oneplus-15",
+      "oneplus-15r",
       "nothing-phone-4a-pro",
       "nothing-phone-3",
       "motorola-moto-g-stylus-2026",
@@ -193,7 +193,7 @@ test("every phone has a sourced, conservative generation classification", () => 
   );
   assert.deepEqual(
     phones.filter(({ generation }) => generation.value === "earlier").map(({ slug }) => slug),
-    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24", "tcl-50-xl-nxtpaper-5g", "asus-zenfone-11-ultra"]
+    ["apple-iphone-16", "google-pixel-9", "samsung-galaxy-s24", "oneplus-13", "oneplus-13r", "tcl-50-xl-nxtpaper-5g", "asus-zenfone-11-ultra"]
   );
 
   for (const phone of phones) {
@@ -321,6 +321,23 @@ test("the expansion preserves U.S. launch context and explicit timing bases", ()
   assert.deepEqual(onePlus.generation.sourceIds, ["oneplus-us-phone-catalogue", "oneplus-13-specs"]);
   assert.match(onePlus.releasedOn.qualification ?? "", /does not state a first-sale date/i);
   assert.match(nothing.colors.qualification ?? "", /global colours are not inferred/i);
+});
+
+test("the maintained OnePlus U.S. store boundary supersedes stale product navigation", () => {
+  const onePlus: readonly PhoneRecord[] = phones.filter(({ maker }) => maker.value === "OnePlus");
+  assert.deepEqual(onePlus.map(({ slug }) => slug), ["oneplus-13", "oneplus-13r", "oneplus-15", "oneplus-15r"]);
+  assert.deepEqual(onePlus.map(({ generation }) => generation.value), ["earlier", "earlier", "current", "current"]);
+
+  const onePlus15 = onePlus.find(({ slug }) => slug === "oneplus-15");
+  const onePlus15R = onePlus.find(({ slug }) => slug === "oneplus-15r");
+  assert.ok(onePlus15);
+  assert.ok(onePlus15R);
+  assert.equal(onePlus15.originalPrice.value.amount, 999.99);
+  assert.match(onePlus15.generation.qualification ?? "", /Out of stock and Stop sale/i);
+  assert.equal(onePlus15R.releasedOn.value, null);
+  assert.equal(onePlus15R.originalPrice.value.amount, null);
+  assert.equal(onePlus15R.resistance.value, null);
+  assert.match(onePlus15R.generation.qualification ?? "", /Out of stock.*Pre-order Now/i);
 });
 
 test("the next catalogue batch adds affordable, eye-comfort, compact, and keyboard breadth", () => {
