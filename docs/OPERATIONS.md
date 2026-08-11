@@ -9,7 +9,7 @@ Each app uses:
 - its own Cloudflare Worker;
 - its own `production-<app>` GitHub environment;
 - its own non-cancelling `production-<app>` concurrency group;
-- environment-scoped `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets;
+- an environment-scoped `CLOUDFLARE_API_TOKEN` secret and `CLOUDFLARE_ACCOUNT_ID` variable;
 - app-specific smoke identity, production URL, and release history.
 
 Tokens must be environment-scoped and restricted to the smallest Cloudflare account boundary available. Cloudflare Workers Scripts edit permission is account-scoped, so separate accounts are required for cryptographic per-Worker credential isolation; when apps share an account, that cross-Worker token blast radius is an explicit residual risk. Do not use `secrets: inherit`, store credentials in repository files, or place secrets in Worker `vars`.
